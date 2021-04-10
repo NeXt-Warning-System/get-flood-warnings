@@ -105,7 +105,7 @@
         {% for area in place.warningAreas %}
             map.addSource('{{ area.notation }}', {
                 type: 'geojson',
-                data: '{{ area.polygon }}'
+                data: '{{ area.polygon | secure }}'
             });
             map.addLayer({
                 'id': '{{ area.notation }}-warning-fill',
@@ -143,7 +143,7 @@
         {% for area in place.alertAreas %}
             map.addSource('{{ area.notation }}', {
                 type: 'geojson',
-                data: '{{ area.polygon }}'
+                data: '{{ area.polygon | secure }}'
             });
             map.addLayer({
                 'id': '{{ area.notation }}-alert-fill',

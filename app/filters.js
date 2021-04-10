@@ -165,6 +165,8 @@ module.exports = function (env) {
 		return false
 	}
 
+  filters.secure = url => url.replace(/^http:\/\//i, 'https://')
+
 	filters.debug = (obj) => {
 		return JSON.stringify(obj)
 	}

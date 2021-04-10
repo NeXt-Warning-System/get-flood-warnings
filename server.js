@@ -329,4 +329,7 @@ app.options('*', function (req, res) {
   res.end();
 });
 
+app.use(cors());
+app.options('*', cors()); 
+
 module.exports = app
