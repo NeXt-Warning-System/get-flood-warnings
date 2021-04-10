@@ -41,14 +41,6 @@ const documentationApp = express()
 
 const cors = require('cors')
 
-app.use(cors())
-
-app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  next();
-});
-
 if (useV6) {
   console.log('/app/v6/routes.js detected - using v6 compatibility mode')
   v6App = express()
@@ -329,5 +321,7 @@ app.use(function (err, req, res, next) {
 
 console.log('\nGOV.UK Prototype Kit v' + releaseVersion)
 console.log('\nNOTICE: the kit is for building prototypes, do not use it for production services.')
+
+app.use(cors())
 
 module.exports = app
