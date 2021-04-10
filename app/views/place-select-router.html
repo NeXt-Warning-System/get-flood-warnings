@@ -1,0 +1,37 @@
+{% extends 'layout.html' %}
+
+{% block pageTitle %}
+    PLACE SELECTION ROUTER
+{% endblock %}
+
+{% block content %}
+
+    {% if data['search-use-top-result'] == 'Yes' %}
+
+        {{ ('/place/select?next-page=/place-details&selected-id=' + data['placeSearchTopResult'].id) | redirect | safe }}
+
+    {% else %}
+
+        {% if not data['placeSearchOtherResults'].length > 0 %}
+
+            {{ '/place' | redirect | safe }}
+
+        {% else %}
+
+            {% if data['other-search-results'] == 'other' %}
+
+                {{ '/place' | redirect | safe }}
+
+            {% else %}
+
+                {{ ('/place/select?next-page=/place-details&selected-id=' + data['other-search-results']) | redirect | safe }}
+
+            {% endif %}
+
+        {% endif %}
+
+        {{ '/place' | redirect | safe }}
+
+    {% endif %}
+
+{% endblock %}

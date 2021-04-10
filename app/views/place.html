@@ -1,0 +1,55 @@
+{% extends 'layout.html' %}
+
+{% block pageTitle %}
+    Find a location
+{% endblock %}
+
+{% block beforeContent %}
+
+    {{ super() }}
+
+    {{ govukBackLink ({
+        text: 'Back',
+        href: 'javascript:history.back()'
+    }) }}
+
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+
+        <div class="govuk-grid-column-two-thirds">
+
+            <form method="post" action="/place/search">
+
+                <h1 class="govuk-heading-l">Find a location</h1>
+
+                {{ govukInput ({
+                    id: 'place-query',
+                    name: 'place-query',
+                    value: data['place-query'] if data['place-query'] else '',
+                    type: 'search',
+                    classes: 'govuk-input--width-10',
+                    label: {
+                        text: 'Postcode or town name',
+                        classes: 'govuk-input--width-10'
+                    }
+                }) }}
+
+                <input type="hidden" name="next-page" value="/results">
+                <input type="hidden" name="error-page" value="/place">
+
+                {{ govukButton ({
+                    html: 'Search'
+                }) }}
+
+                {{ data.postcodeSearchResults | debug }}
+
+            </form>
+
+        </div>
+
+</div>
+
+{% endblock %}

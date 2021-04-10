@@ -1,0 +1,111 @@
+{% extends 'layout.html' %}
+
+{% block pageTitle %}
+    Results
+{% endblock %}
+
+{% block beforeContent %}
+
+    {{ super() }}
+
+    {{ govukBackLink ({
+        text: 'Back',
+        href: 'javascript:history.back()'
+    }) }}
+
+{% endblock %}
+
+{% block content %}
+
+{% set topResult = data['placeSearchTopResult'] %}
+
+{% if not topResult %}
+    {{ '/place' | redirect | safe }}
+{% endif %}
+
+<div class="govuk-grid-row">
+
+        <div class="govuk-grid-column-two-thirds">
+
+            <form action="place-select-router">
+
+                {% set topResultHTML %}
+
+                    <div class="govuk-inset-text top-result">
+
+                        {% set topResult = data['placeSearchTopResult'] %}
+
+                        <div class="result">
+
+                            <h2 class="govuk-heading-m">{{ topResult.name }}</h2>
+
+                            {% if topResult.locale %}
+                                <p class="govuk-!-margin-bottom-0">
+                                    in {{ topResult.locale }}
+                                </p>
+                            {% endif %}
+
+                        </div>
+
+                    </div>
+
+                {% endset %}
+
+                {% set otherResultsHTML %}
+
+                    {{ govukRadios ({
+                        idPrefix: 'other-search-results',
+                        name: 'other-search-results',
+                        fieldset: {
+                            legend: {
+                                text: 'Select a different location or search again',
+                                isPageHeading: false,
+                                classes: 'govuk-fieldset__legend--s'
+                            }
+                        },
+                        items: data['placeSearchOtherResults'] | placeOptions(data['other-search-results'])
+                    }) }}
+
+                {% endset %}
+
+
+                {{ govukRadios ({
+                    idPrefix: 'search-use-top-result',
+                    name: 'search-use-top-result',
+                    fieldset: {
+                        legend: {
+                            text: 'Use this location?',
+                            isPageHeading: true,
+                            classes: 'govuk-fieldset__legend--l'
+                        }
+                    },
+                    items: [
+                        {
+                            text: 'Yes',
+                            value: 'Yes'
+                        },
+                        {
+                            text: 'No',
+                            value: 'No',
+                            conditional: {
+                                html: otherResultsHTML
+                            } if data['placeSearchOtherResults'].length != 0
+                        }
+                    ],
+                    hint: {
+                        html: topResultHTML
+                    }
+                }) }}
+
+                {{ govukButton ({
+                    html: 'Continue'
+                }) }}
+
+
+            </form>
+
+        </div>
+
+</div>
+
+{% endblock %}

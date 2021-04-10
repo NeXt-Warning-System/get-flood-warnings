@@ -1,0 +1,21 @@
+<!--[if lte IE 8
+  ]><link
+    href="/public/stylesheets/application-ie8.css"
+    rel="stylesheet"
+    type="text/css"
+/><![endif]-->
+<!--[if gt IE 8
+]><!--><link
+  href="/public/stylesheets/application.css"
+  media="all"
+  rel="stylesheet"
+  type="text/css"
+/><!--<![endif]-->
+
+{% for stylesheetUrl in extensionConfig.stylesheets %}
+<link href="{{ stylesheetUrl }}" rel="stylesheet" type="text/css" />
+{% endfor %}
+<link
+  href="https://api.mapbox.com/mapbox-gl-js/v2.1.1/mapbox-gl.css"
+  rel="stylesheet"
+/>

@@ -1,0 +1,185 @@
+{% extends 'layout.html' %}
+
+{% set place = data.selectedPlace %}
+
+{% block pageTitle %}
+    {{ place.name }}
+{% endblock %}
+
+{% block beforeContent %}
+
+    {{ super() }}
+
+    {{ govukBackLink ({
+        text: 'Back',
+        href: 'javascript:history.back()'
+    }) }}
+
+{% endblock %}
+
+{% block content %}
+
+{{ '/place' | redirect | safe if not place }}
+
+<div class="govuk-grid-row">
+
+        <div class="govuk-grid-column-two-thirds">
+
+            <h1 class="govuk-heading-xl">{{ place.name }}</h1>
+
+        </div>
+
+</div>
+
+<div class="govuk-grid-row govuk-!-padding-bottom-9">
+
+        <div class="govuk-grid-column-two-thirds map-container">
+
+            <style>
+                .mapboxgl-popup {
+                    max-width: 400px;
+                    font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+                }
+                .mapboxgl-popup-content p {
+                    font-size: 14px !important;
+                }
+            </style>
+
+            <div id="map" class="app-preview-map"></div>
+
+        </div>
+
+</div>
+
+<div class="govuk-grid-row">
+
+        <div class="govuk-grid-column-two-thirds">
+
+            {% if place.warningAreas.length %}
+                <h2 class="govuk-heading-m">Flood warning areas for {{ place.name }}</h2>
+                <p>
+                    Areas that are at a high risk of flooding.
+                </p>
+                {% for area in place.warningAreas %}
+                    <h3 class="govuk-heading-s">{{ area.label }}</h3>
+                    <p>{{ area.description }}</p>
+                {% endfor %}
+            {% endif %}
+
+            {% if place.alertAreas.length %}
+                <h2 class="govuk-heading-m">Flood alert areas affecting {{ place.name }}</h2>
+                <p>
+                    Areas that are at a moderate risk of flooding.
+                </p>
+                {% for area in place.alertAreas %}
+                    <h3 class="govuk-heading-s">{{ area.label }}</h3>
+                    <p>{{ area.description }}</p>
+                {% endfor %}
+            {% endif %}
+
+            {{ govukButton ({
+                text: 'Search again',
+                href: '/place'
+            }) }}
+
+        </div>
+
+</div>
+
+{% endblock %}
+
+{% block pageScripts %}
+
+  <script>
+ 
+    mapboxgl.accessToken = 'pk.eyJ1IjoiZGF2aWRkb3R0byIsImEiOiJjaW54cDQ5ejUwMHFsdnhtMjh1M2NwYWIwIn0.hUo15CVfYcWgHWkRIQomiQ';
+    var map = new mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/daviddotto/cknao6u0w1y4g17pmjwq8llcv',
+        center: [{{ place.location[0] }}, {{ place.location[1] }}],
+        zoom: {{ '13' if place.isPostcode else '12' }},
+        attributionControl: false
+    });
+    map.on('load', function () {
+        map.resize();
+        {% for area in place.warningAreas %}
+            map.addSource('{{ area.notation }}', {
+                type: 'geojson',
+                data: '{{ area.polygon }}'
+            });
+            map.addLayer({
+                'id': '{{ area.notation }}-warning-fill',
+                'type': 'fill',
+                'source': '{{ area.notation }}', // reference the data source
+                'layout': {},
+                'paint': {
+                    'fill-color': '#d4351c', // blue color fill
+                    'fill-opacity': 0.2
+                }
+            });
+            map.addLayer({
+                'id': '{{ area.notation }}-warning-outline',
+                'type': 'line',
+                'source': '{{ area.notation }}',
+                'layout': {},
+                'paint': {
+                    'line-color': '#d4351c',
+                    'line-width': 2
+                }
+            });
+            map.on('click', '{{ area.notation }}-warning-fill', function (e) {
+                new mapboxgl.Popup()
+                .setLngLat(e.lngLat)
+                .setHTML('<div><p><b>{{ area.label }}</b></p><p>{{ area.description }}</p></div>')
+                .addTo(map);
+            });
+            map.on('mouseenter', '{{ area.notation }}-warning-fill', function () {
+                map.getCanvas().style.cursor = 'pointer';
+            });
+            map.on('mouseleave', '{{ area.notation }}-warning-fill', function () {
+                map.getCanvas().style.cursor = '';
+            });
+        {% endfor %}
+        {% for area in place.alertAreas %}
+            map.addSource('{{ area.notation }}', {
+                type: 'geojson',
+                data: '{{ area.polygon }}'
+            });
+            map.addLayer({
+                'id': '{{ area.notation }}-alert-fill',
+                'type': 'fill',
+                'source': '{{ area.notation }}', // reference the data source
+                'layout': {},
+                'paint': {
+                    'fill-color': '#4c2c92', // blue color fill
+                    'fill-opacity': 0.2
+                }
+            });
+            map.addLayer({
+                'id': '{{ area.notation }}-alert-outline',
+                'type': 'line',
+                'source': '{{ area.notation }}',
+                'layout': {},
+                'paint': {
+                    'line-color': '#4c2c92',
+                    'line-width': 2
+                }
+            });
+            map.on('click', '{{ area.notation }}-alert-fill', function (e) {
+                new mapboxgl.Popup()
+                .setLngLat(e.lngLat)
+                .setHTML('<div><p><b>{{ area.label }}</b></p><p>{{ area.description }}</p></div>')
+                .addTo(map);
+            });
+            map.on('mouseenter', '{{ area.notation }}-alert-fill', function () {
+                map.getCanvas().style.cursor = 'pointer';
+            });
+            map.on('mouseleave', '{{ area.notation }}-alert-fill', function () {
+                map.getCanvas().style.cursor = '';
+            });
+        {% endfor %}
+    });
+
+  </script>
+
+{% endblock %}
