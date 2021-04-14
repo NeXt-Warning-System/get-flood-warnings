@@ -55,6 +55,29 @@
 
         <div class="govuk-grid-column-two-thirds">
 
+            <p>Warning areas: {{ place.warningAreas | selectattr('affectsPlaceDirectly') | length }}</p>
+            <p>Alert areas: {{ place.alertAreas | selectattr('affectsPlaceDirectly') | length }}</p>
+
+            {% if place.warningAreas | rejectattr('affectsPlaceDirectly') | length %}
+                <p>Distant warning areas:</p>
+                <ul class="govuk-list govuk-list--bullet">
+                    {% for area in place.warningAreas | rejectattr('affectsPlaceDirectly') | sort(false, false, 'distance')  %}
+                        <li>{{ area.label }}: {{ area.distance | oneDecimalPlace }} miles away</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+
+            {% if place.alertAreas | rejectattr('affectsPlaceDirectly') | length %}
+                <p>Distant alert areas:</p>
+                <ul class="govuk-list govuk-list--bullet">
+                    {% for area in place.alertAreas | rejectattr('affectsPlaceDirectly') | sort(false, false, 'distance') %}
+                        <li>{{ area.label }}: {{ area.distance | oneDecimalPlace }} miles away</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+
+            {#
+
             {% if place.warningAreas.length %}
                 <h2 class="govuk-heading-m">Flood warning areas for {{ place.name }}</h2>
                 <p>
@@ -63,6 +86,8 @@
                 {% for area in place.warningAreas %}
                     <h3 class="govuk-heading-s">{{ area.label }}</h3>
                     <p>{{ area.description }}</p>
+                    <p>{{ area.doesAffectLocation }}</p>
+                    <p>{{ area.distance | debug }} miles away</p>
                 {% endfor %}
             {% endif %}
 
@@ -74,6 +99,8 @@
                 {% for area in place.alertAreas %}
                     <h3 class="govuk-heading-s">{{ area.label }}</h3>
                     <p>{{ area.description }}</p>
+                    <p>{{ area.doesAffectLocation }}</p>
+                    <p>{{ area.distance | debug }} miles away</p>
                 {% endfor %}
             {% endif %}
 
@@ -81,6 +108,8 @@
                 text: 'Search again',
                 href: '/place'
             }) }}
+
+            #}
 
         </div>
 

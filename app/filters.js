@@ -246,6 +246,8 @@ module.exports = function (env) {
 		return `<script>window.location.href = '${location}';</script>`
 	}
 
+	filters.oneDecimalPlace = number => Math.round(number * 10) / 10
+
 	/* ------------------------------------------------------------------
     add your methods to the filters obj below this comment block:
     @example:

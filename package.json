@@ -12,6 +12,9 @@
     "test": "npm run lint && gulp generate-assets && jest"
   },
   "dependencies": {
+    "@turf/boolean-point-in-polygon": "^6.3.0",
+    "@turf/nearest-point-on-line": "^6.3.0",
+    "@turf/turf": "^6.3.0",
     "acorn": "^7.1.1",
     "ansi-colors": "^4.1.1",
     "axios": "^0.21.1",
@@ -46,6 +49,7 @@
     "proj4": "^2.7.2",
     "require-dir": "^1.0.0",
     "sync-request": "^6.0.0",
+    "turf": "^3.0.14",
     "universal-analytics": "^0.4.16",
     "uuid": "^7.0.3"
   },
