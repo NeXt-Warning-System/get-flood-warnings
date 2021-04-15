@@ -11,6 +11,14 @@ const filters = require('../filters')(process.env)
 
 const turf = require('@turf/turf')
 
+// Radii
+
+const postcodeFloodAreaSearchRadius = 0 // Search radius from centre of postcode in kilometers
+const townFloodAreaSearchRadius = 6 // Search radius from centre of town in kilometers
+
+const postcodeIsInFloodAreaTolerance = 0.15 // Areas that are less that X miles away from centre of postcode will be counted as zero miles away
+const townIsInFloodAreaTolerance = 3 // Areas that are less that X miles away from centre of town will be counted as zero miles away
+
 const standardisedLocationFrom = entry => {
     proj4.defs('EPSG:27700', '+proj=tmerc +lat_0=49 +lon_0=-2 +k=0.9996012717 +x_0=400000 +y_0=-100000 +ellps=airy +towgs84=446.448,-125.157,542.06,0.15,0.247,0.842,-20.489 +units=m +no_defs')
     const location = entry['GAZETTEER_ENTRY']
@@ -82,7 +90,7 @@ router.get('/select', (req, res) => {
     const nextPage = req.session.data['next-page']
     const place = req.session.data.allPlaceResults[selectedPlaceId]
     const placeAsPoint = turf.point(place.location)
-    const radius = place.isPostcode ? 0 : 6
+    const radius = place.isPostcode ? postcodeFloodAreaSearchRadius : townFloodAreaSearchRadius
     const floodAreaURL = `https://environment.data.gov.uk/flood-monitoring/id/floodAreas?lat=${place.location[1]}&long=${place.location[0]}&dist=${radius}`
     axios.get(floodAreaURL)
         .then(response => {
@@ -111,7 +119,7 @@ router.get('/select', (req, res) => {
                                     }
                                 })
                             }
-                            if (distanceFromPlace < (place.isPostcode ? 0.15 : 3)) {
+                            if (distanceFromPlace < (place.isPostcode ? postcodeIsInFloodAreaTolerance : townIsInFloodAreaTolerance)) {
                                 distanceFromPlace = 0
                                 placeIsWithBoundries = true
                             }
