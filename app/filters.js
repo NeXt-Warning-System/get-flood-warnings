@@ -1,3 +1,5 @@
+const { area } = require("@turf/turf")
+
 const isValidDate = (d) => {
 	return d instanceof Date && !isNaN(d)
 }
@@ -247,6 +249,31 @@ module.exports = function (env) {
 	}
 
 	filters.oneDecimalPlace = number => Math.round(number * 10) / 10
+
+	filters.areasAsGovOptions = (areaArray, location) => {
+		if (Array.isArray(areaArray)) {
+			return areaArray.map(area => {
+				var labelText = area.label
+				if (area.distance == 0) {
+					labelText += ` - directly affects ${location}`
+				} else {
+					if (area.hasDistance) {
+						let distanceInMiles = filters.oneDecimalPlace(area.distance)
+						labelText += ` - ${ distanceInMiles == '1.0' ? '1 mile' : `${distanceInMiles} miles` } away`
+					} else {
+						labelText += ` - less than 2.0 miles away`
+					}
+				}
+				return {
+					text: labelText,
+					hint: { text: area.description },
+					value: area.notation
+				}
+			})
+		} else {
+			return []
+		}
+	}
 
 	/* ------------------------------------------------------------------
     add your methods to the filters obj below this comment block:

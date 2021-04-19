@@ -1,0 +1,57 @@
+{% extends 'layout.html' %}
+
+{% block pageTitle %}
+    Get flood alerts
+{% endblock %}
+
+{% block beforeContent %}
+
+    {{ super() }}
+
+    {{ govukBackLink ({
+        text: 'Back',
+        href: 'javascript:history.back()'
+    }) }}
+
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+
+        <div class="govuk-grid-column-two-thirds">
+
+            <h1 class="govuk-heading-xl">Get flood alerts</h1>
+
+            <p>Use this service to:</p>
+
+            <ul class="govuk-list govuk-list--bullet">
+                <li>bullet 1</li>
+                <li>bullet 2</li>
+            </ul>
+
+            <p>We will ...</p>
+
+            <p>You will ...</p>
+
+            <p>We expect this will ...</p>
+
+            {{ govukButton ({
+                html: 'Start',
+                href: 'postcode',
+                isStartButton: true
+            }) }}
+
+            <p>If you are looking ...</p>
+
+            <ul class="govuk-list govuk-list--bullet">
+                <li><a href="#">Link 1</a></li>
+                <li><a href="#">Link 2</a></li>
+                <li><a href="#">Link 3</a></li>
+            </ul>
+
+        </div>
+
+</div>
+
+{% endblock %}

@@ -26,7 +26,15 @@
         <h1 class="govuk-heading-xl">Location sandbox</h1>
 
         {{ govukButton ({
-          text: 'Start',
+          text: 'Start subscribe journey',
+          href: '/subscribe-journey/postcode',
+          classes: 'govuk-button--start'
+        }) }}
+
+        <br>
+
+        {{ govukButton ({
+          text: 'Start demo',
           href: '/place',
           classes: 'govuk-button--start'
         }) }}
