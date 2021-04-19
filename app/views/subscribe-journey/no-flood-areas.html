@@ -1,0 +1,44 @@
+{% extends 'layout.html' %}
+
+{% set place = data.location %}
+
+{% block pageTitle %}
+    No flood areas
+{% endblock %}
+
+{% block beforeContent %}
+
+    {{ super() }}
+
+    {{ govukBackLink ({
+        text: 'Back',
+        href: 'javascript:history.back()'
+    }) }}
+
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+
+        <div class="govuk-grid-column-two-thirds">
+
+            <form method="post">
+
+                <h1 class="govuk-heading-xl">No flood areas</h1>
+
+                <p>{{ place.name }}</p>
+
+                <p>{{ place.warningAreas }}</p>
+
+                {{ govukButton ({
+                    html: 'Continue'
+                }) }}
+
+            </form>
+
+        </div>
+
+</div>
+
+{% endblock %}
