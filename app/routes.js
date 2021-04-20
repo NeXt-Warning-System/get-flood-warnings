@@ -1,6 +1,8 @@
 const express = require('express')
 const router = express.Router()
 
+const filters = require('./filters')(process.env)
+
 // Add your routes here - above the module.exports line
 
 router.all('*', (req, res, next) => {

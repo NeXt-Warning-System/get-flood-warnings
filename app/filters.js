@@ -250,7 +250,7 @@ module.exports = function (env) {
 
 	filters.oneDecimalPlace = number => Math.round(number * 10) / 10
 
-	filters.areasAsGovOptions = (areaArray, location) => {
+	filters.areasAsGovOptions = (areaArray, location, selectedIds) => {
 		if (Array.isArray(areaArray)) {
 			return areaArray.map(area => {
 				var labelText = area.label
@@ -264,14 +264,68 @@ module.exports = function (env) {
 						labelText += ` - less than 2.0 miles away`
 					}
 				}
+				var isChecked = false
+				if (Array.isArray(selectedIds)) {
+					isChecked = selectedIds.includes(area.notation)
+				}
 				return {
 					text: labelText,
 					hint: { text: area.description },
-					value: area.notation
+					value: area.notation,
+					checked: isChecked
 				}
 			})
 		} else {
 			return []
+		}
+	}
+
+	filters.removingArea = (areaIds, idToRemove) => {
+		if (Array.isArray(areaIds)) {
+			return areaIds.filter(areaId => {
+				return areaId != idToRemove
+			})
+		}
+	}
+
+	filters.asArray = str => {
+		const outputArray = JSON.parse(str)
+		if (Array.isArray(outputArray)) {
+			return outputArray
+		} else {
+			return []
+		}
+	}
+
+	filters.warningAreas = areas => {
+		if (Array.isArray(areas)) {
+			return areas.filter(area => {
+				return area.notation.includes('FWF')
+			})
+		}
+	}
+
+	filters.alertAreas = areas => {
+		if (Array.isArray(areas)) {
+			return areas.filter(area => {
+				return area.notation.includes('WAF')
+			})
+		}
+	}
+
+	filters.warningAreaIds = areaIds => {
+		if (Array.isArray(areaIds)) {
+			return areaIds.filter(areaId => {
+				return areaId.includes('FWF')
+			})
+		}
+	}
+
+	filters.alertAreaIds = areaIds => {
+		if (Array.isArray(areaIds)) {
+			return areaIds.filter(areaId => {
+				return areaId.includes('WAF')
+			})
 		}
 	}
 

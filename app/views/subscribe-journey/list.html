@@ -23,12 +23,78 @@
 
             <form method="post">
 
-                <h1 class="govuk-heading-xl">List</h1>
+                <h1 class="govuk-heading-l">Review the flood risk areas you are subscribing to</h1>
 
-                
+                {% set alertAreaIds = data.subscribedAreas | alertAreaIds %}
+
+                {% set warningAreaIds = data.subscribedAreas | warningAreaIds %}
+
+                {% if warningAreaIds | length or alertAreaIds | length %}
+
+                    {% if warningAreaIds | length %}
+
+                        <div class="govuk-!-margin-bottom-9">
+
+                        <h2 class="govuk-heading-m">High risk flood areas</h2>
+
+                            {% for subscribedAreaId in warningAreaIds%}
+
+                                {% set area = data.allFetchedAreas[subscribedAreaId] %}
+
+                                <h3 class="govuk-heading-s">{{ area.label }}</h3>
+                                <p>{{ area.description }}</p>
+
+                                <p>
+                                    <a href="area-view?selected-area={{ subscribedAreaId }}">View</a>
+                                    <a href="area-remove?selected-area={{ subscribedAreaId }}" class="app-link-destructive govuk-!-margin-left-2">Remove</a>
+                                </p>
+
+                                <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+
+                            {% endfor %}
+
+                        </div>
+
+                    {% endif %}
+
+                    {% if alertAreaIds | length %}
+
+                        <div class="govuk-!-margin-bottom-9">
+
+                            <h2 class="govuk-heading-m">Medium risk flood areas</h2>
+
+                            {% for subscribedAreaId in alertAreaIds%}
+
+                                {% set area = data.allFetchedAreas[subscribedAreaId] %}
+
+                                <h3 class="govuk-heading-s">{{ area.label }}</h3>
+                                <p>{{ area.description }}</p>
+
+                                <p>
+                                    <a href="area-view?selected-area={{ subscribedAreaId }}">View</a>
+                                    <a href="area-remove?selected-area={{ subscribedAreaId }}" class="app-link-destructive govuk-!-margin-left-2">Remove</a>
+                                </p>
+
+                                <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+
+                            {% endfor %}
+
+                        </div>
+
+                    {% endif %}
+
+                {% else %}
+
+                    <p>No subscriptions added.</p>
+
+                {% endif %}
+
+                <p>
+                    <a href="postcode">Add more areas near a different postcode</a>
+                </p>
 
                 {{ govukButton ({
-                    html: 'Continue'
+                    html: 'Sign up to get alerts'
                 }) }}
 
             </form>

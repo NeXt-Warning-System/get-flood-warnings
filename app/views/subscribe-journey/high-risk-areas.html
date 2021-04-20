@@ -75,7 +75,9 @@
 
         <div class="govuk-grid-column-two-thirds">
 
-            <form action="medium-risk-option">
+            <form method="post" action="/location/warning-select">
+
+                <input type="hidden" name="next-page" value="/subscribe-journey/medium-risk-option">
 
                 {% if place.warningAreas.length != 1 %}
 
@@ -90,7 +92,7 @@
                             classes: 'govuk-fieldset__legend--m'
                         }
                     },
-                    items: place.warningAreas | sort(false, false, 'distance') | areasAsGovOptions(place.name)
+                    items: place.warningAreas | sort(false, false, 'distance') | areasAsGovOptions(place.name, data.subscribedAreas)
                 }) }}
 
                 {{ govukButton ({
@@ -158,6 +160,8 @@
                             }
                         ]
                     }) }}
+
+                    <input type="hidden" name="single-warning-area" value="{{ place.warningAreas[0].notation }}">
 
                     {{ govukButton ({
                         html: 'Continue'

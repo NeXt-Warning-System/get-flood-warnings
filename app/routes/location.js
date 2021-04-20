@@ -10,8 +10,11 @@ const osSecret = process.env.OS_SECRET
 const filters = require('../filters')(process.env)
 
 const turf = require('@turf/turf')
+const session = require('express-session')
 
 // Radii
+
+const cuttoffDistanceFromPostcode = 2 // in miles : No results will show if past this point
 
 const postcodeFloodAreaSearchRadius = 1 // Search radius from centre of postcode in kilometers (seems to be larger than km but can't work it out right now!)
 const townFloodAreaSearchRadius = 6 // Search radius from centre of town in kilometers
@@ -104,6 +107,12 @@ router.get('/select', (req, res) => {
         .then(response => {
             const data = response.data
             var areas = data.items
+            if (!req.session.data.allFetchedAreas) {
+                req.session.data.allFetchedAreas = {}
+            }
+            areas.forEach(area => {
+                req.session.data.allFetchedAreas[area.notation] = area
+            })
             const polygonRequests = areas.map( area => {
                 return axios.get(filters.secure(area.polygon))
             })
@@ -139,10 +148,13 @@ router.get('/select', (req, res) => {
                     areas[index].distance = distanceFromPlace
                     areas[index].affectsPlaceDirectly = distanceFromPlace == 0
                 })
-                place.warningAreas = areas.filter(area => {
+                const filteredAreas = areas.filter(area => {
+                    return !area.hasDistance || area.distance < cuttoffDistanceFromPostcode
+                })
+                place.warningAreas = filteredAreas.filter(area => {
                     return area.notation.includes('FWF')
                 })
-                place.alertAreas = areas.filter(area => {
+                place.alertAreas = filteredAreas.filter(area => {
                     return area.notation.includes('WAF')
                 })
                 req.session.data.location = place
@@ -154,6 +166,100 @@ router.get('/select', (req, res) => {
             console.log('Error', error.message)
             res.redirect(errorPage)
         })
+})
+
+router.post('/warning-select', (req, res) => {
+    const nextPage = req.session.data['next-page']
+    const selectedAreaIds = req.session.data['subscribed-warning-areas']
+    const willAcceptSingleArea = req.session.data['subscribe-only-warning-area'] == 'Yes'
+    const singleWarningAreaId = req.session.data['single-warning-area']
+    if (!Array.isArray(req.session.data.subscribedAreas)) {
+        req.session.data.subscribedAreas = []
+    }
+    // Remove any that are unchecked
+    if (Array.isArray(req.session.data.location.warningAreas)) {
+        req.session.data.location.warningAreas.forEach(area => {
+            const selectedAreaIndex = req.session.data.subscribedAreas.indexOf(area.notation)
+            if (selectedAreaIndex > -1) {
+                req.session.data.subscribedAreas.splice(selectedAreaIndex, 1)
+            }
+        })
+    }
+    const selectedAreaIndex = req.session.data.subscribedAreas.indexOf(singleWarningAreaId)
+    if (selectedAreaIndex > -1) {
+        req.session.data.subscribedAreas.splice(selectedAreaIndex, 1)
+    }
+    // Add any that are checked
+    if (Array.isArray(selectedAreaIds)) {
+        selectedAreaIds.forEach(areaId => {
+            if (areaId != '_unchecked') {
+                if (!req.session.data.subscribedAreas.includes(areaId)) {
+                    req.session.data.subscribedAreas.push(areaId)
+                }
+            }
+        })
+    }
+    if (willAcceptSingleArea) {
+        if (!req.session.data.subscribedAreas.includes(singleWarningAreaId)) {
+            req.session.data.subscribedAreas.push(singleWarningAreaId)
+        }
+    }
+    res.redirect(nextPage)
+})
+
+
+router.post('/alert-select', (req, res) => {
+    const nextPage = req.session.data['next-page']
+    const selectedAreaIds = req.session.data['subscribed-alert-areas']
+    const willAcceptSingleArea = req.session.data['subscribe-only-alert-area'] == 'Yes'
+    const singleAlertAreaId = req.session.data['single-alert-area']
+    if (!Array.isArray(req.session.data.subscribedAreas)) {
+        req.session.data.subscribedAreas = []
+    }
+    // Remove any that are unchecked
+    if (Array.isArray(req.session.data.location.alertAreas)) {
+        req.session.data.location.alertAreas.forEach(area => {
+            const selectedAreaIndex = req.session.data.subscribedAreas.indexOf(area.notation)
+            if (selectedAreaIndex > -1) {
+                req.session.data.subscribedAreas.splice(selectedAreaIndex, 1)
+            }
+        })
+    }
+    const selectedAreaIndex = req.session.data.subscribedAreas.indexOf(singleAlertAreaId)
+    if (selectedAreaIndex > -1) {
+        req.session.data.subscribedAreas.splice(selectedAreaIndex, 1)
+    }
+    // Add any that are checked
+    if (Array.isArray(selectedAreaIds)) {
+        selectedAreaIds.forEach(areaId => {
+            if (areaId != '_unchecked') {
+                if (!req.session.data.subscribedAreas.includes(areaId)) {
+                    req.session.data.subscribedAreas.push(areaId)
+                }
+            }
+        })
+    }
+    if (willAcceptSingleArea) {
+        if (!req.session.data.subscribedAreas.includes(singleAlertAreaId)) {
+            req.session.data.subscribedAreas.push(singleAlertAreaId)
+        }
+    }
+    res.redirect(nextPage)
+})
+
+
+router.post('/remove-area', (req, res) => {
+    const nextPage = req.session.data['next-page']
+    const selectedAreaId = req.session.data['selected-area']
+    if (!Array.isArray(req.session.data.subscribedAreas)) {
+        req.session.data.subscribedAreas = []
+    }
+    // Remove any that are unchecked
+    const selectedAreaIndex = req.session.data.subscribedAreas.indexOf(selectedAreaId)
+    if (selectedAreaIndex > -1) {
+        req.session.data.subscribedAreas.splice(selectedAreaIndex, 1)
+    }
+    res.redirect(nextPage)
 })
 
 module.exports = router

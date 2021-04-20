@@ -23,19 +23,14 @@
 
         <div class="govuk-grid-column-two-thirds">
 
-            <form method="post">
 
-                <h1 class="govuk-heading-xl">No flood areas</h1>
+            <h1 class="govuk-heading-xl">No flood areas in {{ place.name }}</h1>
 
-                <p>{{ place.name }}</p>
+            {{ govukButton ({
+                html: 'Try another postcode',
+                href: 'postcode'
+            }) }}
 
-                <p>{{ place.warningAreas }}</p>
-
-                {{ govukButton ({
-                    html: 'Continue'
-                }) }}
-
-            </form>
 
         </div>
 

@@ -19,6 +19,8 @@
 
 {% block content %}
 
+{{ ('list' | redirect | safe) if data['medium-risk-option'] == 'No' }}
+
 <div class="govuk-grid-row">
 
         <div class="govuk-grid-column-two-thirds">
@@ -75,7 +77,9 @@
 
         <div class="govuk-grid-column-two-thirds">
 
-            <form action="list">
+            <form method="post" action="/location/alert-select">
+
+                <input type="hidden" name="next-page" value="/subscribe-journey/list">
 
                 {% if place.alertAreas.length != 1 %}
 
@@ -90,7 +94,7 @@
                             classes: 'govuk-fieldset__legend--m'
                         }
                     },
-                    items: place.alertAreas | sort(false, false, 'distance') | areasAsGovOptions(place.name)
+                    items: place.alertAreas | sort(false, false, 'distance') | areasAsGovOptions(place.name, data.subscribedAreas)
                 }) }}
 
                 {{ govukButton ({
@@ -158,6 +162,8 @@
                             }
                         ]
                     }) }}
+
+                    <input type="hidden" name="single-alert-area" value="{{ place.warningAreas[0].notation }}">
 
                     {{ govukButton ({
                         html: 'Continue'
