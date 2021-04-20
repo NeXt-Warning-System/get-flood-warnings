@@ -39,7 +39,7 @@
 
                 <h1 class="govuk-heading-l">Search for a location</h1>
 
-                <p>Enter the full postcode for the location you would like to receive flood alerts for.</p>
+                <p>Enter a full postcode or place name for the location you would like to receive flood alerts for.</p>
 
                 {{ govukInput ({
                     id: 'place-query',
@@ -60,7 +60,7 @@
                 <input type="hidden" name="error-page" value="/subscribe-journey/postcode?postcodeNotFound=true">
 
                 {{ govukButton ({
-                    html: 'Search'
+                    html: 'Continue'
                 }) }}
 
                 {{ data.postcodeSearchResults | debug }}
