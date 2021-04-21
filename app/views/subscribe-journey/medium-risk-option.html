@@ -25,7 +25,7 @@
 
             <form action="medium-risk-areas">
 
-                <h1 class="govuk-heading-l">Medium flood risk areas near {{ place.name }}</h1>
+                <h1 class="govuk-heading-l">Medium flood risk areas near <span class="app-nobreak">{{ place.name }}</span></h1>
 
                 <p>
                     Medium flood risk areas cover a much larger area than high risk flood areas.  These alerts can include shallow flooding of fields and footpaths. 
@@ -41,7 +41,7 @@
                     name: 'medium-risk-option',
                     fieldset: {
                         legend: {
-                            text: 'Would you like to search for medium flood risk areas near ' + place.name + ' ?',
+                            text: 'Would you like to search for medium flood risk areas near ' + place.name + '?',
                             isPageHeading: true,
                             classes: 'govuk-fieldset__legend--s'
                         }

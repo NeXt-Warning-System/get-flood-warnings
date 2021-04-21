@@ -21,6 +21,6 @@ module.exports = {
 
   // Insert values here
 
-  searchRadius: 2
+  searchRadius: 1
 
 }

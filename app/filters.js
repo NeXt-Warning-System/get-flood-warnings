@@ -300,7 +300,7 @@ module.exports = function (env) {
 	filters.warningAreas = areas => {
 		if (Array.isArray(areas)) {
 			return areas.filter(area => {
-				return area.notation.includes('FWF')
+				return area.notation.includes('FW')
 			})
 		}
 	}
@@ -308,7 +308,7 @@ module.exports = function (env) {
 	filters.alertAreas = areas => {
 		if (Array.isArray(areas)) {
 			return areas.filter(area => {
-				return area.notation.includes('WAF')
+				return area.notation.includes('WA')
 			})
 		}
 	}
@@ -316,7 +316,7 @@ module.exports = function (env) {
 	filters.warningAreaIds = areaIds => {
 		if (Array.isArray(areaIds)) {
 			return areaIds.filter(areaId => {
-				return areaId.includes('FWF')
+				return areaId.includes('FW')
 			})
 		}
 	}
@@ -324,7 +324,7 @@ module.exports = function (env) {
 	filters.alertAreaIds = areaIds => {
 		if (Array.isArray(areaIds)) {
 			return areaIds.filter(areaId => {
-				return areaId.includes('WAF')
+				return areaId.includes('WA')
 			})
 		}
 	}
