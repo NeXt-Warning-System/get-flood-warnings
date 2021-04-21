@@ -29,11 +29,13 @@
 
                 {% if inWarningArea %}
 
-                    <p>{{ place.name }} is in a high flood area ...</p>
+                    <p>{{ place.name }} is in a high flood risk area. Alerts for high risk areas will tell you to expect flooding of homes and businesses.</p>
 
                 {% else %}
 
-                    <p>There are no high flood areas in {{ place.name }} ...</p>
+                    <p>The closest high flood risk area to {{ place.name }} is <strong>‘X’</strong> miles away. Alerts for high risk areas will tell you to expect flooding of homes and businesses.</p>
+
+                    
 
                 {% endif %}
 
@@ -87,9 +89,9 @@
                     classes: 'govuk-checkboxes--small',
                     fieldset: {
                         legend: {
-                            text: 'Select areas to subscribe to',
+                            text: 'Choose the areas you want to receive alerts for:',
                             isPageHeading: true,
-                            classes: 'govuk-fieldset__legend--m'
+                            classes: 'govuk-fieldset__legend--s'
                         }
                     },
                     items: place.warningAreas | sort(false, false, 'distance') | areasAsGovOptions(place.name, data.subscribedAreas)
@@ -100,7 +102,7 @@
                 }) }}
 
                 <p>
-                    <a href="#">I do not need alerts for any of these areas</a>
+                    <a href="medium-risk-option">I do not need alerts for any of these areas</a>
                 </p>
 
                 {% else %}

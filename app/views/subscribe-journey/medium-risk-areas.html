@@ -31,13 +31,17 @@
 
                 {% if inAlertArea %}
 
-                    <p>{{ place.name }} is in a medium flood risk area ...</p>
-
+                    <p>{{ place.name }} is in a medium flood risk area. Alerts for medium risk areas will tell you flooding is possible. This could include shallow flooding of fields and footpaths.</p>
+                    <p>Choose the areas you want to receive alerts for.</p>
                 {% else %}
 
-                    <p>There are no medium flood areas in {{ place.name }} ...</p>
+                    <p>The closest high flood risk area to {{ place.name }} is <strong>‘X’</strong> miles away. Alerts for high risk areas will tell you to expect flooding of homes and businesses.</p>
+     
+                    <p>Choose the areas you want to receive alerts for.</p>
 
                 {% endif %}
+
+
 
         </div>
 
@@ -89,9 +93,9 @@
                     classes: 'govuk-checkboxes--small',
                     fieldset: {
                         legend: {
-                            text: 'Select areas to subscribe to',
+                            text: 'Select areas to subscribe to:',
                             isPageHeading: true,
-                            classes: 'govuk-fieldset__legend--m'
+                            classes: 'govuk-fieldset__legend--s'
                         }
                     },
                     items: place.alertAreas | sort(false, false, 'distance') | areasAsGovOptions(place.name, data.subscribedAreas)
@@ -102,7 +106,7 @@
                 }) }}
 
                 <p>
-                    <a href="#">I do not need alerts for any of these areas</a>
+                    <a href="/subscribe-journey/list">I do not need alerts for any of these areas</a>
                 </p>
 
                 {% else %}
@@ -143,7 +147,7 @@
                             legend: {
                                 text: 'Do you want to subscribe to the medium flood risk area?',
                                 isPageHeading: true,
-                                classes: 'govuk-fieldset__legend--m'
+                                classes: 'govuk-fieldset__legend--s'
                             }
                         },
                         hint: {
