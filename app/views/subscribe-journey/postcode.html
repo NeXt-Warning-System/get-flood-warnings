@@ -44,7 +44,6 @@
                 {{ govukInput ({
                     id: 'place-query',
                     name: 'place-query',
-                    value: data['place-query'],
                     type: 'search',
                     classes: 'govuk-input--width-10',
                     errorMessage: {
@@ -55,6 +54,8 @@
                         classes: 'govuk-visually-hidden'
                     }
                 }) }}
+
+                <input type="hidden" name="searchRadius" value="2">
 
                 <input type="hidden" name="next-page" value="/subscribe-journey/postcode-router">
                 <input type="hidden" name="error-page" value="/subscribe-journey/postcode?postcodeNotFound=true">

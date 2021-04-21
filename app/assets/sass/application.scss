@@ -27,3 +27,7 @@ a.app-link-destructive {
         color: $govuk-error-colour !important;
     }
 }
+
+.app-nobreak {
+    white-space: nowrap;
+}
