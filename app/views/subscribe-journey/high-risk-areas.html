@@ -33,9 +33,8 @@
 
                 {% else %}
 
-                    <p>The closest high flood risk area to {{ place.name }} is <strong>‘X’</strong> miles away. Alerts for high risk areas will tell you to expect flooding of homes and businesses.</p>
+                    <p>The closest high flood risk area to {{ place.name }} is {{ (place.warningAreas | sort(false, false, 'distance'))[0].distance | oneDecimalPlace }} miles away. Alerts for high risk areas will tell you to expect flooding of homes and businesses.</p>
 
-                    
 
                 {% endif %}
 
@@ -89,7 +88,7 @@
                     classes: 'govuk-checkboxes--small',
                     fieldset: {
                         legend: {
-                            text: 'Choose the areas you want to receive alerts for:',
+                            text: 'Choose the areas you want to receive alerts for',
                             isPageHeading: true,
                             classes: 'govuk-fieldset__legend--s'
                         }
