@@ -101,7 +101,8 @@ router.get('/select', (req, res) => {
     const errorPage = req.session.data['error-page']
     const place = req.session.data.allPlaceResults[selectedPlaceId]
     const placeAsPoint = turf.point(place.location)
-    const radius = 6
+    const derivedRadius = req.session.data.searchRadius ? Number(req.session.data.searchRadius) : 1
+    const radius = derivedRadius == 1 ? derivedRadius : derivedRadius / 2
     const floodAreaURL = `https://environment.data.gov.uk/flood-monitoring/id/floodAreas?lat=${place.location[1]}&long=${place.location[0]}&dist=${radius}`
     axios.get(floodAreaURL)
         .then(response => {
@@ -161,10 +162,10 @@ router.get('/select', (req, res) => {
                     return !area.hasDistance || area.distance < (req.session.data.searchRadius ? Number(req.session.data.searchRadius) : cuttoffDistanceFromPostcode)
                 })
                 place.warningAreas = filteredAreas.filter(area => {
-                    return area.notation.includes('FWF')
+                    return area.notation.includes('FW')
                 })
                 place.alertAreas = filteredAreas.filter(area => {
-                    return area.notation.includes('WAF')
+                    return area.notation.includes('WA')
                 })
                 req.session.data.location = place
                 res.redirect(nextPage)

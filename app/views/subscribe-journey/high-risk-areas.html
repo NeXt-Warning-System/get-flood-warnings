@@ -23,7 +23,7 @@
 
         <div class="govuk-grid-column-two-thirds">
 
-                <h1 class="govuk-heading-l">High flood risk areas near {{ place.name }}</h1>
+                <h1 class="govuk-heading-l">High flood risk areas near <span class="app-nobreak">{{ place.name }}</span></h1>
 
                 {% set inWarningArea = place.warningAreas | selectattr('affectsPlaceDirectly') | length %}
 
