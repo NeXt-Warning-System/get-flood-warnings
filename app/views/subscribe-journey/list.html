@@ -82,21 +82,26 @@
                         </div>
 
                     {% endif %}
-                    
-                {{ govukButton ({
-                    html: 'Sign up to get alerts'
-                }) }}
+
+                    <p>
+                        <a href="postcode">Add more areas near a different postcode</a>
+                    </p>
+                            
+                    {{ govukButton ({
+                        html: 'Sign up to get alerts'
+                    }) }}
+
                 {% else %}
 
                     <p>You have not chosen any flood risk areas to get alerts for.</p>
 
-               
+                    <p>
+                        <a class="govuk-button" href="postcode">Try another postcode</a>
+                    </p>
 
-                <p>
-                    <a class="govuk-button" href="postcode">Try another postcode</a>
-                </p>
-                <p> 
-                    <a href="#">Check for flooding</a> in your area</p>
+                    <p> 
+                    <a href="#">Check for flooding</a> in your area.
+                    </p>
                 
                 {% endif %}
             </form>
