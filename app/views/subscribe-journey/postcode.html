@@ -22,14 +22,20 @@
         <div class="govuk-grid-column-two-thirds">
 
             <form method="post" action="/location/search">
-
+{% set errorhtml %}
+<p class="govuk-error-message">Check</p>
+<ul class="govuk-error-message govuk-list govuk-list--bullet">
+    <li>y</li>
+    <li>z</li>
+</ul>
+{% endset %}
                 {% if data.postcodeNotFound %}
 
                     {{ govukErrorSummary({
                         titleText: 'There is a problem',
                         errorList: [
                             {
-                                text: 'Enter a real postcode',
+                                text: 'Check you have entered a full postcode with a space.',
                                 href: '#postcode-error'
                             }
                         ]
@@ -47,7 +53,7 @@
                     type: 'search',
                     classes: 'govuk-input--width-10',
                     errorMessage: {
-                        text: 'Enter a real postcode'
+                        text: 'Check you have entered a full postcode with a space.'
                     } if data.postcodeNotFound,
                     label: {
                         text: 'Postcode',
