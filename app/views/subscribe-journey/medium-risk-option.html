@@ -25,10 +25,14 @@
 
         <div class="govuk-grid-column-two-thirds">
 
+
             <form action="medium-risk-areas">
 
                 <h1 class="govuk-heading-l">Medium flood risk areas near <span class="app-nobreak">{{ place.name }}</span></h1>
-
+<p>{% if data.highalertarea=="yes" or data.highalertarea=="yes,yes" or data.highalertarea=="yes,yes,yes" or data.highalertarea=="yes,yes,yes,yes" %}
+{% else %}
+There are no high flood risk areas near {{ place.name }}. There are medium flood risk areas.
+{% endif %}</p>
                 <p>
                     Medium flood risk areas cover a much larger area than high risk flood areas.  These alerts can include shallow flooding of fields and footpaths. 
                 </p>

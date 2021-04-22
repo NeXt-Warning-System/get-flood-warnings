@@ -16,7 +16,6 @@
     }) }}
 
 {% endblock %}
-
 {% block content %}
 
 {{ ('list' | redirect | safe) if data['medium-risk-option'] == 'No' }}
@@ -91,7 +90,7 @@
                     classes: 'govuk-checkboxes--small',
                     fieldset: {
                         legend: {
-                            text: 'Choose the areas you want to receive alerts for',
+                            text: 'Choose the areas you want to receive alerts for.',
                             isPageHeading: true,
                             classes: 'govuk-fieldset__legend--s'
                         }
@@ -104,7 +103,7 @@
                 }) }}
 
                 <p>
-                    <a href="/subscribe-journey/list">I do not need alerts for any of these areas</a>
+                    <a href="/subscribe-journey/list">I don’t want to sign up to medium risk areas for this location</a>
                 </p>
 
                 {% else %}
@@ -143,7 +142,7 @@
                         name: 'subscribe-only-alert-area',
                         fieldset: {
                             legend: {
-                                text: 'Do you want to subscribe to the medium flood risk area?',
+                                text: 'Sign up to:',
                                 isPageHeading: true,
                                 classes: 'govuk-fieldset__legend--s'
                             }
