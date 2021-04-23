@@ -103,7 +103,7 @@
                 }) }}
 
                 <p>
-                    <a href="/subscribe-journey/list">I don’t want to sign up to medium risk areas for this location</a>
+                    <a href="/subscribe-journey/list">I do not want to sign up to medium risk areas for this location</a>
                 </p>
 
                 {% else %}
@@ -190,7 +190,7 @@
         container: 'map',
         style: 'mapbox://styles/daviddotto/cknao6u0w1y4g17pmjwq8llcv',
         center: [{{ place.location[0] }}, {{ place.location[1] }}],
-        zoom: 14,
+        zoom: 11,
         attributionControl: false
     });
     map.on('load', function () {
@@ -213,7 +213,7 @@
                 'source': '{{ area.notation }}',
                 'layout': {},
                 'paint': {
-                    'fill-color': '#4c2c92', 
+                    'fill-color': '#f47738', 
                     'fill-opacity': 0.2
                 }
             });
@@ -223,7 +223,7 @@
                 'source': '{{ area.notation }}',
                 'layout': {},
                 'paint': {
-                    'line-color': '#4c2c92',
+                    'line-color': '#f47738',
                     'line-width': 2
                 }
             });

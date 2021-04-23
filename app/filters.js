@@ -329,6 +329,10 @@ module.exports = function (env) {
 		}
 	}
 
+	filters.isWarningArea = area => {
+		return area.notation.includes('FW')
+	}
+
 	/* ------------------------------------------------------------------
     add your methods to the filters obj below this comment block:
     @example:
