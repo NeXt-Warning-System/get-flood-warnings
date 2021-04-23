@@ -33,7 +33,7 @@
 
 </div>
 
-<div class="govuk-grid-row">
+<div class="govuk-grid-row govuk-!-margin-bottom-7">
 
         <div class="govuk-grid-column-two-thirds map-container">
 
@@ -47,16 +47,7 @@
                 }
             </style>
 
-            {% set mapHTML %}
-
-                <div id="map" class="app-preview-map"></div>
-
-            {% endset %}
-            
-            {{ govukDetails({
-                summaryText: 'View a map of this flood risk area',
-                html: mapHTML
-            }) }}
+            <div id="map" class="app-preview-map"></div>
 
         </div>
 
@@ -91,7 +82,7 @@
         container: 'map',
         style: 'mapbox://styles/daviddotto/cknao6u0w1y4g17pmjwq8llcv',
         center: {lon: {{ area.long }}, lat: {{ area.lat }}},
-        zoom: 12,
+        zoom: {{ '12' if area | isWarningArea else '9' }},
         attributionControl: false
     });
     map.on('load', function () {
@@ -110,7 +101,7 @@
             'source': '{{ area.notation }}',
             'layout': {},
             'paint': {
-                'fill-color': '#d4351c', 
+                'fill-color': '{{ '#d4351c' if area | isWarningArea else '#f47738' }}', 
                 'fill-opacity': 0.2
             }
         });
@@ -120,7 +111,7 @@
             'source': '{{ area.notation }}',
             'layout': {},
             'paint': {
-                'line-color': '#d4351c',
+                'line-color': '{{ '#d4351c' if area | isWarningArea else '#f47738' }}',
                 'line-width': 2
             }
         });

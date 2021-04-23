@@ -13,6 +13,8 @@
   },
   "dependencies": {
     "@turf/boolean-point-in-polygon": "^6.3.0",
+    "@turf/distance": "^6.3.0",
+    "@turf/nearest-point": "^6.3.0",
     "@turf/nearest-point-on-line": "^6.3.0",
     "@turf/turf": "^6.3.0",
     "acorn": "^7.1.1",

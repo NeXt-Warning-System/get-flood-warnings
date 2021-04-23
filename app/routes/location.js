@@ -136,9 +136,9 @@ router.get('/select', (req, res) => {
                                         if (Array.isArray(coordinatesToProcess)) {
                                             const coordinatesToTest = Array.isArray(coordinatesToProcess[0]) ? coordinatesToProcess : [coordinatesToProcess, [0,0]]
                                             if (Array.isArray(coordinatesToTest)) {
-                                                const coordinatesAsTurfLine = turf.lineString(coordinatesToTest)
-                                                const localDistanceFromPlace = turf.nearestPointOnLine(coordinatesAsTurfLine, placeAsPoint, {units: 'miles'}).properties.dist
-                                                //console.log('distance', localDistanceFromPlace)
+                                                const coordinatesAsPointCollection = turf.featureCollection(coordinatesToTest.map(coords => turf.point(coords)))
+                                                const closestPoint = turf.nearestPoint(placeAsPoint, coordinatesAsPointCollection)
+                                                const localDistanceFromPlace = turf.distance(placeAsPoint, closestPoint, {units: 'miles'})
                                                 distanceFromPlace = localDistanceFromPlace < distanceFromPlace ? localDistanceFromPlace : distanceFromPlace
                                             } 
                                         }
