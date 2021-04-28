@@ -53,6 +53,7 @@
                         id: 'place-query',
                         name: 'place-query',
                         type: 'search',
+                        value: data['place-query'] if data.postcodeNotFound,
                         classes: 'govuk-input--width-10',
                         errorMessage: {
                             text: 'Check you have entered a full postcode with a space.'
