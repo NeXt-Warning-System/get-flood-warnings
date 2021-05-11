@@ -1,7 +1,7 @@
 {% extends 'layout.html' %}
 
 {% block pageTitle %}
-    Get flood alerts
+    Get flood warnings
 {% endblock %}
 
 {% block beforeContent %}
@@ -21,12 +21,12 @@
 
         <div class="govuk-grid-column-two-thirds">
 
-            <h1 class="govuk-heading-xl">Get flood alerts</h1>
+            <h1 class="govuk-heading-xl">Get flood warnings</h1>
 
             <p>Use this free service to:</p>
 
             <ul class="govuk-list govuk-list--bullet">
-                <li>receive flood alerts by text message, email or automated telephone message</li>
+                <li>receive flood warnings by text message, email or automated telephone message</li>
                 <li>edit or remove contact information you have already registered</li>
             </ul>
 
@@ -34,14 +34,22 @@
 
             <p>You will get updates about changes to the flood situation. This might be information about higher water levels, or if an earlier start to the flood is expected.</p>
 
-            <p>We expect this will take you about 10 minutes to complete.</p>
+            <p>Registering takes around 10 minutes.</p>
 
             {{ govukButton ({
-                html: 'Start',
+                html: 'Start now',
                 href: 'postcode',
                 isStartButton: true
             }) }}
-
+            <h3 class="govuk-heading-m">Sign in</h3>
+            <p>If you already have an account, please <a href="/sign-up/sign-in">sign in to continue</a>.</p>
+            <h3 class="govuk-heading-m">Before you start</h3>
+            <p>You can also register by calling Floodline:</br>
+                Telephone: 0345 988 1188</br>
+                Textphone: 0345 602 6340</br>
+                24-hour service</br>
+                <a href="#">Find out about call charges</a></p>
+                
             <p>If you are looking for a place outside England visit:</p>
 
             <ul class="govuk-list govuk-list--bullet">

@@ -72,14 +72,14 @@
     }
   },
   items: [
-    {
-      value: "emailSignin",
-      text: "Email",
+     {
+      value: "textSignin",
+      text: "Text message",
       conditional: {
-        html: emailHtml
+        html: textHtml
       }
     },
-    {
+        {
       value: "phoneSignin",
       text: "Phone",
       conditional: {
@@ -87,16 +87,17 @@
       }
     },
     {
-      value: "textSignin",
-      text: "Text message",
+      value: "emailSignin",
+      text: "Email",
       conditional: {
-        html: textHtml
+        html: emailHtml
       }
     }
+   
   ]
 }) }}
 
-<button class="govuk-button" data-module="govuk-button">Continue to sign up</button>
+<button class="govuk-button" data-module="govuk-button">Continue</button>
      
         </div>
 

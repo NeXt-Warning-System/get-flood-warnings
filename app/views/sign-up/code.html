@@ -21,12 +21,12 @@
         <div class="govuk-grid-column-two-thirds">
       <form action="/subscribe-journey/list" method="post">
 
-        <h1 class="govuk-heading-xl">Enter verification code</h1>
+        <h1 class="govuk-heading-xl">Enter validation code</h1>
       {% if data.contactSignup=="email" or data.contact=="emailSignin" %}
-        <p>We've sent a code in an email to you on {{data.contactByEmail}}.</p>
+        <p>We have sent a code to you on {{data.contactByEmail}}.</p>
       {% endif %}
          {% if data.contactSignup=="text" or data.contact=="textSignin" %}
-        <p>We've sent a code in a text message to you on {{data.contactByText}}.</p>
+        <p>We have sent a code to you on {{data.contactByText}}.</p>
       {% endif %} 
             {% if data.contactSignup=="phone" or data.contact=="phoneSignin" %}
         <p>We will call you on {{data.contactByPhone}}, and give you a code.</p>
@@ -46,5 +46,17 @@
         </div>
 
 </div>
+</br></br>
+<details class="govuk-details" data-module="govuk-details">
+  <summary class="govuk-details__summary">
+    <span class="govuk-details__summary-text">
+User testing links</span>
+  </summary>
+  <div class="govuk-details__text">
+<p><a href="email-code"  target="_blank">Email validation</a></br>
+<a href="email-confirm"  target="_blank">Email confirmation</a></br></br>
+<a href="text-code"  target="_blank">Text message validation</a></br>
+<a href="text-confirm"  target="_blank">Text message confirmation</a></p>  </div>
+</details>
 
 {% endblock %}
