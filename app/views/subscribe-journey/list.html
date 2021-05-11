@@ -23,8 +23,14 @@
 
             <form method="post">
 
-                <h1 class="govuk-heading-l">Review your flood risk areas</h1>
+                               {% if data.contactSignup=="email" or data.contactSignup=="text" or data.contactSignup=="phone"%}
+                <h1 class="govuk-heading-l">Your flood risk areas</h1>
+                <p>Your account is created, you will now get the following warnings sent to {{data.contactByEmail}}{{data.contactByPhone}}{{data.contactByText}}.</p>
+                 </br>
+                    {% else %}
+                 <h1 class="govuk-heading-l">Review your flood risk areas</h1>
 
+                    {% endif %}
                 {% set alertAreaIds = data.subscribedAreas | alertAreaIds %}
 
                 {% set warningAreaIds = data.subscribedAreas | warningAreaIds %}
@@ -86,10 +92,23 @@
                     <p>
                         <a href="postcode">Add more areas near a different postcode</a>
                     </p>
-                            
+                               {% if data.contact=="textSignin" or data.contact=="emailSignin" or data.contact=="phoneSignin" or data.contactSignup=="email" or data.contactSignup=="text" or data.contactSignup=="phone"%}
+
+                     {{ govukButton ({
+                        html: 'Sign out',
+                        href: '/'
+                      }) }}
+
+                {% else %}
+
                     {{ govukButton ({
-                        html: 'Sign up to get alerts'
+                        html: 'Sign up to get alerts',
+                        href: '/sign-up/contact'
                     }) }}
+
+
+
+                    {% endif %}
 
                 {% else %}
 
