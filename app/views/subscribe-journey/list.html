@@ -23,17 +23,7 @@
 
             <form method="post">
 
-{% if data.contact=="emailSignin" or data.contact=="phoneSignin" or data.contact=="textSignin" %}
- {% else %}
-                               {% if data.contactSignup=="email" or data.contactSignup=="text" or data.contactSignup=="phone"%}
-                <h1 class="govuk-heading-l">Your flood risk areas</h1>
-                <p>Your account has been created. The following flood warnings will be sent to {{data.contactByEmail}}{{data.contactByPhone}}{{data.contactByText}}.</p>
-                 </br>
-                    {% else %}
-                 <h1 class="govuk-heading-l">Review your flood risk areas</h1>
 
-                    {% endif %}
-                    {% endif %}
                 {% set alertAreaIds = data.subscribedAreas | alertAreaIds %}
 
                 {% set warningAreaIds = data.subscribedAreas | warningAreaIds %}
@@ -43,7 +33,7 @@
                     {% if warningAreaIds | length %}
 
                         <div class="govuk-!-margin-bottom-9">
-
+<h1 class="govuk-heading-xl">Review your flood risk areas</h1>
                         <h2 class="govuk-heading-m">High risk flood areas</h2>
 
                             {% for subscribedAreaId in warningAreaIds%}
@@ -103,17 +93,7 @@
                       }) }}
 {% if data.contact=="emailSignin" or data.contact=="phoneSignin" or data.contact=="textSignin" %}
  {% else %}
-</br></br>
-<details class="govuk-details" data-module="govuk-details">
-  <summary class="govuk-details__summary">
-    <span class="govuk-details__summary-text">
-User testing links</span>
-  </summary>
-  <div class="govuk-details__text">
-<p>
-<a href="/sign-up/email-confirm"  target="_blank">Email confirmation</a></br>
-<a href="/sign-up/text-confirm"  target="_blank">Text message confirmation</a></p>  </div>
-</details>
+
   {% endif %}
                 {% else %}
 
