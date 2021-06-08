@@ -1,0 +1,68 @@
+
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Get flood warnings prototype
+{% endblock %}
+{% block beforeContent %}
+<div class="govuk-phase-banner">
+  <p class="govuk-phase-banner__content"><strong class="govuk-tag govuk-phase-banner__content__tag ">
+  alpha
+</strong>
+    <span class="govuk-phase-banner__text">
+      This is a new service – your
+      <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+    </span>
+  </p>
+</div>
+
+{% endblock %}
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset" aria-describedby="sign-in-hint">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            <h1 class="govuk-fieldset__heading">
+              Select severity level
+            </h1>
+          </legend>
+          <div class="govuk-radios">
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="alert" name="severity" type="radio" value="alert" aria-describedby="alert-2-item-hint">
+              <label class="govuk-label govuk-radios__label" for="alert">
+                Flood alert
+              </label>
+              <div id="sign-in-2-item-hint" class="govuk-hint govuk-radios__hint">
+                Issued for low impact flooding. This could be shallow flooding of roads and footpaths, or flooding of areas with little to no impact on people - such as fields or farmland.
+            </div></div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="warning" name="severity" type="radio" value="warning" aria-describedby="warning-item-hint">
+              <label class="govuk-label govuk-radios__label" for="warning">
+                Flood warning 
+                              </label>
+              <div id="sign-in-2-item-hint" class="govuk-hint govuk-radios__hint">
+                Issued when flooding of properties is expected, or when the flooding will impact people, such as flooding of major roads or infrastructure.              </div>            
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="severe" name="severity" type="radio" value="severe" aria-describedby="severe-item-hint">
+              <label class="govuk-label govuk-radios__label" for="severe">
+                Severe flooding
+              </label>
+              <div id="sign-in-2-item-hint" class="govuk-hint govuk-radios__hint">
+                Issued for severe flooding, when there is a risk to life or significant disruption for people in that area. Flood waters may be deep or fast flowing. Evacuations may be required and emergency services and local authorities will be heavily involved.
+              </div>
+          </div>
+          
+        </fieldset>
+      </div>
+      <button class="govuk-button" data-module="govuk-button">
+        Continue
+      </button>
+      
+    </div>
+  </div>
+
+{% endblock %}

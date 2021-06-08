@@ -1,0 +1,184 @@
+
+{% macro radio_button(label,name,id,value,labelClass='') %}
+<div class="govuk-radios">
+  <div class="multiple-choice">
+    <div class="govuk-radios__item permitSelector">
+      <input class="govuk-radios__input" id="{{name}}_{{id}}" type="radio" name="{{name}}" value="{{ value }}">
+      <label class="govuk-radios__label{{labelClass}}" for="{{name}}_{{id}}">
+        {{ label }}
+      </label>
+    </div>
+  </div>
+</div>
+{% endmacro %}
+
+
+{% macro checkbox(label,name,id,value,labelClass='') %}
+<div class="govuk-checkboxes__item">
+    <input class="govuk-checkboxes__input" id="{{name}}_{{id}}" type="checkbox" name="{{name}}" value="{{ value }}">
+  <label class="govuk-label govuk-checkboxes__label{{labelClass}}" for="{{name}}_{{id}}">
+    {{ label }}
+  </label>
+ </div>
+{% endmacro %}
+
+{% macro hidden(name,value) %}
+  <input type="hidden" name="{{name}}" value="{{value}}">
+{% endmacro %}
+
+
+{% macro uploadList( fileTitle,fileName,fileNameVar,folder,returnPath ) %}
+<div class="govuk-summary-list__row">
+  <dd class="govuk-summary-list__value">
+    {{ fileTitle }}
+  </dd>
+  <dd class="govuk-summary-list__value">
+    {{ fileName }}
+  </dd>
+  <dd class="govuk-summary-list__actions">
+    <a href="/{{folder}}/remove-file?removeFile={{fileNameVar}}&returnPath={{returnPath}}">
+      Remove file <span class="govuk-visually-hidden">{{ fileName }}</span>
+    </a>
+  </dd>
+</div>
+{% endmacro %}
+
+
+{% macro uploadList2( fileName,fileNameVar ) %}
+  <div class="govuk-summary-list__row">
+    <dd class="govuk-summary-list__value filelist">
+    {{ fileName }}
+  </dd>
+  <dd class="govuk-summary-list__actions">
+    <a href="#">
+      Remove file <span class="govuk-visually-hidden">{{ fileName }}</span>
+    </a>
+  </dd>
+</div>
+{% endmacro %}
+
+
+{% macro uploadListCheck( fileTitle,fileName ) %}
+
+<div>
+  <dt class="cya-question">
+    {{ fileTitle }}
+  </dt>
+  <dd class="cya-answer">
+    {{ fileName }}
+  </dd>
+  <dd class="cya-change">
+    <a href="#">
+      Change <span class="visuallyhidden">{{ fileName }}</span>
+    </a>
+  </dd>
+</div>
+
+{% endmacro %}
+
+{% macro uploadListB12( fileTitle,fileName,fileNameVar ) %}
+
+<div>
+  <dt class="cya-question">
+    {{ fileTitle }}
+  </dt>
+  <dd class="cya-answer">
+    {{ fileName }}
+  </dd>
+  <dd class="cya-change">
+    <a href="/{{folder}}/bespoke/upload-B12-forms?removeFile={{fileNameVar}}">
+      Remove file <span class="govuk-visually-hidden">{{ fileName }}</span>
+    </a>
+  </dd>
+</div>
+
+{% endmacro %}
+
+
+{% macro uploadListB12Check( fileTitle,fileName ) %}
+
+<div>
+  <dt class="cya-question">
+    {{ fileTitle }}
+  </dt>
+  <dd class="cya-answer">
+    {{ fileName }}
+  </dd>
+  <dd class="cya-change">
+    <a href="#">
+      Change <span class="govuk-visually-hidden">{{ fileName }}</span>
+    </a>
+  </dd>
+</div>
+
+{% endmacro %}
+
+
+{% macro checklist( col1,col2,col3 ) %}
+<div>
+  <dt class="cya-question">
+    {{ col1 }}
+  </dt>
+  <dd class="cya-answer">
+    {{ col2 }}
+  </dd>
+  <dd class="cya-change">
+    {{ col3 }}
+  </dd>
+</div>
+{% endmacro %}
+
+
+{% macro assessmentlist( col1,col2 ) %}
+<div>
+  <dt class="cya-answer">
+    {{ col1 }}
+  </dt>
+  <dd class="cya-answer">
+    {{ col2 }}
+  </dd>
+</div>
+{% endmacro %}
+
+{% macro confirmlist( col1,col2 ) %}
+<div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__value">
+    {{ col1 }}
+  </dt>
+  <dd class="govuk-summary-list__actions">
+    {{ col2 | safe }}
+  </dd>
+</div>
+
+{% endmacro %}
+
+
+{% macro taskHead( number, heading ) %}
+<h2 class="app-task-list__section">
+    <span class="app-task-list__section-number">{{number}}. </span> {{heading}}
+  </h2>
+
+{% endmacro %}
+
+{% macro task( taskTitle, permitValueToTest, pathToTaskPage, taskListErrorVariable  ) %}
+
+  <li class="app-task-list__item" {% if taskListError and permitValueToTest==null %} form-group-error{% endif %}" id="{{ taskTitle  | lower | replace(' ', '-') | replace('\'', '') | safe }}">
+    
+    {% if taskListErrorVariable and permitValueToTest==null %}
+      <span class="error-message">
+        Complete this task
+      </span>
+    {% endif %}
+    
+    <a class="app-task-list__task-name" href="{{ pathToTaskPage }}">
+      {{ taskTitle }}
+    </a>
+    {% if permitValueToTest!=null %}
+      <strong class="govuk-tag app-task-list__task-completed" id="waste-codes-upload-completed">Completed</strong>
+    {% else %}
+      <input type="hidden" name="complete[]" value="{{ taskTitle }}">
+    {% endif %}
+
+
+
+{% endmacro %}

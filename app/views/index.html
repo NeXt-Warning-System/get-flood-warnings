@@ -1,48 +1,57 @@
-{% extends 'layout.html' %}
+
+{% extends "layout.html" %}
 
 {% block pageTitle %}
-  Map test page
+  Get flood warnings prototype
 {% endblock %}
-
 {% block beforeContent %}
-
-  {{ super() }}
-
-  {{ govukBackLink ({
-    text: 'Back',
-    href: 'javascript:history.back()'
-  }) }}
+<div class="govuk-phase-banner">
+  <p class="govuk-phase-banner__content"><strong class="govuk-tag govuk-phase-banner__content__tag ">
+  alpha
+</strong>
+    <span class="govuk-phase-banner__text">
+      This is a new service – your
+      <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+    </span>
+  </p>
+</div>
 
 {% endblock %}
-
 {% block content %}
-{{'/subscribe-journey/start'|redirect|safe}}
-<div class="govuk-grid-row">
 
+  <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form method="post">
+      <h1 class="govuk-heading-xl">
+Get flood warnings prototype      </h1>
+      <p class="govuk-body-l">This is not an end to end journey service prototype.</p>
+      <p class="govuk-body">This prototype is for testing ideas for Alpha on the service 'Get flood warnings'.</p>
+      <p>This prototype covers Alpha ideas across the internal user journey (message creation), and the external user journey (signing up to flood warnings).</p><!--the complete user journey as per the live service, as well as specific deviations where we are trying out a new approach. Details on how to access all of this can be found in the handy table further down the page--></p>
 
-        <h1 class="govuk-heading-xl">Location sandbox</h1>
 
-        {{ govukButton ({
-          text: 'Start subscribe journey',
-          href: '/subscribe-journey/postcode',
-          classes: 'govuk-button--start'
-        }) }}
 
-        <br>
 
-        {{ govukButton ({
-          text: 'Start demo',
-          href: '/place',
-          classes: 'govuk-button--start'
-        }) }}
+<p class="govuk-body">
+  <a href="/prototype-admin/clear-data">Clear stored data</a> 
+</p>
 
-      </form>
+      <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+      <!-- ########################################################################### -->
 
+      <h3 class="govuk-heading-m">Alpha design tests</h3>
+
+        <!--#### <li><a href="/change-log">Prototype change log</a></li> ####-->
+    <p><a href="/index-v1">Version 1</a> </br>External users: pre Alpha proof of concept journey</p></br>
+     <p><a href="/index-v2">Version 2</a></br>External users: find a location and choose nearby alerts and/or warning locations</p></br>
+    <p><a href="/index-v3">Version 3</a></br>External users: find a location and choose nearby high or medium flood warning locations, and signing up</p></br>
+
+
+
+      <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+      <!-- ########################################################################### -->
+      
+      
     </div>
-
-</div>
+  </div>
 
 {% endblock %}

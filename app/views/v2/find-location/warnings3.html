@@ -1,0 +1,204 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+Flood warning areas
+{% endblock %}
+
+{% set versionxxx = "v3" %}
+{% block beforeContent %}
+<div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        alpha
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div>
+  {{backlink|safe}}
+
+{% endblock %}
+
+{% block content %}
+{# permit|dump #}
+
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      {% if permit.reviewed=="yes" %}
+      <form action="review" method="post">
+        {% else %}
+      <form action="choose-alerts" method="post">
+        {% endif %}
+                    <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+                        <h1 class="govuk-heading-xl govuk-!-margin-bottom-4">
+                          Flood warning areas near {{ permit.locationFind }} 
+                          
+                          
+                        </h1>
+                    </legend>
+
+                    {# permit|dump #}
+                    {# permit.targetAreas #}
+                    <p>Select flood areas we currently monitor, to sign up for flood warnings.</p>
+                  </br> 
+                </div>
+              </div>
+          <div class="govuk-grid-row">
+            <div class="govuk-grid-column-one-half"> 
+                    <span class="govuk-body govuk-!-font-size-80 govuk-!-font-weight-bold"><img alt="" src="/public/images/floodwarning.jpg" height="56.91px" width="62.00px">
+                    10</span></br></br>
+                    <span class="govuk-heading-l">Flood warning areas</span></p>
+                    
+
+                    <div class="govuk-form-group">
+                      <fieldset class="govuk-fieldset" aria-describedby="flood-warnings">
+                      <!--  {% if permit.taStatus=="added" %}
+                        <div class="govuk-checkboxes">
+                          <div class="govuk-checkboxes__item">
+                            <input class="govuk-checkboxes__input" id="targetAreas" name="targetAreas" type="checkbox" value="Target area 1" aria-describedby="ta1-item-hint" checked>
+                            <label class="govuk-label govuk-checkboxes__label" for="targetAreas">
+                              target area 1
+                            </label>
+                            <div id="ta1-item-hint" class="govuk-hint govuk-checkboxes__hint">
+                              <a href="target-area-example">View full details</a>
+                            </div>
+                          </div>
+                          <div class="govuk-checkboxes__item">
+                            <input class="govuk-checkboxes__input" id="targetAreas-2" name="targetAreas" type="checkbox" value="Target area 2">
+                            <label class="govuk-label govuk-checkboxes__label" for="targetAreas-2">
+                              target area 2
+                            </label>
+                            <div id="ta1-item-hint" class="govuk-hint govuk-checkboxes__hint">
+                              <a href="target-area-example">View full details</a>
+                            </div>
+                          </div>
+                          <div class="govuk-checkboxes__item">
+                            <input class="govuk-checkboxes__input" id="targetAreas-3" name="targetAreas" type="checkbox" value="Target area 3">
+                            <label class="govuk-label govuk-checkboxes__label" for="targetAreas-3">
+                              target area 3
+                            </label>
+                            <div id="ta1-item-hint" class="govuk-hint govuk-checkboxes__hint">
+                              <a href="target-area-example">View full details</a>
+                            </div>
+                          </div>
+                        </div>
+             
+                        {% else %}-->
+                                                <!--{% endif %}-->
+
+                        <div class="govuk-checkboxes">
+                          <div class="govuk-checkboxes__item">
+                            <input class="govuk-checkboxes__input" id="targetAreas" name="targetAreas" type="checkbox" value="Target area 1" aria-describedby="ta1-item-hint">
+                            <label class="govuk-label govuk-checkboxes__label" for="targetAreas">
+                              Tidal River Avon from Sea Mills to Conham
+                                                       </label>
+                            <div id="ta1-item-hint" class="govuk-hint govuk-checkboxes__hint">
+                              <a href="target-area-example">View full details</a>
+                            </div>
+                          </div>
+                          <div class="govuk-checkboxes__item">
+                            <input class="govuk-checkboxes__input" id="targetAreas-2" name="targetAreas" type="checkbox" value="Target area 2">
+                            <label class="govuk-label govuk-checkboxes__label" for="targetAreas-2">
+                              Bristol Floating Harbour and the River Avon at Bristol, other properties set back from the river                            
+                            </label>
+                            <div id="ta1-item-hint" class="govuk-hint govuk-checkboxes__hint">
+                              <a href="target-area-example">View full details</a>
+                            </div>
+                          </div>
+                          <div class="govuk-checkboxes__item">
+                            <input class="govuk-checkboxes__input" id="targetAreas-2" name="targetAreas" type="checkbox" value="Target area 2">
+                            <label class="govuk-label govuk-checkboxes__label" for="targetAreas-2">
+                              Bristol Floating Harbour and the River Avon at Bristol, low lying properties set back from the river
+                         </label>
+                            <div id="ta1-item-hint" class="govuk-hint govuk-checkboxes__hint">
+                              <a href="target-area-example">View full details</a>
+                            </div>
+                          </div>
+                          <div class="govuk-checkboxes__item">
+                            <input class="govuk-checkboxes__input" id="targetAreas-2" name="targetAreas" type="checkbox" value="Target area 2">
+                            <label class="govuk-label govuk-checkboxes__label" for="targetAreas-2">
+                              Bristol Avon (lower) from Twerton to Bristol
+                         </label>
+                            <div id="ta1-item-hint" class="govuk-hint govuk-checkboxes__hint">
+                              <a href="target-area-example">View full details</a>
+                            </div>
+                          </div>
+                          <div class="govuk-checkboxes__item">
+                            <input class="govuk-checkboxes__input" id="targetAreas-2" name="targetAreas" type="checkbox" value="Target area 2">
+                            <label class="govuk-label govuk-checkboxes__label" for="targetAreas-2">
+                              Brislington Brook, riverside properties
+                         </label>
+                            <div id="ta1-item-hint" class="govuk-hint govuk-checkboxes__hint">
+                              <a href="target-area-example">View full details</a>
+                            </div>
+                          </div>
+                          <div class="govuk-checkboxes__item">
+                            <input class="govuk-checkboxes__input" id="targetAreas-2" name="targetAreas" type="checkbox" value="Target area 2">
+                            <label class="govuk-label govuk-checkboxes__label" for="targetAreas-2">
+                              Brislington Brook, other properties set back from the river
+                         </label>
+                            <div id="ta1-item-hint" class="govuk-hint govuk-checkboxes__hint">
+                              <a href="target-area-example">View full details</a>
+                            </div>
+                          </div>
+                          <div class="govuk-checkboxes__item">
+                            <input class="govuk-checkboxes__input" id="targetAreas-2" name="targetAreas" type="checkbox" value="Target area 2">
+                            <label class="govuk-label govuk-checkboxes__label" for="targetAreas-2">
+                              Brislington Brook, low lying properties set back from the river
+                         </label>
+                            <div id="ta1-item-hint" class="govuk-hint govuk-checkboxes__hint">
+                              <a href="target-area-example">View full details</a>
+                            </div>
+                          </div>
+                          <div class="govuk-checkboxes__item">
+                            <input class="govuk-checkboxes__input" id="targetAreas-2" name="targetAreas" type="checkbox" value="Target area 2">
+                            <label class="govuk-label govuk-checkboxes__label" for="targetAreas-2">
+                              Collitors Brook at Ashton Vale
+                         </label>
+                            <div id="ta1-item-hint" class="govuk-hint govuk-checkboxes__hint">
+                              <a href="target-area-example">View full details</a>
+                            </div>
+                          </div>
+                          <div class="govuk-checkboxes__item">
+                            <input class="govuk-checkboxes__input" id="targetAreas-3" name="targetAreas" type="checkbox" value="Target area 3">
+                            <label class="govuk-label govuk-checkboxes__label" for="targetAreas-3">
+                              Bristol Floating Harbour and the River Avon at Bristol, riverside properties
+                            </label>
+                            <div id="ta1-item-hint" class="govuk-hint govuk-checkboxes__hint">
+                              <a href="target-area-example">View full details</a>
+                            </div>
+                          </div>
+                          <div class="govuk-checkboxes__item">
+                            <input class="govuk-checkboxes__input" id="targetAreas-3" name="targetAreas" type="checkbox" value="Target area 3">
+                            <label class="govuk-label govuk-checkboxes__label" for="targetAreas-3">
+                              Bristol Floating Harbour and the River Avon at Bristol, properties furthest from the river
+                            </label>
+                            <div id="ta1-item-hint" class="govuk-hint govuk-checkboxes__hint">
+                              <a href="target-area-example">View full details</a>
+                            </div>
+                          </div>
+                        </div>
+
+                      </fieldset>
+                  </div>
+                </div>
+                  <div class="govuk-grid-column-one-half">
+
+                    <img alt="" src="/public/images/warnings3.png" height="402px" width="476.0px">
+                   
+                  </div>
+                </div>
+                  </br>   </br>
+                    <div class="govuk-grid-row">
+                      <div class="govuk-grid-column-two-thirds">
+            <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+        </form>
+
+    </div>
+</div>
+
+{% endblock %} 

@@ -1,0 +1,1193 @@
+{% set targetareas =
+  
+  [
+  {
+    "name": "Coast at Lytham St Annes",
+    "description": "Lytham, Lytham Green, Saltcotes, Lytham Moss, Lower Ballam and Warton"
+  },
+  {
+    "name": "South Morecambe Bay area",
+    "description": "Warton, Carnforth, Crag Bank, Bolton-le-Sands, Hest Bank, Bare, Torrisholme, Great Hestham and Heysham Harbour"
+  },
+  {
+    "name": "Coast from Formby to Crosby",
+    "description": "Formby Point, Hightown, Altcar, North End, Altcar, Meadows and Seaforth Nature Reserve"
+  },
+  {
+    "name": "Rivers Caldew and Petteril",
+    "description": "Rivers Caldew and Petteril from the Lakeland Fells to their confluences with the Eden in Carlisle including Greystoke, Newton Reigny, Plumpton, Stockdalewath, Sebergham and Dentonholme in Carlisle"
+  },
+  {
+    "name": "Coast from Fleetwood to Blackpool",
+    "description": "Fleetwood, Larkholme, Broadwater, Cleveleys, Rossall Beach, Anchorsholme, Blackpool and Revoe"
+  },
+  {
+    "name": "Crossens area",
+    "description": "Low lying land from Ormskirk to Southport including, Banks, Birkdale, Brown Edge, Mere Brow and Scarisbrick"
+  },
+  {
+    "name": "Coast from Gretna to Silloth",
+    "description": "Coastline from Gretna to Silloth"
+  },
+  {
+    "name": "Coast at North Morecambe Bay",
+    "description": "Coast at North Morecambe Bay from Roosebeck to Carnforth including low lying areas around Ulverston, Greenodd, Haverthwaite, Flookburgh, Grange-over-Sands, Levens, Milnthorpe, Sandside, Arnside and Silverdale"
+  },
+  {
+    "name": "Lower River Ribble and Darwen",
+    "description": "River Ribble from Samlesbury and the River Darwen from Darwen including Blackburn, Preston, Walton-Le-Dale, Pleasington and Higher Walton"
+  },
+  {
+    "name": "Coast from Heysham to Cockerham",
+    "description": "Sandylands, Middleton, Sunderland, Bank Houses, Hillam, Sand Side and Cockerham Moss"
+  },
+  {
+    "name": "Upper River Eden",
+    "description": "River Eden and other watercourses, from Kirkby Stephen to Temple Sowerby including low lying areas around Brough, Warcop, Great Ormside and Appleby"
+  },
+  {
+    "name": "Coast from Southport to Formby",
+    "description": "Banks, Banks Enclosed Marsh, Crossens, Land Houses, Holmes, Martin Mere, Scarisbrick Moss, Marshside and Marine Drive"
+  },
+  {
+    "name": "Upper River Wyre, Brock",
+    "description": "Rivers Wyre, Calder and Brock and other watercourses from Abbeystead to Catterall including Scorton, Garstang, Bilsborrow, Ainspool and Churchtown"
+  },
+  {
+    "name": "Coast from Silloth to St Bees",
+    "description": "Low lying areas along the coast from Silloth to St Bees Head including Allonby, Maryport, Flimby, Workington, Parton and Whitehaven"
+  },
+  {
+    "name": "Lower River Wyre",
+    "description": "River Wyre, River Cocker, Pilling Water and other watercourses from Catterall to Fleetwood, including St Michaels and Great Eccleston and Preesall"
+  },
+  {
+    "name": "Rivers Cocker, Marron and Derwent",
+    "description": "Lower Derwent from Bassenthwaite Lake to the coast at Workington. The Cocker from Crummock Water to Cockermouth. The River Marron from Ullock to its confluence with the Derwent near Bridgefoot"
+  },
+  {
+    "name": "Rivers Lowther and Eamont",
+    "description": "Rivers Eamont and Lowther to their confluence with the River Eden at Langwathby"
+  },
+  {
+    "name": "Rivers Kent and Bela",
+    "description": "Rivers Kent and Bela and other watercourses, from Kentmere to Silverdale including low lying areas around Staveley, Burneside, Kendal, Milnthorpe and Beetham"
+  },
+  {
+    "name": "Rivers Greta, St Johns Beck and Bassenthwaite Lake",
+    "description": "River Derwent from Keswick to Bassenthwaite. The Rivers Greta, Glenderamackin and St Johns Beck including Keswick"
+  },
+  {
+    "name": "River Calder",
+    "description": "Rivers Calder, Brun, Don and Pendlewater, from Laneshaw Bridge to the river Ribble including Trawden, Burnley, Nelson, Colne, Accrington and Whalley"
+  },
+  {
+    "name": "Middle River Eden",
+    "description": "River Eden and tributaries from Temple Sowerby to the confluence with the River Irthing at Warwick Bridge including Langwathby, Lazonby, Kirkoswald, Armathwaite, Wetheral and Warwick on Eden"
+  },
+  {
+    "name": "Coast from St Bees Head to Millom",
+    "description": "Low Lying areas along the coast from St Bees Head to Millom including Ravenglass and Annaside"
+  },
+  {
+    "name": "Coast at Duddon estuary",
+    "description": "Duddon estuary including Haverigg, Millom Marsh, Foxfield, Sandside and Dunnerholme"
+  },
+  {
+    "name": "Upper River Ribble, Hodder",
+    "description": "Rivers Ribble, Hodder and other watercourses, from Settle to Samlesbury including Clitheroe, Gisburn, Sawley, Waddington and Ribchester"
+  },
+  {
+    "name": "Lower River Douglas",
+    "description": "River Douglas and other watercourses from Parbold to the confluence with the River Ribble including Rufford, Mawdesley, Hesketh and Longton"
+  },
+  {
+    "name": "Upper River Derwent, Stonethwaite Beck and Derwent Water",
+    "description": "The Upper Derwent from Seathwaite to Derwent Water"
+  },
+  {
+    "name": "Coast from Cockerham to Fleetwood",
+    "description": "Area from Cockerham to Fleetwood including Knott-End-on-Sea, Staynall, Preesall Park, Pilling Lane, Pilling Moss, Stake Pool, Smallwood Hey, Pilling, Dam Side and Winmarleigh Moss"
+  },
+  {
+    "name": "River Alt",
+    "description": "River Alt and other watercourses from Huyton to Hightown including, Kirkby, Fazakerley, Maghull, Formby, Aughton, Sefton and Lunt"
+  },
+  {
+    "name": "Lower River Lune and Conder",
+    "description": "River Lune, Conder and Keer and other watercourses from Kirkby Lonsdale to Galgate including Gressingham, Carnforth, Hornby, Wray, Bentham and Lancaster"
+  },
+  {
+    "name": "Lune Estuary",
+    "description": "Aldcliffe Marsh, Heaton Marsh, Marsh, Greyhound Bridge, Skerton Bridge, Newton, Overton, Middleton, Glasson and Thurnham Moss"
+  },
+  {
+    "name": "Rivers Wampool and Ellen",
+    "description": "Rivers Wampool and Ellen and other watercourses, from Dalston to Maryport including low lying areas around Wigton, Abbeytown, Silloth, Allonby, Aspatria and Dearham"
+  },
+  {
+    "name": "Upper River Lune",
+    "description": "River Lune, Rawthey and other watercourses from Tebay to Kirkby Lonsdale including Sedburgh and Killington"
+  },
+  {
+    "name": "Upper River Douglas",
+    "description": "The River Douglas from Horwich Star Vale to Appley Bridge including Adlington, Blackrod, Wigan, Standish, and Gathurst"
+  },
+  {
+    "name": "Rivers Esk and Irthing",
+    "description": "Rivers Esk and Irthing and other watercourses, including low lying areas around Longtown and Brampton"
+  },
+  {
+    "name": "River Lostock and River Yarrow",
+    "description": "Rivers Yarrow and Lostock and other watercourses from Whittle-Le-Woods and Chorley to Croston including Leyland, Coppull, Eccleston, Lostock Hall and Bamber Bridge"
+  },
+  {
+    "name": "Rivers Ehen, Calder, Irt and Esk",
+    "description": "Rivers Ehen, Calder, Irt and Esk and other watercourses, from Harrington to Annaside including low lying areas around Whitehaven, Cleator Moor, Egremont, Gosforth, Eskdale and Bootle"
+  },
+  {
+    "name": "Wyre estuary from Fleetwood and Knott End to Little Eccleston",
+    "description": "Tiger's Tail, Wyre Dock, Burrow's Marsh, Burn Naze, Thornton, Trunnah, Stannah, Poulton-le-Fylde, Skippool, Hambleton, Cold Row, Little Singleton, Little Eccleston and Crow Woods"
+  },
+  {
+    "name": "Coast at Barrow in Furness",
+    "description": "Coastline at Barrow in Furness"
+  },
+  {
+    "name": "Ribble Estuary",
+    "description": "Freckleton Marsh, Riversway Docklands, Lower Penwortham, Hutton Marsh, Longton Marsh, Becconsall Marsh, Much Hoole Marsh, Bretherton Eyes, Croston Finney, Hesketh Out Marsh and Hundred End"
+  },
+  {
+    "name": "Lower River Eden",
+    "description": "River Eden and its tributaries from its confluence with the River Irthing through Crosby-on-Eden and Carlisle to the Solway Firth at Rockcliffe"
+  },
+  {
+    "name": "Rivers Brathay, Rothay and Winster",
+    "description": "Rivers Brathay, Rothay and Winster and other watercourses, from Grasmere to Grange-over-Sands including low lying areas around Ambleside, Skelwith Bridge, Windermere, Hawkshead, Newby Bridge, Backbarrow, Cark and Cartmel"
+  },
+  {
+    "name": "Rivers Duddon, Crake and Mill Beck",
+    "description": "Rivers Duddon, Crake and Mill Beck and other watercourses, from Coniston to Barrow-in-Furness including low lying areas around Ulpha, Duddon Bridge, Broughton in Furness, Kirkby-in-Furness, Dalton in Furness and Ulverston"
+  },
+  {
+    "name": "Pimlico Brook at Clitheroe, along Warwick Drive and Dorset Drive",
+    "description": "Properties on Warwick Drive and Dorset Drive"
+  },
+  {
+    "name": "Mearley Brook at Clitheroe, around Up-Brooks, Waterloo Rd, Taylor St and Holden St",
+    "description": "Includes Up-Brooks, Waterloo Rd, Taylor St, Holden St, Duck St, Wellgate and Shawbridge St"
+  },
+  {
+    "name": "River Blakewater at Blackburn Wranglings, between Harrison St, Whalley Banks and Canterbury St",
+    "description": "Properties adjacent to the River Blakewater in Blackburn Wrangling including those on Harrison Street, Whalley Banks, Brunswick Street, Thomas Street, Pearson Street and Canterbury Street"
+  },
+  {
+    "name": "Mearley Brook at Clitheroe, bordering Up-Brooks, Whittle Cl, Brook St and Peel St",
+    "description": "Includes Up-Brooks, Whittle Cl, Brook St, Taylor St, Salthill Rd, Peel St and Primrose Mill"
+  },
+  {
+    "name": "River Kent at Helsington Mills",
+    "description": "Properties and agricultural land adjacent to the River Kent at Helsington Mills"
+  },
+  {
+    "name": "Stock Beck at Sandylands, Lowther Parks Estate South of Castle Green Road",
+    "description": "Rusland Park, Silverdale Drive, Beech Close, Lowther Park and Castle Green Road"
+  },
+  {
+    "name": "Mearley Brook at Clitheroe, comprising Worston, Up-Brooks and Greenacre St",
+    "description": "Includes Worston, Up-Brooks, Peel St, Greenacre St and Woone Lane"
+  },
+  {
+    "name": "Lancashire coastline at Fleetwood, between Amounderness Way and the coast",
+    "description": "Larkholme, Broadwater, Rossall Point and the Fleetwood Town Football Ground"
+  },
+  {
+    "name": "Pimlico Brook at Clitheroe, between Longsight Ave, Princess Ave and Chatburn Rd",
+    "description": "Properties on Longsight Ave, Princess Ave, Chatburn Rd and Causeway Croft"
+  },
+  {
+    "name": "River Calder at Fulledge, between playing fields and football ground",
+    "description": "Low lying land including the playing fields, Elliot Street, Roads off and including Mitella Street, Lyndhurst Road, and Oxford Road"
+  },
+  {
+    "name": "River Calder at Padiham, comprising the business park at Mead Way",
+    "description": "The business park at Mead Way."
+  },
+  {
+    "name": "River Eden and Petteril at Carlisle, City Centre, Botcherby and Warwick Road",
+    "description": "Residential and commercial properties in Carlisle adjacent to the Rivers Eden and Petteril, including Hardwicke Circus, Civic Centre, Sands Centre, City Centre, Botcherby, Warwick Road and Greystone Road areas"
+  },
+  {
+    "name": "Town Beck at Ulverston from The Ellers to the confluence with Dragley Beck",
+    "description": "The Allotment Gardens, Lund Terrace, Morecambe Road, North Lonsdale Terrace, Kingsway, Dale Street and William Street areas"
+  },
+  {
+    "name": "Wyre Estuary at Thornton, between A585, Stanah Road and School Road",
+    "description": "Nestleton, Underbank Road, Aylesbury House and Silcock's Cottages, Trunnah, Stanah, Millfield Science and Performing Arts College and Marsh Farm"
+  },
+  {
+    "name": "Ullswater and River Eamont at Pooley Bridge, The Eamont at Pooley Bridge Village",
+    "description": "Properties on Finkle Street, the B5320 and Heughscar Close"
+  },
+  {
+    "name": "River Eden at Stainton",
+    "description": "Low lying roads, agricultural land and residential properties adjacent to the River Eden at Stainton"
+  },
+  {
+    "name": "River Eden at Armathwaite, Armathwaite Village and Low House",
+    "description": "Land and properties between Armathwaite Castle and Holmwrangle including Low House, Bridge End Farm and properties in Armathwaite village"
+  },
+  {
+    "name": "River Caldew at Cummersdale, Factory",
+    "description": "The Stead McAlpin Factory on Caldew Road and parts of the Cumbria Way Cycleway adjacent to the River Caldew at Cummersdale, Carlisle"
+  },
+  {
+    "name": "Wiza Beck and Black Beck at Wigton, Station Rd",
+    "description": "Properties on and just off Station Rd including The Innovia Factory, Fire Station, Miller Park and Slaters Yard."
+  },
+  {
+    "name": "River Greta at Keswick, Lattrigg Close, Brundholme Gardens, Calvert's Bridge and Keswick Bridge",
+    "description": "Properties adjacent to the River Greta in the Penrith Road, Brigham Row, Lattrigg Close, Brundholme Gardens, Calvert's Bridge and Keswick Bridge areas"
+  },
+  {
+    "name": "Town Beck at Ulverston from The Gill downstream to The Ellers area",
+    "description": "Low lying areas and properties in the town adjacent to Town Beck. Areas likely to be affected are the Gill, parts of Upper Brook Street, Buxton Place, Union Street, The Ellers area and the Recycling Centre"
+  },
+  {
+    "name": "River Derwent at Cockermouth, Gote Road to Derwent Mills area and Low Road",
+    "description": "Residential and commercial properties adjacent to the River Derwent at Cockermouth, including Derwent Mills, Derwentside Gardens, Riverside Terrace, Wakefield Road, St Leonard's Close, Gote Road, Spital Ing Lane and Low Road areas"
+  },
+  {
+    "name": "River Eden at Carlisle, Etterby Terrace and Eden Place",
+    "description": "Residential properties adjacent to the River Eden at Etterby Terrace and Eden Place"
+  },
+  {
+    "name": "River Wenning at Hornby, affecting low lying properties on Main Street",
+    "description": "Low lying properties on Main Street."
+  },
+  {
+    "name": "River Lune at Skerton Pool, bordering Caton Road, Damside Street and North Road",
+    "description": "Low lying land including properties off and including Damside Street, North Road, Parliment Street, Kingsway, The Ramparts and Aldren Lane, Lansil Industrial Estate and Riverside Industrial Estate"
+  },
+  {
+    "name": "River Gowan at Staveley and Ings and River Kent at Staveley",
+    "description": "Ings Mill Caravan Park, Ings Village, areas in Staveley including Windermere Rd, Danes Cresent, Beck Nook, Station Rd, Main St, School Lane, Back Lane, Kent Drive, The Banks and Kendal Rd"
+  },
+  {
+    "name": "Merseyside coastline at Hightown",
+    "description": "Altcar, Bridge Cottage and The Shanty"
+  },
+  {
+    "name": "River Wyre at Tarnacre",
+    "description": "Area to the north of the River Wyre downstream of Ainspool covering properties on Tarnacre Lane and Ainspool Lane"
+  },
+  {
+    "name": "Wiza Beck, Flosh Beck, Speet Gill and Black Beck at Wigton",
+    "description": "Properties at risk, including Western Bank, Cuddy Lonning, The Brook, The Innovia Factory, The Medical Centre, Beech Croft, Birdcage Walk, Tenters and The Stampery"
+  },
+  {
+    "name": "River Eden at Bolton",
+    "description": "Low lying roads, residential and commercial properties adjacent the River Eden at Bolton, Appleby in Westmorland"
+  },
+  {
+    "name": "River Douglas at Parbold, along the right bank of the river downstream of the Canal Bridge",
+    "description": "Low lying properties on the right bank of the Douglas, downstream of the Canal Bridge including Burnside, Bankside, Northdene, Southdene, Westdene, Broadmede and Greenfield"
+  },
+  {
+    "name": "River Douglas at Parbold, comprising low lying properties near canal and Alder Lane",
+    "description": "Low lying properties on the right bank of the Douglas between the Canal and Alder Lane"
+  },
+  {
+    "name": "Burrow Beck at Lancaster, around Canterbury Ave, Cranwell Ave and Bowerham Road",
+    "description": "Properties on Canterbury Ave, Cranwell Ave, Cork Rd, Hodder Place, Bowerham Rd, Steward Ave"
+  },
+  {
+    "name": "Lancashire coastline at Sunderland, around Sunderland Point, Bazil Point and Potts Corner",
+    "description": "Oxcliffe Hill Farm, Heaton, Bazil Point, Sunderland Point, Sunderland Brows Farm and Alderley Bank"
+  },
+  {
+    "name": "Burrow Beck at Lancaster, between Newlands Ave, Lentworth Drive and Whinfell Drive",
+    "description": "Properties on Newlands Ave, Hodder Place, Lentworth Drive and Whinfell Drive"
+  },
+  {
+    "name": "River Darwen at Darwen, comprising properties in the Shorey Bank area of Darwen",
+    "description": "Properties in the Shorey Bank area of Darwen including Edward Street, Duckworth Street, George Street and the Ambulance Station"
+  },
+  {
+    "name": "Lancashire coastline at Carnforth, between Warton Grange Farm, Cotestones Farm and Crag Bank",
+    "description": "Warton Grange Farm, Cotestones Farm and Crag Bank"
+  },
+  {
+    "name": "River Kent at Sedgwick",
+    "description": "Low lying roads, agricultural land and isolated properties adjacent to the River Kent at Sedgewick, Force Lane, Wilson Place, Gate House and Caravan Site"
+  },
+  {
+    "name": "Merseyside coastline at Southport, affecting Marine Drive",
+    "description": "Marine Drive"
+  },
+  {
+    "name": "Lancashire coastline at North Morecambe Town, between Great Hestham, Torrisholme and Bare",
+    "description": "Great Hestham, Torrisholme and Bare"
+  },
+  {
+    "name": "Ribble Estuary at Broadgate, around Riverside, The Continental pub and Preston Sports Club",
+    "description": "Properties in Broadgate in South End, Riverside, and Connaught Road, including The Continental pub and Preston Sports Club."
+  },
+  {
+    "name": "Wyre estuary at Burn Naze",
+    "description": "Wyrefield Farm, Fleetwood Road and Rossall Lane Woods"
+  },
+  {
+    "name": "Rivers Cocker and Derwent at Cockermouth, Bridge St, Crown St, High Sand Lane and Main St",
+    "description": "Commercial and residential properties adjacent to the Rivers Cocker and Derwent at Cockermouth, Brewery Lane, Bridge St, Crown Street, High Sand Lane, Main Street and Waterloo Street area"
+  },
+  {
+    "name": "River Caldew at Carlisle, Viaduct Estate Road area",
+    "description": "River Caldew at Carlisle, Viaduct Estate Road area, including Cumbria Indoor Bowls Club, adjacent commercial properties and car parks either side of the railway line"
+  },
+  {
+    "name": "Glenridding Beck at Glenridding",
+    "description": "Bury Jubilee Hostel, Youth Hostels Association, Rattlebeck, properties from Eagle Farm to Glenridding Hotel, Tourist Information Centre, Ullswater Steamers, St Patricks Boat Landing, Inn on the Lake Hotel, Glenridding House and The Square"
+  },
+  {
+    "name": "River Lostock, Shaw Brook and Bannister Brook at Leyland",
+    "description": "River Lostock, Shaw Brook, and Bannister Brook, comprising of properties in the Farrington, Earnshaw Bridge, Lowe House and Wade Hall areas"
+  },
+  {
+    "name": "Lancashire coastline at Thurnham, around Cockersands Abbey, Thurnham Moss and Conder Green",
+    "description": "Glasson, Chapel Hill, Plover Hill, Cockersand Abbey, Thurnham Moss, Banks Houses and Conder Bridge"
+  },
+  {
+    "name": "Whinney Brook and Dovers Brook at Maghull, beside Hall Lane, Fouracres and Sefton Lane",
+    "description": "Properties on Hall Lane, Damfield Lane, Fouracres, Old Racecourse Road, Sefton Lane and Sefton Drive"
+  },
+  {
+    "name": "Keswick Campsite",
+    "description": "Keswick Campsite flooding from the lake."
+  },
+  {
+    "name": "River Lune at Skerton Pool, areas around Riverside Industrial Estate and Halton Training Camp",
+    "description": "Low lying land including Lansil Way, Riverside Industrial Estate and Halton Training Camp"
+  },
+  {
+    "name": "Colne Water at Primet Bridge, between Greenfield Road and M65",
+    "description": "Properties on Greenfield Road and at Barrowford Locks Bridge"
+  },
+  {
+    "name": "Lancashire coastline at Banks, between Banks Marsh and Churchtown Moss",
+    "description": "Banks Enclosed Marsh, Churchtown Moss, Brooklyn Caravan Park, Homes Moss and Sugar Stubbs Farm"
+  },
+  {
+    "name": "Green Brook and Sweet Clough at Padiham, between Green Lane, Shakespere St and Printers Fold",
+    "description": "Properties in the vicinity of Printers Fold, Shakespeare Street, Hathaway Hold, Palmerston Street and Stockbridge Mill."
+  },
+  {
+    "name": "River Derwent at Camerton",
+    "description": "Low lying roads, agricultural land and isolated properties adjacent to the River Derwent at Camerton"
+  },
+  {
+    "name": "River Wenning at Low Bentham, area including properties near Church Bridge and Punch Bowl Hotel",
+    "description": "Areas adjacent to the River Wenning. Includes properties close to Church Bridge and the Punch Bowl Hotel"
+  },
+  {
+    "name": "River Greta at Keswick, Keswick Campsite, Rugby Club and Quinta",
+    "description": "Low lying roads, residential, commercial properties & campsite in Keswick adjacent the rivers Greta & Derwent including Greta Park Rugby Football Ground, Keswick Campsite, Keswick School Sports Field, Keswick Show Field & Playing Field areas."
+  },
+  {
+    "name": "River Ribble at Walton-le-Dale, between Avenham and Miller Park",
+    "description": "Area on the North Bank of the River Ribble between the Old Tram Bridge and the Railway Bridge comprising Avenham Park and Miller Park"
+  },
+  {
+    "name": "Rivers Cocker and Derwent at Cockermouth, Cricket Ground and Trout Hotel Car Park",
+    "description": "Low Lying land and properties adjacent to the Rivers Cocker and Derwent at Cockermouth"
+  },
+  {
+    "name": "River Wyre at Great Eccleston",
+    "description": "Area south of the River Wyre from the east of the town centre up to land surrounding Fiddlers Farm."
+  },
+  {
+    "name": "Appleby, Holme and Chapel Street and Cherry Row",
+    "description": "Properties in Holme Street, parts of Chapel Street and Cherry Row areas of Appleby liable to flooding from other sources"
+  },
+  {
+    "name": "River Eden at Wetheral",
+    "description": "Low lying roads, residential & commercial properties at Wetheral"
+  },
+  {
+    "name": "Savick Brook at Fulwood and Cadley, from Sharoe Green Lane to railway line",
+    "description": "Properties near to Fulwood Bridge, Talbot Street, Black Bull Lane and Savick Court"
+  },
+  {
+    "name": "River Eden at Carlisle, Rickerby Village",
+    "description": "Low lying roads, agricultural land, residential and commercial properties around the River Eden at Rickerby Village"
+  },
+  {
+    "name": "Ribble Estuary at Hutton and Longton",
+    "description": "Pear Tree Farm, Fiddlers Farm, Jenny's Plantation and Four Acre Wood"
+  },
+  {
+    "name": "Dragley Beck at Ulverston from Dragley Beck Bridge on Well Lane downstream to South Ulverston",
+    "description": "Low lying areas and property adjacent to Dragley and Lund Becks at Rydal Road, Watery Lane, Fitz Bridge, Morecambe Road, Rope Walk and parts of South Ulverston at Low Mill Bridge, South View Farm and Outcast"
+  },
+  {
+    "name": "River Wenning at Hornby, comprising Lancaster Rd, North end of Main Street and St Margaret's school",
+    "description": "Properties on Lancaster Rd, Stanley Drive & the North end of Main Street, including St Margaret's C.E. Primary School."
+  },
+  {
+    "name": "Cumbrian coastline from Silloth to St Bees including Maryport, Flimby, Workington and Whitehaven",
+    "description": "Silloth to St Bees including Maryport, Flimby, Workington and Whitehaven"
+  },
+  {
+    "name": "Whinney Brook and Dovers Brook at Maghull, around Sefton Lane and the Waste Transfer Station",
+    "description": "Properties on Sefton Lane near to Dovers Bridge including the Waste Transfer Station, Garden Centre and adjacent properties"
+  },
+  {
+    "name": "Poaka Beck, The Yarl, Hagg Gill and Butts Beck at Dalton in Furness including Town Centre, Queen St",
+    "description": "Areas of the town adjacent to the Cricket Ground, Football Club, Bow Bridge and Goose Green including Ulverston Road, Queen Street, Littlefields, Beckside Road, Station Road, Market Street, Glenfield and Garden Lea"
+  },
+  {
+    "name": "Cumbrian coastline at Duddon Estuary, at Haverigg to Duddon Bridge, Foxfield, Dunnerholme",
+    "description": "Duddon Estuary including Haverigg, Arnaby Marsh, Foxfield Farm, Sandside and Dunnerholme"
+  },
+  {
+    "name": "Cumbrian coastline at North Morecambe Bay, between Roosebeck, Ulverston, Flookburgh and A590",
+    "description": "North Morecambe Bay including Roosebeck, South Ulverston, Canal Foot, East Plain Farm, Flookburgh Caravan Park, Meathop, Arnside and Sandside"
+  },
+  {
+    "name": "Cumbrian coastline at Duddon Estuary, between Haverigg, Duddon Bridge, Dunnerholme and A595",
+    "description": "Duddon Estuary including Haverigg, Port Haverigg Holiday Village, Millom, Millom Marsh, Foxfield, Sandside and Dunnerholme"
+  },
+  {
+    "name": "Cumbrian coastline at Barrow in Furness, around Biggar, Rampside and Vickerstown",
+    "description": "Barrow in Furness including West Shore Park, Biggar Bank Road, Biggar, Tummer Hill Marshes, Rampside, Roa Island and Vickerstown"
+  },
+  {
+    "name": "Cumbrian coastline at Barrow in Furness, between North and South Walney, Cavendish and Ramsden Docks",
+    "description": "Barrow in Furness including West Shore Park, Biggar Bank Road, Tummer Hill Marshes, Rampside, Roa Island, Vickerstown, Cavendish and Ramsden Docks, Salthouse Mills and Roosecote Power Station"
+  },
+  {
+    "name": "Cumbrian coastline at North Morecambe Bay, along the coast from Roosebeck to Carnforth",
+    "description": "North Morecambe Bay including Roosebeck, South Ulverston, Canal Foot, East Plain Farm, Arnside and Sandside"
+  },
+  {
+    "name": "River Greta at Keswick, Penrith Road and Wordsworth Street",
+    "description": "Low lying roads, residential and commercial properties in Keswick adjacent to the River Greta, including Penrith Road, Wordsworth Street, Greta Street and Blencathra Street"
+  },
+  {
+    "name": "Lancashire coastline at Over Wyre, between Wrampool Bridge, Preesall and Knott End",
+    "description": "Wrampool Bridge, Dam Side, Pilling, Smallwood Hey and Parrox Hall"
+  },
+  {
+    "name": "River Eamont at Eamont Bridge, Kemplay Foot, Skirsgill Lane and Southwaite Green Mill",
+    "description": "Properties adjacent to the River Eamont at Eamont Bridge, including the Kemplay Foot, Skirsgill Lane and Southwaite Green Mill areas"
+  },
+  {
+    "name": "River Wyre at Ratten Row",
+    "description": "Area adjacent to and north of the River Wyre at Ratten Row."
+  },
+  {
+    "name": "Cumbrian coastline from Gretna to Silloth including Port Carlisle, Skinburness and Rockcliffe",
+    "description": "Gretna to Silloth, areas at risk include properties at Mossband Hall Marsh, Silloth, Burgh Marsh, Port Carlisle, Wampool Estuary, Skinburness Marsh, Skinburness and Rockcliffe"
+  },
+  {
+    "name": "Rivers in Accrington and Oswaldtwistle",
+    "description": "River Hyndburn, Woodnook & Broad Oak Water, Antley Syke, Pleck, Hynburn, Tinker, Lottice and Whiteash Brooks in Accrington and Oswaldtwistle. Comprising Dunnyshop, Baxenden, Lower Fold, Peel Bank, Barnfield and Little Moor End"
+  },
+  {
+    "name": "River Eden at Appleby, The Sands, Cricket ground, King George's Field",
+    "description": "Properties to the east and west of The Sands, the Cricket Ground north of Bridge Street and King George's Field to the west of Chapel Street"
+  },
+  {
+    "name": "River Calder at Whalley, between Accrington Rd, Judge Walmsley Mill and Hackings Caravan Park",
+    "description": "King Street south of Accrington Road, Princess St, Queen St, and in the vicinity of the Abbey, Judge Walmsley Mill, and Hackings Caravan Park."
+  },
+  {
+    "name": "River Eden between Newby East and Low Crosby",
+    "description": "Low lying land, roads and isolated properties adjacent to the River Eden between Newby East and Low Crosby"
+  },
+  {
+    "name": "Pendle Water at Lomeshaye, around the football ground and Holme Terrace",
+    "description": "Nelson football ground and properties on Holme Terrace."
+  },
+  {
+    "name": "River Kent at Kendal, Mintsfeet, Wildman Street, Castle Street, Stramongate, Aynam Road, Lound Road",
+    "description": "Properties adjacent to the River Kent at Kendal, including Mintsfeet, Beezon Road, Wildman Street, Castle Street, Castle Crescent, Stramongate, Queen Katherine Street, Parr Street, Aynam Road, Waterside, Abbot Hall, Lound Road, Lound Street, K Village"
+  },
+  {
+    "name": "River Ribble at Settle, comprising Mill Close, New Road and Runley Mill",
+    "description": "Includes properties around Mill Close, New Road and Runley Mill"
+  },
+  {
+    "name": "Merseyside coastline at Southport, between A565 and Marine Drive",
+    "description": "Crossens, Marshside, Stanley High School, The Marine Way Bridge and New Pleasureland"
+  },
+  {
+    "name": "Lancashire coastline at Thurnham, between Glasson and Marsh Lane A588",
+    "description": "Glasson, Thurnham Moss, Hillam Lane Farm, Wheatsheaf Cottages and Thurnham Bridge"
+  },
+  {
+    "name": "Lancashire coastline at Blackpool, bordering Revoe and the A5099",
+    "description": "Revoe and the A5099"
+  },
+  {
+    "name": "River Lune at Lancaster Quay, area around Morecambe Road and Owen Road",
+    "description": "Low lying land including Our Lady's Catholic College and properties off and including Lune Street, Earl Street, Greyhound Bridge Road, Morecambe Road and Owen Road"
+  },
+  {
+    "name": "River Darwen at Darwen, between Bright Street and Vale Street in the Livesey Fold area of Darwen",
+    "description": "Properties in the Livesey Fold area of Darwen leading off Duckworth Road between Bright Street and Vale Street"
+  },
+  {
+    "name": "Lancashire coastline at Cleveleys, between Rossall Beach and Anchorsholme",
+    "description": "Promenade South, Anchorsholme and Rossall Beach"
+  },
+  {
+    "name": "Lancashire coastline at Blackpool, along the Promenade from Little Bispham to Squires Gate",
+    "description": "New South Promenade, Revoe, Promenade, North Pier, Central Pier and South Pier"
+  },
+  {
+    "name": "Green Brook and Sweet Clough at Padiham, comprising Printers Fold, Burns Street to Greenbridge Mill",
+    "description": "Properties in the vicinity of Printers Fold on Burns Street, Dryden Street, Shakespeare Street and Thompson Street up to Greenbridge Mill"
+  },
+  {
+    "name": "River Ribble at Low Moor, Clitheroe",
+    "description": "Low lying land and properties adjacent to the River Ribble on Riverside Estate in Low Moor near Clitheroe"
+  },
+  {
+    "name": "River Ribble at Settle, around Holmehead, Watershed Mill and Sowarth Field Ind Est",
+    "description": "Includes Holmehead, Watershed Mill, Sowarth Field Ind Est and Gildersleets"
+  },
+  {
+    "name": "Hellifield Beck at Hellifield, around Park Place, Park Crescent, and Main Road",
+    "description": "Properties in Park Place, Park Crescent, and Main Road close to the railway line"
+  },
+  {
+    "name": "Green Brook and Sweet Clough at Padiham, affecting low lying areas by the rivers",
+    "description": "Properties in the vicinity of Bear Street, Shakespeare Street, Palmerston Street, Thompson Street and Greenbridge Mill"
+  },
+  {
+    "name": "Pilling Water and Ridgy Pool at Pilling",
+    "description": "Properties including several farms and properties on Garstang Road, Peahall Lane, Moss House Lane, Lancaster Rd, Taylors Lane and Smallwood Hey Rd."
+  },
+  {
+    "name": "River Wyre at St Michaels South",
+    "description": "Area covering the part of St Michaels that is to the south of the River Wyre"
+  },
+  {
+    "name": "Cumbrian coastline from Gretna to Silloth, between Longtown and Skinburness",
+    "description": "Gretna to Silloth including properties at Skinburness, Whinclose, Port Carlisle, Salt Cotes, Kirkbride, Port Carlisle, Boustead Hill, and Longburgh"
+  },
+  {
+    "name": "River Douglas at Wigan, adjacent to River Douglas from Robin Park to Baker St. Poolstock",
+    "description": "Low lying area adjacent to the River Douglas including properties on Eleanor St, the Bus Depot, Baker St, Poolstock and the Robin Park area"
+  },
+  {
+    "name": "Stock Beck at Kendal, from Calder Drive to the River Kent",
+    "description": "Stock Beck at Kendal, from Calder Drive to the River Kent, including Sandylands Road, Crag View, Broad Ing, Eastgate, Westgate, Longpool, Wildman Street, Ann Street, Gandy Street, Castle Street, Castle Garth, Castle Crescent"
+  },
+  {
+    "name": "Trawden Brook at Trawden, around Skipton Road from the library to the junction with Lachman Road",
+    "description": "Properties in Skipton Road from the library to the junction with Lachman Road."
+  },
+  {
+    "name": "Trawden Brook at Trawden, between Lachman Road and the library",
+    "description": "Properties in Skipton Road from the library to the junction with Lachman Road."
+  },
+  {
+    "name": "Rivers Kent and Mint at Kendal, Lake District Business Park, Busher Walk, New Road, Aynam Road",
+    "description": "Properties adjacent to the Rivers Kent and Mint at Kendal, including Lake District Business Park, Jubilee Fields, Busher Walk including Police Station, Fire Station and County Hall, Sandes Avenue, New Road, Aynam Road, Queen Katherine Street, Parr Street"
+  },
+  {
+    "name": "Stock Beck at Sandylands, from Whitbarrow Close to Calder Drive",
+    "description": "Stock Beck at Sandylands, from Whitbarrow Close to Calder Drive, including Sedbergh Drive, Bowland Drive, Castle Park School, Grasmere Crescent and Firbank"
+  },
+  {
+    "name": "Lancashire coastline at Hesketh, affecting Hesketh Out Marsh",
+    "description": "Low lying land to the north of Dib Road including RSPB Hesketh"
+  },
+  {
+    "name": "River Petteril at Harraby Green",
+    "description": "Low lying roads, residential and commercial properties adjacent the River Petteril at Harraby Green"
+  },
+  {
+    "name": "River Greta at Keswick, Fitz Park and Riverside Flats areas",
+    "description": "Low lying properties and recreational areas adjacent to the River Greta in Keswick, including Upper Fitz Park, Lower Fitz Park, Station Road, Greta Side and Keswick AFC"
+  },
+  {
+    "name": "Rivers Kent and Mint at Kendal, Westmorland Business Park, Burneside Road, Benson Green",
+    "description": "Properties adjacent to the Rivers Kent and Mint at Kendal, including Westmorland Business Park, Gilthwaiterigg Lane, Burneside Road, Dockray Hall Road and Industrial Estate, Benson Green and Gooseholme"
+  },
+  {
+    "name": "Stock Beck at Appleby Rd, Spital Park, Fowl Ing, Mint Street, Dale Avenue, Kendal Business Park",
+    "description": "Appleby Road, Spital Park, Fowl Ing, Broad Ing, Mint Street, Dale Avenue, Longlands View, Copperfield Lane, Drovers Drive, Kendal Business Park areas"
+  },
+  {
+    "name": "Whangs Beck at Egremont, Southey Avenue to Beck Side",
+    "description": "Properties at risk from Whangs Beck including Orgill Primary School, Baybarrow Road, Southey Ave, Spencer Close, Coleridge Drive, Keats Drive, Croadalla Ave, Church View, Beck Side"
+  },
+  {
+    "name": "Skirting Beck at Egremont, Milton Road to Beck Side",
+    "description": "Properties at risk from Skirting Beck on Chaucer Avenue, Milton Rd, Keats Drive, Croadalla Ave, Falcon Club, West Lakes Academy, Church View, Beck Side"
+  },
+  {
+    "name": "River Wyre at Garstang North",
+    "description": "Area on the West bank of the River Wyre covering Garstang Flood Basin and properties on Rivermead Drive, Homefield and Crooklands Drive."
+  },
+  {
+    "name": "Wyre estuary at Hambleton, bordering Brickhouse Lane and A588",
+    "description": "Wardleys Pool, Wardleys Lane, Wyresdale Caravan Park, Riverside Drive, The Conifers, Kiln Lane, Brook Vale and Brickhouse Lane"
+  },
+  {
+    "name": "River Ehen at Egremont, Beck Green, Bridge End, Croft Terrace and Cross Side areas",
+    "description": "Properties adjacent to the River Ehen at Egremont, including the Beck Green, Bridge End, Croft Terrace and Cross Side areas"
+  },
+  {
+    "name": "Durranhill Beck at Durranhill, Botcherby and Eastern Way Carlisle",
+    "description": "Properties on Warwick Road from Botcherby Bridge to Montgomery Way and adjacent to Durranhill Beck, including Tilbury Road, Eden Park Crescent, Victoria Road, Walkmill Crescent, Willow Park and Gilsland Road"
+  },
+  {
+    "name": "River Eden at Low Crosby, Warwick Holmes Area",
+    "description": "Low lying roads, agricultural land and isolated properties adjacent to the River Eden in the Warwick Holmes area"
+  },
+  {
+    "name": "Ribble Estuary at Riversway Docklands",
+    "description": "Low lying land and properties north of the River Ribble from the Motor Park near Riversway up to Penwortham New Bridge."
+  },
+  {
+    "name": "River Kent at Burneside, Bournville, Bridge St, Carling Dale, Ivy Cresent, New Road and St",
+    "description": "Commercial and residential properties adjacent to the River Kent at Burneside, Bournville, Bridge Street, Carling Dale, Ivy Cresent, New Road and Street"
+  },
+  {
+    "name": "River Greta at Keswick, Crosthwaite Road, Limepots Road, High Hill and Church Lane areas",
+    "description": "Low lying roads, residential and commercial properties in Keswick adjacent to the Rivers Greta and Derwent, including Crosthwaite Road, Crosthwaite Gardens, Limepots Road, Glebe Close, High Hill and Church Lane areas"
+  },
+  {
+    "name": "River Eden at Armathwaite, The Castle and Brocklewath",
+    "description": "Low lying roads, agricultural land and isolated properties adjacent to the River Eden at Armathwaite, The Castle, Mill Farm, Dry Beck Farm, Brocklewath, Coathouse Tower, Edenside, Low Holme and Fishgarth"
+  },
+  {
+    "name": "River Greta at Keswick, Main Street, Bank Street and Greta Side",
+    "description": "Low lying roads, residential and commercial properties in Keswick including Main Street, Bank Street, Greta Side, Otley Road, Brewery Lane, Stanger Street and Heads Lane"
+  },
+  {
+    "name": "Dragley and Lunds Becks at South Ulverston",
+    "description": "Low lying areas and property adjacent to Dragley and Lund Becks at South Ulverston, including Steel Street, North Lonsdale Road, Cross Lane and Kennedy Street areas"
+  },
+  {
+    "name": "Savick Brook at Fulwood and Cadley, between Woodplumpton Rd and Black Bull Lane",
+    "description": "Properties near to Savick Brook in Fulwood and Cadley on Drakes Close, Woodplumpton Rd, Seymour Rd, Mill Lane, Mill Gate and those on Brook St North, Fowler St and Harland St near to the junction with Talbot St"
+  },
+  {
+    "name": "Ullswater and River Eamont at Pooley Bridge, Ullswater Steamer Pier to B5320 Bridge",
+    "description": "Properties on the B5320 between Dunmallard Hill and the river, including the steamer pier."
+  },
+  {
+    "name": "Wyre estuary at Skippool, area east of Breck Road",
+    "description": "Skippool Bridge, Breck Road and Bridge House"
+  },
+  {
+    "name": "Wyre estuary at Skippool, bordering Breck Drive and Myrtle Avenue",
+    "description": "Breck Drive and Myrtle Avenue"
+  },
+  {
+    "name": "River Darwen at Waterfall in Blackburn, between Cartmell Rd and Aqueduct Rd",
+    "description": "Properties in the vicinity of Aqueduct Rd, Albert St, Hollin Bridge St, Stancliffe St, Grange Rd and Cartmell Rd"
+  },
+  {
+    "name": "Little Caldew at Carlisle",
+    "description": "Flooding of properties from the Little Caldew affecting the Willowholme and Shaddongate areas"
+  },
+  {
+    "name": "River Calder at Burnley Town Centre, between Centenary Way and the M65",
+    "description": "Low lying properties by the River Calder including those on St James Street, Brown St, Hammerton St, Active Way and Calder Vale Rd"
+  },
+  {
+    "name": "River Eden at Edenhall",
+    "description": "Low lying roads, agricultural land & isolated properties adjacent the River Eden at Edenhall"
+  },
+  {
+    "name": "Colne Water at Primet Bridge, around Garden Vale Business Park, Riverside Mill and Burnley Rd",
+    "description": "Industrial and commercial units in Garden Vale Business Park, Riverside Mill and on Burnley Road"
+  },
+  {
+    "name": "Colne Water at Cotton Tree, around Holme Street, Winewall Road and Trawden Road",
+    "description": "Properties on Holme Street, Winewall Road, and Trawden Road"
+  },
+  {
+    "name": "River Wyre at Garstang South",
+    "description": "Area adjacent to the River Wyre between the disused railway embankment and the Lancaster Canal aqueduct."
+  },
+  {
+    "name": "River Wenning at High Bentham, around Wenning Avenue and Riverside Caravan Park",
+    "description": "Low lying properties on Wenning Avenue, Beech Cottage and parts of Riverside Caravan Park"
+  },
+  {
+    "name": "Colne Water at Lenches, between Cotton Tree Lane and railway line south of the river",
+    "description": "Properties in the vicinity of Spring Gardens Road and Green Road"
+  },
+  {
+    "name": "River Wyre at Bonds",
+    "description": "Area on the South East bank of the River Wyre at Bonds covering the nursing home and properties on Leathercote."
+  },
+  {
+    "name": "River Calder at Whalley, around Hole House Farm and Calder Vale",
+    "description": "Hole House Farm and properties on Calder Vale."
+  },
+  {
+    "name": "River Ehen at Egremont, Bleach Green, Ennerdale Mill, Bridge End, Vale View, Wood Bank, Rugby Club",
+    "description": "River Ehen at Egremont, Bleach Green, Ennerdale Mill, Bridge End, Vale View, Wood Bank and the Rugby Club"
+  },
+  {
+    "name": "River Douglas at Appley Bridge",
+    "description": "Low lying land on the south bank of the River Douglas at Appley Bridge including properties along Appley Lane as far as Speakmans Drive"
+  },
+  {
+    "name": "Wyre estuary at Hambleton, around Wardleys Pool and Brickhouse Lane",
+    "description": "Wardleys Pool, Wardleys Lane, Wyresdale Caravan Park, Riverside Drive, The Conifers, Kiln Lane, Brook Vale and Brickhouse Lane"
+  },
+  {
+    "name": "River Lune at Halton, adjacent to river from Forgebank Walk to M6 bridge",
+    "description": "The Boat House, Tithebarn Cottage, Tower House, Church View, Clock House, Forgebank Walk and Mill Lane."
+  },
+  {
+    "name": "River Leven at Newby Bridge and Backbarrow",
+    "description": "Properties adjacent to the River Leven at Newby Bridge and Backbarrow, including the Swan Hotel, Boat Houses, Mill Farm, The Whitewater Hotel, Water Close, Lakeland Village, Coach House and Levens Dale"
+  },
+  {
+    "name": "River Greta at Keswick, Elliot Park, Main Street and Pencil Works area",
+    "description": "Residential and commercial properties in Keswick adjacent to the River Greta, including Elliot Park, Main Street and the Southey Hill Trading Park"
+  },
+  {
+    "name": "Merseyside coastline at Crosby",
+    "description": "Seafront at Coastguards Station at Blundellesands and The Baths"
+  },
+  {
+    "name": "River Eden at Appleby, Market Square, Boroughgate, Doomgate area",
+    "description": "Low lying roads, residential & commercial properties adjacent the River Eden at Appleby in Westmorland including, Market Square, Boroughgate, Doomgate area"
+  },
+  {
+    "name": "River Wenning at Low Bentham, between Main Street, Mill Lane and Collingwood Drive",
+    "description": "Properties in Main Street, Mill Lane, and Collingwood Drive at the junction with Main Street"
+  },
+  {
+    "name": "River Cocker at Cockermouth, The Old Courthouse and Market Place area",
+    "description": "Residential and commercial properties adjacent to the River Cocker at Cockermouth, The Old Courthouse, Market Place, Banks Court and South Street Footbridge car park areas"
+  },
+  {
+    "name": "River Greta at Keswick, The Forge area",
+    "description": "Properties adjacent to the River Greta in The Forge area"
+  },
+  {
+    "name": "River Darwen at Waterfall in Blackburn, at Stancliffe St, River Mill and Bower St",
+    "description": "Properties adjacent to the River Darwen on Stancliffe Street and also including River Mill and Bower Street"
+  },
+  {
+    "name": "River Douglas at Wigan, between Scholes and Poolstock",
+    "description": "Low lying area adjacent to the River Douglas including properties in Scholes and Poolstock extending to Pottery Road"
+  },
+  {
+    "name": "Ribble Estuary at Broadgate, between Connaught Rd and Fishergate Hill",
+    "description": "Properties in Broadgate including properties off Winkley Road, South Meadow Lane, Taylor Street, Strand Road, and Fishergate Hill near Penwortham Bridge."
+  },
+  {
+    "name": "Lancashire coastline at Fleetwood",
+    "description": "Dock Street and Fleetwood Ferry Terminal"
+  },
+  {
+    "name": "River Eden at Carlisle, Tesco Store Warwick Road",
+    "description": "Low lying roads and agricultural land,  adjacent to the River Eden at Tesco Store, Warwick Road"
+  },
+  {
+    "name": "Cockermouth Gote Road and St Leonards",
+    "description": "Properties in the Gote Road and St Leonards Lane and Close areas of Cockermouth liable to flooding from surface water"
+  },
+  {
+    "name": "Lancashire coastline at Cleveleys, around Princes Way, Promenade North and Jubilee Gardens",
+    "description": "Princes Way, Promenade North and Jubilee Gardens"
+  },
+  {
+    "name": "River Darwen at Higher Walton, around Higher Walton Rd, Darwen St and Higher Walton Mills",
+    "description": "Properties on Higher Walton Road backing onto the River Darwen, businesses and properties close to Cann Bridge in Darwen Street, and businesses based in Higher Walton Mills."
+  },
+  {
+    "name": "Lancashire coastline at Clifton Marsh, between Freckleton and Savick Brook",
+    "description": "Clifton Marsh Farm, Savick Brook Farm, Newton Marsh, Freckleton Marsh, Greenfield Park and Toll House Bridge"
+  },
+  {
+    "name": "Pendle Water at Barrowford",
+    "description": "Properties off Scotland Rd, Nora St, Bolton Grove, Pendle St and surrounding roads, as well as Newbridge Mill, Nelson College, and properties in the North Park Avenue area opposite the cricket ground."
+  },
+  {
+    "name": "River Calder at Whalley, comprising King St north of Accrington Rd",
+    "description": "King Street north of Accrington Road."
+  },
+  {
+    "name": "River Douglas at Parbold, between canal bridge and West View and the Wayfarer Pub off Alder Lane",
+    "description": "The Wayfarer Pub off Alder Lane and surrounding low lying land"
+  },
+  {
+    "name": "River Wyre at Kirkland Bridge",
+    "description": "Area adjacent to the North bank of the River Wyre at Kirkland Bridge covering properties on The Avenue and the A6."
+  },
+  {
+    "name": "Ribble estuary at Lower Penwortham, between A582 and the railway line",
+    "description": "Properties in Lower Penwortham off Leyland Road, Talbot Road, Riverside Road and Stricklands Lane; premises on Leyland Road and Factory Lane Industrial Estates; mobile homes on Penwortham Residential Park; and properties near Oaks Wood in Valley Road"
+  },
+  {
+    "name": "River Eden at Low Crosby Village, Holme Ends and Holme Gate",
+    "description": "Low lying roads, agricultural land and properties in Low Crosby Village, Holme Ends and Holme Gate"
+  },
+  {
+    "name": "River Cocker at Southwaite Bridge",
+    "description": "Properties adjacent to the River Cocker at Southwaite Bridge, including Southwaite Mill"
+  },
+  {
+    "name": "Windermere (Lake Levels)",
+    "description": "Areas at flood risk from high water levels on the shores of Windermere"
+  },
+  {
+    "name": "River Kent at Burneside, Steeles Row and Carling Steps",
+    "description": "Commercial and residential properties adjacent to the River Kent at Burneside, Steeles Row and Carling Steps"
+  },
+  {
+    "name": "Lancashire coastline at Heysham",
+    "description": "North Wharf, Fish Quay, South Quay and West Quay"
+  },
+  {
+    "name": "River Wenning at High Bentham, between Todd Hill Farm and the Sewage Works",
+    "description": "Includes Todd Hill Farm, 1 Mayfield Rd, 1 to 14 Wenning Avenue, Rose Cottage, Bleach House, parts of Riverside Caravan Park and the Sewage Works"
+  },
+  {
+    "name": "River Ribble at Walton-le-Dale, area from Fishwick Bottoms to Railway Bridge",
+    "description": "Properties on the South bank of the Ribble between the Darwen Confluence and the Railway Bridge and on the North bank upstream of Walton Bridge"
+  },
+  {
+    "name": "River Wenning at High Bentham, comprising Lane Foot Cottages to the Sewage Works",
+    "description": "Includes Lane Foot Cottages, The Wenning, Hillcroft, Holme Park, Millholme Drive, Mayfield Rd, Riverside Caravan Park and the Sewage Works"
+  },
+  {
+    "name": "River Wenning at Low Bentham, comprising Burton Rd, Collingwood Drive and Main St near Victoria Hall",
+    "description": "Oldfield Cottages in Burton Road, Collingwood Drive, and properties in Main Street near Victoria Hall"
+  },
+  {
+    "name": "River Darwen at Darwen, affecting Hollins Grove off Blackburn Road between Bright St and Clarence St",
+    "description": "Properties in the Hollins Grove area of Darwen off the Blackburn Road between Bright Street and Clarence Street"
+  },
+  {
+    "name": "Wyre estuary at Thornton, affecting Nestleton, Underbank Rd, Aylesbury House and Silcock's Cottages",
+    "description": "Nestleton, Underbank Road, Aylesbury House and Silcock's Cottages"
+  },
+  {
+    "name": "Colne Water at Cotton Tree, bordering Cotton Tree Lane",
+    "description": "Properties on Cotton Tree Lane"
+  },
+  {
+    "name": "Fouracres and The Crescent at Maghull",
+    "description": "Properties on Fouracres and The Crescent which are at risk from surface water flooding"
+  },
+  {
+    "name": "Colne Water at Cotton Tree, comprising Cotton Tree Lane, Lambeth St and Hollington St",
+    "description": "Properties on Cotton Tree Lane, Lambeth Street and Hollington Street"
+  },
+  {
+    "name": "Hellifielld Beck at Hellifield, between railway line, Gisburn Road and Lancashire Yorkshire Terrace",
+    "description": "Properties in Gisburn Road, Lancashire and Yorkshire Terrace, Temperance Square, Drovers Walk, Hammerton Drive and Coppice Lane"
+  },
+  {
+    "name": "River Caldew and Eden at Carlisle, Willowholme, Caldewgate, Shaddongate",
+    "description": "River Caldew and Eden at Carlisle, Willowholme, Caldewgate and Shaddongate, including Willowholme Industrial Estate, Milbourne Street, Junction Street, Charlotte Street and Lorne Crescent areas"
+  },
+  {
+    "name": "Cumbrian coastline from St Bees Head to Millom, along the coast from North Head to Haverigg",
+    "description": "St Bees Head to Millom including Seascale, Ravenglass, Saltcoats, Haverigg and beach front properties at Coulderton, Nethertown and Braystones."
+  },
+  {
+    "name": "Pumped Watercourses at Preesall",
+    "description": "Land drained by the pumped watercourses in Preesall including properties contained by Pilling Lane, Green Dick's Lane, Head Dyke Lane and the Lancaster Road and those accessed from Grasmere Road"
+  },
+  {
+    "name": "River Eden at Carlisle, Rickerby Park, Swifts and Stoneyholme Golf Courses",
+    "description": "Low lying roads, car parks, public spaces and recreational facilities at Rickerby Park, Swifts and Stoneyholme Golf Courses"
+  },
+  {
+    "name": "River Darwen at Higher Walton, between Higher Walton Road and the foundry on Kittlingbourne Brow",
+    "description": "Properties in Higher Walton along Cann Bridge Street, Shop Lane, and the Bannister Hall Lane area, as well as the foundry on Killingborne Brow."
+  },
+  {
+    "name": "River Wenning at Hornby, between Priory Lane, Main Street and Lancaster Road",
+    "description": "Sewage Wks & Properties on Station Rd, Main Street & Post Horse La."
+  },
+  {
+    "name": "Lancashire coastline at Over Wyre, affecting Pilling Lane, Knott-End-on-Sea and Cote Walls Farm",
+    "description": "Pilling Lane, Knott-End-on-Sea and Cote Walls Farm"
+  },
+  {
+    "name": "Walverden Water at Nelson",
+    "description": "Walverden Water comprising of properties off and including Bradley Road, Sagar Street, Brook Street, Southfield Street, Pendle Industrial Estate and Riverside Business Park"
+  },
+  {
+    "name": "River Wyre at Churchtown",
+    "description": "The village of Churchtown"
+  },
+  {
+    "name": "River Lune at Lancaster Quay, between St Georges Quay, River Street and Damside Street",
+    "description": "Low lying land including properties on St Georges Quay, River Street and Damside Street"
+  },
+  {
+    "name": "River Eden at Appleby, Chapel Street, Bridge Street, Holme Street and Court, Low Wiend Area",
+    "description": "Properties along Chapel Street between King George's Field and the Cricket ground. Properties along Bridge Street, Low Wiend and areas north of Holme Street."
+  },
+  {
+    "name": "Lancashire coastline at Banks, affecting old Hollow Farm",
+    "description": "Old Hollow Farm"
+  },
+  {
+    "name": "Poaka Beck, The Yarl, Hagg Gill and Butts Beck at Dalton in Furness, Other areas at risk",
+    "description": "Butts Beck, Fire Station, King Street, Prince Street, Dale Terrace, Nursery Gardens, Meadow Grove, Beckside Rd, Chapel Street, Rawlinson Street, Underwood Terrace at Goose Green"
+  },
+  {
+    "name": "River Brun at Burnley, beside Netherwood Rd, Keirby Walk, Hall St and the Mall",
+    "description": "Properties on Netherwood Rd, Keirby Walk, Hall St and in the Mall"
+  },
+  {
+    "name": "Cumbrian coastline from St Bees Head to Millom, between Braystones and Annaside",
+    "description": "St Bees Head to Millom including Seascale, Ravenglass, Saltcoats, Hall Carleton and Haverigg"
+  },
+  {
+    "name": "Lochinvar Beck at Longtown",
+    "description": "Properties in Lochinvar Close, Raffield, parts of Burn Street, Swan Street, and English Street."
+  },
+  {
+    "name": "River Brun at Burnley, at Mohuiddin International College, Church St, Shorey Bank, Netherwood Rd",
+    "description": "Mohuiddin International Girls School and low lying properties on Church St, Shorey Bank and Netherwood Rd."
+  },
+  {
+    "name": "River Ribble at Ribchester, bordering Boyces Brook, Greenside and surrounding areas",
+    "description": "Properties in Riverside, Greenside, those at Little Town near Ribblesdale House Farm, Osbaldeston Hall, Boat house, Lower Barn Farm, Waterside Farm, Stydd Lodge Farm, and properties on Salesbury Hall Road near Ribchester Bridge."
+  },
+  {
+    "name": "Colne Water at Lenches, around Waterside Industrial Estate and Green Road",
+    "description": "Commercial premises in Waterside Industrial Estate and Green Road"
+  },
+  {
+    "name": "Ribble estuary at Lower Penwortham, around Leyland Road close to the River Ribble",
+    "description": "Properties in Penwortham on Leyland Road close to the River Ribble, including Penwortham Methodist Church"
+  },
+  {
+    "name": "River Ehen at Low Mill",
+    "description": "Properties adjacent to the River Ehen at Low Mill"
+  },
+  {
+    "name": "Lancashire coastline at Clifton Marsh, adjacent to Freckleton Pool",
+    "description": "Freckelton Pool"
+  },
+  {
+    "name": "River Wyre at St Michaels North",
+    "description": "Area covering the part of St Michaels that is to the north of the River Wyre"
+  },
+  {
+    "name": "River Ribble at Samlesbury, around Brockholes Reserve and Lower Brockholes Quarry",
+    "description": "Brockholes Reserve and businesses based at Lower Brockholes Quarry"
+  },
+  {
+    "name": "River Blakewater at Blackburn Wranglings, at George Street West, Whalley Banks and Sunnyhurst Rd",
+    "description": "Properties adjacent to the River Blakewater in Blackburn Wrangling including those on George Street West, Whalley Banks and Sunnyhurst Road"
+  },
+  {
+    "name": "Cumbrian coastline from Silloth to St Bees, between Allonby and Whitehaven",
+    "description": "Silloth to St Bees Head including Whitehaven town centre, Whitehaven North Beach, Parton, Workington, Flimby and Maryport"
+  },
+  {
+    "name": "River Yarrow at Croston, between the railway and Home Farm Mews",
+    "description": "Properties in Croston in Drinkhouse Road, Drinkhouse Lane next to the railway, Westfields, Riverside Crescent, Yarrow Close, Carvers Bridge, Turflands, The Hillocks, and Home Farm Mews"
+  },
+  {
+    "name": "River Ribble at Walton-le-Dale, comprising areas around Frenchwood and Capitol Centre",
+    "description": "Includes Ribble Side Farm, Watery Lane, Factory Lane and Ashworth Grove, Walton Green, Beechwood Avenue, Heaton Close, and Chorley Road and Drakes Hollow"
+  },
+  {
+    "name": "Rivers Kent and Mint at Kendal, Mintsfeet Road South, Ann Street, Canal Head, Romney Gardens",
+    "description": "Rivers Kent and Mint at Kendal, Lake District Business Park, Aikrigg Avenue, Mintsfeet Road South, Beezon Fields, Ann Street, Stramongate, Thorny Hills, Canal Head, Kent Place, Kirkland, Romney Gardens, Kirkbie Kendal School, Natland Road, Watercrook"
+  },
+  {
+    "name": "River Calder at Burnley Town Centre, affecting low lying area at St. James Street and Calder Street",
+    "description": "Low lying properties by the River Calder including properties on Calder St and James St"
+  },
+  {
+    "name": "Speet Gill at Wigton, Burnfoot",
+    "description": "Properties in Burnfoot including the School, Church, Convent, Strand Terrace,  Accrington Terrace, Eastley Terrace and Printfield."
+  },
+  {
+    "name": "Elliot Park at Keswick",
+    "description": "Properties in Elliot Park affected by surface water"
+  },
+  {
+    "name": "Willowholme Surface Water",
+    "description": "Flooding of  Willowholme area due to surface water and drainage issues"
+  },
+  {
+    "name": "River Cocker at Cockermouth, Challoner St, Croft Terrace, Jubilee Court and Rubbybanks Rd",
+    "description": "Residential and commercial properties adjacent to the River Cocker at Cockermouth, Challoner Street, Croft Terrace, Croftside, Jubilee Court, Rubbybanks Rd and South Street Area"
+  },
+  {
+    "name": "Lancashire coastline at North Morecambe Town, along Marine Road East and Central to Midland Hotel",
+    "description": "Marine Road East, Elm Grove, Elms Road, Promenade, Marine Road Central, the Leisure Park and Jetty"
+  },
+  {
+    "name": "River Yarrow at Croston, comprising Back Drinkhouse Lane to Langdale Avenue and sewage works",
+    "description": "Properties in Croston in Back Drinkhouse Lane and Drinkhouse Lane, the junction of Westhead Road and Riverside Crescent, Lonsdale Drive, Langdale Avenue, Coniston Way and Croston sewage works"
+  },
+  {
+    "name": "River Conder at Galgate, areas adjacent to the River Conder, Whitley Beck and Ou Beck",
+    "description": "Areas adjacent to River Conder, Whitley Beck & Ou Beck in Galgate, including Main Rd, Salford Rd, Chapel St and Leachfield Rd"
+  },
+  {
+    "name": "Lancashire coastline at Lytham St. Annes, along the coast from Squires Gate to Warton Bank",
+    "description": "Lytham Dock, Lytham Windmill Museum and Stanner Bank"
+  },
+  {
+    "name": "Pendle Water at Lomeshaye, comprising Industrial Estate and Victoria Park from Lindred Rd to Carr Rd",
+    "description": "Holme Terrace, Calder Terrace, Ecroyd Street, Sun Street, Churchill Way, Kirby Road, Lindred Road and Kenyon Road."
+  },
+  {
+    "name": "Lancashire coastline at Lytham St. Annes, between Lytham Hall Park and Warton Bank",
+    "description": "Poultry Farm, Saltcotes, Lytham, Lytham Dock and Lodge Farm"
+  },
+  {
+    "name": "Pendle Water at Lomeshaye, bordering Holme Terrace, Calder Terrace, Churchill Way and Kirby Road",
+    "description": "Holme Terrace, Calder Terrace, Churchill Way and Kirby Road."
+  },
+  {
+    "name": "River Wyre at Six Arches Lane",
+    "description": "Six Arches Caravan Park and adjacent houses."
+  },
+  {
+    "name": "River Ribble at Settle, beside the River Ribble at Settle between Christies High Mill and A65",
+    "description": "Including schools adjacent to Settle Bridge, Mill Close, Sowarth Field Ind Est, Station Road and Sandholme Close"
+  },
+  {
+    "name": "Skirting Beck at Egremont, Church View and Beck Side",
+    "description": "Properties at risk from Skirting Beck on Church View and Beck Side"
+  },
+  {
+    "name": "Lancashire coastline at Bolton-le-Sands, between Red Bank House and Coastal Road",
+    "description": "The Shore, Red Bank Farm and Red Bank House"
+  },
+  {
+    "name": "River Calder at Fulledge, affecting the playing fields, Richard Street and Plumbe Street",
+    "description": "Low lying land including the playing fields, Richard Street and Plumbe Street"
+  },
+  {
+    "name": "Lancashire coastline at Carnforth, around Warton Bridge, Galley Hall and Marsh House Farm",
+    "description": "Warton Bridge, Galley Hall and Marsh House Farm"
+  },
+  {
+    "name": "River Ehen at Braystones",
+    "description": "Low lying roads, residential & commercial properties adjacent the River Ehen at Braystones"
+  },
+  {
+    "name": "Lancashire coastline at Hest Bank, around Marine Drive, Coastal Rd and railway line",
+    "description": "Marine Drive and Poultry Houses"
+  },
+  {
+    "name": "Lancashire coastline at Hest Bank, between railway line and Coastal Road",
+    "description": "Lancashire coastline at Hest Bank"
+  },
+  {
+    "name": "Lancashire coastline at Bolton-le-Sands, around Red Bank Farm, The Shore and railway line",
+    "description": "The Shore, Red Bank Farm, Sandside Caravan and Camping Park and Bay View Nurseries"
+  },
+  {
+    "name": "River Calder at Padiham, around Council offices, Lune St, Ribble St and Burnley Rd",
+    "description": "Council offices and in the vicinity of Lune St, Ribble St and Burnley Rd."
+  },
+  {
+    "name": "Lancashire coastline at Hesketh, between Hesketh Out Marsh and Shore Road",
+    "description": "Bacconsail Marsh, Hesketh Old Marsh, Hesketh New Marsh, Hundred End Farm and Rosepark Nursery"
+  },
+  {
+    "name": "River Calder at Padiham, between Wyre St and Park Rd, Station Rd and Burnley Rd",
+    "description": "In the vicinity of Wyre Street, Burnley Road, Park Road, Station Road, Waterside Mews, and St James Place."
+  },
+  {
+    "name": "River Lune at Halton, bordering M6, Church Brow, Mill Lane and Denny Beck Lane",
+    "description": "Station Road, Riverside Close, Ivy Cottage, White Lion Hotel, Church Brow, Denny Beck Beck Lane and Farm"
+  },
+  {
+    "name": "River Ribble at Ribchester, area surrounding Blackburn Road",
+    "description": "Higher Croft, Harwood House, Yew Tree Cottage, Beech House, Thorncroft, properties near Ease Barn Farm on Gallows Lane, and 19 to 22 Blackburn Road."
+  },
+  {
+    "name": "Lancashire coastline at Sunderland, between Sunderland Brows Farm and Hawthorne Caravan Park",
+    "description": "Riverside Farm, Sunderland Brows Farm and Hawthorne Caravan Park"
+  },
+  {
+    "name": "Sandy Brook and Hurlston Brook at Ormskirk",
+    "description": "Properties on Altys Lane, Statham Lane, Brook Lane, Dyers Lane, the Tennis Club, Hallsall Lane, Cottage Lane, Asmall Lane, The Reeds, Cotton Drive, Brookhouse Road, Sanfield Close, Southport Road, Courtfield and Hurlston Drive."
+  },
+  {
+    "name": "River Roe and River Ive from Highbridge to Stockdalewath",
+    "description": "Robin House, Thistlewood, Highbridge, Ashbridge, Roewath and Stockdalewath."
+  },
+  {
+    "name": "Thacka Beck at Penrith",
+    "description": "Properties in Watson Terrace, Duke Street, Penrith Town Centre, Victoria Road, Glasson Court and Carleton Hall"
+  },
+  {
+    "name": "River Lune at Lancaster Quay, comprising area from Lune Industrial Estate to Lune Street",
+    "description": "Low lying land including Lune Industrial Estate, Properties off and Including Lune Street and Lancaster Cricket Club"
+  },
+  {
+    "name": "Lancashire coastline at South Morecambe Town",
+    "description": "Marine Road West and Sandylands Promenade"
+  },
+  {
+    "name": "River Ribble at Samlesbury, beside the river including Tickled Trout hotel and service station",
+    "description": "Properties in Samlesbury next to the River Ribble, and the Tickled Trout hotel and service station"
+  },
+  {
+    "name": "Cumbria coast at Maryport harbour",
+    "description": "Area including North Pier, Maryport Marina and Dock, North and South Quay and Strand Street"
+  },
+  {
+    "name": "River Yarrow at Croston, around Grape Lane, Town Rd and Yarrow Close",
+    "description": "Properties in Croston on Grape Lane, Town Road, and Yarrow Close next to the River Yarrow"
+  },
+  {
+    "name": "River Wyre at Scorton",
+    "description": "Area between the River Wyre and Scorton covering properties on Station Lane, The Square and Gubberford Lane."
+  },
+  {
+    "name": "River Eden at Warwick Bridge, Warwick Park and Holme Eden Gardens Area",
+    "description": "Low lying roads, agricultural land and residential properties adjacent to the River Eden at Warwick Bridge, Warwick Park and Holme Eden Gardens Area"
+  },
+  {
+    "name": "River Caldew at Carlisle, Denton Holme, Bousteads Grassing, James Street Area",
+    "description": "Low lying area beside the River Caldew between Holme Head Bay and Nelson Bridge, including Denton Holme, Bousteads Grassing and James Street"
+  },
+  {
+    "name": "River Derwent at Workington, Seaton Mill and Barepot",
+    "description": "Low lying roads, agricultural land, commercial and residential properties adjacent to the River Derwent including  Glenfield Place, Meadow Edge, Workington Hall Mill, Hall Brow and Curwen Park"
+  },
+  {
+    "name": "Greta Street and Penrith Road at Keswick",
+    "description": "Properties affected by surface water flooding in Greta Street and Penrith Road."
+  },
+  {
+    "name": "Whitehaven",
+    "description": "Flooding of properties in Whitehaven Town Centre area"
+  },
+  {
+    "name": "River Eden at Warwick Bridge, Holme House, Bridge End and Holme Eden Hall",
+    "description": "Low lying roads, agricultural land and isolated properties adjacent to the River Eden at Warwick Bridge, Holme House, Bridge End and Holme Eden Hall"
+  },
+  {
+    "name": "River Eamont at Eamont Bridge, Old Post Office Row and Eamont Park",
+    "description": "Properties lying along River Eamont at Eamont Bridge, Old Post Office Row and Eamont Park"
+  },
+  {
+    "name": "River Eden and Caldew at Carlisle, Devonshire Walk, West Coast Mainline, Bitts Park, Cricket Club",
+    "description": "River Eden and Caldew at Carlisle, Devonshire Walk and West Coast Mainline, Bitts Park, Cricket Club, Sheepmount"
+  }
+ ]
+ -%}

@@ -1,0 +1,661 @@
+{% set targetareas =
+  [
+ {
+   "name": "River North Tyne",
+   "description": "River North Tyne and its tributaries from source to the confluence with the River Tyne"
+ },
+ {
+   "name": "Tidal River Tees",
+   "description": "Low lying land surrounding Tidal River Tees, downstream of the Tees Barrage, including areas of Middlesbrough and Billingham"
+ },
+ {
+   "name": "Northumberland coast",
+   "description": "The North Sea from Berwick to St Mary's Lighthouse"
+ },
+ {
+   "name": "River Leven",
+   "description": "River Leven and tributaries from its source downstream to the River Tees"
+ },
+ {
+   "name": "River Gaunless",
+   "description": "The River Gaunless and its tributaries"
+ },
+ {
+   "name": "Tyne and Wear coast",
+   "description": "The North Sea from St Mary's Lighthouse to Crimdon Park, North Hartlepool"
+ },
+ {
+   "name": "Tweed estuary",
+   "description": "The Tweed estuary from the Whiteadder confluence to the North Sea Coast"
+ },
+ {
+   "name": "Upper River Tees",
+   "description": "low lying land in the Tees Valley, including Teesdale Way footpath at Croft"
+ },
+ {
+   "name": "Wear estuary",
+   "description": "The Wear estuary from Lamb Bridge at Chester-le-street to the North Sea Coast"
+ },
+ {
+   "name": "Coastal Streams in Redcar and Cleveland",
+   "description": "Coastal Streams in Cleveland and Redcar including the Skelton Beck and Skinningrove Beck"
+ },
+ {
+   "name": "Upper River Coquet",
+   "description": "Upper River Coquet, River Alwin and their tributaries from source to Pauperhaugh"
+ },
+ {
+   "name": "River Rede",
+   "description": "River Rede and its tributaries from Catcleugh Reservoir to the Redesmouth"
+ },
+ {
+   "name": "River South Tyne",
+   "description": "River South Tyne and its tributaries from source to the confluence with the River Tyne"
+ },
+ {
+   "name": "Rivers Pont and Blyth",
+   "description": "The Rivers Pont and Blyth and their tributaries"
+ },
+ {
+   "name": "Lower River Tees and estuarine tributaries",
+   "description": "Low lying land in the Lower Tees valley, from Middleton St George to the Tees Barrage, including Lustrum Beck, Greatham Beck and the Riverside footpaths at Yarm"
+ },
+ {
+   "name": "River Skerne",
+   "description": "Low lying areas along the River Skerne and its tributaries from its source downstream to the Tees Confluence, including the Carr Areas"
+ },
+ {
+   "name": "Lower River Wear",
+   "description": "Lower River Wear from Escomb to Sunderland including the Rivers Browney, Cong Burn and Lumley Park Burn"
+ },
+ {
+   "name": "River Wansbeck",
+   "description": "The Rivers Wansbeck, Font, Hart Burn and their tributaries"
+ },
+ {
+   "name": "River Tyne",
+   "description": "The River Tyne from Hexham to Wylam and its tributaries"
+ },
+ {
+   "name": "Hartlepool to Cowbar",
+   "description": "North Sea coastline including Hartlepool, Seaton Carew, Redcar, Saltburn by the Sea, Skinningrove and Cowbar"
+ },
+ {
+   "name": "Rivers Derwent, Team, Don and estuarine tributaries",
+   "description": "Rivers Derwent, Team, Don, their tributaries and south bank tributaries of the Tyne Estuary"
+ },
+ {
+   "name": "River Tweed South Bank",
+   "description": "The River Tweed, South Bank from Carham to Union Bridge"
+ },
+ {
+   "name": "Coastal Rivers in South Northumberland",
+   "description": "Coastal Rivers in South Northumberland including the River Lyne, Sleek Burn and Seaton Burn"
+ },
+ {
+   "name": "Ouseburn and estuarine tributaries",
+   "description": "Ouseburn, its tributaries and north bank tributaries of the Tyne Estuary."
+ },
+ {
+   "name": "Tyne estuary",
+   "description": "The Tyne estuary from Wylam to the North Sea Coast, including Watergate Car Park at Newcastle Quayside"
+ },
+ {
+   "name": "Upper River Wear",
+   "description": "Upper River Wear from source to Witton Park"
+ },
+ {
+   "name": "Middlesbrough Becks",
+   "description": "The Middlesbrough Becks including the Marton West Beck, Newham Beck, Ormesby Beck, Middle Beck, and Spencer Beck."
+ },
+ {
+   "name": "Coastal Rivers in North Northumberland",
+   "description": "Coastal rivers in Berwick and Alnwick Districts including the River Aln and Waren Burn"
+ },
+ {
+   "name": "Lower River Coquet",
+   "description": "Lower River Coquet and its tributaries from Brinkburn to Warkworth"
+ },
+ {
+   "name": "Tyne and Wear coastal rivers",
+   "description": "Coastal rivers within Tyneside and Wearside from Brier Dene to Castle Eden Burn"
+ },
+ {
+   "name": "River Till and tributaries",
+   "description": "The Rivers Till, Glen, Breamish, Wooler Water and their tribrutaries"
+ },
+ {
+   "name": "North Sea at Cowbar",
+   "description": "Properties along North Side beside Staithes Beck and Staithes Harbour in Cowbar"
+ },
+ {
+   "name": "River South Tyne at The Riverside Workshop at Haydon Bridge",
+   "description": "The Riverside Workshop at John Martin Street"
+ },
+ {
+   "name": "Tyne estuary at North Shields, South Shields and Howdon Pans",
+   "description": "Properties at Fish Market, Bell Street, Dolphin Quay, Union Quay, Clive Street, Duke Street, Liddell Street, Corporation Quay, South Shields Ferry Landing, Wapping Street, Tyne Dock, Albert Edward Dock, Tyne Foyboatmen Association and Howdon Pans"
+ },
+ {
+   "name": "North Sea at Saltburn by the Sea",
+   "description": "Properties at, the Ship Inn, seafront road, promenade and the car park"
+ },
+ {
+   "name": "River Tyne and Cockshaw Burn at Tyne Green Mews Hexham",
+   "description": "Properties around Tyne Green Mews"
+ },
+ {
+   "name": "River Tees at University College, Thornaby",
+   "description": "Properties at Riverside, Teesdale Way, and University College Stockton-on-Tees including Council of Europe Boulevard, Columbia Drive, University Boulevard, St Marks Court, and Yale Crescent. Also the Whitewater Caravan Park."
+ },
+ {
+   "name": "River Skerne at lower Darlington and Great Burdon",
+   "description": "Properties and businesses in lower parts of Darlington and Great Burdon, including Valley Street, John Street, Chesnut Street, Progress Way, Blackett Road, lower parts of Haughton Road near Blackett Road, Riverside Way, and Mill Lane"
+ },
+ {
+   "name": "Moors Burn at Brookside and North Road, Houghton-le-Spring",
+   "description": "Properties and low lying land around Brookside, Corn Mill Drive and Mill Terrace on North Road (B1284)"
+ },
+ {
+   "name": "Lustrum Beck at Newtown Riverside and Hartburn Avenue, Stockton-on-Tees",
+   "description": "Properties around Brown's Bridge including Bedford Street and properties adjacent to the Beck at Wrensfield Road and Hartburn Avenue"
+ },
+ {
+   "name": "River Leven at Great Ayton",
+   "description": "Properties at Low Green, Guisborough Road at Ayton Bridge, High Street near Ayton Bridge, West Terrace, Bridge Street, Hollygarth, Mill Terrace, Green Acre Close, Yarm Lane, Grange Mill and Mill Farm, Park Square area, and Grange Farm at Little Ayton."
+ },
+ {
+   "name": "Ouseburn at Fencer Hill Park",
+   "description": "Properties around The Fairway and Bridge Park"
+ },
+ {
+   "name": "Ouseburn at Whitebridge Park and South Gosforth",
+   "description": "Properties around Burnside Road, Fencer Court, Whitebridge Close, Celandine Close, Charleswood, Saxilby Drive, Briarwood Avenue, and Killingworth Road"
+ },
+ {
+   "name": "River Tees at Croft",
+   "description": "Properties in Croft-on-Tees, including Monk End Farm and Spa Cottage"
+ },
+ {
+   "name": "Tyne estuary at Derwenthaugh",
+   "description": "Properties at the Hannington Works on Longrigg Road, Swalwell including J R Adams and Stadium Packing Services, and properties at Toll Bridge Road at Derwenthaugh"
+ },
+ {
+   "name": "River Wear Bonemill Lane and Riverview, Fatfield",
+   "description": "Properties on East Bridge Street, River View and Bonemill Lane, Fatfield"
+ },
+ {
+   "name": "North Sea at Whitley Bay, Cullercoats and Tynemouth",
+   "description": "Properties including Whitley Sands Refreshment Kiosk, Robinson Crusoe's Cafe at Tynemouth Longsands, Tynemouth Sailing Club and the area at Cullercoats Bay around the Lifeboat Station and the Dove Marine Laboratory"
+ },
+ {
+   "name": "River Wear at Durham Upper",
+   "description": "Properties at Green Lane, Old Elvet, Orchard Drive, The Sands Flats, and Barker's Haugh."
+ },
+ {
+   "name": "Wooler Water at Wooler",
+   "description": "Properties and low lying areas around South Road, Weetwood Avenue, Weetwood Road, Berwick Road, Turvelaws Farm and Farm Cottages"
+ },
+ {
+   "name": "North Sea coast at The Headland, Hartlepool",
+   "description": "Properties at The Headland, including Marine Drive, Sea View Terrace, York Place, Albion Terrace, South Crescent, Moor Parade, and Broad Field Road"
+ },
+ {
+   "name": "North Sea coast at Victoria Harbour, Hartlepool",
+   "description": "Properties at Victoria Harbour, including Town Wall, Southgate, Victoria Street, Friendship Lane, Sunniside, Abbey Street, Bond Street, Commercial Street, Brig Open, Wells Street, Darlington Street, Nuns Street, West View Road, and Throston Street"
+ },
+ {
+   "name": "Wear estuary at Sunderland North Dock and White Heugh",
+   "description": "Marine Activities Centre at Wearmouth and properties at White Heugh, Fatfield"
+ },
+ {
+   "name": "Tyne estuary at Newcastle Quayside, Low Walker, Lower Derwenthaugh Industrial Estate and Willington",
+   "description": "Properties at Willington Boat Club, Wincomblee Estates in Walker, Newcastle Quayside from Wetherspoon's Pub to Broad Chare, Brama Teams Industrial Park, Ravensworth Road and TAM Tyres at Clockmill Road"
+ },
+ {
+   "name": "Wear estuary at Deptford and South Hylton",
+   "description": "Properties at Deptford and South Hylton"
+ },
+ {
+   "name": "North Sea at Berwick-Upon-Tweed and Tweedmouth",
+   "description": "Properties at The Chandlery and Marlin Buildings in Berwick, Blakewell Road and West End in Tweedmouth, The Waterfront at Sandstell Road in Spittal, and Berwick Dock"
+ },
+ {
+   "name": "Middlesbrough Becks at Middlesbrough",
+   "description": "Properties near the Ormesby Beck, Spencer Beck, Middle Beck, Newham Beck, and Marton West Beck in Middlesbrough."
+ },
+ {
+   "name": "River Tyne at Corbridge",
+   "description": "Properties and low lying areas around Station Road, Little Croft and The Stanners, Cemetery Lodge, Corbridge Mill and The Willows."
+ },
+ {
+   "name": "North Sea at Roker, Sunderland",
+   "description": "Properties including the Amusement Arcades and Grannie Annies"
+ },
+ {
+   "name": "Smallhope Burn at Lanchester",
+   "description": "Properties and low lying areas around Fenhall Park, Victoria Terrace, St Bedes Court, Brook Villas, Church View, Durham Road, Front Street, The Garths, Percy Crescent, Station Road, The Square and Woodlands."
+ },
+ {
+   "name": "River Coquet at Thropton",
+   "description": "Properties around Bridge End Cottages and Church Fields"
+ },
+ {
+   "name": "River Leven at Stokesley",
+   "description": "Properties in Stokesley Town Centre including High Street, West Green, Allen Grove, Sowerby Crescent, Leven Close, and also properties at The Stripe, Riversdene, Malvern Drive, Rose Hill Drive, Northfield Drive and Ellerbeck Way"
+ },
+ {
+   "name": "River Tyne at Bywell and Low Prudhoe",
+   "description": "East and West Cottages and properties and low lying areas at Bywell and the Low Prudhoe Industrial Estate including Castle Lea, Princess Way, Princess Court, Dukes Way, Dukes Court, Earls Court and Regents Drive"
+ },
+ {
+   "name": "River Wear at Durham Riverside",
+   "description": "Properties along Durham Riverside including Houghall, Elvet Bridge, High Street and the access road below The Gates Shopping Centre"
+ },
+ {
+   "name": "River Coquet at The Butts at Warkworth",
+   "description": "Properties at The Butts and Greens Park"
+ },
+ {
+   "name": "River Tyne at Tyne Green Hexham",
+   "description": "Properties around Tyne Green, Railway Cottages, Spittal Cottages, Nursery Cottages and Riverside Leisure Caravan Site"
+ },
+ {
+   "name": "River Gaunless at Upper West Auckland",
+   "description": "Properties and low lying areas around The Nursery, Station Road and Front Street"
+ },
+ {
+   "name": "River Wear at West and East Bridge Street, Fatfield",
+   "description": "Properties along West Bridge Street and East Bridge Street, Fatfield"
+ },
+ {
+   "name": "River Wear at Mount Pleasant, Fatfield",
+   "description": "Properties at Mount Pleasant, Fatfield"
+ },
+ {
+   "name": "Cockshaw Burn at Hexham",
+   "description": "Properties around Holy Island, Glovers Place, Giles Place and Wilkinson Place."
+ },
+ {
+   "name": "North Sea at West Harbour and Old Town, Hartlepool",
+   "description": "Properties at West Harbour and Old Town, including Queen Street, the Yacht Club, Ensign Court and Chandlers Close"
+ },
+ {
+   "name": "River Pont at Kirkley Mill, Darras Hall and Prestwick Carr",
+   "description": "Properties at Kirkley Mill, on the riverside at Darras Hall and West Road, Prestwick Mill Farm and agricultural land around Prestwick Carr"
+ },
+ {
+   "name": "Wear estuary at Sunderland low street",
+   "description": "Properties at Wylam Warfe, Low Street"
+ },
+ {
+   "name": "Tees estuary at Port Clarence and Haverton Hill",
+   "description": "Residential, commercial and industrial premises behind tidal flood defences at Port Clarence and High Clarence, and small industrial units on Hope Street at Haverton Hill"
+ },
+ {
+   "name": "River Wear at Stanhope",
+   "description": "Properties around Wear Lodge, The Butts, Butts Crescent, Park View, Wear Terrace, Sycamore House, Stanhope Caravan Park, Bondisle Way and Riverwood Lodges"
+ },
+ {
+   "name": "River Gaunless at West Auckland",
+   "description": "Properties and low lying areas around Arnold Street, Bishops Court, Eden Grove, Fieldon Grove, Meadow View, River Walk, Station Road and Toadpool"
+ },
+ {
+   "name": "Cockshaw Burn at Upper Hexham",
+   "description": "Properties at Garden Terrace, Hebron Terrace, Ridley Terrace, Garland Place, Glovers Place, Wilkinson Place, Albion Terrace, Chareway, Gilesgate, Tyne Green Road, Tyne Court, Giles Place, Burn Lane and Haugh Lane Industrial Estate"
+ },
+ {
+   "name": "River Wear at Chester-le-Street",
+   "description": "Properties and low lying areas around, Ford Cottage, Low Cocken Farm, Harbour House Farm, Lumley Castle Gardens, Chester-le-Street Golf Club, Riverside Sports Pavillion, Ropery Lane, Riverside Gardens and The Parks."
+ },
+ {
+   "name": "River Coquet at Felton",
+   "description": "Bridge End, Low Close, Mill Cottage, Bradley Brook Farm"
+ },
+ {
+   "name": "North Sea at Beadnell",
+   "description": "Properties at the south end of Harbour Road next to Beadnell Harbour"
+ },
+ {
+   "name": "River Pont at Ponteland",
+   "description": "Properties at Main Street, Ponteland Town Centre, Eland Haugh Estate, Pont View, The Cloggs, Atholl House, Callerton Lane, Cecil Court, Fairney Close, Mayfair Gardens and Fairney Edge."
+ },
+ {
+   "name": "River South Tyne at Warden",
+   "description": "Properties at South Tyne Mill, Hard Haugh, Coastley Burnfoot, Bridge End including the Boatside Inn and Bridge End Cottages, Toll House, Westboat Cottages and The Old Smithy"
+ },
+ {
+   "name": "North Sea at Alnmouth",
+   "description": "Properties on Riverside Road and Garden Terrace. Also at Sawmill Cottage."
+ },
+ {
+   "name": "River Tyne at Ovingham",
+   "description": "Properties and low lying areas around Ovingham and Tyne Riverside Country Park including The Old School House, Burnside Close, Bleach Green Farm Cottage, Dene House, The Bridge End Inn, Greenhaugh House and Tyne House"
+ },
+ {
+   "name": "River Coquet at Upper Rothbury",
+   "description": "Properties at Town Foot and Riverside properties from Fir Tree House to Heughenden"
+ },
+ {
+   "name": "River North Tyne at Bellingham",
+   "description": "Properties around West View, Hawthorn Terrace, Brookside Place and Boat Road"
+ },
+ {
+   "name": "River South Tyne at Slaggyford and Lambley",
+   "description": "Properties and low lying areas around Slaggyford, including Lake House and Knarburn Cottage. Also around Lambley, including Eals Village and Waughold Holme."
+ },
+ {
+   "name": "River Wear at Witton-le-Wear",
+   "description": "Properties and low lying areas around Lowgarth Farm, North Lodge, West Lodge and Durham Wildlife Trust"
+ },
+ {
+   "name": "Waren Burn at Waren Mill",
+   "description": "Properties and low lying areas in and around Waren Mill, Budle Bay Caravan Park and Spindlestone Mill"
+ },
+ {
+   "name": "River North Tyne at Barrasford, Haughton and Chollerford",
+   "description": "Riverside properties affected at Barrasford, Chollerford, Walk Mill and Wall Mill"
+ },
+ {
+   "name": "River Wear at Elvet and Framwellgate, Durham",
+   "description": "Properties at New Elvet, Elvet Waterside, Framwellgate Waterside, Providence Row, Wearside Drive, and Frankland Lane."
+ },
+ {
+   "name": "River Wear at Durham",
+   "description": "Properties and land around Old Elvet, Orchard House, Sylvan House and Keiper Farm."
+ },
+ {
+   "name": "River Leven at lower Great Ayton",
+   "description": "Properties at Levenside, High Street, Park Square, School Lane, Leven Court, and properties at Little Ayton."
+ },
+ {
+   "name": "North Sea at Amble",
+   "description": "Properties at Amble Marina, Turner Street, Broom Hill Street, Fish Market, the Harbour Office, Riverside Park, River Green, The Wynd, Coquet Yacht Club, Amble Boat Club and Amble Lifeboat Station"
+ },
+ {
+   "name": "North Sea at Holy Island",
+   "description": "Properties including Herring House, St. Oswalds and Athol Brose."
+ },
+ {
+   "name": "River Tweed at Norham Village",
+   "description": "Properties and low lying areas around Castle Street"
+ },
+ {
+   "name": "River Wear at Page Bank Riverside",
+   "description": "Properties and low lying areas around Page Bank Post Office, Stanners Farm and Park Hill Lodge."
+ },
+ {
+   "name": "River Leven at Hutton Rudby",
+   "description": "Properties in the Holmes, Leven Valley, and Levenside"
+ },
+ {
+   "name": "North Sea at Blyth Quayside, North Blyth and Cambois",
+   "description": "Properties at Blyth Quayside and around Battleship Wharf, Wordsell Street and Dale Street in North Blyth, and properties around West Bridge Street and Selbourne Terrace in Cambois"
+ },
+ {
+   "name": "North Sea at Blyth",
+   "description": "Properties located on roads and streets adjacent to Crawford Street, Hodgsons Road, Croft Road, Regent Street, Union Street, Bridge Street and Princess Louise Road"
+ },
+ {
+   "name": "River Wear at Wolsingham",
+   "description": "Properties around Attwood Terrace, Ward Terrace, Silver Street, Cooperative Terrace, East End, The Causeway and Riverdale."
+ },
+ {
+   "name": "River Wear at Lower Stanhope",
+   "description": "Properties and low lying areas around Horn Hall, Weardale Community Hospital, Rose Terrace, Newtown House, Waterside Court and Unthank Mill"
+ },
+ {
+   "name": "River Derwent at Ebchester Bridge, Blackhall Mill, Lintzford Grange and Rowlands Gill",
+   "description": "Properties at Ebchester Bridge, Blackhall Mill, Lintzford Grange and Rowlands Gill"
+ },
+ {
+   "name": "Tyne estuary at Dunston, Derwenthaugh Industrial Estate and Scotswood",
+   "description": "Properties at Derwenthaugh Industrial Estate, Festival Way and Enterprise Park at Dunston, and Whickham Junction at Dunston including Waterside Drive and Cross Lane, and properties at Scotswood Road"
+ },
+ {
+   "name": "Tees estuary at Greatham Creek",
+   "description": "Industrial properties on Seal Sands and Southern Graythorp, and Billingham Fire Station"
+ },
+ {
+   "name": "Tees estuary at Portrack, Stockton-on-Tees and Middlesbrough",
+   "description": "Commercial units at Portrack, incl. Lustram, North Tees and Portrack Industrial Estates. Undefended areas of Stockton-on-Tees, incl. Bamlett's Wharf, as well as, in Middlesbrough, commercial units at Vulcan Street, Commercial Street and Dock Street"
+ },
+ {
+   "name": "River Wansbeck at Bothal and Sheepwash",
+   "description": "Properties at Bothal Village, Sheepwash Bank, Sheepwash Gardens and The Bungalow at Sheepwash."
+ },
+ {
+   "name": "River Derwent at Eddy's Bridge, Leadmill Bridge, Allensford and Shotley Bridge",
+   "description": "Properties at Eddy's Bridge, Leadmill Bridge, Allensford and Shotley Bridge"
+ },
+ {
+   "name": "River Rede at Otterburn, West Woodburn and Redesmouth",
+   "description": "Properties around Otterburn Bridge, Mill House and Brownchesters, in Otterburn. As well as, White Acre, The Close, Bridge End, Brae Well Close and Redeside in West Woodburn and Redesmouth Mill in Redesmouth."
+ },
+ {
+   "name": "River Wansbeck at Abbey Mills",
+   "description": "Properties and low lying areas at Abbey Mills"
+ },
+ {
+   "name": "River Tees at Neasham",
+   "description": "Properties at Neasham Abbey and in Neasham village, from Kent Bridge, following Teesway, to Dibdale Road"
+ },
+ {
+   "name": "River Skerne at Aycliffe village",
+   "description": "Properties at Well Bank, Monks End, Mill House, and the field to the back of Millfields."
+ },
+ {
+   "name": "River Wear at Cox Green",
+   "description": "Properties in Cox Green"
+ },
+ {
+   "name": "River Wansbeck at Morpeth",
+   "description": "Properties and low lying areas at Mitford Road, High Stanners, Morpeth Town Centre, Low Stanners and Middle Greens"
+ },
+ {
+   "name": "North Sea at Seahouses",
+   "description": "Properties at Harbour Road, Chapel Row, North Street and Monks House."
+ },
+ {
+   "name": "Ouseburn at Brunton Park",
+   "description": "Properties around Milford Gardens, The Fairway and Waterbury Road"
+ },
+ {
+   "name": "Middlesbrough Becks at lower lying parts of Middlesbrough",
+   "description": "Properties at lower lying parts of Ormesby near the Middle and Spencer Becks, including High Street, and South Bank Road at Cargo Fleet"
+ },
+ {
+   "name": "Moors Burn at Dairy Lane, Houghton-le-Spring",
+   "description": "Properties and low lying land around Southburn Close, Longacre, Aireys Close and Hutton Close"
+ },
+ {
+   "name": "River Skerne at Darlington and Great Burdon",
+   "description": "Properties and businesses in Darlington and Great Burdon, including Lodge Street, Russell Street, Riverside Way, Ely Close, and South Park at the Cricket Ground, Park Place, Hird Street, and Swan Street"
+ },
+ {
+   "name": "River South Tyne at Lower Warden",
+   "description": "Properties at Baddox Farm, Riverside at Coastley Burnfoot, Ferryman's Cottage, Yew Tree Cottage and the Joiner's Shop"
+ },
+ {
+   "name": "Tees Estuary at Billingham",
+   "description": "Industrial properties in Billingham Reach Industrial Estate"
+ },
+ {
+   "name": "River Coquet at Coquet Lodge at Warkworth",
+   "description": "Properties at Coquet Lodge"
+ },
+ {
+   "name": "Ouse Burn at Byker",
+   "description": "Properties around Foundry Lane, Lime Street and Ouse Street"
+ },
+ {
+   "name": "River Coquet at Brinkburn and Weldon",
+   "description": "Properties including, Brinkburn Priory, Weldon Bridge and Weldon Mill"
+ },
+ {
+   "name": "River Wear at South View and Victoria Bridge House, Fatfield",
+   "description": "Properties along South View in Fatfield and Victoria Bridge House"
+ },
+ {
+   "name": "River Gaunless at Ramshaw Mill",
+   "description": "Properties and low lying areas around The Mill and Haggerleazes Farm."
+ },
+ {
+   "name": "River Gaunless at South Church",
+   "description": "Properties on Ash Green Way, Main Street and St Andrews Road and streets adjacent to them"
+ },
+ {
+   "name": "River Wansbeck at East Mill and Morpeth Riverside Leisure Centre",
+   "description": "Properties and low lying areas at East Mill, Wansbeck Street and the Riverside Leisure Centre at Morpeth"
+ },
+ {
+   "name": "Tees estuary at Teesside Park",
+   "description": "Businesses on Teesside Park"
+ },
+ {
+   "name": "River Font at Netherwitton and Longshaws Mill",
+   "description": "Properties and low lying areas around, Cromwell Close, Netherwitton and Longshaws Mill"
+ },
+ {
+   "name": "River Tyne at Hexham",
+   "description": "Properties around Ferry Road, Tyne Mills, Bridge End, Anick Road, The Hermitage, and Kingshaw Green"
+ },
+ {
+   "name": "River Coquet at Lower Rothbury",
+   "description": "Properties at Lower Maltings, Rothbury Mart, Gas Works Cottage, Thrum Mill and Burnfoot Lodge"
+ },
+ {
+   "name": "Ouseburn at Woolsington, Red House Farm, Great Park and Brunton Park",
+   "description": "Properties around Woolsington Bridge, Brunton Lane, Nunnywick Way, Hethpool Court, Bywell Avenue, Haydon Close and Acomb Crescent"
+ },
+ {
+   "name": "River Wear at Croxdale Riverside",
+   "description": "Properties and low lying areas around the Old Bridge House and the Honest Lawyer Hotel."
+ },
+ {
+   "name": "River Derwent at Swalwell",
+   "description": "Properties around The Pavilion, Hexham Road, and The Covers"
+ },
+ {
+   "name": "River Coquet at Felton Riverside",
+   "description": "Felton Mill and Station Cottages"
+ },
+ {
+   "name": "River Wear at Frosterley",
+   "description": "Properties in low lying areas around Broadwood Lodge, Broadwood Plant, The Batts and The Old Vicarage on Church Lane"
+ },
+ {
+   "name": "River Leven at Leven Bridge",
+   "description": "Properties in Leven Bridge"
+ },
+ {
+   "name": "River Derwent at Blackhall Mill",
+   "description": "Properties and low lying areas around River View, Mill Court, Nursery Court, and numbers 9-12 Armondside Road"
+ },
+ {
+   "name": "River Leven at Lower Stokesley",
+   "description": "Properties around Levenside and Riverslea in Stokesley, Station Road, Ellerbeck Way, Stokesley School, Stokesley Tennis Club, Dromonby Grange Farm and Bense Bridge Farm"
+ },
+ {
+   "name": "River North Tyne at Falstone",
+   "description": "Properties at Stannershaugh Farm, Falstone Farm and those properties situated around The Croft"
+ },
+ {
+   "name": "River Tees at Hurworth Place and Newbus Grange",
+   "description": "Properties at Linden Court, Baxby Terrace, Linden Drive, Hurworth Road and Tees View (A167), at Hurwoth Place. Also the Caravan Park at Newbus Grange"
+ },
+ {
+   "name": "River Coquet at Warkworth",
+   "description": "Properties at Dial Place, Youngers Terrace, The Stanners, Brewery Lane, The Old School House, Bridge View, Elm Grove, The Butts, Ember Gardens, Ceowulph Close, Wellfield and Greens Park"
+ },
+ {
+   "name": "River Tees at Thornaby",
+   "description": "Properties at Boathouse Lane, Bowesfield Industrial Estate, Woodstock Court and Cornfield Road. Also Grosvenor Casinos and Burger King at Chandlers Wharf, and the Tees Motor Boat Club and Pier 22 at Thornaby Place"
+ },
+ {
+   "name": "River Wear at Batts Terrace Riverside, Bishop Auckland",
+   "description": "Properties and low lying areas around the Batts, Bishop Auckland."
+ },
+ {
+   "name": "North Sea at Zetland Park, Redcar",
+   "description": "Properties to the north west of Zetland Park, covering parts of Granville Terrace, Lord Street, Beech Avenue, Elm Road, Lime Road, Sycamore Road and The Crescent"
+ },
+ {
+   "name": "Lustrum Beck at Stockton-on-Tees",
+   "description": "Properties around Hartburn Avenue and Burnside Grove in Oxbridge, Spennithorne in Grangefield, and properties in Newtown at Gray's Road, Wrensfield Road, St Paul's Street, Mellor Street, Londonderry Road and Dundas Street and the North Shore Academy"
+ },
+ {
+   "name": "River Tweed at Boat House, Norham",
+   "description": "Properties and low lying land around the Boat House and the Boat House Cottage"
+ },
+ {
+   "name": "North Sea at Redcar",
+   "description": "Commercial and residential properties along Majuba Road, Newcomen Terrace, the Esplanade and parts of Granville Terrace"
+ },
+ {
+   "name": "River South Tyne at Middle Lipwood, Brigwood and Temple Houses at Haydon Bridge",
+   "description": "Properties and low lying areas around Middle Lipwood, Innerhaugh, Innerhaugh Mews, Brigwood, Ratcliffe Road, Martins Close, Rocksprings Crescent, Temple Houses, Haydon Bridge Sewage Works and Poplars Riverside Caravan Park"
+ },
+ {
+   "name": "River Wear at Bishop Auckland, Willington and Page Bank",
+   "description": "Properties at Flatts Farm at Bishop Auckland, Farnley, Furness Mill Farm and Lowfield Farm Cottages at Willington, Shafto House and New Row at Page Bank"
+ },
+ {
+   "name": "River Skerne at upper Darlington and Great Burdon",
+   "description": "Properties and businesses in upper Darlington and Great Burdon, including Haugton Bridge, Red Hall, Stockton Road, Riverside Way, Weir Street, Chesnut Street, and South Park at Brunswick Street, Tannery Yard, South Terrace, and Victoria Embankment"
+ },
+ {
+   "name": "Skinningrove Beck at Skinningrove",
+   "description": "Properties in the village of Skinningrove"
+ },
+ {
+   "name": "Lustrum Beck at Oxbridge Riverside and Primrose Hill Industrial Estate, Stockton-on-Tees",
+   "description": "Properties in Oxbridge at Burnside Grove, Primrose Hill Industrial Estate and properties in Hartburn on Darlington Road"
+ },
+ {
+   "name": "River Tees at Yarm",
+   "description": "Properties in the High Street and adjoining streets. Also Yarm School and Goose Pastures"
+ },
+ {
+   "name": "River Tyne at Wellbank Riverside, Corbridge",
+   "description": "Properties and low lying areas around Wellbank and St. Andrews Terrace."
+ },
+ {
+   "name": "River Coquet at Lower Stanners at Warkworth",
+   "description": "Properties at Lower Stanners (No. 1) and Youngers Terrace (No. 1)"
+ },
+ {
+   "name": "River Tees at Low Dinsdale",
+   "description": "Properties at, Spa Wells and Old Fishlocks at Low Dinsdale."
+ },
+ {
+   "name": "River Coquet at Rothbury",
+   "description": "Properties at Upper Maltings, Well Strand, Model Buildings, Riverside, Stepping Stones and Armstrong Cottages"
+ },
+ {
+   "name": "River South Tyne at Haltwhistle",
+   "description": "Properties around Castle Glen, Station Court, Seldom Seen, Hadrian Varnish Works, Albion Works and Bellister Lodge."
+ },
+ {
+   "name": "River North Tyne at Kielder Buttery Haugh",
+   "description": "Properties and low lying areas around South End, South Waterside, Hatchery Cottages, The Anglers Arms and The Bakethin Fishing Lodge."
+ },
+ {
+   "name": "Oakley Cross Beck at West Auckland",
+   "description": "Properties and low lying areas around Chapel Street, Copeland Road, Darlington road, Front Street, Katrine Walk, Lomond Walk, Montieth Close, New Street, Leven Road, Robson Road, Oakley Grange, Oakley Manor, Oakley Green and Staindrop Road"
+ },
+ {
+   "name": "River Derwent at Blaydon-on-Tyne, Rowlands Gill, Lintzford, and Shotley Bridge",
+   "description": "Properties and low lying areas around Wood Street, Farriers Way, Lintzford, Riverside Way, The Copse, Bates Lane, Hexham Road, and The Sands Industrial Estate."
+ },
+ {
+   "name": "River South Tyne at Haydon Bridge",
+   "description": "Properties and low lying areas around Land Ends Road, Shaftoe Street, John Martin Street, Victoria Terrace, Ratcliffe Road, Brigwood, Langley Gardens, Greenwich Gardens, Hordley Acres, Strother Close and Church Street"
+ },
+ {
+   "name": "Moors Burn at Sedgeletch and Rainton Bridge, Houghton-le-Spring",
+   "description": "Properties and low lying land around Sedgeletch Road, Cedar Terrace, Osman Terrace, Sewage Works at Sedgeletch and The Grove at Rainton Bridge"
+ }
+ ]
+
+ -%}

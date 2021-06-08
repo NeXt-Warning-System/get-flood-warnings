@@ -1,0 +1,43 @@
+<script>
+    const countries = [
+    "Abu Dhabi",  
+                            
+              "Dee Estuary from Parkgate to Chester 013WATDEE",
+              "Irish Sea from Hilbre Island to Heswall 013WACHIH",
+              "Irish Sea from New Brighton to Hoylake 013WACNBH",
+              "Lower River Irwell catchment including areas in Greater Manchester 013WAFLI",
+              "Lower River Mersey including Warrington, Runcorn and Lymm areas 013WAFLM",
+              "Mersey Estuary at Warrington 013WATMEW",
+              "Mersey Estuary from Liverpool and Wirral to Widnes 013WATMEWLW",
+              "Middle River Mersey catchment including areas near Bramhall, Stockport, Sale, Altrincham and Urmston 013WAFMM",
+              "River Bollin catchment, including Knutsford, Wilmslow, Macclesfield and Bollington 013WAFBO",
+              "River Dane catchment including Kidsgrove, Sandbach, Congleton, Middlewich and Northeast Crewe 013WAFDA",
+              "River Dee catchment in England from Whitchurch to Chester 013WAFDEE",
+              "River Ditton catchment including areas around Huyton-with-Roby and Widnes 013WAFDI",
+              "River Glaze catchment including Leigh and East Wigan 013WAFGL",
+              "River Gowy catchment including areas around Frodsham 013WAFGO",
+              "River Mersey Uplands catchment including Hyde, Ashton-under-Lyne, Denton, Stalybridge and Glossop 013WAFMU",
+              "River Sankey catchment with St Helens and Warrington 013WAFSA",
+              "Upper River Irwell catchment with Oldham, Bolton, Rochdale, Haslingden, Ramsbottom and Rawtenstall 013WAFUI",
+              "Weaver catchment including Nantwich, Frodsham, Crewe, Winsford and Northwich 013WAFWE",
+              "Wirral catchment with Heswall, Ellesmere Port, Bebington, Hoylake and Wallasey 013WAFWI",
+
+    "Unknown"
+    ];
+  
+    accessibleAutocomplete({
+      autoselect: true,
+      element: document.querySelector('#target-area-container'),
+      id: 'target-area',
+      name: 'targetareaautocomplete',
+      source: countries,
+      // defaultValue: '{{ data['targetareaautocomplete'] }}',
+      defaultValue: '',
+      displayMenu: 'overlay',
+      templates: '{ inputValue, suggestion }',
+      minLength: 2,
+      tNoResults: function() {
+        return "Target area not found"
+      }
+    });
+  </script>

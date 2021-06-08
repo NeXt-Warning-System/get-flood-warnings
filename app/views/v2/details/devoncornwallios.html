@@ -1,0 +1,43 @@
+<script>
+    const countries = [
+    "Abu Dhabi",
+              "Helford and Fal Rivers 114WAFT1W02A00",
+              "Lower River Tamar 114WAFT1W08A00",
+              "Middle River Tamar 114WAFT1W09A00",
+              "North Cornwall coast from Chapel Porth to The Rumps excluding the tidal River Camel 114WACT1T2BA00",
+              "North Cornwall coast from Lands End to Chapel Porth 114WACT1T2AA00",
+              "North Cornwall coast from The Rumps to Hartland Point excluding Bude 114WACT1T2DA00",
+              "North Cornwall Rivers 114WAFT1W03A00",
+              "River Fowey 114WAFT1W05A00",
+              "River Lynher 114WAFT1W07A00",
+              "River Plym and Tory Brook 114WAFT1W12A00",
+              "River Yealm 114WAFT1W13A00",
+              "Rivers Looe and Seaton 114WAFT1W06A00",
+              "Rivers Tavy and Walkham 114WAFT1W11A00",
+              "South Cornwall Coast from Gribbin Head to Rame Head 114WACT1T1CA00",
+              "South Cornwall Coast from Lands End to Lizard Point 114WACT1T1AA00",
+              "South Cornwall Coast from Lizard Point to Gribbin Head excluding Truro City 114WACT1T1BA00",
+              "South Cornwall coast from Rame Head to Plymouth including tidal estuaries 114WACT1T1DA00",
+              "St Austell and Par Rivers 114WAFT1W04A00",
+              "Tidal River Camel excluding Wadebridge and Chapel Amble 114WACT1T2CA00",
+              "Upper River Tamar 114WAFT1W10A00",
+              "West Cornwall Rivers 114WAFT1W01A00",
+"Unknown"
+    ];
+  
+    accessibleAutocomplete({
+      autoselect: true,
+      element: document.querySelector('#target-area-container'),
+      id: 'target-area',
+      name: 'targetareaautocomplete',
+      source: countries,
+      // defaultValue: '{{ data['targetareaautocomplete'] }}',
+      defaultValue: '',
+      displayMenu: 'overlay',
+      templates: '{ inputValue, suggestion }',
+      minLength: 2,
+      tNoResults: function() {
+        return "Target area not found"
+      }
+    });
+  </script>

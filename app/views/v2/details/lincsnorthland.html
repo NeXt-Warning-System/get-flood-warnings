@@ -1,0 +1,62 @@
+<script>
+    const countries = [
+    "Abu Dhabi",  
+                            
+              "Areas near the tidal River Welland, tidal River Nene, and the Wash 055WAT602WTEb",
+              "Bain Catchment 055WAF118TBC",
+              "Barlings Eau and Duckpool Catchwater 055WAF117BED",
+              "East and West Fens 055WAF124EWF",
+              "East and West Glens 055WAF138EWG",
+              "Far extent of tidal flooding from the Lincolnshire coastline 055WAT601TLC",
+              "Far extent of Tidal Flooding from the Wash and Tidal Estuaries 055WAT602WTE",
+              "Far extent of Tidal flooding on the South Humber Bank 055WAT600SHB",
+              "Fossdyke Canal and River Till 055WAF112FCT",
+              "Harpers Brook and Willow Brook 055WAF132HWB",
+              "Humber tributaries 055WAF102THT",
+              "Lincoln Watercourses 055WAF113LWA",
+              "Lincolnshire East Coast Rivers 055WAF104ECT",
+              "Louth Canal and Waithe Beck 055WAF103LCW",
+              "Lower Glen and Bourne Eau System 055WAF139GBE",
+              "Lower Nene 055WAF131TLN",
+              "Lower River Ancholme 055WAF101TLA",
+              "Lower River Witham 055WAF116TLW",
+              "Lower Welland 055WAF135TLW",
+              "Middle Nene 055WAF129TMN",
+              "Minor Tributaries of the Nene in Northamptonshire 055WAF133MTN",
+              "Minor Watercourses from Heighington to Dunston 055WAF119MNK",
+              "Minor Watercourses of South Forty Foot Drain 055WAF122SFF",
+              "Rase and Upper Ancholme 055WAF100RUA",
+              "River Ise and Alledge Brook 055WAF130IAB",
+              "River Steeping 055WAF105TRS",
+              "South Forty Foot Drain 055WAF123SFF",
+              "Tidal flooding of areas near the Lincolnshire coastline 055WAT601TLCa",
+              "Tidal flooding of areas near the South Humber Bank 055WAT600SHBa",
+              "Tidal flooding of areas near the Wash Frontage in Lincolnshire 055WAT602WTEa",
+              "Tidal flooding of areas near the Witham Haven between Skirbeck and Hobhole Drain 055WAT602WTEc",
+              "Tidal flooding of areas near the Witham Haven in Boston 055WAT602WTEd",
+              "Tributaries of the lower River Witham from Blankney to Sleaford 055WAF120SLE",
+              "Upper Nene 055WAF127TUN",
+              "Welland tributaries 055WAF136TWT",
+              "Welland Tributaries Peterborough Brooks 055WAF137PB",
+              "Welland Valley 055WAF134TWV",
+              "Witham in North Kesteven 055WAF109WNK",
+              "Witham in South Kesteven 055WAF108WSK",
+"Unknown"
+    ];
+  
+    accessibleAutocomplete({
+      autoselect: true,
+      element: document.querySelector('#target-area-container'),
+      id: 'target-area',
+      name: 'targetareaautocomplete',
+      source: countries,
+     // defaultValue: '{{ data['targetareaautocomplete'] }}',
+     defaultValue: '',
+      displayMenu: 'overlay',
+      templates: '{ inputValue, suggestion }',
+      minLength: 2,
+      tNoResults: function() {
+        return "Target area not found"
+      }
+    });
+  </script>

@@ -1,0 +1,47 @@
+<script>
+    const countries = [
+    "Abu Dhabi",  
+              
+              "Christchurch Harbour 111WATCHXH",
+              "Dorset coast at Poole Harbour 111WATPOOH",
+              "East coast of Dorset 111WACECD",
+              "Lower Frome and tributaries 111WAFFROL",
+              "Lower Stour and tributaries 111WAFSTOL",
+              "Middle Avon and tributaries 111WAFAVOM",
+              "Middle Stour and tributaries 111WAFSTOM",
+              "Purbeck Rivers and Streams 111WAFPURB",
+              "River Allen and tributaries 111WAFALEN",
+              "River Bourne and tributaries 111WAFBOU",
+              "River Cale and tributaries 111WAFCALE",
+              "River Ebble and tributaries 111WAFEBBL",
+              "River Nadder and tributaries 111WAFNADD",
+              "River Piddle and tributaries 111WAFPIDD",
+              "River Wylye and tributaries 111WAFWYLE",
+              "Upper Avon and tributaries 111WAFAVOU",
+              "Upper Frome and tributaries 111WAFFROU",
+              "Upper Stour and tributaries 111WAFSTOU",
+              "West Bay Harbour 111WATWBYH",
+              "West coast of Dorset 111WACWCD",
+              "West Dorset Rivers and Streams 111WAFWDRS",
+              "Weymouth Harbour 111WATWEYH",
+              "Weymouth Rivers and Streams 111WAFWEYR",
+
+    "Unknown"
+    ];
+  
+    accessibleAutocomplete({
+      autoselect: true,
+      element: document.querySelector('#target-area-container'),
+      id: 'target-area',
+      name: 'targetareaautocomplete',
+      source: countries,
+     // defaultValue: '{{ data['targetareaautocomplete'] }}',
+     defaultValue: '',
+      displayMenu: 'overlay',
+      templates: '{ inputValue, suggestion }',
+      minLength: 2,
+      tNoResults: function() {
+        return "Target area not found"
+      }
+    });
+  </script>

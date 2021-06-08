@@ -1,0 +1,1081 @@
+{% set targetareas =
+  [
+ {
+   "name": "Beaulieu estuary",
+   "description": "Beaulieu estuary and the coast from Thorns Marsh to Needs Ore Point"
+ },
+ {
+   "name": "Groundwater flooding in Sutton Scotney and Chilbolton",
+   "description": "Areas at risk of groundwater flooding in Sutton Scotney and Chilbolton in Hampshire"
+ },
+ {
+   "name": "Fareham to Portchester",
+   "description": "Coastal area from Fareham to Portchester"
+ },
+ {
+   "name": "Groundwater flooding in Hursley",
+   "description": "Areas at risk of groundwater flooding in Hursley in Hampshire"
+ },
+ {
+   "name": "Cuckmere River",
+   "description": "Cuckmere River and tributaries from Vines Cross to Exceat Bridge"
+ },
+ {
+   "name": "Mead End Stream, Denmead",
+   "description": "Mead End Stream at Denmead"
+ },
+ {
+   "name": "Groundwater flooding in villages surrounding Andover",
+   "description": "Communities at risk of groundwater flooding surrounding Andover, including Appleshaw, Hatherden, Penton Mewsey, Redenham, Weyhill Bottom, Kimtpon, Amport and Monxton"
+ },
+ {
+   "name": "Simeon Street Rec Ground, Ryde",
+   "description": "Monktonmead Brook at Rink Road, Marymead Close, West Hill Road, Simeon Street and The Strand"
+ },
+ {
+   "name": "River Wallington",
+   "description": "River Wallington from World's End to Wallington"
+ },
+ {
+   "name": "Monks Brook",
+   "description": "Monks Brook from Chandlers Ford to Swaythling"
+ },
+ {
+   "name": "River Dun",
+   "description": "River Dun from West Dean to Dunbridge"
+ },
+ {
+   "name": "Groundwater flooding in Denmead",
+   "description": "Areas at risk of groundwater flooding in Denmead in Hampshire, including Anmore Road"
+ },
+ {
+   "name": "Groundwater flooding in Twyford and Hensting",
+   "description": "Areas at risk of groundwater flooding in Twyford and Hensting in Hampshire"
+ },
+ {
+   "name": "Gurnard Luck",
+   "description": "Gurnard Luck, Gurnard"
+ },
+ {
+   "name": "Hillhead to Gosport",
+   "description": "Coastal area from Hillhead to Gosport"
+ },
+ {
+   "name": "Bourne Rivulet",
+   "description": "Bourne Rivulet from Vernham Dean to Hurstbourne Priors"
+ },
+ {
+   "name": "Loxwood Stream",
+   "description": "The Loxwood Stream in West Sussex from Chiddingfold to Drungewick"
+ },
+ {
+   "name": "Groundwater flooding in Patcham",
+   "description": "Areas at risk of groundwater flooding in Patcham include Old London Road, parts of Church Hill and Mill Road where they meet the A23 and the Recreational Ground"
+ },
+ {
+   "name": "Coastal areas of Rustington to Shoreham",
+   "description": "Coastal areas of Rustington to Shoreham fort including Ferring, Worthing, Lancing and Shoreham Beach"
+ },
+ {
+   "name": "Milford on Sea to Lymington",
+   "description": "Coast from Milford-on-Sea to Lymington"
+ },
+ {
+   "name": "Coastal areas of Medmerry",
+   "description": "Earnley Beach Centre, West Sands, Selsey Country Club and Ferry, Oakhurst, Greenwood and Easton Farm"
+ },
+ {
+   "name": "Groundwater flooding in Bramdean and Cheriton",
+   "description": "Areas at risk of groundwater flooding in Bramdean and Cheriton in Hampshire"
+ },
+ {
+   "name": "Groundwater flooding in Vernham Dean, Upton and the Bourne Valley",
+   "description": "Communities at risk of groundwater flooding in Vernham Dean, Upton and the Bourne Valley in North Hampshire including Hurstbourne Tarrant and St Mary Bourne"
+ },
+ {
+   "name": "Coastal areas of Brighton Marina",
+   "description": "Coastal areas of Brighton Marina Village including the Strand"
+ },
+ {
+   "name": "Winterbourne Stream",
+   "description": "Winterbourne Stream in the Southover area of Lewes"
+ },
+ {
+   "name": "River Hamble",
+   "description": "River Hamble from Northbrook to Botley"
+ },
+ {
+   "name": "River Anton",
+   "description": "River Anton from Charlton to Fullerton including Andover"
+ },
+ {
+   "name": "Hayling Island",
+   "description": "Coast around Hayling Island"
+ },
+ {
+   "name": "River Alver",
+   "description": "River Alver from Rowner to the Sea"
+ },
+ {
+   "name": "Lower Arun",
+   "description": "The Rivers Arun, Chilt, Stor and Tortington Stream"
+ },
+ {
+   "name": "Combe Haven",
+   "description": "Combe Haven, Powdermill and Watermill streams"
+ },
+ {
+   "name": "Middle Test",
+   "description": "River Test from Longstock to Timsbury"
+ },
+ {
+   "name": "Groundwater flooding in West Dean, Singleton, Charlton, East Dean and Chilgrove",
+   "description": "Communities at risk of groundwater flooding to the north of Chichester, including West Dean, Singleton, Charlton, East Dean and Chilgrove"
+ },
+ {
+   "name": "North Harbour to Brockhampton",
+   "description": "Coastal area from North Harbour to Brockhampton including Farlington Marshes"
+ },
+ {
+   "name": "Ferring Rife",
+   "description": "Ferring Rife from the A259 at Northbrook College to Ferring Beach"
+ },
+ {
+   "name": "Aldingbourne and Barnham Rifes",
+   "description": "Elbridge, Lidsey, Aldingbourne, Barnham, Yapton and Ryebank Rifes"
+ },
+ {
+   "name": "Selsey Bill to Elmer",
+   "description": "Coastal areas between Selsey Bill and Elmer, including Pagham, Sidlesham and Bognor"
+ },
+ {
+   "name": "Lymington River",
+   "description": "River Lymington including Brockenhurst"
+ },
+ {
+   "name": "Inland areas of Shoreham, Lancing and Southwick",
+   "description": "Areas of Shoreham at risk from a high tide including Eastern parts of North and South Lancing, Broadway and Willowbrook caravan parks, Adur recreation ground, Old Shoreham Road, Beach Green and Aldrington Basin"
+ },
+ {
+   "name": "Lower Adur",
+   "description": "The Lower Adur and tributaries from Henfield to Shoreham-by-Sea"
+ },
+ {
+   "name": "Danes Stream",
+   "description": "Danes Stream from Hordle to Milford-on-Sea"
+ },
+ {
+   "name": "Western Yar",
+   "description": "Western Yar through Freshwater"
+ },
+ {
+   "name": "Middle Itchen",
+   "description": "River Itchen and tributaries from Headbourne Worthy to Otterbourne"
+ },
+ {
+   "name": "Upper Itchen",
+   "description": "River Itchen from Hinton Ampner to Abbots Worthy, including the River Alre, and the Candover Stream"
+ },
+ {
+   "name": "Upper Ouse",
+   "description": "Upper Ouse and tributaries from Slaugham to Barcombe Mills"
+ },
+ {
+   "name": "River Adur West Branch",
+   "description": "The River Adur West Branch and tributaries from Coolham to Bines Green"
+ },
+ {
+   "name": "Coastal areas of Eastbourne seafront",
+   "description": "Coastal areas of Eastbourne including Marine Parade, Royal Parade, Sovereign Park and the Martello Tower"
+ },
+ {
+   "name": "Tidal areas of Shoreham Harbour",
+   "description": "Tidal areas of Shoreham Harbour including Brighton Road, houseboats, Shoreham Harbour and areas north of the A27"
+ },
+ {
+   "name": "Thorney Island to Bracklesham",
+   "description": "Coastal areas between Thorney Island and Bracklesham, including Bosham, West Itchenor and West Wittering"
+ },
+ {
+   "name": "River Adur East Branch",
+   "description": "The River Adur and tributaries from Burgess Hill to Henfield"
+ },
+ {
+   "name": "Tidal Cuckmere",
+   "description": "Tidal areas of the Cuckmere valley from Cuckmere Haven to the A27 including Alfriston"
+ },
+ {
+   "name": "Tanners Brook",
+   "description": "Tanners Brook from Lords Hill to the Test estuary including Holly Brook"
+ },
+ {
+   "name": "Bartley Water",
+   "description": "Bartley Water from Fletchwood Copse and Bartley to Eling"
+ },
+ {
+   "name": "Lower Itchen",
+   "description": "River Itchen and tributaries from Otterbourne to Woodmill"
+ },
+ {
+   "name": "Portsmouth",
+   "description": "Coastal area around Portsmouth"
+ },
+ {
+   "name": "Hermitage Stream",
+   "description": "Hermitage Stream from Leigh Park to Bedhampton"
+ },
+ {
+   "name": "Sombourne Stream",
+   "description": "Sombourne Stream at Kings Somborne including Winchester Road, Old Vicarage Lane, Romsey Road and Horsebridge Road"
+ },
+ {
+   "name": "Lavant Stream at Havant",
+   "description": "Lavant Stream from Woodberry Lane to Langstone and Brockhampton"
+ },
+ {
+   "name": "Tilmore Brook Petersfield",
+   "description": "Tilmore Brook through central Petersfield from Winchester Road to the River Rother"
+ },
+ {
+   "name": "Climping Seafront",
+   "description": "Coastal areas of Climping"
+ },
+ {
+   "name": "Coastal areas of Bexhill seafront",
+   "description": "Coastal areas of Bexhill including West Parade, Egerton Park and De La Warr Parade"
+ },
+ {
+   "name": "Tidal areas of Littlehampton Rope Walk",
+   "description": "Rope Walk, Ferry and Bridge Road on the west banks of the lower tidal River Arun at Littlehampton"
+ },
+ {
+   "name": "Bridge Road, Emsworth",
+   "description": "The West Brook at Bridge Road, Emsworth"
+ },
+ {
+   "name": "Groundwater flooding in the Candovers and Old Alresford",
+   "description": "Areas at risk of groundwater flooding in Preston Candover, Chilton Candover, Brown Candover and Old Alresford in Hampshire"
+ },
+ {
+   "name": "Pillhill Brook",
+   "description": "Pillhill Brook from Fyfield to Upper Clatford"
+ },
+ {
+   "name": "Upper Test",
+   "description": "River Test from Longparish to Leckford"
+ },
+ {
+   "name": "Overton to Whitchurch",
+   "description": "River Test from Overton to Whitchurch"
+ },
+ {
+   "name": "Lower River Ems",
+   "description": "The River Ems and tributaries from Racton to Emsworth Harbour including Westbourne"
+ },
+ {
+   "name": "Inland areas of the Pevensey Levels",
+   "description": "Areas of Pevensey at risk from a high tide including the Crumbles, East Langley Levels, Mountney Bridge, Pevensey Bay, Pevensey, Manxey, Horse Eye and Hooe Levels"
+ },
+ {
+   "name": "Tidal areas of River Road Arundel",
+   "description": "River Road, Arundel, near Tarrant Wharf and Arun Street"
+ },
+ {
+   "name": "Eastern Yar",
+   "description": "Eastern Yar and tributaries from Whitwell to Bembridge"
+ },
+ {
+   "name": "River Dever",
+   "description": "River Dever from Micheldever to Bransbury including Sutton Scotney"
+ },
+ {
+   "name": "Isle of Wight coast",
+   "description": "Coast around the Isle of Wight"
+ },
+ {
+   "name": "Coastal areas of Pevensey seafront",
+   "description": "Coastal areas of Pevensey Sea Front between Sovereign Harbour and Beach including Norman Road Pevensey, The Promenade Pevensey, The Parade Pevensey, Beachlands, Normans Bay and the Cooden Beach Hotel"
+ },
+ {
+   "name": "Groundwater flooding in Bishops Sutton",
+   "description": "Areas at risk of groundwater flooding in Bishops Sutton, near Alresford in Hampshire"
+ },
+ {
+   "name": "Western Rother",
+   "description": "The Western Rother from Liss to Hardham"
+ },
+ {
+   "name": "Inland areas of Eastbourne",
+   "description": "Areas of Eastbourne at risk from a high tide including areas of Roselands, Willingdon Levels, areas near Shinewater Lake, West Langley Levels and Sovereign Harbour and Langney Village"
+ },
+ {
+   "name": "Groundwater flooding in Kings Somborne and Little Somborne",
+   "description": "Areas at risk of groundwater flooding in Kings Somborne and Little Somborne in Hampshire"
+ },
+ {
+   "name": "Upper Meon",
+   "description": "River Meon from Frogmore to the M27"
+ },
+ {
+   "name": "Mansbridge and Riverside Park",
+   "description": "River Itchen Mansbridge and Riverside Park"
+ },
+ {
+   "name": "River Uck",
+   "description": "River Uck and the Framfield, Ridgewood and Tickerage Streams"
+ },
+ {
+   "name": "St Johns, Ryde",
+   "description": "Monktonmead Brook at St Johns Road, St John's Station and Park Road"
+ },
+ {
+   "name": "Bosham Stream",
+   "description": "Bosham Stream from West Ashling to Bosham including Churchfield Stream"
+ },
+ {
+   "name": "Black Ditch",
+   "description": "The Black Ditch through Angmering, Lyminster and Wick"
+ },
+ {
+   "name": "Lower Ouse",
+   "description": "Lower Ouse and tributaries from Barcombe Mills to Newhaven Harbour"
+ },
+ {
+   "name": "Inland areas of Seaford",
+   "description": "Areas of Seaford at risk from a high tide including Buckle Close, Beach Close, Dane Close and Steyne Road"
+ },
+ {
+   "name": "Groundwater flooding in Hambledon",
+   "description": "Areas at risk of groundwater flooding in Hambledon in Hampshire"
+ },
+ {
+   "name": "Groundwater flooding in Finchdean, Dean Lane End and Rowlands Castle",
+   "description": "Areas at risk of groundwater flooding in Finchdean, Dean Lane End, Idsworth and Rowlands Castle"
+ },
+ {
+   "name": "Groundwater flooding in Littleton, Headbourne, Kings and Martyr Worthy, Easton and Chilland",
+   "description": "Communities at risk of groundwater flooding in Littleton, Headbourne Worthy, Kings Worthy, Martyr Worthy, Easton and Chilland"
+ },
+ {
+   "name": "Upper River Ems Valley",
+   "description": "Upper River Ems at Compton, West Marden, Stoughton, Walderton and Racton"
+ },
+ {
+   "name": "Stanbridge Stream Petersfield",
+   "description": "Stanbridge Stream at South Petersfield including Cranford Road and Borough Grove to The Causeway"
+ },
+ {
+   "name": "Groundwater flooding in the Meon Valley from East Meon to Soberton",
+   "description": "Communities at risk of groundwater flooding in the Meon Valley in Hampshire including, East Meon, West Meon, Warnford, Exton, Corhampton, Meonstoke, Droxford and Soberton"
+ },
+ {
+   "name": "Tidal areas of Newhaven",
+   "description": "Tidal areas of Newhaven including Newhaven Marina, West Quay, Riverside North, Denton Island, and the East bank"
+ },
+ {
+   "name": "Groundwater flooding in Deane and Ashe in North Hampshire",
+   "description": "Areas at risk of groundwater flooding in Deane and Ashe in the Upper Test catchment in North Hampshire"
+ },
+ {
+   "name": "Upper Arun",
+   "description": "The Rivers Arun and Kird, Boldings Brook, North River and Par Brook"
+ },
+ {
+   "name": "Romsey Tadburn Lake",
+   "description": "Tadburn Lake stream through Romsey"
+ },
+ {
+   "name": "Coastal areas of Bulverhythe",
+   "description": "Coastal areas of Bulverhythe including areas between the Railway track and Bexhill Road and West Marina Gardens"
+ },
+ {
+   "name": "Lower Test",
+   "description": "River Test and tributaries from Romsey to Totton"
+ },
+ {
+   "name": "Hollington Stream",
+   "description": "Hollington Stream from Hollington Old Lane to Harley Shute including Coventry Road and Stonehouse Drive"
+ },
+ {
+   "name": "Tidal areas of Littlehampton East Bank",
+   "description": "Tidal areas of Littlehampton East Bank from the East pier to the A259"
+ },
+ {
+   "name": "Lower Meon",
+   "description": "River Meon from the M27 to Titchfield Haven"
+ },
+ {
+   "name": "Scrase Bridge and West Common Streams",
+   "description": "Scrase Bridge Stream & West Common Stream at Haywards Heath and Lindfield"
+ },
+ {
+   "name": "Langney Haven",
+   "description": "Willingdon, Eastbourne and Mountney Levels and their tributaries"
+ },
+ {
+   "name": "Beaulieu River",
+   "description": "Beaulieu River from Hartford Bridge to Beaulieu"
+ },
+ {
+   "name": "The Wallops",
+   "description": "Wallop Brook from Over Wallop to Bossington"
+ },
+ {
+   "name": "River Lavant",
+   "description": "The River Lavant from Mid Lavant to Shopwhyke including Chichester"
+ },
+ {
+   "name": "Coastal areas of Hastings seafront",
+   "description": "Coastal areas of Hastings between White Rock and Rock-a-Nore Road"
+ },
+ {
+   "name": "Southampton Water and Hamble",
+   "description": "Coast around Southampton Water including Calshot, Lepe and the Hamble Estuary"
+ },
+ {
+   "name": "Langstone to Emsworth Harbour",
+   "description": "Coastal area from Langstone to Emsworth Harbour"
+ },
+ {
+   "name": "Lukely Brook",
+   "description": "Lukely Brook from Carisbrooke to Newport"
+ },
+ {
+   "name": "Groundwater flooding in Pitton, West Tytherley, Nether Wallop and Broughton",
+   "description": "Communities at risk of groundwater flooding in the West of Hampshire and East of Wiltshire, including Pitton, West Tytherley, Nether Wallop and Broughton"
+ },
+ {
+   "name": "River Blackwater",
+   "description": "Landford to East Wellow and Wade Bridge on the River Blackwater"
+ },
+ {
+   "name": "River Medina",
+   "description": "River Medina from Blackwater to Newport"
+ },
+ {
+   "name": "Coastal areas of Seaford seafront",
+   "description": "Coastal areas of Seaford seafront including The Esplanade, Areas behind and near the Martello Tower, Buckle Caravan and Camping Park and Salts Recreation Ground"
+ },
+ {
+   "name": "Havant Town Centre on the Lavant Stream",
+   "description": "Eastern Road, Havant Town Centre,Park Road North and South and Brockhampton Road on the Lavant Stream"
+ },
+ {
+   "name": "Westhampnett on the River Lavant",
+   "description": "The River Lavant at Westhampnett, including Church Farm pit, the A27, and the Supermarket retail park at Portfield Way"
+ },
+ {
+   "name": "Hellingly and Horsebridge",
+   "description": "Cuckmere River and Bull River at Hellingly and Horsebridge including Mill Lane, Station Road and the A271 at Lower Horsebridge"
+ },
+ {
+   "name": "East Meon to Mislingford on the River Meon",
+   "description": "East Meon, West Meon, Warnford, Meonstoke, Droxford and Soberton on the River Meon"
+ },
+ {
+   "name": "Monktonmead Brook at Simeon Street Rec Ground",
+   "description": "Monktonmead Brook at Rink Road, Marymead Close, West Hill Road, Simeon Street and The Strand"
+ },
+ {
+   "name": "Stockbridge to Timsbury on the River Test",
+   "description": "Stockbridge, Kimbridge and Timsbury on the River Test"
+ },
+ {
+   "name": "Freshwater Bay, Isle of Wight",
+   "description": "Isle of Wight Coast at Freshwater Bay"
+ },
+ {
+   "name": "Pevensey Levels",
+   "description": "Areas of Pevensey at risk from a high tide including the Crumbles, East Langley Levels, Mountney Bridge, Pevensey Bay, Pevensey, Manxey, Horse Eye and Hooe Levels"
+ },
+ {
+   "name": "Wootton",
+   "description": "Coastal areas of Wootton, Wootton Bridge and Fishbourne"
+ },
+ {
+   "name": "Groundwater flooding Old London Road Patcham",
+   "description": "Areas at risk of groundwater flooding in Patcham include Old London Road, parts of Church Hill and Mill Road where they meet the A23 and the Recreational Ground"
+ },
+ {
+   "name": "Alfriston",
+   "description": "Cuckmere River at Alfriston from Shermans Bridge to Deans Place Hotel including Milton Lock and Long Bridge"
+ },
+ {
+   "name": "Eastoke",
+   "description": "Coast at Eastoke"
+ },
+ {
+   "name": "Eastoke Seafront and South Hayling",
+   "description": "Coast of Eastoke Seafront and South Hayling"
+ },
+ {
+   "name": "West Hayling",
+   "description": "Tidal areas at West Hayling, including Sinah and Stoke"
+ },
+ {
+   "name": "Bulverhythe",
+   "description": "Combe Haven at Bulverhythe including Bulverhythe Road and Bexhill Road at Sheepwash Bridge"
+ },
+ {
+   "name": "Bembridge",
+   "description": "Coastal areas at Bembridge"
+ },
+ {
+   "name": "Shawford to Bishopstoke on the River Itchen",
+   "description": "Shawford, Twyford, Bambridge, Highbridge, Bishopstoke and Itchen Valley Country Park on the River Itchen"
+ },
+ {
+   "name": "Malling at Lewes",
+   "description": "Malling area of Lewes including Spences Lane, Orchard Road and the Malling Brooks Industrial Estate"
+ },
+ {
+   "name": "Landford to Wade Bridge on the River Blackwater",
+   "description": "Landford, Wellow Mill, and Wade Bridge, on the River Blackwater"
+ },
+ {
+   "name": "Sandown, Brading and Bembridge on the Eastern Yar",
+   "description": "Sandown, Yaverland, Yarbridge, Brading and Bembridge on the Eastern Yar"
+ },
+ {
+   "name": "Freshfield Bridge to Sharpsbridge",
+   "description": "River Ouse from Freshfield Bridge to Sharpsbridge including Sheffield Park Station and Fletching Mill"
+ },
+ {
+   "name": "West Dean to Dunbridge on the River Dun",
+   "description": "West Dean, Butt's Green, and Dunbridge on the River Dun"
+ },
+ {
+   "name": "Bracklesham",
+   "description": "Coastal areas of Bracklesham"
+ },
+ {
+   "name": "Shoreham Harbour",
+   "description": "Tidal areas of Shoreham Harbour including Brighton Road, houseboats, Shoreham Harbour and areas north of the A27"
+ },
+ {
+   "name": "Shoreham Beach",
+   "description": "Beach front areas of Shoreham Beach"
+ },
+ {
+   "name": "Shoreham Town and Lancing",
+   "description": "Areas of Shoreham at risk including the High Street, Old Shoreham Road, Shoreham Airport, Riverside Road, Beach Green, Eastern parts of North and South Lancing, Broadway and Willowbrook caravan parks, Adur recreation ground and Aldrington Basin"
+ },
+ {
+   "name": "Stoughton and Walderton on the River Ems",
+   "description": "Stoughton, Walderton and Walderton Bridge on the River Ems"
+ },
+ {
+   "name": "Gosport",
+   "description": "Tidal areas at Gosport, including Clayhall, Forton, Priddy's Hard, and the Town Centre"
+ },
+ {
+   "name": "Amberley on the River Arun",
+   "description": "The River Arun at Amberley, including Bury, Houghton Bridge, and South Stoke"
+ },
+ {
+   "name": "Ford and Climping on the River Arun",
+   "description": "The River Arun at Ford and Climping"
+ },
+ {
+   "name": "Eastern Portsmouth",
+   "description": "Tidal areas of Eastern Portsmouth, including Anchorage Park, Baffins, Milton, and Eastney"
+ },
+ {
+   "name": "Denmead",
+   "description": "Mead End Stream at Denmead"
+ },
+ {
+   "name": "Pevensey seafront",
+   "description": "Coastal areas of Pevensey seafront between Sovereign Harbour and Beach including Norman Road Pevensey, The Promenade Pevensey, The Parade Pevensey, Beachlands, Normans Bay and the Cooden Beach Hotel"
+ },
+ {
+   "name": "Seaford Town",
+   "description": "Areas of Seaford at risk from a high tide including Buckle Close, Beach Close, Dane Close and Steyne Road"
+ },
+ {
+   "name": "Durford Mill to Midhurst, including Iping on the Western Rother",
+   "description": "The River Rother from Durford Mill to Ambersham Bridge, Midhurst, including Durford Mill, Haben Farm, Trotton, Iping, Steadham, and Midhurst"
+ },
+ {
+   "name": "Southsea",
+   "description": "Coast at Southsea"
+ },
+ {
+   "name": "Bexhill seafront",
+   "description": "Coastal areas of Bexhill including West Parade, Egerton Park and De La Warr Parade"
+ },
+ {
+   "name": "Old Portsmouth",
+   "description": "Coast at Old Portsmouth"
+ },
+ {
+   "name": "Andover on the River Anton",
+   "description": "Andover, Upper Clatford, and Goodworth Clatford on the River Anton"
+ },
+ {
+   "name": "Lymington and Keyhaven",
+   "description": "Coast at Lymington and Keyhaven including Pitts Deep and Sowley"
+ },
+ {
+   "name": "Sombourne Stream at Kings Somborne",
+   "description": "Sombourne Stream at Kings Somborne including Winchester Road, Old Vicarage Lane, Romsey Road and Horsebridge Road"
+ },
+ {
+   "name": "Browndown on the River Alver",
+   "description": "Privett Road, Browndown Road and Stokes Bay from the River Alver"
+ },
+ {
+   "name": "Hilsea",
+   "description": "Tidal areas at Hilsea"
+ },
+ {
+   "name": "Arundel on the River Arun",
+   "description": "The River Arun at Arundel, including Warningcamp, and Burpham"
+ },
+ {
+   "name": "Mid and East Lavant",
+   "description": "The River Lavant at Mid Lavant and East Lavant"
+ },
+ {
+   "name": "Chandlers Ford to Swaythling",
+   "description": "Chandlers Ford to Swaythling on the Monks Brook"
+ },
+ {
+   "name": "Winterbourne Stream at Lewes",
+   "description": "Winterbourne Stream in the Southover area of Lewes from the railway embankment at Winterbourne Close to Lewes Station on Station Road"
+ },
+ {
+   "name": "Olives Meadow at Uckfield",
+   "description": "Southern and Southwestern sides of Olives Meadow Road in Uckfield"
+ },
+ {
+   "name": "Calshot, Hythe, Marchwood, Eling and Redbridge",
+   "description": "Coast at Calshot, Lepe, Hythe, Marchwood, Eling and Redbridge"
+ },
+ {
+   "name": "Fawley",
+   "description": "Coast at Fawley, including Fawley Power Station and Oil Refinery"
+ },
+ {
+   "name": "North Ferring on the Ferring Rife",
+   "description": "The Ferring Rife at North Ferring, including the Goring, A259 at Northbrook College, Ferring Lane, Highdown Way, Langbury Lane, and Downview Avenue"
+ },
+ {
+   "name": "Uckfield",
+   "description": "River Uck from Hempstead Lane to the A22 at Uckfield, including Mill Lane, River Way, High Street and the Bellbrook Industrial Estate"
+ },
+ {
+   "name": "Sandown",
+   "description": "Coastal areas at Sandown"
+ },
+ {
+   "name": "Rustington, Worthing and Lancing",
+   "description": "Coastal areas of Rustington, Ferring, Worthing and Lancing"
+ },
+ {
+   "name": "Langstone and Emsworth",
+   "description": "Tidal areas at Langstone and Emsworth"
+ },
+ {
+   "name": "Lord's Hill and Lordswood to Millbrook, on the Tanners Brook",
+   "description": "Lord's Hill, Lordswood, Coxford, Shirley Park, Shirley Warren and Millbrook on the Tanners Brook"
+ },
+ {
+   "name": "Wickham on the River Meon",
+   "description": "The River Meon between Mislingford and the M27 including Wickham"
+ },
+ {
+   "name": "Ryde",
+   "description": "Coastal areas at Ryde"
+ },
+ {
+   "name": "Monktonmead Brook at St Johns",
+   "description": "Monktonmead Brook at St Johns Road, St John's Station and Park Road"
+ },
+ {
+   "name": "Rushington and Eling on the Bartley Water",
+   "description": "Ashurst Bridge, Rushington, Brokenford, and Eling on the Bartley Water"
+ },
+ {
+   "name": "Newhaven",
+   "description": "Newhaven including Avis Way Industrial estate, Newhaven Marina, the A26, A259, West Quay, Riverside North, Denton Island, and the east bank"
+ },
+ {
+   "name": "Lymington",
+   "description": "Lymington on the River Lymington"
+ },
+ {
+   "name": "Brighton Marina",
+   "description": "Coastal areas of Brighton Marina Village including the Strand"
+ },
+ {
+   "name": "Medmerry",
+   "description": "Coastal areas of Medmerry beach, including the West Sands caravan park"
+ },
+ {
+   "name": "Tilmore Brook through central Petersfield",
+   "description": "Tilmore Brook through central Petersfield from Winchester Road to the River Rother"
+ },
+ {
+   "name": "Cowes, East Cowes, and Newport",
+   "description": "Coastal areas at Cowes and East Cowes, and tidal areas of Newport"
+ },
+ {
+   "name": "Bishops Waltham on the River Hamble",
+   "description": "Bishops Waltham including north and south ponds"
+ },
+ {
+   "name": "Bosham and West Itchenor",
+   "description": "Coastal areas of Bosham and West Itchenor, including Chidham, Broadbridge, and Bosham Hoe"
+ },
+ {
+   "name": "Gurnard on the Gurnard Luck",
+   "description": "Gurnard Pines to Marsh Road at Gurnard from the Gurnard Luck"
+ },
+ {
+   "name": "Upper Beeding and Bramber on the River Adur",
+   "description": "The River Adur at Upper Beeding and Bramber, including Newbrook Farm, and Beeding Manor"
+ },
+ {
+   "name": "Yarmouth, Isle of Wight",
+   "description": "Coastal areas at Yarmouth, Isle of Wight"
+ },
+ {
+   "name": "Lindfield",
+   "description": "Scrase Bridge Stream at Lindfield including the West Common Stream"
+ },
+ {
+   "name": "Hamsey",
+   "description": "River Ouse at Hamsey including Whitfield Lane and Ivors Lane"
+ },
+ {
+   "name": "West Brook at Emsworth",
+   "description": "West Brook at Emsworth including Bridge Road, Victoria Road and St James Road"
+ },
+ {
+   "name": "Crowhurst",
+   "description": "Powdermill Stream at Crowhurst from the Post Office to the Recreation Ground South of Sandrock Hill Road"
+ },
+ {
+   "name": "Freshwater on the Western Yar",
+   "description": "Afton to School Green Road and Brookside Road at Freshwater"
+ },
+ {
+   "name": "Liss to Sheet Mill on the Western Rother",
+   "description": "The River Rother from Liss to Sheet, including Liss, Princes Marsh, and Sheet Mill"
+ },
+ {
+   "name": "Bersted on the Aldingbourne Rife",
+   "description": "The Aldingbourne Rife at Bersted, including Addison Way, Riverside Caravan Park, and the South Bersted industrial estate"
+ },
+ {
+   "name": "Buxted",
+   "description": "River Uck, at Buxted, between Parsnage Wood and Hempstead Mill, including the Old Mill area"
+ },
+ {
+   "name": "Isfield",
+   "description": "River Uck and confluence with the River Ouse including Isfield Mill and White Bridge"
+ },
+ {
+   "name": "Lindfield Bridge",
+   "description": "River Ouse at Lindfield Bridge including Pims Lock"
+ },
+ {
+   "name": "Mansbridge and Woodmill on the River Itchen",
+   "description": "Gaters Mill, Mansbridge, and Woodmill on the River Itchen"
+ },
+ {
+   "name": "Horsham on the River Arun",
+   "description": "The River Arun at Horsham, from Amiesmill Bridge to Hills Farm Lane, including Millbay Lane, Tanbridge Park, Arunside, and Ridgehurst Drive"
+ },
+ {
+   "name": "Barcombe Mills",
+   "description": "River Ouse at Barcombe Mills, including the Anchor Gates"
+ },
+ {
+   "name": "Slaugham to Ardingly",
+   "description": "River Ouse and tributaries from Slaugham to Ardingly including the Shell Brook"
+ },
+ {
+   "name": "Northney to Selsmore, Hayling Island",
+   "description": "Tidal areas from Northney to Selsmore, including Tye and Mengham"
+ },
+ {
+   "name": "Portchester",
+   "description": "Tidal areas of Portchester"
+ },
+ {
+   "name": "Crosslands Drive and West Leigh, Havant, on the Lavant Stream",
+   "description": "West Leigh, Crosslands Drive and Lavant Road on the Lavant Stream"
+ },
+ {
+   "name": "The Candovers",
+   "description": "Axford, Preston Candover, Chilton Candover, and Brown Candover on the Candover Stream"
+ },
+ {
+   "name": "Langbridge and Alverstone on the Eastern Yar",
+   "description": "Horringford, Langbridge and Alverstone on the Eastern Yar"
+ },
+ {
+   "name": "Langney Haven at Eastbourne",
+   "description": "Langney Haven including Langney Village and areas of Eastbourne, including Brampton Road Trading Estate, Highfield Industrial Estate and the Birch Road and Hammond Drive Industrial Estates"
+ },
+ {
+   "name": "South Ferring on the Ferring Rife",
+   "description": "The Ferring Rife in South Ferring, from the Blue Bird Cafe to Onslow Caravan Park"
+ },
+ {
+   "name": "West Wittering",
+   "description": "Coastal areas of West Wittering"
+ },
+ {
+   "name": "Milford on Sea on the Danes Stream",
+   "description": "Taddiford Farm to Sea Road at Milford on Sea"
+ },
+ {
+   "name": "Hamble estuary",
+   "description": "Tidal areas of the Hamble estuary, including Hamble, Bursledon, and Warsash"
+ },
+ {
+   "name": "Piddinghoe and South Heighton",
+   "description": "River Ouse at Piddinghoe and South Heighton including the A26 at Grange Farm South Heighton"
+ },
+ {
+   "name": "Itchen estuary",
+   "description": "Tidal areas of the Itchen estuary, including Northam, Millbank, and Crosshouse"
+ },
+ {
+   "name": "Broadbridge Heath to Pallingham Quay on the River Arun",
+   "description": "The River Arun from Broadbridge Heath to Pallingham Quay, including Broadbridge Heath, Slinfold, Wanford Mill, Gibbons Mill, Newbridge, and Pallingham Lock"
+ },
+ {
+   "name": "Angmering on the Black Ditch",
+   "description": "The Black Ditch along River Road in Angmering"
+ },
+ {
+   "name": "Ovington to Abbots Worthy on the River Itchen",
+   "description": "Ovington, Itchen Abbas, and Abbots Worthy on the Upper Itchen"
+ },
+ {
+   "name": "Beaulieu",
+   "description": "Beaulieu including Beaulieu estuary and the open coast between Thorns Beach and Needs Ore Point"
+ },
+ {
+   "name": "Gurnard",
+   "description": "Coastal areas at Gurnard"
+ },
+ {
+   "name": "Climping",
+   "description": "Coastal areas of Climping, including Poole Place"
+ },
+ {
+   "name": "Seaview",
+   "description": "Coastal areas of Seaview and Spring Vale"
+ },
+ {
+   "name": "Alresford",
+   "description": "Alresford on the River Arle"
+ },
+ {
+   "name": "Lyminster and Wick on the Black Ditch",
+   "description": "The Black Ditch and Eels Springs Ditch at Lyminster and Wick, including Thornlea park and Falcon Gardens"
+ },
+ {
+   "name": "Chichester on the River Lavant",
+   "description": "The River Lavant within Chichester City Centre, including Whyke, the A285, A286, and Chichester College"
+ },
+ {
+   "name": "Ocean Village, Southampton",
+   "description": "Coast at Ocean Village, Southampton"
+ },
+ {
+   "name": "Thorney Island, Southbourne and Nutbourne",
+   "description": "Coastal areas of Thorney Island, Southbourne and Nutbourne"
+ },
+ {
+   "name": "Selsey East Beach",
+   "description": "Coastal areas of Selsey Bill, including Church Norton, and East Beach"
+ },
+ {
+   "name": "Elmer",
+   "description": "Coastal areas of Elmer"
+ },
+ {
+   "name": "Pagham",
+   "description": "Coastal areas of Pagham"
+ },
+ {
+   "name": "Sidlesham",
+   "description": "Coastal areas of Sidlesham"
+ },
+ {
+   "name": "Bognor",
+   "description": "Coastal areas of Bognor, including Felpham, South Bersted, North Bersted and Shripney"
+ },
+ {
+   "name": "Leigh Park and Bedhampton on the Hermitage Stream",
+   "description": "Leigh Park, New Road and Mill Lane Old Bedhampton on the Hermitage Stream"
+ },
+ {
+   "name": "Lewes",
+   "description": "River Ouse at Lewes including Monks Way, Landport, Talbot Terrace, North Street, Cliffe High Street and Southerham Farm"
+ },
+ {
+   "name": "Pulborough on the River Arun",
+   "description": "The River Arun at Pulborough, including Greatham Bridge"
+ },
+ {
+   "name": "Hastings seafront",
+   "description": "Coastal areas of Hastings between White Rock and Rock-a-Nore Road"
+ },
+ {
+   "name": "Cheriton",
+   "description": "Cheriton on the Cheriton Stream"
+ },
+ {
+   "name": "Hollington Stream from Hollington Old Lane to Harley Shute",
+   "description": "Hollington Stream from Hollington Old Lane to Harley Shute including Coventry Road and Stonehouse Drive"
+ },
+ {
+   "name": "Overton, Laverstoke and Whitchurch on the River Test",
+   "description": "Upper Test from Overton to Whitchurch including Laverstoke"
+ },
+ {
+   "name": "River Test at Romsey and Testwood",
+   "description": "A3057 Greatbridge Road, Romsey, Broadlands,Testwood to and Totton Bypass on the River Test"
+ },
+ {
+   "name": "Carisbrooke and Hunny Hill on the Lukely Brook",
+   "description": "Carisbrooke, Hunny Hill and Newport Quay Arts Centre on the Lukely Brook"
+ },
+ {
+   "name": "Westbourne, Lumley and Emsworth on the River Ems",
+   "description": "Westbourne, Lumley and Emsworth on the River Ems, including New Brighton and Commonside"
+ },
+ {
+   "name": "Loxwood on the River Lox",
+   "description": "Loxwood Stream at Loxwood, including Loxwood Village, and Brewhurst Mill"
+ },
+ {
+   "name": "Littlehampton Rope Walk",
+   "description": "Tidal areas of Littlehampton Ropewalk"
+ },
+ {
+   "name": "Winchester",
+   "description": "Winchester City Centre, from Riverside Park to Wharf Mill, on the River Itchen"
+ },
+ {
+   "name": "Littlehampton East Bank",
+   "description": "Tidal areas of Littlehampton East Bank including Caffyn's Field, and Riverside Industrial Estate"
+ },
+ {
+   "name": "Bourne Valley",
+   "description": "Vernham Dean, Upton, Ibthorpe, Hurstbourne Tarrant, Stoke, and St Mary Bourne on the Bourne Rivulet"
+ },
+ {
+   "name": "Fareham",
+   "description": "Tidal areas of Fareham"
+ },
+ {
+   "name": "Bulverhythe Seafront",
+   "description": "Coastal areas of Bulverhythe including areas between the Railway track and Bexhill Road and West Marina Gardens"
+ },
+ {
+   "name": "Seaford seafront",
+   "description": "Coastal areas of Seaford seafront including The Esplanade, Areas behind and near the Martello Tower, Buckle Caravan and Camping Park and Salts Recreation Ground"
+ },
+ {
+   "name": "Halterworth to Romsey Town Centre on the Tadburn Lake",
+   "description": "Halterworth, Harefield, The Hundred, Romsey Rapids, and Romsey Town Centre on the Tadburn Lake"
+ },
+ {
+   "name": "North Harbour, Farlington and Brockhampton",
+   "description": "Tidal areas from North Harbour to Brockhampton, including Port Solent, Highbury, Cosham, and Farlington Marshes"
+ },
+ {
+   "name": "Tipner and Stamshaw",
+   "description": "Tidal areas including Tipner, Stamshaw, and the Commercial Docks"
+ },
+ {
+   "name": "Eastbourne Town",
+   "description": "Areas of Eastbourne at risk from a high tide including areas of Roselands, Willingdon Levels, areas near Shinewater Lake, West Langley Levels and Sovereign Harbour and Langney Village"
+ },
+ {
+   "name": "Micheldever to Bransbury on the River Dever",
+   "description": "River Dever from Micheldever to Bransbury including Sutton Scotney"
+ },
+ {
+   "name": "Longparish to Longstock on the River Test",
+   "description": "Upper Test From Longparish to Longstock including Wherwell and Chilbolton"
+ },
+ {
+   "name": "Titchfield on the River Meon",
+   "description": "The River Meon between the M27 and Titchfield Haven including Titchfield"
+ },
+ {
+   "name": "Arundel, River Road",
+   "description": "River Road, Arundel, near Tarrant Wharf and Arun Street"
+ },
+ {
+   "name": "Eastbourne seafront",
+   "description": "Coastal areas of Eastbourne including Marine Parade, Royal Parade, Sovereign Park and the Martello Tower"
+ },
+ {
+   "name": "Stanbridge Stream at South Petersfield",
+   "description": "Stanbridge Stream at South Petersfield including Cranford Road and Borough Grove to The Causeway"
+ },
+ {
+   "name": "Newport on the River Medina",
+   "description": "Blackwater and Newport on the River Medina"
+ },
+ {
+   "name": "Coolham and Shipley on the River Adur",
+   "description": "The River Adur West Branch, at Coolham and Shipley"
+ },
+ {
+   "name": "Anna Valley on the Pillhill Brook",
+   "description": "Fyfield, Amport, Monxton, and Abbotts Ann on the Pillhill Brook"
+ },
+ {
+   "name": "Over Wallop to Broughton on the Wallop Brook",
+   "description": "Over Wallop, Middle Wallop, and Nether Wallop, on the Wallop Brook"
+ },
+ {
+   "name": "Brockenhurst on the River Lymington",
+   "description": "Brockenhurst on the River Lymington, and The Weirs through Angel Valley"
+ },
+ {
+   "name": "Waltham Chase, Durley Mill and Botley on the River Hamble",
+   "description": "River Hamble through Waltham Chase, Durley Mill, Botley"
+ },
+ {
+   "name": "Wallington",
+   "description": "Wallington on the River Wallington"
+ },
+ {
+   "name": "Fittleworth on the Western Rother",
+   "description": "The River Rother at Fittleworth"
+ },
+ {
+   "name": "Bosham on the Bosham Stream",
+   "description": "The Bosham Stream at Bosham, including the Old Bosham Ditch, Shore Road, and Churchfield Stream"
+ },
+ {
+   "name": "Barnham",
+   "description": "The Barnham Rife at Barnham, including the B2233, Lake Lane, Orchard Way, and Downview Road"
+ },
+ {
+   "name": "Felpham on the Aldingbourne Rife",
+   "description": "The Aldingbourne and Lidsey Rifes at Felpham, including the Whitfield Close, the A259, Links Avenue, and Butlins Holiday Centre"
+ },
+ {
+   "name": "Willingdon, Eastbourne and Langney Levels",
+   "description": "Willingdon, Eastbourne and Langney Levels including Eastbourne Park and Langney Bridge"
+ },
+ {
+   "name": "Lodsbridge to Shopham Bridge on the Western Rother",
+   "description": "The Western Rother from Lodsbridge to Shopham Bridge, including Lodsbridge at Selham, Coultershaw Bridge, and Shopham Bridge"
+ }
+ ]
+
+ -%}

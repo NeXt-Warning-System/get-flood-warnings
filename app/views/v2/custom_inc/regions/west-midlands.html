@@ -1,0 +1,1581 @@
+{% set targetareas =
+  [
+ {
+   "name": "Bourne Brook (Tamworth)",
+   "description": "Low-lying land and roads between Shenstone and Fazeley"
+ },
+ {
+   "name": "River Mease",
+   "description": "Low-lying land and roads between Ashby and Croxall"
+ },
+ {
+   "name": "River Avon in Worcestershire",
+   "description": "River Avon from Salford Priors to Tewkesbury"
+ },
+ {
+   "name": "River Monnow and tributaries in England",
+   "description": "River Monnow and tributaries in England"
+ },
+ {
+   "name": "Stoke Trent",
+   "description": "Low-lying land and roads between Norton Green and Darlaston on the River Trent and on the Lyme Brook and Ford Green Brook"
+ },
+ {
+   "name": "River Arrow in Herefordshire",
+   "description": "River Arrow in Herefordshire"
+ },
+ {
+   "name": "Lower Dove",
+   "description": "Low-lying land and roads between Rocester and Clay Mills on the River Dove and the Egginton Brook at Egginton"
+ },
+ {
+   "name": "River Stour and Smestow Brook in the Black Country and South Staffordshire",
+   "description": "River Stour and Smestow Brook in the Black Country and South Staffordshire"
+ },
+ {
+   "name": "River Stour in South Warwickshire",
+   "description": "River Stour and tributaries"
+ },
+ {
+   "name": "River Anker and River Sence",
+   "description": "Low-lying land and roads between Nuneaton and Tamworth on the River Anker and between Temple Mill and Ratcliffe Culey on the River Sence"
+ },
+ {
+   "name": "Middle Avon Rugby to Bidford",
+   "description": "Low-lying land and roads between Rugby and Bidford including caravan parks and farmland"
+ },
+ {
+   "name": "Rivers in South Worcestershire",
+   "description": "River Isbourne, Badsey Brook, Honeybourne Brook, Bretforton Brook, Littleton Brook and their tributaries."
+ },
+ {
+   "name": "Brooks in the Wyre Forest",
+   "description": "Mor, Borle, Dowles and Dick Brooks and their tributaries"
+ },
+ {
+   "name": "River Severn in Worcestershire",
+   "description": "River Severn in Worcestershire"
+ },
+ {
+   "name": "River Severn in Gloucestershire",
+   "description": "River Severn from Tewkesbury to Gloucester"
+ },
+ {
+   "name": "River Cole",
+   "description": "Low-lying land and roads between Majors Green and Coleshill on the River Cole"
+ },
+ {
+   "name": "Wye Estuary in Gloucestershire",
+   "description": "Wye Estuary in Gloucestershire"
+ },
+ {
+   "name": "River Frome in Herefordshire",
+   "description": "River Frome in Herefordshire"
+ },
+ {
+   "name": "Tern and Perry Catchments",
+   "description": "Rivers Tern, Perry, Roden, Strine and Meese and their tributaries"
+ },
+ {
+   "name": "Upper Teme",
+   "description": "River Teme, River Onny and River Corve and their tributaries upstream of Ludlow"
+ },
+ {
+   "name": "Stone Trent",
+   "description": "Low-lying land and roads between Darlaston and Great Haywood"
+ },
+ {
+   "name": "Upper Avon River Swift and Clay Coton Brook",
+   "description": "Low-lying land and roads between Stanford and Rugby including Lilbourne and Clay Coton areas"
+ },
+ {
+   "name": "River Rea",
+   "description": "Low-lying land and roads between Longbridge and Nechells on the River Rea"
+ },
+ {
+   "name": "River Severn in Shropshire",
+   "description": "River Severn in Shropshire"
+ },
+ {
+   "name": "River Leadon Catchment",
+   "description": "River Leadon and its tributaries"
+ },
+ {
+   "name": "Barbourne Brook",
+   "description": "Barbourne Brook in Worcester"
+ },
+ {
+   "name": "River Sowe, River Sherbourne, Canley Brook and Finham Brook",
+   "description": "Low-lying land and roads between Bedworth and Baginton on the River Sowe, between Allesley and Whitley on the River Sherbourne, between Tile Hill and Canley on the Canley Brook and the Finham Brook and its tributaries."
+ },
+ {
+   "name": "River Wye in Herefordshire",
+   "description": "River Wye in Herefordshire"
+ },
+ {
+   "name": "River Wye in Gloucestershire",
+   "description": "River Wye in Gloucestershire"
+ },
+ {
+   "name": "Rivers in North Gloucestershire",
+   "description": "Rivers in Tewkesbury, Cheltenham and Gloucester"
+ },
+ {
+   "name": "Severn estuary from Gloucester to Sharpness",
+   "description": "Severn estuary from Gloucester to Sharpness, including Sandhurst and Maisemore"
+ },
+ {
+   "name": "River Lugg North of Leominster",
+   "description": "River Lugg North of Leominster"
+ },
+ {
+   "name": "River Stour in Worcestershire",
+   "description": "River Stour and it's tributaries"
+ },
+ {
+   "name": "Middle Tame",
+   "description": "Low-lying land and roads between Water Orton and Tamworth including the Bourne Brook at Fazeley"
+ },
+ {
+   "name": "Lower Dove Brooks and Egginton Brook in Derbyshire",
+   "description": "Low-lying land and roads on the Foston Brook,  Hilton Brook and Egginton Brook"
+ },
+ {
+   "name": "Lower Dove Brooks in Staffordshire",
+   "description": "Low-lying land and roads on the Picknall Brook, Marchington Brook and Rolleston Brook"
+ },
+ {
+   "name": "River Salwarpe",
+   "description": "River Salwarpe, Elmbridge and Hadley Brooks and their tributaries"
+ },
+ {
+   "name": "Kempsey Village",
+   "description": "Kempsey Village"
+ },
+ {
+   "name": "River Worfe",
+   "description": "River Worfe, Wesley Brook and Albrighton Brook and their tributaries"
+ },
+ {
+   "name": "Severn Vyrnwy confluence",
+   "description": "Severn Vyrnwy confluence"
+ },
+ {
+   "name": "Rivers Frome and Cam",
+   "description": "Rivers Frome and Cam"
+ },
+ {
+   "name": "Rugeley Trent",
+   "description": "Low-lying land and roads between Great Haywood to Yoxall"
+ },
+ {
+   "name": "Bow and Piddle Brook",
+   "description": "Bow and Piddle Brook"
+ },
+ {
+   "name": "Burton Trent",
+   "description": "Low-lying land and roads between Kings Bromley to Clay Mills"
+ },
+ {
+   "name": "River Sow and River Penk",
+   "description": "Low-lying land and roads between Great Bridgeford and Shugborough on the River Sow, between Coven and Stafford on the River Penk, on the Sandyford Brook, on the Rising Brook, on the Ridings Brook and on the Saredon Brook"
+ },
+ {
+   "name": "Rea Brook and Cound Brook",
+   "description": "Rea and Cound Brooks and their tributaries"
+ },
+ {
+   "name": "River Churnet and River Tean",
+   "description": "Low-lying land and roads between Leek and Rocester on the River Churnet and between Adderley and Spath on the River Tean including Cecilly Brook at Cheadle"
+ },
+ {
+   "name": "River Dene in South East Warwickshire",
+   "description": "Low-lying land and roads between Walton and Charlecote Park"
+ },
+ {
+   "name": "Ledwyche Brook and River Rea",
+   "description": "Ledwyche Brook and River Rea"
+ },
+ {
+   "name": "Upper Dove",
+   "description": "Low-lying land and roads between Izaak Walton and Rocester on the River Dove and between Carsington Dam and Mayfield on the Henmore Brook"
+ },
+ {
+   "name": "River Blithe and River Swarbourn",
+   "description": "Low-lying land and roads between Blythe Bridge and Nethertown on the River Blithe and between Hoar Cross and Yoxall on the River Swarbourne"
+ },
+ {
+   "name": "River Hamps and River Manifold",
+   "description": "Low-lying land and roads on the River Hamps and Manifold including Waterhouses"
+ },
+ {
+   "name": "Lower Teme",
+   "description": "River Teme and its tributaries downstream of Ludlow"
+ },
+ {
+   "name": "Upper Tame",
+   "description": "Low-lying land and roads between Horseley Heath and Castle Vale on the River Tame and Bescot on the Ford Brook"
+ },
+ {
+   "name": "Lower Tame",
+   "description": "Low-lying land and roads between Hopwas and the National Arborteum near Alrewas"
+ },
+ {
+   "name": "River Arrow and River Alne",
+   "description": "Low-lying land and roads between Studley and Salford Priors on the River Arrow and between Bird in Hand and Henley in Arden and Alcester on the River Alne including farmland and caravan parks"
+ },
+ {
+   "name": "Rivers in the Forest of Dean",
+   "description": "River Lyd and Cinderford Brook"
+ },
+ {
+   "name": "River Blythe in Warwickshire",
+   "description": "Low-lying land and roads between Cheswick Green and Blyth End"
+ },
+ {
+   "name": "River Leam and River Itchen",
+   "description": "Low-lying land and roads between Grandborough and Leamington, including Long Itchington"
+ },
+ {
+   "name": "River Lugg south of Leominster",
+   "description": "River Lugg south of Leominster"
+ },
+ {
+   "name": "River Severn at Hanley Road, Upton upon Severn",
+   "description": "River Severn at Hanley Road, Upton upon Severn"
+ },
+ {
+   "name": "River Teme at Bransford",
+   "description": "River Teme at Bransford"
+ },
+ {
+   "name": "River Severn at Court Meadow, Kempsey and Callow End",
+   "description": "River Severn at Court Meadow, Kempsey and Callow End"
+ },
+ {
+   "name": "River Severn at Abbots Court, Deerhurst",
+   "description": "River Severn at Abbots Court, Deerhurst"
+ },
+ {
+   "name": "River Chelt at Uckington and Boddington",
+   "description": "River Chelt at Uckington and Boddington"
+ },
+ {
+   "name": "River Lugg at Hampton Bishop",
+   "description": "River Lugg at Hampton Bishop"
+ },
+ {
+   "name": "River Avon at Twyning",
+   "description": "River Avon at Twyning"
+ },
+ {
+   "name": "River Stour at Stambermill",
+   "description": "River Stour at Stambermill including Old Forge Trading Estate and Bagley Street"
+ },
+ {
+   "name": "River Severn at Deerhurst",
+   "description": "River Severn at Deerhurst"
+ },
+ {
+   "name": "River Avon at Birlingham and Eckington",
+   "description": "River Avon at Birlingham including Eckington Bridge"
+ },
+ {
+   "name": "River Wye at Blackmarstone, Hereford",
+   "description": "River Wye at Blackmarstone, Hereford"
+ },
+ {
+   "name": "Smestow Brook at Wightwick",
+   "description": "Smestow Brook at Wightwick and Compton"
+ },
+ {
+   "name": "River Severn at Hylton Road, Worcester",
+   "description": "River Severn at Hylton Road, Worcester"
+ },
+ {
+   "name": "River Avon at Wyre Piddle",
+   "description": "River Avon at Wyre Piddle"
+ },
+ {
+   "name": "River Arrow at Broom",
+   "description": "River Arrow at Broom including Mill Close, Millers Bank and Mill Lane"
+ },
+ {
+   "name": "River Severn at Clifton and Severn Stoke",
+   "description": "River Severn at Clifton and Severn Stoke including Clevelode"
+ },
+ {
+   "name": "River Rea at Lifford",
+   "description": "River Rea at Lifford including Tunnel Lane, Reaside Crescent, Brandwood Park Road and Allens Croft Road"
+ },
+ {
+   "name": "River Tame at Gravelly Hill",
+   "description": "River Tame at Gravelly Hill from Gravelly Industrial Estate to Castle Bromwich Bridge"
+ },
+ {
+   "name": "River Vyrnwy at Melverley",
+   "description": "River Vyrnwy at Melverley including Melverley Green"
+ },
+ {
+   "name": "River Wye at Hampton Bishop",
+   "description": "River Wye at Hampton Bishop"
+ },
+ {
+   "name": "River Stour at Cradley Heath",
+   "description": "River Stour at Cradley Heath from Bridge Street to Wood lane including Works at Maypole Fields"
+ },
+ {
+   "name": "River Anker at Weddington",
+   "description": "River Anker at Weddington including Church Lane, Cleaver Gardens, Cleaver Park Sports Ground, Brook Lane and parts of Weddington Road"
+ },
+ {
+   "name": "River Avon at Harvington and Offenham",
+   "description": "River Avon at Harvington and Offenham, including Abbots Salford"
+ },
+ {
+   "name": "River Swarbourn at Yoxall",
+   "description": "River Swarbourn at Yoxall including Wood Lane Bridge Farm, Stair Bridge, Main Street and Bond End"
+ },
+ {
+   "name": "River Severn at Hampton Loade and Highley",
+   "description": "River Severn at Hampton Loade and Highley"
+ },
+ {
+   "name": "River Avon at Evesham",
+   "description": "River Avon at Evesham"
+ },
+ {
+   "name": "Barbourne Brook at Barbourne",
+   "description": "Barbourne Brook at Barbourne"
+ },
+ {
+   "name": "River Severn at Bushley",
+   "description": "River Severn at Bushley"
+ },
+ {
+   "name": "River Severn at Larford, Riverlands and Holt Fleet",
+   "description": "River Severn at Larford, Riverlands, Holt Heath and Holt Fleet"
+ },
+ {
+   "name": "River Cole at Greet",
+   "description": "River Cole at Greet including Warwick Road, Colebrook Road, Manor Farm Road and Tyseley Industrial Estate"
+ },
+ {
+   "name": "River Severn in North Worcester",
+   "description": "River Severn in North Worcester"
+ },
+ {
+   "name": "River Dove at Green Lane and Saltbrook Meadow Farm",
+   "description": "River Dove at Green Lane and Saltbrook Meadow Farm"
+ },
+ {
+   "name": "River Wye from Hay to Hereford",
+   "description": "River Wye from Hay to Hereford"
+ },
+ {
+   "name": "River Arrow at Kington",
+   "description": "River Arrow at Kington"
+ },
+ {
+   "name": "River Severn at Quatford",
+   "description": "River Severn at Quatford"
+ },
+ {
+   "name": "River Severn at Tewkesbury",
+   "description": "River Severn at Tewkesbury"
+ },
+ {
+   "name": "River Frome at Stroud and Ryeford",
+   "description": "River Frome at Stroud and Ryeford"
+ },
+ {
+   "name": "River Tean at Upper Tean, Lower Tean and Checkley",
+   "description": "River Tean at Upper Tean, Lower Tean and Checkley"
+ },
+ {
+   "name": "River Teme at Ludlow",
+   "description": "River Teme at Ludlow"
+ },
+ {
+   "name": "River Stour at Stourport",
+   "description": "River Stour at Stourport"
+ },
+ {
+   "name": "River Teme at Shelsley Walsh and Clifton Upon Teme",
+   "description": "River Teme at Shelsley Walsh and Clifton Upon Teme"
+ },
+ {
+   "name": "River Chelt at Springbank, Cheltenham",
+   "description": "River Chelt at Springbank, Cheltenham"
+ },
+ {
+   "name": "River Lyd at Lydney",
+   "description": "River Lyd at Lydney"
+ },
+ {
+   "name": "River Severn at Bridgnorth",
+   "description": "River Severn at Bridgnorth"
+ },
+ {
+   "name": "River Wye from Hereford to Ross-On-Wye",
+   "description": "River Wye from Hereford to Ross-On-Wye"
+ },
+ {
+   "name": "River Severn at Northwood, Bewdley",
+   "description": "River Severn at Northwood, Bewdley"
+ },
+ {
+   "name": "River Anker at Polesworth",
+   "description": "River Anker at Polesworth including Bridge Street, Market Street, Grendon Road, Tamworth Road, Rowland Avenue and Pooley View"
+ },
+ {
+   "name": "River Severn in South Worcester",
+   "description": "River Severn in South Worcester"
+ },
+ {
+   "name": "River Teme at Stanford Bridge",
+   "description": "River Teme at Stanford Bridge"
+ },
+ {
+   "name": "Purton on the Severn Estuary",
+   "description": "Purton on the Severn Estuary"
+ },
+ {
+   "name": "River Alne at Henley in Arden",
+   "description": "River Alne at Henley in Arden including Birmingham Road, High Street, Beaudesert Lane, Prince Harry Road, Riverside Gardens, Meadow Road, Glenhurst Road and Warwick Road areas"
+ },
+ {
+   "name": "River Alne at Mill House and Mill Farm in Aston Cantlow, Mill Lane in Great Alne and Hoo Mill",
+   "description": "River Alne at Mill House, Mill Farm and the caravan park in Aston Cantlow, Mill Lane in Great Alne and Hoo Mill"
+ },
+ {
+   "name": "River Leam at Leamington C",
+   "description": "River Leam at Leamington including parts of Gullimans Way, Leam Terrace, Priory Terrace, Victoria Terrace, Bath Street, High Street, Euston Place, Dormer Place, Riverside and Princes Drive areas"
+ },
+ {
+   "name": "Gilwiskaw Brook at Packington",
+   "description": "Gilwiskaw Brook at Packington including Mill Street and Brook Close"
+ },
+ {
+   "name": "River Rea at Newnham Bridge",
+   "description": "River Rea at Newnham Bridge"
+ },
+ {
+   "name": "River Anker at Amington, Tamworth",
+   "description": "River Anker at Amington, Tamworth including Shuttington Road, Amington Old Hall, Amington Park, Filey, Selker Drive and Whitley Avenue"
+ },
+ {
+   "name": "River Sowe at Bedworth",
+   "description": "River Sowe at Bedworth including Heather Drive, Brooklea, Croft Pool and Delamere Road areas"
+ },
+ {
+   "name": "River Severn at Dunns Lane, Upton upon Severn",
+   "description": "River Severn at Dunns Lane, Upton upon Severn"
+ },
+ {
+   "name": "River Stour at Caunsall and Cookley",
+   "description": "River Stour at Caunsall and Cookley"
+ },
+ {
+   "name": "River Teme at Powick",
+   "description": "River Teme at Powick"
+ },
+ {
+   "name": "River Stour at Kidderminster",
+   "description": "River Stour at Kidderminster"
+ },
+ {
+   "name": "River Teme at Little Hereford and Ashford Carbonel",
+   "description": "River Teme at Little Hereford and Ashford Carbonel"
+ },
+ {
+   "name": "River Stour at Kinver",
+   "description": "River Stour at Kinver"
+ },
+ {
+   "name": "River Rea at Longbridge",
+   "description": "River Rea at Longbridge from Bristol Road South to Peters Avenue including Mill Lane"
+ },
+ {
+   "name": "River Tame at Bescot",
+   "description": "River Tame at Bescot railway station area"
+ },
+ {
+   "name": "Saredon Brook at Standeford near Coven",
+   "description": "Saredon Brook at Standeford near Coven"
+ },
+ {
+   "name": "River Sherbourne at Coventry City Centre",
+   "description": "River Sherbourne at Coventry City Centre including Arches Industrial Esate, Northumberand Rd, Doe Bank Lane, Upper Spon Street, Sherbourne Street, Wellington Gardens, Windsor Street, Vincent Street, Meadow Street, Corporation Street and Gulson Rd areas"
+ },
+ {
+   "name": "River Sence from Temple Mill to Sheepy Magna",
+   "description": "River Sence from Temple Mill to Sheepy Magna including Sibson Mill, Lovetts Bridge and Sheepy Parva"
+ },
+ {
+   "name": "River Severn at Hanley Castle and Saxons Lode",
+   "description": "River Severn at Hanley Castle and Saxons Lode, including properties directly adjacent to the river in Uckinghall and Rectory Road, Upton upon Severn"
+ },
+ {
+   "name": "River Swift at Rugby",
+   "description": "River Swift at Rugby, including Brownsover Road, Swift Park and Leicester Road Retail Park"
+ },
+ {
+   "name": "River Avon at Bretford",
+   "description": "River Avon at Bretford"
+ },
+ {
+   "name": "River Severn at Severn Bank Park",
+   "description": "River Severn at Severn Bank Park"
+ },
+ {
+   "name": "River Blithe at Blythe Bridge",
+   "description": "River Blithe at Blythe Bridge including Uttoxeter Road, Roman Road, Blythe View and Blythe Bridge Mill"
+ },
+ {
+   "name": "River Severn at Minsterworth and Stonebench",
+   "description": "River Severn at Minsterworth and Stonebench including Corn Ham, Calcotts Green and Main Road, Minsterworth"
+ },
+ {
+   "name": "Henmore Brook at Ashbourne",
+   "description": "Henmore Brook at Ashbourne including Sturston Mill, Ashbourne Town Centre and Henmore Trading Estate"
+ },
+ {
+   "name": "River Anker at Leather Mill",
+   "description": "River Anker at Leather Mill including properties on Leathermill Lane"
+ },
+ {
+   "name": "River Avon at Little Lawford and Newnham Grounds",
+   "description": "River Avon at Little Lawford and Newnham Grounds including Little Lawford Lane"
+ },
+ {
+   "name": "River Itchen at Long Itchington",
+   "description": "River Itchen at Long Itchington including Church Road and Stonebridge Lane areas"
+ },
+ {
+   "name": "River Tame at Elford",
+   "description": "River Tame at Elford including Elford Mill and Stubby Lea Farm"
+ },
+ {
+   "name": "River Sowe at Wyken and Stoke, Coventry",
+   "description": "River Sowe at Wyken and Stoke, Coventry including Heybrook Close, Sidmouth Close, Starcross Close, Plymouth Close, New Green Park, Blackshaw Drive, Triumph Close, Ventnor Close, Binley Road and Brookvale Avenue areas"
+ },
+ {
+   "name": "Saredon Brook at Wedges Mills, Cannock",
+   "description": "Saredon Brook at Wedges Mills, Cannock"
+ },
+ {
+   "name": "River Blithe from Leigh Crossing to Dapple Heath",
+   "description": "River Blithe from Leigh Crossing to Dapple Heath including Lower Leigh, Field, Burndhurst and The Blythe"
+ },
+ {
+   "name": "River Severn Sandy Lane and Severnside, Stourport",
+   "description": "River Severn Sandy Lane Industrial Estate, Moor Hall Lane and Severnside Cottages, Stourport"
+ },
+ {
+   "name": "River Severn at the Showground and The Quarry, Shrewsbury",
+   "description": "River Severn at the Showground and The Quarry, Shrewsbury"
+ },
+ {
+   "name": "River Anker at Mancetter, Witherley and Atherstone",
+   "description": "River Anker at Mancetter, Witherley and Atherstone including Lodge Close in Mancetter, Bridge Lane and Riverside in Witherley, Royal Meadow Drive, Ratcliffe Road and Aldermill Business Park in Atherstone"
+ },
+ {
+   "name": "River Blythe at Earlswood",
+   "description": "River Blythe at Earlswood from Valley Road to the Industrial estate"
+ },
+ {
+   "name": "River Trent at Hanford and Trentham",
+   "description": "River Trent at Hanford and Trentham including Church Lane area of Hanford, Park Drive in Trentham and Trentham Gardens"
+ },
+ {
+   "name": "River Wye at Lydbrook",
+   "description": "River Wye at Lydbrook"
+ },
+ {
+   "name": "River Trent at Abbey Hulton and Bucknall",
+   "description": "River Trent at Abbey Hulton and Bucknall area of Stoke including Fishpond Way, Mill Farm, Leek Road, Atlam Close, Westacre, Broughton Road and Dividy Road"
+ },
+ {
+   "name": "River Trent at Rugeley",
+   "description": "River Trent at Rugeley including Mast Trading Estate, Power Station Road area, Boston Industrial Estate, Deacons Way, Bishops Grange and Vicars Croft"
+ },
+ {
+   "name": "River Arrow at Coughton",
+   "description": "River Arrow at Coughton including Coughton Court and Coughton Fields Lane"
+ },
+ {
+   "name": "River Tame at Whitacre and Nether Whitacre",
+   "description": "River Tame at Whitacre and Nether Whitacre including Birmingham Road, Coton Road, Station Road and Middle Lane"
+ },
+ {
+   "name": "River Tame at Hams Hall",
+   "description": "River Tame at Hams Hall including Coleshill Industrial Estate"
+ },
+ {
+   "name": "River Severn at Alney Island, Gloucester",
+   "description": "River Severn at Alney Island, Gloucester"
+ },
+ {
+   "name": "River Cole at Woodlands, Coleshill",
+   "description": "River Cole at Woodlands, Coleshill including Coleshill Hall Bridge area"
+ },
+ {
+   "name": "River Blythe at Molands Bridge",
+   "description": "River Blythe at Molands Bridge"
+ },
+ {
+   "name": "River Churnet at Rocester",
+   "description": "River Churnet at Rocester including the Churnet Bridge area"
+ },
+ {
+   "name": "River Rea at Kings Norton",
+   "description": "River Rea at Kings Norton including Catesby Park, Parkview Trading Estate and Kings Norton Business Centre"
+ },
+ {
+   "name": "River Tame at Croxall",
+   "description": "River Tame at Croxall"
+ },
+ {
+   "name": "Picknall Brook at Uttoxeter",
+   "description": "Picknall Brook at Uttoxeter from Hockley Road to the Racecourse and Dovefields Retail Park"
+ },
+ {
+   "name": "River Severn at Sandhurst and Maisemore",
+   "description": "River Severn at Sandhurst and Maisemore including Walham and Severnside Farm"
+ },
+ {
+   "name": "River Churnet at Froghall including Consall Forge",
+   "description": "River Churnet at Froghall including Consall Forge"
+ },
+ {
+   "name": "River Blythe at Little Packington and Dukes Bridge",
+   "description": "River Blythe at Little Packington and Dukes Bridge from Packington Park to Cuttle Cottages"
+ },
+ {
+   "name": "Tidal Severn from Elmore to Rodley",
+   "description": "Tidal Severn from Elmore to Rodley including Elmore Back, Bollow, and Longney"
+ },
+ {
+   "name": "Slimbridge on the Severn Estuary",
+   "description": "Slimbridge on the Severn Estuary"
+ },
+ {
+   "name": "River Trent at Catton, Barton under Needwood and Branston Water Park",
+   "description": "River Trent at Catton, Barton under Needwood and Branston Water Park including Central Rivers Railway Depot, Barton Turns and Greycar Business Park area in Barton under Needwood and Lichfield Road area in Branston"
+ },
+ {
+   "name": "River Leam at Eathorpe, Huningham and Offchurch",
+   "description": "River Leam at Eathorpe, Huningham and Offchurch including Eathorpe village, Main Street in Huningham, Welsh Road in Offchurch and Offchurch Bury Park area"
+ },
+ {
+   "name": "River Tame at Ventura Park",
+   "description": "River Tame at Ventura Park"
+ },
+ {
+   "name": "River Arrow at Spernall",
+   "description": "River Arrow at Spernall including Spernall Lane"
+ },
+ {
+   "name": "River Alne at Pennyford Lane and Little Alne",
+   "description": "River Alne at Pennyford Lane and Little Alne including Field Farm and Pennyford Hall areas"
+ },
+ {
+   "name": "Ridings Brook at Rumer Hill, Cannock",
+   "description": "Ridings Brook at Rumer Hill, Cannock including parts of Rumer Hill Road, Walsall Road and St Johns Road"
+ },
+ {
+   "name": "River Lugg at Kenwater",
+   "description": "River Lugg at Kenwater"
+ },
+ {
+   "name": "River Dove and Egginton Brook at Egginton",
+   "description": "River Dove and Egginton Brook at Egginton including Egginton Village and Derby Road"
+ },
+ {
+   "name": "River Sowe at Longford",
+   "description": "River Sowe at Longford including Rowley's Green Lane, Oakley Close, Basford Brook Drive, Bungalow Estate Lady Lane and Longford Bridge areas"
+ },
+ {
+   "name": "Rolleston Brook and River Dove at Rolleston",
+   "description": "Rolleston Brook and River Dove at Rolleston including Alder Moor, Station Road and Burnside areas of Rolleston and Clay Mills"
+ },
+ {
+   "name": "River Churnet at Oakamoor",
+   "description": "River Churnet at Oakamoor including The Square, Mill Road, Stoney Dale and Red Road"
+ },
+ {
+   "name": "Foston Brook at Foston",
+   "description": "Foston Brook at Foston including Foston Prison and Uttoxeter Road"
+ },
+ {
+   "name": "River Churnet at Quixhill",
+   "description": "River Churnet at Quixhill"
+ },
+ {
+   "name": "River Anker at Horeston Grange and Attleborough, Nuneaton",
+   "description": "River Anker at Horeston Grange and Attleborough including Launceston Drive area, Kingfisher Court, Liberty Way, Pembroke Way, Attleborough Road, Seymour Road, Caarnarfon Drive, Ribbonbrook, Lister Street, Ribbonfields and Pingle Court"
+ },
+ {
+   "name": "River Severn at Fort Pendlestone and Severn Hall",
+   "description": "River Severn at Fort Pendlestone and Severn Hall"
+ },
+ {
+   "name": "River Teme at Knightwick, Doddenham and Broadwas",
+   "description": "River Teme at Knightwick, Doddenham and Broadwas"
+ },
+ {
+   "name": "River Cole at Sparkhill",
+   "description": "River Cole at Sparkhill from Bankside to Greet Bridge including Formans Road"
+ },
+ {
+   "name": "River Frome at Chalford",
+   "description": "River Frome at Chalford"
+ },
+ {
+   "name": "River Penk at Acton Bridge",
+   "description": "River Penk at Acton Bridge"
+ },
+ {
+   "name": "River Severn at Buildwas",
+   "description": "River Severn at Buildwas"
+ },
+ {
+   "name": "River Avon at Stanford on Avon",
+   "description": "River Avon at Stanford on Avon including Stanford on Avon village"
+ },
+ {
+   "name": "River Severn at Pentre",
+   "description": "River Severn at Pentre"
+ },
+ {
+   "name": "River Cole at Hay Mills",
+   "description": "River Cole at Hay Mills including Speedwell Road, George Road, Fordrough, Coventry Road and Shipway Road"
+ },
+ {
+   "name": "River Severn at Severn Ham, Tewkesbury",
+   "description": "River Severn at Severn Ham, including Abbey Mill, Upper and Lower Lode and Shakespeare Court"
+ },
+ {
+   "name": "River Severn at Apperley and The Leigh",
+   "description": "River Severn at Apperley and The Leigh including Deerhurst Walton and Prior's Norton"
+ },
+ {
+   "name": "Framilode and Priding on the Severn Estuary",
+   "description": "Framilode and Priding on the Severn Estuary"
+ },
+ {
+   "name": "River Isbourne at The Hollows, Sedgeberrow",
+   "description": "River Isbourne at The Hollows, Sedgeberrow"
+ },
+ {
+   "name": "Hilton Brook at Sutton on the Hill and Uttoxeter Road Hilton",
+   "description": "Hilton Brook at Sutton on the Hill and Uttoxeter Road, Hilton"
+ },
+ {
+   "name": "River Tame at Wednesbury",
+   "description": "River Tame at Wednesbury including Hydes Road, The Woods and Bescot areas"
+ },
+ {
+   "name": "Hilton Brook at Hilton",
+   "description": "Hilton Brook at Hilton including Common Lane, The Mease and Welland Road areas"
+ },
+ {
+   "name": "Canley Brook at Canley",
+   "description": "Canley Brook at Canley including Canley Road and The Riddings"
+ },
+ {
+   "name": "River Wye at Rotherwas, Hereford",
+   "description": "River Wye at Rotherwas, Hereford"
+ },
+ {
+   "name": "River Trent at Norton Green",
+   "description": "River Trent at Norton Green including Trent Terrace, Endon Road, Foundry Square, Probisher Street and Little Heakley Farm"
+ },
+ {
+   "name": "River Anker at Nuneaton Town Centre",
+   "description": "River Anker at Nuneaton Town Centre"
+ },
+ {
+   "name": "River Dove at Scropton",
+   "description": "River Dove at Scropton including Watery Lane and Farms off Uttoxeter Road"
+ },
+ {
+   "name": "River Alne at Bird in Hand",
+   "description": "River Alne at Bird in Hand including Tanworth Lane and Camp Lane"
+ },
+ {
+   "name": "River Anker at Tamworth Town Centre",
+   "description": "River Anker at Tamworth Town Centre including Stationfields Park Homes, Amington Road and Moor Lane"
+ },
+ {
+   "name": "Fowlea Brook at Stoke on Trent",
+   "description": "Fowlea Brook from Cliff Vale Industrial Park to Stoke Town Hall"
+ },
+ {
+   "name": "River Avon at Weston on Avon and Welford on Avon",
+   "description": "River Avon at Weston on Avon and Welford on Avon including properties in and around Binton Road and Mill Lane in Welford on Avon"
+ },
+ {
+   "name": "River Avon at Marston and Wolston",
+   "description": "River Avon at Marston and Wolston including Priory Road in Marston and Hawthorne Close, St Margarets Avenue, Bluemells Drive and Main Street in Wolston"
+ },
+ {
+   "name": "River Arrow and River Alne at Alcester and Oversley Mill",
+   "description": "River Arrow and River Alne at Alcester and Oversley Mill from The Mill Industrial Park to Arrow Mill including Fairwater Crescent area"
+ },
+ {
+   "name": "River Severn at Ironbridge and Jackfield",
+   "description": "River Severn at Ironbridge and Jackfield including Coalport"
+ },
+ {
+   "name": "River Penk at Penkridge",
+   "description": "River Penk at Penkridge including Stone Cross, Pinfold Lane, Crown Bridge, Mill Street and Stanford Close"
+ },
+ {
+   "name": "Endon Brook at Denford",
+   "description": "Endon Brook from Huntley Road in Denford and Sutherland Road in Longsdon"
+ },
+ {
+   "name": "River Churnet at Leek",
+   "description": "River Churnet at Leek including Abbey Green Road, Macclesfield Road, Thomas Street, Grace Street"
+ },
+ {
+   "name": "River Avon at Ashow and Blackdown",
+   "description": "River Avon at Ashow and Blackdown areas"
+ },
+ {
+   "name": "River Tame at Hamstead",
+   "description": "River Tame at Hamstead including Woodend, Greenway, Beauchamp Avenue, The Croftway, Walcot Drive, Hamstead Road, Kirkstone Crescent, Old Walsall Road and Hampstead Industrial Estate areas"
+ },
+ {
+   "name": "River Avon at Rugby and Newbold on Avon",
+   "description": "River Avon at Rugby and Newbold on Avon including Aqua Place, Boughton Road and Kinman Way area, Junction One Retail Park area, Fosterd Road and Newbold Road in Rugby and Grange Road, Newbold Road, Main Street and Parkfield Road in Newbold on Avon"
+ },
+ {
+   "name": "River Mease at Measham and Netherseal",
+   "description": "River Mease at Measham and Netherseal including Huntingdon Way, Mallard Close, Siskin Close, Wordsworth Way and Burns Close in Measham and Stretton Bridge and Mill Farm in Netherseal"
+ },
+ {
+   "name": "River Tame at Perry Barr",
+   "description": "River Tame at Perry Barr from Great Barr Business Park to Church Road including One Stop Retail Park"
+ },
+ {
+   "name": "River Penk at Congreve and Water Eaton",
+   "description": "River Penk at Congreve and Water Eaton including Engleton Mill Lane at Brewood"
+ },
+ {
+   "name": "Lyme Brook at Newcastle under Lyme and Trent Vale",
+   "description": "Lyme Brook at Newcastle under Lyme and Trent Vale including Silverdale Road, Stanier Street, St Pauls Road, Orme Road, Pool Dam, Hatrell Street, Brook Lane, Lyme Valley Road and Sports Grounds off Rosetree Avenue"
+ },
+ {
+   "name": "Frampton, Upper Framilode and Saul on the Severn Estuary",
+   "description": "Frampton, Upper Framilode and Saul on the Severn Estuary"
+ },
+ {
+   "name": "River Arrow at Salford Bridge",
+   "description": "River Arrow at Salford Bridge including Station Road"
+ },
+ {
+   "name": "River Churnet at Leekbrook",
+   "description": "River Churnet at Leekbrook including Primrose Close, Tulip Way, Wardel Gardens, Bluebell Close, Clover Grove and Cheadle Road"
+ },
+ {
+   "name": "River Trent at riverside areas of Burton upon Trent",
+   "description": "River Trent at riverside areas of Burton upon Trent including Waterside Road area in Stapenhill, Burton Bridge area, Newton Road area in Winshill and Church Lane in Newton Solney"
+ },
+ {
+   "name": "River Trent at Burton upon Trent",
+   "description": "River Trent at Burton upon Trent from Branston to Clay Mills behind Flood Defences"
+ },
+ {
+   "name": "River Penk at Somerford",
+   "description": "River Penk at Somerford"
+ },
+ {
+   "name": "River Avon at Bubbenhall",
+   "description": "River Avon at Bubbenhall including Bubbenhall Road"
+ },
+ {
+   "name": "River Blythe at Widney Manor, Brueton Park and Eastcote",
+   "description": "River Blythe at Widney Manor, Brueton Park and Eastcote including Widney Manor Road, Oldway Drive, Riverside Drive and Henwood Lane"
+ },
+ {
+   "name": "Canley Brook at Tile Hill",
+   "description": "Canley Brook at Tile Hill including Padstow Road, Parbrook Close, Binns Close, Torrington Avenue, John Rous Avenue, Prior Deram Walk, Gerard Avenue and Freeburn Causeway areas"
+ },
+ {
+   "name": "River Lugg at Leominster",
+   "description": "River Lugg at Leominster"
+ },
+ {
+   "name": "River Lugg at Eyton and The Broad",
+   "description": "River Lugg at Eyton and The Broad"
+ },
+ {
+   "name": "Finham Brook at Kenilworth",
+   "description": "Finham Brook at Kenilworth including Forge Road, Northvale Close and Common Lane"
+ },
+ {
+   "name": "River Avon at Warwick",
+   "description": "River Avon at Warwick including Emscote Road, Mill House Close, Grange Close, Bridge Street, Mercia Way, Field Close, Rich Close, Frances Avenue, St Nicholas Park, Mill Street and Bridge End"
+ },
+ {
+   "name": "River Sherbourne at Pinley and Whitley, Coventry",
+   "description": "River Sherbourne at Pinley and Whitley, Coventry including Bar Road and Abbey Road areas"
+ },
+ {
+   "name": "River Isbourne at Sedgeberrow and Hinton on the Green",
+   "description": "River Isbourne at Sedgeberrow and Hinton on the Green"
+ },
+ {
+   "name": "River Sow St. Thomas area",
+   "description": "River Sow St. Thomas area"
+ },
+ {
+   "name": "River Avon at Strensham and Bredon",
+   "description": "River Avon at Strensham and Bredon"
+ },
+ {
+   "name": "River Cole at Stechford",
+   "description": "River Cole at Stechford including Victoria Road, Frederick Road, Gumbleberrys Close, Cottsmeadow Drive and Everton Road"
+ },
+ {
+   "name": "River Tanat at Llanyblodwel",
+   "description": "River Tanat at Llanyblodwel"
+ },
+ {
+   "name": "River Tean at Adderley",
+   "description": "River Tean at Adderley"
+ },
+ {
+   "name": "Marchington Brook at Marchington",
+   "description": "Marchington Brook at Marchington including Church Lane and Church Close"
+ },
+ {
+   "name": "River Blythe at Barston, Temple Balsall and Bradnocks Marsh",
+   "description": "River Blythe at Barston, Temple Balsall and Bradnocks Marsh"
+ },
+ {
+   "name": "Ridings Brook at Bridgetown, Cannock",
+   "description": "Ridings Brook at Bridgetown, Cannock including parts of Walsall Road and Longford Industrial Estate"
+ },
+ {
+   "name": "Epney on the Severn Estuary",
+   "description": "Epney on the Severn Estuary"
+ },
+ {
+   "name": "River Churnet at Barnfields",
+   "description": "River Churnet at Barnfields including Wall Bridge area, Sunnyhills Road and the A53"
+ },
+ {
+   "name": "River Avon at Pershore and Wick",
+   "description": "River Avon at Pershore and Wick"
+ },
+ {
+   "name": "River Chelt at Charlton Kings",
+   "description": "River Chelt at Charlton Kings"
+ },
+ {
+   "name": "River Leam at Marton",
+   "description": "River Leam at Marton including Coventry Road, North Street and Birdingbury Road"
+ },
+ {
+   "name": "River Frome at Brimscombe and Thrupp",
+   "description": "River Frome at Brimscombe and Thrupp"
+ },
+ {
+   "name": "River Sow at Stafford",
+   "description": "River Sow at Stafford from Tillington to Kingston"
+ },
+ {
+   "name": "River Dene at Walton",
+   "description": "River Dene at Walton including Walton Road"
+ },
+ {
+   "name": "River Severn at Hempsted",
+   "description": "River Severn at Hempsted"
+ },
+ {
+   "name": "River Leam at Grandborough and Kites Hardwick",
+   "description": "River Leam at Grandborough and Kites Hardwick including Hill Road, Sawbridge Road and Main Street in Grandborough and Southam Road in Kites Hardwick"
+ },
+ {
+   "name": "Smestow Brook at Hinksford",
+   "description": "Smestow Brook at Hinksford including Hinksford Park, Greensforge, Flatheridge Cottage and Greensforge Lane"
+ },
+ {
+   "name": "River Dove at Marston on Dove",
+   "description": "River Dove at Marston on Dove including all properties on Marston Lane"
+ },
+ {
+   "name": "River Teme at Leintwardine and Walford",
+   "description": "River Teme at Leintwardine and Walford"
+ },
+ {
+   "name": "River Penk at Coven",
+   "description": "River Penk at Coven"
+ },
+ {
+   "name": "River Severn at Pitchcroft, North Worcester",
+   "description": "River Severn at Pitchcroft, North Worcester"
+ },
+ {
+   "name": "River Hamps at Waterhouses",
+   "description": "River Hamps at Waterhouses including Leek Road area"
+ },
+ {
+   "name": "River Blythe at Blyth End",
+   "description": "River Blythe at Blyth End including properties off the Blythe Road area"
+ },
+ {
+   "name": "River Cole at Bordesley Green East",
+   "description": "River Cole at Bordesley Green East including Blakesley Road, Yardley Green Road and Caldecote Grove"
+ },
+ {
+   "name": "River Dove at Dovefields Crossing and Saltbrook Cottage",
+   "description": "River Dove at Dovefields Crossing and Saltbrook Cottage including the Draycott Mill area"
+ },
+ {
+   "name": "River Alne at Chapel Lane and Church Lane in Aston Cantlow and Great Alne",
+   "description": "River Alne at Chapel Lane and Church Lane in Aston Cantlow and Great Alne"
+ },
+ {
+   "name": "Rea Brook in Shrewsbury",
+   "description": "Rea Brook in Shrewsbury"
+ },
+ {
+   "name": "River Severn at East Waterside, Upton upon Severn",
+   "description": "River Severn at East Waterside, Upton upon Severn"
+ },
+ {
+   "name": "Westbury, Broadoak and Newnham on the Severn Estuary",
+   "description": "Westbury, Broadoak and Newnham on the Severn Estuary"
+ },
+ {
+   "name": "River Frome at Bromyard",
+   "description": "River Frome at Bromyard"
+ },
+ {
+   "name": "River Blythe at Cheswick Green",
+   "description": "River Blythe at Cheswick Green including Coppice Walk, Cheswick Way and Watery Lane areas"
+ },
+ {
+   "name": "River Wye in South Hereford",
+   "description": "River Wye in South Hereford"
+ },
+ {
+   "name": "River Severn at Chaceley and Haw Bridge",
+   "description": "River Severn at Chaceley and Haw Bridge including Tirley and Town Street"
+ },
+ {
+   "name": "River Dove at Hangingbridge and Church Mayfield",
+   "description": "River Dove at Hangingbridge and Church Mayfield including Hangingbridge Village, Clifton Bridge area, Mayfield Terrace, West View and South View in Mayfield and Sidesmill Farm"
+ },
+ {
+   "name": "Yazor and Widemarsh Brook in Hereford",
+   "description": "Yazor and Widemarsh Brook in Hereford"
+ },
+ {
+   "name": "River Mease at Clifton Campville, Harlaston and Croxall",
+   "description": "River Mease at Clifton Campville, Harlaston and Croxall including Main Street and Lullington Road in Clifton Campville, Main Road in Harlaston and The Hall at Croxall"
+ },
+ {
+   "name": "River Wye in North Hereford",
+   "description": "River Wye in North Hereford"
+ },
+ {
+   "name": "Ford Brook at Bescot",
+   "description": "Ford Brook at Bescot including Bescot Crescent and Wednesbury Road"
+ },
+ {
+   "name": "Sharpness and Lydney Harbour on the Severn Estuary",
+   "description": "Sharpness and Lydney Harbour on the Severn Estuary"
+ },
+ {
+   "name": "River Arrow at Studley",
+   "description": "River Arrow at Studley incuding Castle Road and Riverside"
+ },
+ {
+   "name": "River Avon at Stratford upon Avon",
+   "description": "River Avon at Stratford upon Avon including Warwick Road, Tiddington Road, Bridgefoot, Waterside and Shipston Road area, Avonside, Saffron Walk, Stratford Racecourse area and Luddington Road"
+ },
+ {
+   "name": "River Rea at Edgbaston",
+   "description": "River Rea at Edgbaston from Tally Ho to Constance Road"
+ },
+ {
+   "name": "River Severn at Wellmeadow Estate, Bridgnorth",
+   "description": "River Severn at Wellmeadow Estate, Bridgnorth"
+ },
+ {
+   "name": "River Severn at Waterside, Upton upon Severn",
+   "description": "River Severn at Waterside, Upton upon Severn"
+ },
+ {
+   "name": "River Tame at Witton and Salford Park",
+   "description": "River Tame at Witton and Salford Park from Perry Bridge to Star City"
+ },
+ {
+   "name": "Smestow Brook at Seisdon and Woodford Grange",
+   "description": "Smestow Brook at Seisdon and Woodford Grange"
+ },
+ {
+   "name": "River Rea at Stirchley",
+   "description": "River Rea at Stirchley including Cartland Road and Dogpool Lane areas, the Avenues and Sir John's Road"
+ },
+ {
+   "name": "River Sowe at Baginton",
+   "description": "River Sowe at Baginton including Mill Hill area"
+ },
+ {
+   "name": "River Severn at Coleham Head, Shrewsbury",
+   "description": "River Severn at Coleham Head, Shrewsbury"
+ },
+ {
+   "name": "River Rea at Vauxhall, Saltley and Nechells",
+   "description": "River Rea at Vauxhall, Saltley & Nechells from Lauder Street to A47 including Saltley Business Park"
+ },
+ {
+   "name": "River Tame at County Drive and Bitterscote",
+   "description": "River Tame at County Drive and Bitterscote area Tamworth"
+ },
+ {
+   "name": "River Cole at Solihull Lodge",
+   "description": "River Cole at Solihull Lodge including Nethercote Gardens, Wise Meadows, Corley Close and Peterbrook Road"
+ },
+ {
+   "name": "River Severn at Ashleworth",
+   "description": "River Severn at Ashleworth"
+ },
+ {
+   "name": "River Cole at Sarehole, Hall Green",
+   "description": "River Cole at Sarehole Road, Hall Green including Bank Road and Sarehole Road"
+ },
+ {
+   "name": "River Cole at Babbs Mill",
+   "description": "River Cole at Babbs Mill including Corinne Croft and Eileen Gardens"
+ },
+ {
+   "name": "River Stour at Wolverley",
+   "description": "River Stour at Wolverley"
+ },
+ {
+   "name": "River Dove at Fauld Lane and Tutbury",
+   "description": "River Dove at Fauld Lane and Tutbury including Bridge Street"
+ },
+ {
+   "name": "River Frome at Fromebridge and Eastington",
+   "description": "River Frome at Fromebridge and Eastington"
+ },
+ {
+   "name": "River Severn at Wribbenhall, Bewdley",
+   "description": "River Severn at Wribbenhall, Bewdley"
+ },
+ {
+   "name": "River Dove at Hatton",
+   "description": "River Dove at Hatton including Hatton village and Uttoxeter Road area"
+ },
+ {
+   "name": "River Rea at Northfield",
+   "description": "River Rea at Northfield including Station Road, Middlemore Road, Abbeydale Road, Moor Leasow, Wychall Road and Westcroft Grove"
+ },
+ {
+   "name": "River Tame at Golds Hill",
+   "description": "River Tame at Golds Hill from Waterside Park to Smith Road"
+ },
+ {
+   "name": "River Stour from Halford to Clifford Chambers",
+   "description": "River Stour from Halford to Clifford Chambers including Newbold on Stour, Crimscote, Alderminster, Preston on Stour, Ailstone and Atherton on Stour"
+ },
+ {
+   "name": "Wye Estuary at Elmdale, Chepstow",
+   "description": "Wye Estuary at Elmdale, Chepstow"
+ },
+ {
+   "name": "River Tame at Ray Hall Water Works",
+   "description": "River Tame at Ray Hall Water Works including Sandhurst Way, Manorford Avenue, Mayford Drive, Kelverley Grove and Brook Bridge"
+ },
+ {
+   "name": "River Tame at Marston, Kingsbury and Cliff",
+   "description": "River Tame at Marston, Kingsbury and Cliff including Kingsbury Water Park"
+ },
+ {
+   "name": "River Tame at Kettlebrook",
+   "description": "River Tame at Kettlebrook including Reedmace, Campion Drive, Orchard Street and Anker View"
+ },
+ {
+   "name": "River Severn at Severnside, Bewdley",
+   "description": "River Severn at Severnside, Bewdley"
+ },
+ {
+   "name": "River Churnet at Alton",
+   "description": "River Churnet at Alton including Red Road and Station Road"
+ },
+ {
+   "name": "River Severn at Sutton Wharf",
+   "description": "River Severn at Sutton Wharf"
+ },
+ {
+   "name": "River Trent at Alrewas and Wychnor",
+   "description": "River Trent in the Alrewas and Wychnor including Coton Close and Church Road in Alrewas, Wychnor Bridges and Sewage Works"
+ },
+ {
+   "name": "River Teme at Tenbury Wells and Burford",
+   "description": "River Teme at Burford and Tenbury Wells including Newnham Bridge"
+ },
+ {
+   "name": "River Penk at Stafford",
+   "description": "River Penk at Stafford including Queensville area"
+ },
+ {
+   "name": "River Vyrnwy at Maesbrook",
+   "description": "River Vyrnwy at Maesbrook"
+ },
+ {
+   "name": "River Tame at Holloway Bank",
+   "description": "River Tame at Holloway Bank from Smith Road to Woden Road South"
+ },
+ {
+   "name": "River Severn at Shrawardine, Montford Bridge and Mytton",
+   "description": "River Severn at Shrawardine, Montford Bridge and Mytton"
+ },
+ {
+   "name": "River Tame at Water Orton",
+   "description": "River Tame at Water Orton including Marsh Lane and Minworth Sewage Works"
+ },
+ {
+   "name": "River Dove at Doveridge and Sudbury",
+   "description": "River Dove at Doveridge and Sudbury including properties between A50 and Sudbury"
+ },
+ {
+   "name": "River Arrow at Washford Mill",
+   "description": "River Arrow at Washford Mill from Washford Drive including Washford Farm, Little Brook Farm, Washford Bridge, Birmingham Road to The Covers, Red Hill Close and Abby fields drive"
+ },
+ {
+   "name": "River Arrow at Pembridge",
+   "description": "River Arrow at Pembridge"
+ },
+ {
+   "name": "River Severn at Upper Arley",
+   "description": "River Severn at Upper Arley"
+ },
+ {
+   "name": "River Anker at Grendon and Bradley Green",
+   "description": "River Anker at Grendon and Bradley Green"
+ },
+ {
+   "name": "Dovefields Industrial Estate area, Uttoxeter",
+   "description": "Dovefields Industrial Estate area, Uttoxeter including Derby Road area and The Willows"
+ },
+ {
+   "name": "River Trent at Handsacre, Nethertown and Kings Bromley",
+   "description": "River Trent at Handsacre, Nethertown and Kings Bromley"
+ },
+ {
+   "name": "River Dove at Rocester",
+   "description": "River Dove at Rocester including Mill Street near Rocester Bridge"
+ },
+ {
+   "name": "River Severn at Hawford Wood and Bevere",
+   "description": "River Severn at Hawford Wood and Bevere"
+ },
+ {
+   "name": "River Avon at Barton, Bidford on Avon and Marlcliff",
+   "description": "River Avon at Barton, Bidford on Avon and Marlcliff including Welford Road and Owlets End in Barton, Honeybourne Road and parts of High Street in Bidford on Avon and parts of The Bank in Marlcliff"
+ },
+ {
+   "name": "River Leam at Leamington A",
+   "description": "River Leam at Leamington including Mill Gardens area, Royal Pump Rooms, Pump Rooms Gardens, parts of Dormer Place and parts of Riverside, Adelaide Road"
+ },
+ {
+   "name": "River Sowe at Manor House, Coventry",
+   "description": "River Sowe at Manor House, Coventry including Avocet Close, Windmill Road, Aldermans Green Road, Honeysuckle Drive and Hall Green Road areas"
+ },
+ {
+   "name": "River Avon at Barford, Hampton Lucy, Alveston and Tiddington",
+   "description": "River Avon at Barford, Hampton Lucy, Alveston and Tiddington including Charlecote Park and caravan parks"
+ },
+ {
+   "name": "River Trent at Great Haywood Little Haywood and Colwich",
+   "description": "River Trent at Great Haywood Little Haywood Colwich and Wolsley Bridge area"
+ },
+ {
+   "name": "River Trent at Enson, Sandon, Salt and Weston",
+   "description": "River Trent at Enson Sandon Salt and Weston areas"
+ },
+ {
+   "name": "River Tame at Comberford",
+   "description": "River Tame at Comberford including Fisherwick"
+ },
+ {
+   "name": "River Stour at Mitford Bridge, Shipston on Stour and Tredington",
+   "description": "River Stour at Mitford Bridge, Shipston on Stour and Tredington including Burmington, Tidmington, Barcheston, Brailes Road Industrial Estate and Church Street and Mill Street areas of Shipston on Stour"
+ },
+ {
+   "name": "Wye Estuary at Brockweir",
+   "description": "Wye Estuary at Brockweir"
+ },
+ {
+   "name": "River Dene at Wellesbourne",
+   "description": "River Dene at Wellesbourne including Church Walk, Bridge Street and Willow Drive"
+ },
+ {
+   "name": "River Cole at Colehall",
+   "description": "River Cole at Colehall including Maryland Avenue, Rivermead Park, Embleton Grove and Clunbury Croft"
+ },
+ {
+   "name": "River Sherbourne at Allesley",
+   "description": "River Sherbourne at Allesley including Washbrook Lane, Browns Lane, Butt Lane, Staircase Lane, Holyhead Road, Westbury Road and Grayswood Avenue areas"
+ },
+ {
+   "name": "River Severn at Bewdley, Blackstone and Stourport",
+   "description": "River Severn at Bewdley, Blackstone and Stourport"
+ },
+ {
+   "name": "River Teme at Lower Wick",
+   "description": "River Teme at Lower Wick"
+ },
+ {
+   "name": "River Teme at Leigh",
+   "description": "River Teme at Leigh"
+ },
+ {
+   "name": "River Blithe from Blithfield Reservoir to Bancroft",
+   "description": "River Blithe from Blithfield Reservoir to Bancroft including Hanstall Ridware"
+ },
+ {
+   "name": "Clay Coton Brook at Clay Coton and Yelvertoft Brook at Yelvertoft",
+   "description": "Clay Coton Village, including Clay Coton Church and defended areas, and Yelvertoft Village, including High Street, Swinnertons Lane, Elkins Close, Elkington Road and Bridgend."
+ },
+ {
+   "name": "River Tame and Bourne Brook at Fazeley",
+   "description": "River Tame and Bourne Brook at Fazeley from Coleshill Road Bridge to Riverside Industrial Estate"
+ },
+ {
+   "name": "Blackpole and Perdiswell on the Barbourne Brook",
+   "description": "Blackpole and Perdiswell on the Barbourne Brook"
+ },
+ {
+   "name": "Rising Brook, Stafford",
+   "description": "Rising Brook, Stafford"
+ },
+ {
+   "name": "River Tame at Horseley Heath and Great Bridge",
+   "description": "River Tame at Horseley Heath and Great Bridge from John's Lane to the Walsall Canal"
+ },
+ {
+   "name": "River Cole at Coleshill",
+   "description": "River Cole at Coleshill from Cole End to Coleshill Industrial Estate"
+ },
+ {
+   "name": "River Chelt in Cheltenham Town",
+   "description": "River Chelt in Cheltenham Town"
+ },
+ {
+   "name": "River Teme at Eardiston",
+   "description": "River Teme at Eardiston"
+ },
+ {
+   "name": "River Leam at Leamington D",
+   "description": "Leamington including parts of Gullimans Way, Radford Rd, Leam Terrace, Willes Terrace, Beaconsfield St, Leam St, New St, George St, Church St, High St, Bath St, Euston Place, Parade, Augusta Place, Portland Place and Archery Rd areas"
+ },
+ {
+   "name": "River Rea at Breedon Cross",
+   "description": "River Rea at Breedon Cross including Beilby Road and Fordhouse Lane"
+ },
+ {
+   "name": "River Trent at Stone",
+   "description": "River Trent at Stone including Trent Close and Stafford Street"
+ },
+ {
+   "name": "Bourne Brook at Hints and Drayton Manor Park",
+   "description": "Bourne Brook at Hints and Drayton Manor Park including Mill Lane area in Fazeley"
+ },
+ {
+   "name": "River Severn at Frankwell, Shrewsbury",
+   "description": "River Severn at Frankwell, Shrewsbury"
+ },
+ {
+   "name": "River Avon at Fladbury and Cropthorne",
+   "description": "River Avon at Fladbury and Cropthorne"
+ },
+ {
+   "name": "River Trent at Hill Ridware, Pipe Ridware and Mavesyn Ridware",
+   "description": "River Trent at Hill Ridware, Pipe Ridware and Mavesyn Ridware areas"
+ },
+ {
+   "name": "River Frome at Bishops Frome",
+   "description": "River Frome at Bishops Frome"
+ },
+ {
+   "name": "River Frome at Stonehouse and Bridgend",
+   "description": "River Frome at Stonehouse and Bridgend"
+ },
+ {
+   "name": "River Tean at Fole and Beamhurst",
+   "description": "River Tean at Fole and Beamhurst and the A522"
+ },
+ {
+   "name": "River Tame at Lichfield Road Tamworth",
+   "description": "River Tame at Lichfield Road Tamworth from The Leys area to Coton Lane"
+ },
+ {
+   "name": "Sandyford Brook in Stafford",
+   "description": "Sandyford Brook in Stafford at Sandon Road and the Queensway area"
+ },
+ {
+   "name": "River Severn at Shrewsbury",
+   "description": "River Severn at Shrewsbury"
+ },
+ {
+   "name": "River Churnet at Cheddleton",
+   "description": "River Churnet at Cheddleton including Cheadle Road and Churnetside Business Park"
+ },
+ {
+   "name": "River Stour at Stourbridge",
+   "description": "River Stour at Stourbrigde Town Centre,  Amblecote and Prestwood."
+ },
+ {
+   "name": "River Tean at Spath area",
+   "description": "River Tean at Spath area"
+ },
+ {
+   "name": "Ford Green Brook at Fegg Hayes, Bradeley and Sneyd Green",
+   "description": "Ford Green Brook at Fegg Hayes, Bradeley and Sneyd Green, Stoke on Trent including Catherine Road in Fegg Hayes, Tudor Rose Way and Station Crescent in Bradeley and Milton Road in Sneyd Green"
+ },
+ {
+   "name": "River Severn at New Street, Upton upon Severn",
+   "description": "River Severn at New Street, Upton upon Severn"
+ },
+ {
+   "name": "River Lugg at Bodenham",
+   "description": "River Lugg at Bodenham"
+ },
+ {
+   "name": "River Severn at the Wharfage, Ironbridge",
+   "description": "River Severn at the Wharfage, Ironbridge"
+ },
+ {
+   "name": "River Arrow at Eardisland",
+   "description": "River Arrow at Eardisland"
+ },
+ {
+   "name": "River Dove at Norbury and Lower Ellastone",
+   "description": "River Dove at Norbury and Lower Ellastone including Swinholme Farm"
+ },
+ {
+   "name": "River Dove from Coldwall Bridge to Okeover",
+   "description": "River Dove from Coldwall Bridge to Okeover including Dove Cottage, Okeover Mill and Manor House"
+ },
+ {
+   "name": "River Swarbourn at Woodlane Bridge, Yoxall",
+   "description": "River Swarbourn at Woodlane Bridge, Yoxall"
+ },
+ {
+   "name": "River Trent at Stoke on Trent",
+   "description": "River Trent at Stoke on Trent including Joiners Square, the University and Boothen"
+ },
+ {
+   "name": "Arlingham on the Severn Estuary",
+   "description": "Arlingham on the Severn Estuary"
+ },
+ {
+   "name": "River Avon at Guys Cliffe and Emscote",
+   "description": "River Avon at Guys Cliffe and Emscote including Guys Cliffe and Rock Mill Lane, Kempton Drive, Portobello Road and Emscote Road in Emscote, Warwick"
+ },
+ {
+   "name": "River Alne at Wootton Wawen, Pennyford Mill and Grey Mill Lane",
+   "description": "River Alne at Wootton Wawen including Wootton Hall, Pennyford Mill and Grey Mill Lane areas"
+ },
+ {
+   "name": "River Severn at Gloucester",
+   "description": "River Severn at Gloucester"
+ },
+ {
+   "name": "Wesley Brook at Shifnal",
+   "description": "Wesley Brook at Shifnal, including Evelith"
+ },
+ {
+   "name": "River Cam at Cambridge",
+   "description": "River Cam at Cambridge"
+ },
+ {
+   "name": "River Rea at Highgate, Deritend and Digbeth",
+   "description": "River Rea at Highgate, Deritend & Digbeth from Balsall Heath Road to Lawley Middleway"
+ },
+ {
+   "name": "River Tame at Castle Vale",
+   "description": "River Tame at Castle Vale including The Fort Industrial Park and Castle Bromwich Business Park"
+ },
+ {
+   "name": "River Avon at Nogains and Defford Road, Pershore",
+   "description": "River Avon at Nogains and Defford Road, Pershore"
+ },
+ {
+   "name": "River Rea at Calthorpe",
+   "description": "River Rea at Calthorpe from Willows Crescent to Balsall Heath Road"
+ },
+ {
+   "name": "River Corve at Ludlow",
+   "description": "River Corve at Ludlow"
+ },
+ {
+   "name": "River Sow Tixall area",
+   "description": "River Sow Tixall area"
+ },
+ {
+   "name": "Cecily Brook at Cheadle",
+   "description": "Cecily Brook at Cheadle"
+ },
+ {
+   "name": "Kempsey Village",
+   "description": "Kempsey Village"
+ },
+ {
+   "name": "Kyre Brook at Tenbury Wells",
+   "description": "Kyre Brook at Tenbury Wells"
+ },
+ {
+   "name": "River Tame at Sandwell Valley",
+   "description": "River Tame at Sandwell Valley including Forge Mill Farm area"
+ },
+ {
+   "name": "River Dove at Fauld Cottage Farm and Cornill Lane",
+   "description": "River Dove at Fauld Cottage Farm and Cornill Lane"
+ },
+ {
+   "name": "River Leam at Leamington B",
+   "description": "River Leam at Leamington including parts of Leam Terrace, Willes Road, Mill Road, Parade and Dormer Place"
+ },
+ {
+   "name": "River Tean at Brookhouses",
+   "description": "River Tean at Brookhouses"
+ },
+ {
+   "name": "River Severn at Uckinghall",
+   "description": "River Severn at Uckinghall"
+ },
+ {
+   "name": "River Arrow at Wixford",
+   "description": "River Arrow at Wixford including Wixford Bridge area and Moor Hall"
+ },
+ {
+   "name": "River Chelt at Coxs Meadow",
+   "description": "River Chelt at Coxs Meadow"
+ },
+ {
+   "name": "Ford Brook at Walsall",
+   "description": "Ford Brook at Walsall Town Centre including Lower North Street, Lichfield Street, Bridgeman Street and Long Street."
+ },
+ {
+   "name": "River Severn at Twigworth and Longford",
+   "description": "River Severn at Twigworth and Longford"
+ },
+ {
+   "name": "River Blithe at Blythe Park Industrial Estate, Cresswell",
+   "description": "River Blithe at Blythe Park Industrial Estate, Cresswell including Aldbrough House"
+ }
+ ]
+
+ -%}

@@ -1,0 +1,58 @@
+<script>
+    const countries = [
+    "Abu Dhabi",  
+              
+              "Alconbury Brook and Ellington Brook in Cambridgeshire 052WAFALC",
+              "B1041 between Little Paxton and St Neots in Cambridgeshire 052WAFLTPAXTON",
+              "Bin Brook in Cambridgeshire 052WAFBINBROOK",
+              "Bourn Brook in Cambridgeshire 052WAFBOURN",
+              "Bury Brook in Cambridgeshire 052WAFBURY",
+              "Coast from Heacham to north of King's Lynn in Norfolk 052WATCSTHKL",
+              "Cottenham Lode in Cambridgeshire 052WAFCTLD",
+              "Earith Causeway in Cambridgeshire 052WAFEARITH",
+              "Ely Ouse in Cambridgeshire, Suffolk and Norfolk 052WAFELY",
+              "Hundred Foot Washes in Cambridgeshire and Norfolk 052WAFHFW",
+              "Hunstanton coast in Norfolk 052WATCSTHUN",
+              "King's Lynn, West Lynn and The Wash frontage in Norfolk 052WATKLN",
+              "Little Ouse River and River Thet in Suffolk and Norfolk 052WAFLOT",
+              "Low lying roads between Harrold and Oakley in Bedfordshire 052WAFHARROLD",
+              "Lower River Cam in Cambridgeshire 052WAFLOCAM",
+              "Lower River Great Ouse in Central Bedfordshire, Bedford Borough and Cambridgeshire 052WAFLOOUSE",
+              "Middle Level of the Fens in Cambridgeshire and Norfolk 052WAFBWC",
+              "Middle River Great Ouse in Milton Keynes, Bedford Borough and Central Bedfordshire 052WAFMIDOUSE",
+              "North West Norfolk Rivers 052WAFWNR",
+              "River Granta in Essex and Cambridgeshire 052WAFGRANTA",
+              "River Ivel in Hertfordshire and Central Bedfordshire 052WAFIVEL",
+              "River Kennett in Suffolk and Cambridgeshire 052WAFKENNETT",
+              "River Kym in Cambridgeshire and Riseley Brook in Bedford Borough 052WAFKYM",
+              "River Lark in Suffolk 052WAFLARK",
+              "River Nar in Norfolk 052WAFNAR",
+              "River Ouzel in Central Bedfordshire, Buckinghamshire and Milton Keynes 052WAFOUZEL",
+              "River Rhee in Central Bedfordshire, Hertfordshire and Cambridgeshire 052WAFRHEE",
+              "River Tove in Northamptonshire 052WAFTOVE",
+              "River Wissey in Norfolk 052WAFWISSEY",
+              "Sutton Gault Causeway in Cambridgeshire 052WAFSUTTONGLT",
+              "Tidal River Great Ouse from Denver to south of King's Lynn in Norfolk 052WATTIDALRV",
+              "Upper River Cam in Essex and Cambridgeshire 052WAFUPCAM",
+              "Upper River Great Ouse in Northamptonshire, Oxfordshire and Buckinghamshire 052WAFUPOUSE",
+              "Welney Causeway in Norfolk 052WAFWELNEY",
+
+    "Unknown"
+    ];
+  
+    accessibleAutocomplete({
+      autoselect: true,
+      element: document.querySelector('#target-area-container'),
+      id: 'target-area',
+      name: 'targetareaautocomplete',
+      source: countries,
+      // defaultValue: '{{ data['targetareaautocomplete'] }}',
+      defaultValue: '',
+      displayMenu: 'overlay',
+      templates: '{ inputValue, suggestion }',
+      minLength: 2,
+      tNoResults: function() {
+        return "Target area not found"
+      }
+    });
+  </script>

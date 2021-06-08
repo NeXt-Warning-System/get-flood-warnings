@@ -1,0 +1,61 @@
+
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Get flood warnings prototype
+{% endblock %}
+{% block beforeContent %}
+<div class="govuk-phase-banner">
+  <p class="govuk-phase-banner__content"><strong class="govuk-tag govuk-phase-banner__content__tag ">
+  alpha
+</strong>
+    <span class="govuk-phase-banner__text">
+      This is a new service – your
+      <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+    </span>
+  </p>
+</div>
+
+{% endblock %}
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">
+        Select severity level
+      </h1>
+      <span style="padding-right: 15px">
+        <a href="#"><img alt="" src="/public/images/alert1.jpg" height="197px" width="173px" style="margin-bottom: 15px; border:2px solid grey"/></a>
+      </span>
+      <span style="padding-right: 15px;">
+        <a href="#"><img alt="" src="/public/images/warning1.jpg" height="197px" width="173px" style="margin-bottom: 15px; border:2px solid grey"/></a>
+      </span>
+        <span style="padding-right: 15px;">
+        <a href="#"><img alt="" src="/public/images/severe1.jpg" height="197px" width="173px" style="margin-bottom: 15px; border:2px solid grey"/></a>
+      </span>
+<p></p><p></p>
+      <details class="govuk-details" data-module="govuk-details">
+        <summary class="govuk-details__summary">
+          <span class="govuk-details__summary-text">
+            I do not know the severity level I need
+          </span>
+        </summary>
+        <div class="govuk-details__text">
+          <strong>Flood alert is for minor flooding</strong>
+          <p>Issued for low impact flooding. This could be shallow flooding of roads and footpaths, or flooding of areas with little to no impact on people - such as fields or farmland.</br></br>   
+          <strong>Flood warning is for flooding</strong></br>   
+          This is issued when flooding of properties is expected, or when the flooding will impact people, such as flooding of major roads or infrastructure.</br>
+      </br>
+          <strong>Severe flood warning is for severe flooding</strong></br>
+          Issued when there is a risk to life or significant disruption for people in that area. Flood waters may be deep or fast flowing. Evacuations may be required and emergency services and local authorities will be heavily involved.</p>
+      </details>
+      </br>
+      <button class="govuk-button" data-module="govuk-button">
+        Continue
+      </button>
+      
+    </div>
+  </div>
+
+{% endblock %}

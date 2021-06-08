@@ -1,0 +1,73 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+Would you like to receive flood alerts?
+{% endblock %}
+
+{% set versionxxx = "v3" %}
+{% block beforeContent %}
+<div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        alpha
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div>
+  {{backlink|safe}}
+
+{% endblock %}
+
+{% block content %}
+{# permit|dump #}
+
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="{{formAction}}" method="post">
+
+            <div class="govuk-form-group">
+                <fieldset class="govuk-fieldset">
+                    <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+                        <h1 class="govuk-heading-xl govuk-!-margin-bottom-4">
+                          Would you like to receive flood alerts?                        </h1>
+                    </legend>
+
+                    {# permit|dump #}
+                    <p>Flood alert messages warn of shallow flooding to farmlands, roads and low lying land.</p>
+                    <p>A single flood alert area may cover a large part of a floodplain. It may contain many river catchments or a number of flood warning areas.</p>
+
+                    <div class="govuk-form-group">
+                      <fieldset class="govuk-fieldset">
+                        <div class="govuk-radios">
+                          <div class="govuk-radios__item">
+                            <input class="govuk-radios__input" id="alertsChoose" name="alertsChoose" type="radio" value="yes">
+                            <label class="govuk-label govuk-radios__label" for="alertsChoose">
+                              yes, I would like to receive flood alerts if they are available in my area
+                            </label>
+                          </div>
+                          <div class="govuk-radios__item">
+                            <input class="govuk-radios__input" id="alertsChoose2" name="alertsChoose" type="radio" value="no">
+                            <label class="govuk-label govuk-radios__label" for="alertsChoose2">
+                              no, I would not like to receive flood alerts                            </label>
+                          </div>
+                        </div>
+                    
+                      </fieldset>
+                    </div>
+						
+
+					  </div>
+            <button class="govuk-button" data-module="govuk-button">Continue</button>
+	                </fieldset>
+
+        </form>
+
+    </div>
+</div>
+
+{% endblock %} 

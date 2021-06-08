@@ -1,0 +1,16 @@
+<div class="govuk-form-group govuk-form-group--error">
+  <label class="govuk-label" for="targetArea">
+    Use the area code to find a target area for flood alerts.						
+  </label>
+  <span id="targetArea-error" class="govuk-error-message">
+    <span class="govuk-visually-hidden">Error:</span>Check: 
+              <li>
+                the target area exists for flood alerts
+              </li>
+              <li>
+                your spelling
+              </li>
+
+  </span>
+</div>
+  <input class="govuk-input govuk-input--error" id="targetArea" name="targetArea" value="{{ permit.targetArea }}" type="text" aria-describedby="targetArea-error"></div>

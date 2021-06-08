@@ -1,0 +1,59 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+Search for a location
+{% endblock %}
+
+{% set versionxxx = "v1" %}
+{% block beforeContent %}
+<div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        alpha
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div>
+
+{% endblock %}
+
+{% block content %}
+{# permit|dump #}
+
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="/{{versionxxx}}/target-area/review-input" method="post">
+
+            <div class="govuk-form-group">
+                <fieldset class="govuk-fieldset">
+                    <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+                        <h1 class="govuk-heading-xl govuk-!-margin-bottom-4">
+                          Search for a location
+                        </h1>
+                    </legend>
+
+					
+					
+					<fieldset class="govuk-fieldset">
+            <label class="govuk-label" for="target-area">
+              Enter the area you would like to search.
+            </label>
+            <input class="govuk-input" id="target-area" name="target-area" type="text">
+
+        </fieldset>
+						
+
+					  </div>
+            <button class="govuk-button" data-module="govuk-button">Continue</button>
+	                </fieldset>
+
+        </form>
+
+    </div>
+</div>
+
+{% endblock %} 

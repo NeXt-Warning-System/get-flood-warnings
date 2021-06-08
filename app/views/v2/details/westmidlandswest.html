@@ -1,0 +1,55 @@
+<script>
+    const countries = [
+    "Abu Dhabi",  
+              
+              "Barbourne Brook 031WAF111",
+              "Bow and Piddle Brook 031WAF208",
+              "Brooks in the Wyre Forest 031WAF107",
+              "Kempsey Village 031WAF201",
+              "Ledwyche Brook and River Rea 031WAF200",
+              "Lower Teme 031WAF113",
+              "Rea Brook and Cound Brook 031WAF105",
+              "River Arrow in Herefordshire 031WAF117",
+              "River Avon in Worcestershire 031WAF209",
+              "River Frome in Herefordshire 031WAF118",
+              "River Leadon Catchment 031WAF213",
+              "River Lugg North of Leominster 031WAF115",
+              "River Lugg south of Leominster 031WAF116",
+              "River Monnow and tributaries in England 031WAF121",
+              "River Salwarpe 031WAF110",
+              "River Severn in Gloucestershire 031WAF214",
+              "River Severn in Shropshire 031WAF103",
+              "River Severn in Worcestershire 031WAF108",
+              "River Stour in Worcestershire 031WAF109",
+              "River Worfe 031WAF106",
+              "River Wye in Gloucestershire 031WAF120",
+              "River Wye in Herefordshire 031WAF119",
+              "Rivers Frome and Cam 031WAF216",
+              "Rivers in North Gloucestershire 031WAF212",
+              "Rivers in South Worcestershire 031WAF211",
+              "Rivers in the Forest of Dean 031WAF215",
+              "Severn estuary from Gloucester to Sharpness 031WAT217",
+              "Severn Vyrnwy confluence 031WAF114",
+              "Tern and Perry Catchments 031WAF104",
+              "Upper Teme 031WAF112",
+              "Wye Estuary in Gloucestershire 031WAT122",
+
+    "Unknown"
+    ];
+  
+    accessibleAutocomplete({
+      autoselect: true,
+      element: document.querySelector('#target-area-container'),
+      id: 'target-area',
+      name: 'targetareaautocomplete',
+      source: countries,
+     // defaultValue: '{{ data['targetareaautocomplete'] }}',
+     defaultValue: '',
+      displayMenu: 'overlay',
+      templates: '{ inputValue, suggestion }',
+      minLength: 2,
+      tNoResults: function() {
+        return "Target area not found"
+      }
+    });
+  </script>

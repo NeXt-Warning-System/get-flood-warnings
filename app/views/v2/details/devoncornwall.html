@@ -1,0 +1,42 @@
+<script>
+    const countries = [
+    "Abu Dhabi",
+              "Barnstaple, Braunton, Ilfracombe and Combe Martin Area 113WAFTW04",
+              "Exmoor Rivers 113WAFTW05",
+              "Lower Exe Area 113WABTW10",
+              "Lower Taw area 113WAFTW03",
+              "Lower Torridge Area 113WABTW02",
+              "Mid Devon Rivers 113WAFTW11",
+              "Middle Exe Area 113WAFTW06",
+              "North Dartmoor Rivers 113WAFTW12",
+              "North Devon coast from Hartland Point to Lynmouth 113WACT2A",
+              "River Axe area 113WABTW09",
+              "River Dart Area 113WABTW14",
+              "River Teign area 113WAFTW13",
+              "Rivers Clyst and Culm and their tributaries 113WAFTW07",
+              "Rivers Otter and Sid, and Exmouth Area 113WABTW08",
+              "South Devon coast from Dawlish Warren to Seaton 113WACT1C",
+              "South Devon coast from Plymouth to Start Point 113WACT1A",
+              "South Devon coast from Start Point to Dawlish Warren 113WACT1B",
+              "South Devon Estuaries 113WACT1D",
+              "South Devon Rivers 113WABTW15",
+              "Upper Torridge Area 113WAFTW01",
+  "Unknown"
+    ];
+  
+    accessibleAutocomplete({
+      autoselect: true,
+      element: document.querySelector('#target-area-container'),
+      id: 'target-area',
+      name: 'targetareaautocomplete',
+      source: countries,
+     // defaultValue: '{{ data['targetareaautocomplete'] }}',
+     defaultValue: '',
+      displayMenu: 'overlay',
+      templates: '{ inputValue, suggestion }',
+      minLength: 2,
+      tNoResults: function() {
+        return "Target area not found"
+      }
+    });
+  </script>

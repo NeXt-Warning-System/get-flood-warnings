@@ -1,0 +1,56 @@
+
+{% extends "layout.html" %}
+{% set versionxxx = "v2" %}
+
+{% block pageTitle %}
+  Get flood warnings
+{% endblock %}
+{% block beforeContent %}
+<div class="govuk-phase-banner">
+  <p class="govuk-phase-banner__content"><strong class="govuk-tag govuk-phase-banner__content__tag ">
+  alpha
+</strong>
+    <span class="govuk-phase-banner__text">
+      This is a new service – your
+      <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+    </span>
+  </p>
+</div>
+
+{% endblock %}
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-xl">
+        Get flood warnings
+      </h1>
+
+      <p><a href="/prototype-admin/clear-data">Clear permit data</a></p>
+      <!-- user lab -->
+      <h2 class="govuk-heading-m">Alpha design version 2</h2>
+            <h3 class="govuk-heading-s">External user research</h3>
+
+      <p class="govuk-body">Week starting 22 March 2021</p>
+<p>This is a prototype of the Find a location section of the Get flood warnings external user journey. </p>
+<p>We wanted to test whether surfacing the target area concept brings a welcome level of transparency in the warning areas the user is signing up to, or whether it over complicates the journey for the user.</p>
+            <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+            <!-- ########################################################################### -->
+      
+    <h2 class="govuk-heading-m">
+            Research
+    </h2>
+      <p><a href="/{{versionxxx}}/find-location/find" target="_blank">Find a location</a></p>
+<h3 class="govuk-heading-s">Testing details for search locations</h3>
+  <p><strong>Postcodes</strong></br>
+   YO31 8HE</br>
+   BS3 4RJ</br></br>
+   <strong>Placenames</strong></br>
+   Bristol</br>
+   York</br></br>
+   Note these are case sensitive but can be used for warnings or alerts.</p>
+
+    </div>
+  </div>
+
+            {% endblock %}

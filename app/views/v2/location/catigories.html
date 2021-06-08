@@ -1,0 +1,69 @@
+{% extends "layout.html" %}
+
+{% set title = "Choose a region to select a flood area" %}
+
+{% block pageTitle %}
+    {{title}} - GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+{{backlink|safe}}
+
+{% endblock %}
+
+{% block content %}
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+        {{title}}
+    </legend>
+      
+    {# permit|dump #}
+
+
+      {% from folder+"/custom_inc/regions/regions.html" import regions %}
+
+
+      <form method="post" action="{{formAction}}">
+        
+      <!-- STORE operatorType to pass on -->
+      <input type="hidden" name="region" value="{{permit.regionType}}">
+      {% for r in regions %}
+      <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset">
+
+          
+          <div class="govuk-radios">
+               <div class="govuk-radios__item govuk-!-margin-1">
+                  <input class="govuk-radios__input" id="{{r.region}}" type="radio" name="chosenRegion" value="{{r.region}}">
+                  <label class="govuk-label govuk-radios__label " for="{{r.region}}">
+                    {{r.region}} 
+                  </label>
+              </div>
+          </div>
+        </fieldset>
+
+            {% endfor %}
+          </div>
+
+
+        <div class="govuk-form-group">
+
+          <button class="govuk-button" data-module="govuk-button">
+            Continue
+          </button>
+
+          </div>
+
+
+      </form>
+
+
+    </div>
+  </div>
+
+
+{% endblock %}

@@ -1,0 +1,51 @@
+<script>
+    const countries = [
+    "Abu Dhabi", 
+    
+              "Blackburn Brook 123WAF987",
+              "Car Brook catchmen t123WAF973",
+              "Ea Beck catchment 123WAF988",
+              "Earby Beck and Glusburn Beck 123WAF980",
+              "Ings Beck and Oakenshaw Beck 123WAF985",
+              "Lower River Aire catchment 123WAF962",
+              "Lower River Calder catchment 123WAF964",
+              "Lower River Don catchment 123WAF972",
+              "Lower River Rother 123WAF967",
+              "Middle River Aire catchment 123WAF961",
+              "Middle River Don 123WAF971",
+              "River Colne, Holme and Fenay Beck 123WAF965",
+              "River Dearne catchment 123WAF969",
+              "River Doe Lea catchment 123WAF986",
+              "River Sheaf and Porter Brook 123WAF968",
+              "River Spen and Batley Beck catchments 123WAF984",
+              "River Went catchment 123WAF989",
+              "River Worth catchment 123WAF981",
+              "Tidal River Aire catchment 123WAT983",
+              "Tidal River Ouse, Don and the Dutch River catchment 123WAT979",
+              "Upper River Aire 123WAF960",
+              "Upper River Calder catchment 123WAF963",
+              "Upper River Don catchment 123WAF970",
+              "Upper River Rother catchment 123WAF966",
+              "Wash Dike catchment 123WAF983",
+              "Whiston Brook catchment 123WAF990",
+              "Wyke Beck, Meanwood Beck and Wortley Beck catchments 123WAF982",
+
+"Unknown"
+    ];
+  
+    accessibleAutocomplete({
+      autoselect: true,
+      element: document.querySelector('#target-area-container'),
+      id: 'target-area',
+      name: 'targetareaautocomplete',
+      source: countries,
+      // defaultValue: '{{ data['targetareaautocomplete'] }}',
+      defaultValue: '',
+      displayMenu: 'overlay',
+      templates: '{ inputValue, suggestion }',
+      minLength: 2,
+      tNoResults: function() {
+        return "Target area not found"
+      }
+    });
+  </script>

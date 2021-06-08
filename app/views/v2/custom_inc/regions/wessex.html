@@ -1,0 +1,1429 @@
+{% set targetareas =
+  [
+ {
+   "name": "River Ebble and tributaries",
+   "description": "Tributaries between Alvediston and Nunton"
+ },
+ {
+   "name": "North Somerset Area",
+   "description": "Rivers in North Somerset including Congresbury Yeo, Cheddar Yeo, Axe and tributaries"
+ },
+ {
+   "name": "River Bourne and tributaries",
+   "description": "Tributaries between Aughton and Laverstock"
+ },
+ {
+   "name": "Tidal River Avon at Bristol, Pill and Shirehampton",
+   "description": "Tidal River Avon from Sea Mills to Conham in Bristol and between the Avonmouth Bridge and Shirehampton Park including Pill and Shirehampton"
+ },
+ {
+   "name": "Upper Bristol Avon Area",
+   "description": "Upper River Avon and tributaries including Malmesbury and Chippenham"
+ },
+ {
+   "name": "Groundwater flooding in the Cranborne Chase area",
+   "description": "Bishopstone, Bourton, Breamore, Britford, Broadchalk, Burgate, Chilmark, Coombe Bissett, Downton, Farnham, Fordingbridge, Hinton St. Mary, Homington, Mere, Pimperne, Ringwood, Rockbourne, Shapwick, Sixpenny Handley, T. Gunville, T.Hinton and T.Monkton"
+ },
+ {
+   "name": "Somerset coast at Clevedon",
+   "description": "Coastline between Gullhouse Point and Marine Parade"
+ },
+ {
+   "name": "River Nadder and tributaries",
+   "description": "River Nadder and tributaries between Donhead St Mary and Salisbury"
+ },
+ {
+   "name": "Little Avon catchment and the Vale of Berkeley",
+   "description": "Little Avon River and other rivers and streams in the Vale of Berkeley"
+ },
+ {
+   "name": "Lower Stour and tributaries",
+   "description": "Tributaries between Wimborne and Christchurch"
+ },
+ {
+   "name": "South Somerset Rivers, Upper Reaches",
+   "description": "Rivers Parrett and Isle and tributaries"
+ },
+ {
+   "name": "River Yeo and River Parrett, Lower Reaches",
+   "description": "River Yeo from Yeovil to Langport, the River Parrett from Langport to Bridgwater, the Rivers Cary and Sowy, the Kings Sedgemoor Drain and their tributaries"
+ },
+ {
+   "name": "Upper Frome and tributaries",
+   "description": "Tributaries between Toller Whelme and Dorchester"
+ },
+ {
+   "name": "River Biss catchment",
+   "description": "River Biss and tributaries between Westbury and Trowbridge"
+ },
+ {
+   "name": "Middle Stour and tributaries",
+   "description": "Tributaries between Sturminster Newton and Wimborne"
+ },
+ {
+   "name": "River Tone Catchment",
+   "description": "River Tone from Clatworthy Reservoir to Currymoor, the Hillfarrance Brook, the Halsewater Stream and other tributaries in the River Tone catchment"
+ },
+ {
+   "name": "Severn Estuary at Oldbury-on-Severn, Northwick and Avonmouth",
+   "description": "Severn Estuary at Oldbury-on-Severn, Northwick and Avonmouth including Aust and Old Passage"
+ },
+ {
+   "name": "Midford Brook catchment",
+   "description": "River Cam, Wellow and Midford Brooks and tributaries"
+ },
+ {
+   "name": "Somerset coast at Minehead, Bridgwater, Burnham-on-Sea and Uphill to Kingston Seymour",
+   "description": "Coastal and tidal areas at Minehead, Combwich, Bridgwater, Burnham-on-Sea, Uphill, Weston-super-Mare, Kewstoke, Sand Bay and Kingston Seymour"
+ },
+ {
+   "name": "River Piddle and tributaries",
+   "description": "Tributaries between Alton Pancras and Wareham"
+ },
+ {
+   "name": "Christchurch Harbour",
+   "description": "Christchurch Harbour and tidal stretches of the Lower Stour and Avon"
+ },
+ {
+   "name": "West Bay Harbour",
+   "description": "West Bay Harbour and the tidal stretch of the River Brit"
+ },
+ {
+   "name": "River Cale and tributaries",
+   "description": "Tributaries between Shalford and Southmarsh and the confluence with the River Stour"
+ },
+ {
+   "name": "Groundwater flooding in the Salisbury Plain area",
+   "description": "Boscombe, Cholderton, Collingbourne Ducis, Hanging Langford, Hindon, Hurdcott, Idmiston, Newton Tony, Orcheston, Porton, Salisbury, Shipton Bellinger, Shrewton, Stratford Sub Castle, Tidworth, Tilshead, Tisbury, Wilton, Winterbourne Stoke and Woodford"
+ },
+ {
+   "name": "West Somerset Streams",
+   "description": "Horner Water, Rivers Aller and Washford, and the Hawkcombe, Monksilver and Doniford Streams and tributaries"
+ },
+ {
+   "name": "Mid Bristol Avon Area",
+   "description": "Mid River Avon and tributaries including Melksham and Bradford on Avon"
+ },
+ {
+   "name": "Somerset coast at Dunster Beaches, Blue Anchor, Steart, Stolford and Brean",
+   "description": "Coastal areas at Dunster Beaches, Blue Anchor, Steart, Stolford and Brean"
+ },
+ {
+   "name": "West Dorset Rivers and Streams",
+   "description": "Rivers Lim, Char, Winniford, Simene, Brit, Asker, Mangerton and Bride"
+ },
+ {
+   "name": "Dorset coast at Poole Harbour",
+   "description": "Poole Harbour and tidal stretches of the Lower Frome and River Piddle"
+ },
+ {
+   "name": "Upper Stour and tributaries",
+   "description": "Tributaries between Gillingham and Sturminster Newton"
+ },
+ {
+   "name": "River Wylye and tributaries",
+   "description": "Tributaries between Norton Ferris and Wilton"
+ },
+ {
+   "name": "Upper Avon and tributaries",
+   "description": "Tributaries between Upavon and Salisbury"
+ },
+ {
+   "name": "West coast of Dorset",
+   "description": "Lyme Regis, Charmouth, Seatown, West Bay, Bothenhampton, Burton Freshwater, Burton Bradstock, Cogdean Beach, Chesil Beach, West Fleet, East Fleet and Chiswell"
+ },
+ {
+   "name": "Somerset coast at Portishead and Portbury Dock",
+   "description": "Coastline between Portishead Point and Avonmouth"
+ },
+ {
+   "name": "Severn Estuary at Severn Beach",
+   "description": "Severn Estuary at Severn Beach including New Passage and Pilning"
+ },
+ {
+   "name": "Groundwater flooding in the West of Dorset",
+   "description": "Bridport, Chideock, Martinstown, Milborne St. Andrew, Nottington, Piddlehinton, Piddletrenthide, Upwey, Winterborne Abbas, Winterborne Kingston, Winterborne Steepleton, Winterborne Stickland, Winterborne Whitechurch and Winterborne Zelston"
+ },
+ {
+   "name": "River Yeo and River Parrett Moors around Muchelney and Thorney",
+   "description": "River Yeo and River Parrett Moors including access from Langport, Law Lane from Drayton, Law Lane from Thorney, Wetmoor Lane from Long Load and properties in Muchelney, Muchelney Ham and Thorney"
+ },
+ {
+   "name": "Lower Bristol Avon Area",
+   "description": "Lower River Avon, River Boyd, By and Brislington Brooks and tributaries"
+ },
+ {
+   "name": "Weymouth Harbour",
+   "description": "Weymouth Harbour and the tidal stretch of the River Wey"
+ },
+ {
+   "name": "East coast of Dorset",
+   "description": "Castletown, Weymouth, Preston Beach, Swanage Bay, Studland Bay, Sandbanks, Poole Harbour, Bournemouth Beach, Hengistbury Head and Christchurch Harbour"
+ },
+ {
+   "name": "Lower Avon and tributaries",
+   "description": "Tributaries between Ringwood and Christchurch"
+ },
+ {
+   "name": "Weymouth Rivers and Streams",
+   "description": "The River Wey to Radipole Lake, Preston Brook and River Jordan"
+ },
+ {
+   "name": "Purbeck Rivers and Streams",
+   "description": "The Corfe Castle and Swanage areas"
+ },
+ {
+   "name": "River Chew Catchment",
+   "description": "River Chew from Chew Stoke to Keynsham, Chew Stoke Stream and Winford Brook"
+ },
+ {
+   "name": "East Somerset Rivers",
+   "description": "Rivers Brue, Sheppey, Glastonbury Millstream and North and South Drains"
+ },
+ {
+   "name": "Lower Frome and tributaries",
+   "description": "Tributaries between Dorchester and Wareham"
+ },
+ {
+   "name": "Somerset coast at Porlock Weir",
+   "description": "Coastline between Gore Point and Hurlstone Point including Porlock Weir"
+ },
+ {
+   "name": "Somerset Frome Area",
+   "description": "River Frome and Mells, and the Whatley and Nunney Brooks and tributaries"
+ },
+ {
+   "name": "South East Somerset Rivers, Upper Reaches",
+   "description": "River Yeo from Sherborne to Yeovil, River Wriggle, Barwick Stream, West Coker Stream and the River Cam"
+ },
+ {
+   "name": "Lower Tone and Parrett Moors",
+   "description": "Lower Rivers Tone and Parrett including West Moor, Hay Moor, Curry Moor, Stan Moor, Salt Moor and North Moor"
+ },
+ {
+   "name": "Bristol Frome Catchment",
+   "description": "Bristol Frome, Ladden Brook, River Trym and tributaries between Chipping Sodbury and Tytherington to Bristol Floating Harbour and the Bristol Avon"
+ },
+ {
+   "name": "River Allen and tributaries",
+   "description": "Tributaries between Wimborne St Giles and Wimborne"
+ },
+ {
+   "name": "Middle Avon and tributaries",
+   "description": "Tributaries between Salisbury and Ringwood"
+ },
+ {
+   "name": "Groundwater flooding for the Piddle Valley",
+   "description": "Groundwater flooding for Alton Pancras, Piddletrentide, White Lackington, Piddlehinton, Puddletown, Athelhampton"
+ },
+ {
+   "name": "Groundwater flooding in the Allen Vale at Sixpenny Handley",
+   "description": "Groundwater flooding for Sixpenny Handley"
+ },
+ {
+   "name": "Groundwater flooding in the South Wiltshire Downs - The Teffont",
+   "description": "Groundwater flooding for Teffont and Teffont Evis"
+ },
+ {
+   "name": "Washford River from Roadwater to Watchet",
+   "description": "Roadwater to Watchet including properties in Roadwater, Lower Roadwater, and Hungerford. Abbey Road and Willow Grove in Washford and Warren Close, Whitehall, Mill Street and Market Street in Watchet"
+ },
+ {
+   "name": "Severn Estuary at Oldbury-on-Severn, Chapel Road and Olveston Common areas",
+   "description": "Oldbury Lane including Great Leaze Farm area, Pickedmoor Lane, Chapel Road, Featherbed Lane and Church Road in Oldbury-on-Severn and Lower Farm, Whale Wharf Lane and Olveston Common"
+ },
+ {
+   "name": "River Nadder, Tisbury to West Harnham",
+   "description": "Areas in Tisbury, Chicksgrove, Sutton Mandeville, Dinton, Barford St Martin, Wilton, Quidhampton, Salisbury in close proximity to the River Nadder"
+ },
+ {
+   "name": "Somerset coast at Burnham-on-Sea, seafront properties",
+   "description": "Coastline between South Esplanade and Berrow including Margaret Crescent, Pier Street, Abingdon Street, The Esplanade, College Street and Regent Street"
+ },
+ {
+   "name": "River Aller",
+   "description": "River Aller including Allerford and West Lynch"
+ },
+ {
+   "name": "Severn Estuary at Northwick, Old Passage and Northwick Warth areas",
+   "description": "Severn Estuary from the Old Severn Bridge to New Passage including low lying properties at Old Passage, Aust Road and Severn Road areas"
+ },
+ {
+   "name": "Somerset coast at Brean and Lympsham",
+   "description": "Properties and Caravan Sites along Coast Road, South Road, Church Road and Warren Road in Brean and properties from Wick and Edingworth to the south to Loxton to the east and Bleadon to the north including Lympsham and Eastertown"
+ },
+ {
+   "name": "River Char at Charmouth",
+   "description": "The Street in Charmouth including Catherston Cottages, Robyns Nest, Neighbridge Cottage and Kingfishers"
+ },
+ {
+   "name": "River Asker from Askerswell to Bradpole",
+   "description": "Properties in Askerswell, Uploders, Yondover and Loders"
+ },
+ {
+   "name": "Bristol Avon (upper) from Malmesbury to Chippenham",
+   "description": "Bristol Avon and tributaries from downstream of Malmesbury to Chippenham including Cow Bridge, Hullavington, Corston, Rodbourne, Kingsmead Mill, Great Somerford, Lower Seagry, Christian Malford, Sutton Benger, Kellaways, East Tytherton and Stanley"
+ },
+ {
+   "name": "Groundwater flooding in the South Wiltshire Downs - The Dene",
+   "description": "Groundwater flooding for the Dene including Hindon, Fonthill Bishop, Fonthill Gifford and Chicklade"
+ },
+ {
+   "name": "Severn Estuary at Northwick and Aust",
+   "description": "Sandy Lane, Orchard Drive, Main Road and Tanhouse Farm areas in Aust. Ingst Hill, Greenditch Street, Redham Lane, Pilning Street and Rookery Lane areas"
+ },
+ {
+   "name": "Lower Stour at Jumpers Common and A35 Iford Bridge area, Christchurch",
+   "description": "River Glade, Dukesfield, Squirrels Cl, Stour Way, Links Dr, Burford Cl, Cedar Av, Chestnut Av, Beech Av, Sycamore Cl, River Way, Hurn Way, Wilton Cl, Stourcroft Dr, Crossways, De Redvers Court, Oak Av, The Grove and Stourvale Ave in Christchurch"
+ },
+ {
+   "name": "Somerset coast at Dunster Beaches, Lower Marsh area",
+   "description": "Lower Marsh area including The Old Manor and Lower Marsh Farm"
+ },
+ {
+   "name": "Broadmead Brook at West Kington",
+   "description": "Broadmead Brook at West Kington"
+ },
+ {
+   "name": "Upper Avon, Upavon to Amesbury",
+   "description": "Areas in Upavon, Haxton, Haxton Bridge, Netheravon, Milston, Durrington and Bulford in close proximity to the River Avon"
+ },
+ {
+   "name": "River Boyd at Wick",
+   "description": "River Boyd at Wick"
+ },
+ {
+   "name": "Bristol Avon at Bath, properties furthest from the river",
+   "description": "Dolmeads area including Broadway Street and Archway Street, Dorchester Street, Manvers Street, Kingsmead area including Avon Street, James Street West and East Twerton including Lower Bristol Road and Brassmill Lane trading estate"
+ },
+ {
+   "name": "Middle Avon at The Close and The Friary including Salisbury College, Salisbury",
+   "description": "The Close, De Vaux Place, The Friary, Greyfriars Close, Eyres Way, Cathedral Court, Carmelite Way and Salisbury College in Salisbury"
+ },
+ {
+   "name": "Middle Avon at The Close and St Anns, Salisbury",
+   "description": "The Close and St Anns Ward, Salisbury"
+ },
+ {
+   "name": "Groundwater flooding for the North Winterborne, south of the A354",
+   "description": "Groundwater flooding on the Winterborne South of the A354 including Winterborne Whitechurch, Kingston, Muston, Anderson, Tomson, Zelston, Mapperton, Almer and Newton Peveril"
+ },
+ {
+   "name": "Bristol Floating Harbour and the River Avon at Bristol, other properties set back from the river",
+   "description": "Properties set back from the river including Feeder Road and Albert Crescent on the Feeder Canal. Bisto Bridge, Princestreet Bridge and Peros Bridge areas, Wapping Dockyard, Baltic Wharf and Pooles Wharf on the Harbour and Netham Lock on the River Avon"
+ },
+ {
+   "name": "Bristol Floating Harbour and the River Avon at Bristol, properties furthest from the river",
+   "description": "Properties furthest from the river including Barton Hill Bridge area and Chapel Street on the Feeder Canal. Temple Meads area, Victoria Street, Princes Wharf, Mardyke Ferry Road and Hotwell Road on the Harbour and Totterdown Bridge area on the River Avon"
+ },
+ {
+   "name": "River Asker from East Bridge Roundabout to Morrisons, Bridport",
+   "description": "East Road, Meville Square and Folly Mill Lane in Bridport"
+ },
+ {
+   "name": "Mangerton River from Powerstock to Bradpole",
+   "description": "Milton Mill and West Milton"
+ },
+ {
+   "name": "Middle Avon at St Pauls and City Centre, Salisbury",
+   "description": "St Pauls and the City Centre Wards of Salisbury"
+ },
+ {
+   "name": "River Brit at Beaminster Town Centre",
+   "description": "Shadracks, Church Street, St Marys Well Street, Fleet Street, North Street, Prout Hill, Bridport Road and Woodswater Lane in Beaminster"
+ },
+ {
+   "name": "River Yeo at Yeovilton",
+   "description": "Weir Lane, Pyle Lane and Bineham Lane"
+ },
+ {
+   "name": "River Cam",
+   "description": "Weston Bampfylde to Speckington including Queen Camel, Wales, West Camel, Urgashay, Bridgehampton, Stockwitch Farm, the Fleet Air Army Museum and the Speckington Manor area"
+ },
+ {
+   "name": "Sherston Avon from Luckington to Malmesbury",
+   "description": "Sherston Avon from Luckington to upstream of Malmesbury including Brook End on the Luckington Brook, Sherston and Easton Grey"
+ },
+ {
+   "name": "Tidal River Parrett at Bridgwater, Manley Gardens and East Quay areas",
+   "description": "Low lying areas on the tidal River Parrett including Manley Gardens and East Quay"
+ },
+ {
+   "name": "Somerset coast at Minehead, seafront properties",
+   "description": "Coastline between Quay West and The Warren including seafront properties on Culvercliffe Court, Quay West and Quay Street"
+ },
+ {
+   "name": "Somerset coast at Clevedon, seafront properties",
+   "description": "Coastline between Gullhouse Point and Marine Parade including the Marine Lake, Elton Road and The Beach"
+ },
+ {
+   "name": "Brislington Brook, other properties set back from the river",
+   "description": "Sturminster Road, West Town Grove, Beechmount Grove, Hengrove Avenue, Bears Bridge, Wootton Park, West Town Lane Primary School, Callington Road, Jean Road, Edna Avenue and Eldonwall Trading Estate"
+ },
+ {
+   "name": "Dorset coast at Christchurch",
+   "description": "Areas situated behind the defences at Christchurch"
+ },
+ {
+   "name": "Bristol Frome at Chipping Sodbury and Yate, Vayre Close, Manor Way, Celestine Road and Nibley Lane",
+   "description": "Vayre Close and Manor Way in Chipping Sodbury, properties closest to the river at Celestine Road in Yate and the Stover Bridge and Nibley area"
+ },
+ {
+   "name": "Bristol Frome from downstream of Nibley to Stapleton",
+   "description": "Bristol Frome from downstream of Nibley to Wickham Bridge in Stapleton including Algars Mill, Mill Lane, Brookside Drive, Rectory Road, Damsons Bridge, Moorend, Cleeve Mill, Frenchay Mill, River View and Frome Bridge"
+ },
+ {
+   "name": "Doniford Stream at Sampford Brett and upstream properties",
+   "description": "Roebuck Gate to Sampford Brett Bridge, including Water Bridge, Kingswood, Cottiford and riverside properties at Sampford Brett"
+ },
+ {
+   "name": "Groundwater flooding in the Bourne Valley - The Collingbournes",
+   "description": "Groundwater flooding for the Collingbournes"
+ },
+ {
+   "name": "Groundwater flooding in the Bourne Valley - The Winterbournes",
+   "description": "Groundwater flooding in the Bourne Valley for the Winterbournes"
+ },
+ {
+   "name": "Groundwater flooding in the Bourne Valley from North Tidworth to the A303",
+   "description": "Groundwater flooding for the Bourne Valley including North Tidworth, Tidworth and Shipton Bellinger areas"
+ },
+ {
+   "name": "Groundwater flooding in the Chitterne Valley",
+   "description": "Groundwater flooding for Chitterne, Codford St Peter and Codford St Mary"
+ },
+ {
+   "name": "Groundwater flooding in the Cerne Valley",
+   "description": "Groundwater flooding for Minterne Magna, Minton Parva, Cerne Abbas, Nether Cerne, Godmanston, Forston and Charminster"
+ },
+ {
+   "name": "Bristol Frome at Chipping Sodbury and Yate, Quarry Road, Streamside Road and Blenheim Drive",
+   "description": "Quarry Road and Streamside Road in Chipping Sodbury and Church Road, Blenheim Road and Celestine Road in Yate"
+ },
+ {
+   "name": "Swan Brook at Swanage",
+   "description": "Victoria Ave, Kings Rd, Chestnut Mew, Church Hill, Springfield Rd, Cornwall Rd, Commerical Rd, Station Rd, Institute Rd, The Square, Shore Rd, High St and Parade in Swanage"
+ },
+ {
+   "name": "River Ebble from Ebbesbourne to Nunton",
+   "description": "Ebbesbourne Wake, Bower Chalke, Broad Chalke, Bishopstone, Stratford Tony and Coombe Bissett"
+ },
+ {
+   "name": "River Yeo from Sherborne to Yeovil",
+   "description": "New Road in Sherborne to the Old Mill Farm area near Yeovil including the Smiths Bridge area near Bradford Abbas, Broadclose Farm, Yeovil Junction Station and Sharmans Bridge area, Newton Surmaville, Chudleigh Mill and Yeobridge Trade Park near Yeovil"
+ },
+ {
+   "name": "Congresbury Yeo from Wrington to Congresbury",
+   "description": "Wrington Bridge to Withydale Farm including Beam Bridge, Moor Bridge, Weston Road and Old Weston Road"
+ },
+ {
+   "name": "River Isle at Ashford Mill and Ilford Bridges",
+   "description": "Ilford Bridges Farm at Ilford Bridges and Ashford Mill House, Ashford Farm and Old Farm and other properties around Ashford Lane"
+ },
+ {
+   "name": "River Parrett (upper) from South Perrott to Thorney",
+   "description": "South Perrott to Thorney including Gawbridge Mill and Farms around Town Tree Lane"
+ },
+ {
+   "name": "Congresbury Yeo at Congresbury",
+   "description": "Stonewell Park Road, Stonewell Grove, Stonewell Drive, The Causeway, Pauls Causeway, High Street, Broad Street, Bridge Farm Square and Station Road"
+ },
+ {
+   "name": "River Brue (upper) from Bruton Dam to Lovington",
+   "description": "Gants Mill, Cole, Ansford Bridge and Alford"
+ },
+ {
+   "name": "Groundwater flooding in the Cranborne Chase in West Hampshire - Rockbourne",
+   "description": "Groundwater flooding for the Cranborne Chase in West Hampshire including Rockbourne"
+ },
+ {
+   "name": "Groundwater flooding in the Cranborne Chase in West Hampshire - Damerham and Martin",
+   "description": "Groundwater flooding for Damerham and Martin"
+ },
+ {
+   "name": "Midford Brook, Cam and Wellow Brooks",
+   "description": "Cam Brook including Temple Bridge, Hallatrow and Camerton. Wellow Brook from Lower Writhlington to Midford including Wellow and the Midford Brook including Midford and Monkton Combe Mill"
+ },
+ {
+   "name": "Winford Brook at Chew Magna",
+   "description": "Chew Magna Reservoir to the River Chew including Dark Lane, Battle Lane, Spratts Bridge, Streamleaze, Silver Street, Streamside, Butham Lane, The Batch, Lower Batch and Norton Lane"
+ },
+ {
+   "name": "Upper Frome from Maiden Newton to Dorchester",
+   "description": "Areas in Higher Frome Vauchurch, Frome Vauchurch, Cruxton, Notton, Frampton, Grimstone, Muckleford, Stratton, Bradford Peverell, Wrackleford, Charminster, Frome Whitfield, Wolfeton, Lower Burton and Cokers Frome"
+ },
+ {
+   "name": "Groundwater flooding for the Devils Brook",
+   "description": "Groundwater flooding for the Devils Brook including Ansty, Cheselbourne and Dewlish"
+ },
+ {
+   "name": "Groundwater flooding for the Ebble Valley",
+   "description": "Groundwater flooding in the Ebble Valley including Berwick St John, Ebblesbourne Wake, Bowerchalke, Broad Chalke, Stoke Farthing, Bishopstone, Stratford Toney, Coombe Bissett, Homington, Odstock, Nunton"
+ },
+ {
+   "name": "Groundwater flooding in the Lower Allen Vale",
+   "description": "Groundwater flooding in the Lower Allen Vale including New Town, Witchampton,"
+ },
+ {
+   "name": "Groundwater flooding for the Sydling",
+   "description": "Groundwater flooding for Up Sydling and Sydling St Nicholas"
+ },
+ {
+   "name": "Groundwater flooding for the Hooke",
+   "description": "Groundwater flooding for Toller Whelme, Hooke, Higher Kingcombe, Lower Kingcombe and Toller Porcorum"
+ },
+ {
+   "name": "Dorset coast at Preston Beach",
+   "description": "The Sea Life Centre and the Preston Beach Road area of Lodmoor"
+ },
+ {
+   "name": "Groundwater flooding for the Gussage",
+   "description": "Groundwater flooding for Tollard Royal, Farnham, Michington, Cashmoor, Gussage St Michael and Gussage All Saints"
+ },
+ {
+   "name": "Lyme Regis Harbour",
+   "description": "Areas of Lyme Regis around the Harbour"
+ },
+ {
+   "name": "Severn Estuary from Sharpness to Oldbury-on-Severn, Shepperdine and Oldbury Power Station areas",
+   "description": "Severn Estuary from Sharpness to Oldbury-on-Severn including low lying properties on Severn Lane, Worldsend Lane, Nupdown Lane and Shepperdine Road including Oldbury Power Station"
+ },
+ {
+   "name": "A361 East Lyng to Burrowbridge",
+   "description": "A361 between East Lyng and Burrowbridge including the Somerset Levels Basket and Craft Centre area"
+ },
+ {
+   "name": "Somerset coast at Kingston Seymour, seafront properties",
+   "description": "Coastline between Sand Point and Gullhouse Point including Ham Lane, Back Lane, Yeo Back Lane and Icelton"
+ },
+ {
+   "name": "River Yeo and River Parrett Moors, low lying properties around Muchelney",
+   "description": "Low lying properties in Muchelney, Muchelney Ham and Thorney"
+ },
+ {
+   "name": "Poole Harbour at West Quay and Lower Hamworthy Quay",
+   "description": "Lower Hamworthy and areas of Poole from Old Town, The Quay to Hunger Hill"
+ },
+ {
+   "name": "Groundwater flooding for the Avon valley from Amesbury to the north of Salisbury",
+   "description": "Groundwater flooding for the Avon Valley including Amesbury, Great Durnford, Upper Woodford, Middle Woodford and Lower Woodford"
+ },
+ {
+   "name": "Somerset coast at Steart and Stolford, properties located behind the seafront",
+   "description": "Coastline between Stolford and the tidal River Parrett including properties around Ridgeway Lane and Gorpit Lane in Stolford and Church Farm, Dowells Farm, Coxs Farm and Manor Farm in Steart"
+ },
+ {
+   "name": "Nunney Brook",
+   "description": "Nunney Brook including Wanstrow, Holwell, Nunney and Egford and the Sharpshaw Watercourse"
+ },
+ {
+   "name": "River Tone from Bathpool to Ham including Ruishton and Creech St Michael, riverside properties",
+   "description": "Rugby Ground, Husk Farm, Mill Cottages, Sewage Treatment Works and Ham Mills"
+ },
+ {
+   "name": "Groundwater flooding for the Crichel",
+   "description": "Groundwater flooding for Chettle, Long Crichel and Moor Crichel"
+ },
+ {
+   "name": "River Mells and Whatley Brook",
+   "description": "River Mells including Edford, Ham Bridge, Coleford, Lower Vobster, Mells, Great Elm and Spring Gardens and the Whatley Brook"
+ },
+ {
+   "name": "Dorset coast at Swanage Bay",
+   "description": "The High Street, The Square, The Parade and The Mowlem"
+ },
+ {
+   "name": "Bristol Frome at Chipping Sodbury and Yate, Wickham and Jenner Close, Walshe Avenue and Hatters Lane",
+   "description": "Blanchards Farm, Wickham Close, Jenner Close, Hartley Close, Ridings Close, Walshe Avenue, Horton Road, Brookfield Close, Couzens Close, Hatters Lane and Ross Close in Chipping Sodbury"
+ },
+ {
+   "name": "Lower Stour at Beaulieu Garden Park Home Site",
+   "description": "Beaulieu Garden Park Home Site"
+ },
+ {
+   "name": "Lower Avon from Ringwood to Christchurch",
+   "description": "Bickerley, Ringwood and the B3347 from Christchurch to Stony Lane in Christchurch"
+ },
+ {
+   "name": "Upper Frome at Dorchester",
+   "description": "Casterbridge Trading Estate, London Road, Mill Street, London Close, Durnover Court and Kings Road in Dorchester"
+ },
+ {
+   "name": "Doniford Stream at Doniford",
+   "description": "Liddymore Lane, Watery Lane, Doniford Orchard and Doniford Meadow"
+ },
+ {
+   "name": "Groundwater flooding for the Wylye Valley",
+   "description": "Groundwater flooding for the Wylye Valley from south of Warminster to Wilton"
+ },
+ {
+   "name": "River Brit at Beaminster",
+   "description": "Hogshill Street, Prout Hill and Fleet Street in Beaminster"
+ },
+ {
+   "name": "River Brit at Pymore Village",
+   "description": "Suttil Crescent, Threadmill Lane, Pymore Mills and Pymore Island"
+ },
+ {
+   "name": "West Bay Harbour",
+   "description": "Esplanade, Quayside, Heron Court, Forty Foot Way, Driftwood, George Street, Swains Row, The Old Timberyard, Station Way, Pier Terrace and East Beach in West Bay"
+ },
+ {
+   "name": "Somerset coast at Kingston Seymour",
+   "description": "Hippisleys Farm area and Bourton to the south to Lower Strode Road and Colehouse Lane to the north including Middle Lane, Lampley Road and Kingston Seymour"
+ },
+ {
+   "name": "Tetbury Avon at Malmesbury",
+   "description": "Park Road, Poole Road, Gloucester Road, Mill Lane and Baskerville"
+ },
+ {
+   "name": "Lower Stour at Grove Farm Meadow Holiday Park",
+   "description": "Grove Farm Park Home Site"
+ },
+ {
+   "name": "Somerset coast at Steart, Stolford and Stretcholt",
+   "description": "Stolford Farm, Whitewick Farm, Chalcott Farm and Marsh Farm areas and properties in Stockland Bristol, Otterhampton, Steart and Stretcholt"
+ },
+ {
+   "name": "Hawkcombe Stream from Hawkcombe Valley to Porlock bowling green",
+   "description": "The Stables to Hawkcombe Bank including properties at Hawk Combe, Huish Row, near the cemetery and The Watermill"
+ },
+ {
+   "name": "River Biss upstream and downstream of Trowbridge",
+   "description": "Hawkeridge, Dursley, Yarnbrook, Biss Meadows Country Park and downstream of Trowbridge at Trowle Bridge and Bradford Road"
+ },
+ {
+   "name": "Lower Frome from Dorchester to East Stoke",
+   "description": "Areas in Dorchester, West Stafford, Bockhampton, Lewell, Tincleton, Pallington, Waddock, Moreton, Wool and East Stoke"
+ },
+ {
+   "name": "Poole Harbour at the Town Quay",
+   "description": "Swineham Point and The Moors, Wareham, Panorama Road, Grasmere Road, Seacombe Road, Brownsea Road, Banks Road and the car park on Sand Banks, Poole"
+ },
+ {
+   "name": "Monksilver Stream at Williton, Doniford Road, Recreation Ground and Industrial Estate Areas",
+   "description": "North Road to Williton Industrial Estate including North Street, Doniford Road, Egrove Way, Slade Way and Roughmoor and the Recreation Ground including Brook Road, Kebbys Farm Close, Alder Close and Townsend"
+ },
+ {
+   "name": "River Parrett (upper) at Thorney and Kingsbury Episcopi",
+   "description": "St Martins Church area in Kingsbury Episcopi and Thorney Bridge area"
+ },
+ {
+   "name": "River Lim from Uplyme to Lyme Regis, riverside properties",
+   "description": "Venlake, King Georges Field, Mill Green, Coombe Street and Bridge Street"
+ },
+ {
+   "name": "Bristol Avon (middle) at Bradford on Avon",
+   "description": "Greenland Mills, Norden, Grist Court, Kingston Square, Bridge Yard, Lamb Yard, Bridge Street, Silver Street, Bull Pit, St Margarets Street, Church Street and Pound Lane"
+ },
+ {
+   "name": "River Brit from South Bridge to A35 Roundabout",
+   "description": "South Street, Skilling Hill Road, West Bay Road and Flood Lane in Bridport"
+ },
+ {
+   "name": "Weymouth Harbour at Weymouth Town",
+   "description": "Cove Row and Street, Hope Street, Trinity Road and Street, Caroline Place, Commerical Road, Custom House Quay, Fredrick Place, Great George Street, Beaufort Garden Mews, St. Edmund Street, West Street, Westham Road and Wooperton Street in Weymouth"
+ },
+ {
+   "name": "Upper Wylye from Brixton Deverill to Warminster",
+   "description": "Longbridge Deverills, Henfords Marsh, Boreham, Water Lane and Norton Bavant"
+ },
+ {
+   "name": "Somerset coast at Weston-super-Mare South",
+   "description": "Milton Road in the north to Broadway in the south and Hutton Moor Leisure Centre in the east to the A370 and A3033 in the west"
+ },
+ {
+   "name": "Curry Moor and Hay Moor",
+   "description": "West Moor, Hay Moor and Curry Moor including New Road between North Curry and the A361, and Cutts Road at East Lyng"
+ },
+ {
+   "name": "Washford River, riverside properties from Kingsbridge to Lower Roadwater",
+   "description": "Riverside properties from Kingsbridge to Lower Roadwater including riverside properties in Kingsbridge, New mill, Langridge Mills and riverside properties in upper Roadwater and lower Roadwater"
+ },
+ {
+   "name": "Dorset coast at Chiswell",
+   "description": "A354 Chiswell, Brandy Row, Pebble Lane, Victoria Square up to the junction with Queens Road, the car parks along the A354 and the yard along Lerret Road"
+ },
+ {
+   "name": "Somerset coast at Burnham-on-Sea, properties located behind the seafront",
+   "description": "Burnham-on-Sea Holiday Village, Maple Drive, Steart Avenue, Lynton Road, Adam Street, High Street, Victoria Street, Chichester Close and Seaview Road"
+ },
+ {
+   "name": "Shreen Water from Colesbrook to Bay Bridge",
+   "description": "Lodbourne, Bay Bridge and Colesbrook"
+ },
+ {
+   "name": "Upper Stour at Gillingham Town Centre",
+   "description": "Wyke St, The Square, South St, High St, and parts of Chantry Fields in Gillingham"
+ },
+ {
+   "name": "Lower Avon at Christchurch",
+   "description": "Bridge Street, Stoney Lane and Monkswell Gardens in Purewell"
+ },
+ {
+   "name": "Brislington Brook, riverside properties",
+   "description": "Oakdale Road, South Bristol Sports Ground, Church Hill, Hollywood Road, Jean Road, School Road, Clayfield Road, Victory Park, Natures Garden and St Annes Wood"
+ },
+ {
+   "name": "Bristol Avon (upper) from Chippenham to Melksham",
+   "description": "Bristol Avon and tributaries from downstream of Chippenham to Melksham including Reybridge, Lacock and Bewley Court"
+ },
+ {
+   "name": "Tidal River Avon at Pill and Shirehampton",
+   "description": "Baltic Place, Bank Place, Underbanks, Pump Square, Marine Parade, Mariners Way and Avon Road in Pill and Riverside Close in Shirehampton"
+ },
+ {
+   "name": "River Tone at Taunton, low lying properties set back from the river",
+   "description": "Silk Mills Bridge to Bathpool including Clarence Street, Pollards Way, Greenbrook Terrace, Wood Street, Bridge Street, Staplegrove Road, St James Street and Priorswood Industrial Estate"
+ },
+ {
+   "name": "Lower Avon at Ringwood Town",
+   "description": "Kingsby Lane, Bickerley Terrace, West Street, Riverside, Lynes Lane, Kings Arm Lane, Strides Lane and Market Place in Ringwood"
+ },
+ {
+   "name": "River Bourne from Parkhouse Corner to Porton",
+   "description": "Parkhouse Corner, Cholderton, Newton Tony, Allington, Boscombe, Idminston and Porton"
+ },
+ {
+   "name": "River Isle from Chard Reservoir to Hambridge",
+   "description": "Chard Reservoir to Hambridge including Donyatt, Station Road and Home Farm Way at Ilminster, Eames Mill, Cad Bridge near Ilton and Isle Brewers"
+ },
+ {
+   "name": "River Wriggle at Chetnole",
+   "description": "Withyhook Farm to Deep Ford Lane including Heneford Mill, Neals Lane, Mill Lane, Back Lane, Ford Court and Manor Farm"
+ },
+ {
+   "name": "River Bride from Long Bredy to Burton Bradstock",
+   "description": "Bridelands and Lower Farm in Long Bredy, Bride Valley Nursery in Litton Cheney and Water Lane Fish Farm in Swyre\t"
+ },
+ {
+   "name": "Groundwater flooding for the Till",
+   "description": "Groundwater flooding for Tilshead, Orcheston, Shrewton, Winterborne Stoke, Berwick St James and Stapleford"
+ },
+ {
+   "name": "Groundwater flooding for the Bere Stream",
+   "description": "Groundwater flooding for Hilton, Milton Abbas and Milborne St Andrew"
+ },
+ {
+   "name": "Middle Avon at Fordingbridge",
+   "description": "Roman Quay, Timbermill Court and Bowerwood in Fordingbridge"
+ },
+ {
+   "name": "River Tone at Taunton, other properties set back from the river",
+   "description": "Silk Mills Bridge to Bathpool including Roughmoor Crescent, Weirfield Green, Riverside, Northfield Avenue, French Weir Close, Cleveland Street, Portland Street, Belvedere Road, Albemarle Road, Priory Avenue to Firepool area and Crown Industrial Estate"
+ },
+ {
+   "name": "Groundwater flooding in the South Wiltshire Downs - The Chilmark",
+   "description": "Groundwater flooding for Chilmark"
+ },
+ {
+   "name": "Tidal River Avon at Pill and Shirehampton, Watch House Road and Station Road areas",
+   "description": "Watch House Road in Pill and the Station Road area in Shirehampton"
+ },
+ {
+   "name": "Middle Avon from Salisbury to Ringwood",
+   "description": "Areas in Britford, Charlton All Saints, Downton and Fordingbridge in close proximity to the River Avon"
+ },
+ {
+   "name": "River Bourne from Burbage to Collingbourne Kingston",
+   "description": "Cadley, Collingbourne Kingston, Sunton and Collingbourne Ducis"
+ },
+ {
+   "name": "Middle Avon at Downton",
+   "description": "South Lane, The Borough, Green Lane and Orchard View in Downton"
+ },
+ {
+   "name": "River Brit at Newtown, and Southgate Old Mill, Beaminster",
+   "description": "Properties in Southgate and Newtown in Beaminster"
+ },
+ {
+   "name": "Tidal River Parrett at Chilton Trinity, Combwich and Dunball",
+   "description": "Properties to the east along the A38 at Bristol Road Express Park, Woodlands Business Park, Dunball and Walpole. Properties to the west at Chilton Trinity, Perry Green, Northbrook Road in Cannington, Estuary Park, Brookside Road and Riverside in Combwich"
+ },
+ {
+   "name": "Lower Stour at Redhill and Wheatplot Home Sites",
+   "description": "Redhill and Wheatplot Home Sites"
+ },
+ {
+   "name": "Halsewater Stream at Norton Fitzwarren",
+   "description": "Norton Bridge to Silk Mills Lane including Wassail View, Station Road, Morse Road, Mill House Road, Beauford Park and Taunton Trading Estate"
+ },
+ {
+   "name": "River Brit at West Bridge, Bridport",
+   "description": "Properties on West Bridge, West Street, Tannery Road and St Michaels Lane in Bridport"
+ },
+ {
+   "name": "Tidal River Parrett at Bridgwater, Taunton Road, Robins Drive and Bristol Road Business Park areas",
+   "description": "Taunton Road, Southgate Avenue, Old Taunton Road, Binford Place and Chilton Street. The Clink Business Park, Robins Drive and Symons Way and properties around Bristol Road Business Park"
+ },
+ {
+   "name": "Bristol Avon (lower) from Twerton to Bristol",
+   "description": "Bristol Avon from New Bridge to Netham including Saltford, Mead Lane, Swineford, Broad Mead, Keynsham Road, Hanham Mills, Riverside Cottages and St Annes Park"
+ },
+ {
+   "name": "Bristol Frome from Stapleton to Bristol Floating Harbour, low lying property set back from the river",
+   "description": "Eastville including Stapleton Road, Cottrell Road and Napier Road. Baptist Mills including Jubilee Road, Conduit Road, Byron Street, Dermot Street, Fern Street, Tudor Road, Goodhind Street and Newfoundland Road"
+ },
+ {
+   "name": "River Asker at Bridport",
+   "description": "East Road, East Street, Asker Mead, Folly Mill Garden, Sea Road South, South Mill Lane, South Street in Bridport"
+ },
+ {
+   "name": "Lower Stour from Sturminster Marshall to Christchurch",
+   "description": "Farms at Sturminster Marshall, Cowgrove, Shops in Wimborne, Mill Street in Corfe Mullen, Bridge House Hotel in Ferndown, Brecon Close, Ringwood Road, Throop Road in Bournemouth, Barrack Road and Willow Way in Christchurch"
+ },
+ {
+   "name": "Hillfarrance Brook at Hillfarrance",
+   "description": "The Anchor Inn to the Old Rectory including the Old Mill and properties along the main road through Hillfarrance"
+ },
+ {
+   "name": "River Brit at Netherbury",
+   "description": "Bridge Street and Crook Hill in Netherbury"
+ },
+ {
+   "name": "Christchurch Harbour Side",
+   "description": "Areas in close proximity to Christchurch Harbour including Mudeford, Stanpit, the Quomps and Wick areas"
+ },
+ {
+   "name": "Portland Harbour at Ferry Bridge",
+   "description": "Chesil Bank and The Fleet Nature Reserve and Ferry Bridge Marine Services, Portland Beach Road"
+ },
+ {
+   "name": "Bristol Frome at Chipping Sodbury and Yate, Grace Close, Bennetts Court, Station Road and Oak Close",
+   "description": "Grace Close in Chipping Sodbury and Bennetts Court, Station Road and Oak Close in Yate"
+ },
+ {
+   "name": "Middle Avon at The Maltings, Salisbury",
+   "description": "The Maltings and properties on Silver Street backing on to The Maltings"
+ },
+ {
+   "name": "River Parrett (lower) at Langport Westover Trading Estate",
+   "description": "Cheapside, Whatley Mews, Parrett Close, Bow Street, Moor Park and Westover Trading Estate"
+ },
+ {
+   "name": "Weymouth Harbour at Lakeside Walk, Hope Street and Nothe Parade",
+   "description": "The Gurka Bar on Lakeside Walk, Nothe Parade and Hope Street in Weymouth"
+ },
+ {
+   "name": "Groundwater flooding for the North Winterborne, north of the A354",
+   "description": "Groundwater flooding for Turnworth, Winterborne Stickland, Winterborne Houghton, Clenston, Whatcombe and Whitechurch"
+ },
+ {
+   "name": "Groundwater flooding for the Tarrant Valley",
+   "description": "Groundwater flooding for Stubhampton and the Tarrants"
+ },
+ {
+   "name": "Groundwater flooding for the Wylye Valley at Wilton",
+   "description": "Groundwater flooding for Wilton"
+ },
+ {
+   "name": "Upper Frome at Maiden Newton",
+   "description": "Dorchester Road and Frome Lane area of Maiden Newton"
+ },
+ {
+   "name": "Groundwater flooding in the Allen Vale at Monkton Up Wimborne and Wimborne St Giles",
+   "description": "Groundwater flooding in Monkton Up Wimborne and Wimborne St Giles"
+ },
+ {
+   "name": "Tidal River Parrett at Chilton Trinity and Combwich, low lying properties",
+   "description": "Combwich Common and Wharf at Combwich in the north to Chilton Trinity in the south including low lying land along the tidal River Parrett and around Fenlyns, Pippins and Chinehorn Rhynes"
+ },
+ {
+   "name": "River Allen at Wimborne",
+   "description": "Knobcrook Road, Mill Lane and East Street in Wimborne"
+ },
+ {
+   "name": "Middle Stour from Hammoon to Sturminster Marshall",
+   "description": "Hammoon, Bere Marsh, Stourpaine, Durweston and Lower Blandford St Mary"
+ },
+ {
+   "name": "Groundwater flooding for the Wylye Valley at Warminster",
+   "description": "Groundwater flooding for Warminster"
+ },
+ {
+   "name": "Bristol Avon (middle) from Melksham to Bathford, not including Bradford on Avon",
+   "description": "Bristol Avon from Challymead Bridge to Bathford Bridge not including Bradford on Avon. Including Whaddon, Staverton, Avoncliff, Limpley Stoke and Claverton"
+ },
+ {
+   "name": "River Yeo from Limington to Langport",
+   "description": "Downstream of Weir Bridge near Limington to Langport including Hainbury Farm, farms around the A303, Long Load, Withmoor Drove, Crouds Lane, Upton Bridge Farm, Pibsbury, Huish Episcopi, Portland Road, Courtfield and Huish Farm area near Langport"
+ },
+ {
+   "name": "River Wriggle at Yetminster",
+   "description": "Manor Farm Dairy to the River Yeo including Chubbs Farm, Hamlet, Deep Lane, Winterhayes Farm, Mill Lane, Brierley Hay, Sussex Farm Way, Beer Hackett and the Trill Farm area"
+ },
+ {
+   "name": "River Brit at Pymore Island and Queenwell, Pymore",
+   "description": "Properties in Queenwell and Pymore Island"
+ },
+ {
+   "name": "Lower Frome from East Stoke to Wareham",
+   "description": "Areas in East Stoke, Holmebridge, Stoborough, Stoborough Green, Wareham, Redcliffe, Ridge and Swineham"
+ },
+ {
+   "name": "River Wey from Upwey to Weymouth",
+   "description": "River Wey from Upwey to Weymouth including Church Street, Little Mead, Nottington Lane, Nottington Farm and Almas Palace"
+ },
+ {
+   "name": "Somerset coast at Burnham-on-Sea, Huntspill, Highbridge and Berrow",
+   "description": "West Huntspill, Highbridge, Burnham-on-Sea and Berrow to the west to Mark in the east including East Huntspill, Edithmead, East Brent and Rooksbridge"
+ },
+ {
+   "name": "Lower Wylye from Warminster to Wilton",
+   "description": "Heytesbury, Suffers Bridge, Boyton, Codford St Peter, Wylye and Great Wishford in Wilton"
+ },
+ {
+   "name": "Lower Avon at The Bridges and Stubbings Meadow in Ringwood",
+   "description": "The Bridges, Little Thatch, Watermead, Capberton, Three Bridges and Old Bridge Cottage, West Street, Avon Edge and Stubbings Meadow Caravan Park in Ringwood"
+ },
+ {
+   "name": "River Brit at West Bay",
+   "description": "Forty Foot Way, Quayside, The Kiosks, Station Road, George Street and West Bay Road, West Bay"
+ },
+ {
+   "name": "Groundwater flooding in the upper Avon valley and the Nine Mile river",
+   "description": "Groundwater flooding for the Upper Avon Valley and the Nine Mile River"
+ },
+ {
+   "name": "Tidal River Avon from Sea Mills to Conham",
+   "description": "Low lying property and roads along the River Avon from Sea Mills to Conham including Sea Mills Road, The Portway, Cumberland Basin, Commercial Road, Bathurst Basin, Clarence Road, Albert Road, Central Trading Estate and Crews Hole Road"
+ },
+ {
+   "name": "Somerset coast at Brean, Brean Down Cove area",
+   "description": "Coastline between Berrow and Brean Down including seafront properties at Brean Down Cove and Brean Down Farm"
+ },
+ {
+   "name": "Shreen Water at Gillingham",
+   "description": "Bay Road and parts of Bay Fields in Gillingham"
+ },
+ {
+   "name": "Sherston Avon at Malmesbury",
+   "description": "Westport Bridge, The Maltings, St Johns Bridge, St Johns Street, Inner Silk Mills and The Mulberries"
+ },
+ {
+   "name": "Groundwater flooding for the South Winterbourne Valley",
+   "description": "Groundwater flooding for Kingston Russell, Winterbourne Abbas, Winterbourne Steepleton, Martinstown or Winterbourne St Martin, Winterbourne Monkton, Winterbourne Herringston and Winterbourne Came"
+ },
+ {
+   "name": "Bristol Avon (upper) at Chippenham, riverside properties",
+   "description": "Sea and Air Cadet Headquarters, High Street, Borough Parade, River Parade, The Bridge, Rowden Hill and Bath Road"
+ },
+ {
+   "name": "Severn Estuary at Severn Beach, seafront properties",
+   "description": "Severn Estuary from New Passage to the Severn View Industrial Park including low lying properties at New Passage and Shaft Road, Beach Road, Station Road and Riverside Park in Severn Beach"
+ },
+ {
+   "name": "Severn Estuary at Oldbury-on-Severn, Oldbury Naite and Littleton Warth areas",
+   "description": "Severn Estuary from Oldbury-on-Severn to the Old Severn Bridge including Oldbury Naite, Thornbury Sailing Club, Oldbury Pill, Whale Wharf and Rusholme"
+ },
+ {
+   "name": "Somerset coast at Minehead, properties located behind the seafront",
+   "description": "Coastline between Quay West and The Warren extending to Mart Road Industrial Estate and the West Somerset Railway to the south. Including Butlins and the Golf Course to the east and properties on Blenheim Road, The Esplanade, Ponsford Road and Brunel Way"
+ },
+ {
+   "name": "Lower Wylye at Wilton Town",
+   "description": "Grovely Riding School, Ditchampton, North Street, Castle Lane and Minster Street in Wilton"
+ },
+ {
+   "name": "Rivers Stour and Iwerne at Stourpaine",
+   "description": "Havelins and the SPFA sports pavilion areas in Stourpaine"
+ },
+ {
+   "name": "Wellow Brook and River Somer at Midsomer Norton and Radstock, Thicketmead Bridge and Coombend areas",
+   "description": "Wellow Brook including Thicketmead Bridge in Midsomer Norton and Mill Road in Radstock. Coomb End Culvert including Coombend and Market Place. The Snails and Kilmersdon Brooks including Church Street and St Nicholas Primary School and the River Somer"
+ },
+ {
+   "name": "Severn Estuary at Avonmouth",
+   "description": "Industrial areas from Chittening Industrial Estate to the north to Avonmouth Docks to the south including the Lawrence Weston Road and St Andrews Road areas. Residential areas at Avonmouth including the Avonmouth Road, Portview Road and Portway areas"
+ },
+ {
+   "name": "Severn Estuary at Severn Beach and Pilning",
+   "description": "Redwick and Pilning to the north to Easter Compton to the east including Avonmouth and Western Approach Distribution Centres, Swanmoor Bridge area, Avlon and Severnside Works and the Severn View Industrial Park"
+ },
+ {
+   "name": "River Chew from Stanton Drew to the Bristol Avon at Keynsham",
+   "description": "River Chew from Stanton Drew to the Bristol Avon including Pensford, Publow, Woollard, Compton Dando, Chewton Place and Dapps Hill and Bath Hill in Keynsham"
+ },
+ {
+   "name": "River Sheppey",
+   "description": "Shepton Mallet to Lower Godney including Garston Street, Leg Square, Lower Lane, Longbridge and Draycott Road in Shepton Mallet and properties in Bowlish, Darshill, Croscombe, Dulcote, Coxley, Fenny Castle, Wookey, Upper Godney and Lower Godney"
+ },
+ {
+   "name": "Monksilver Stream at Williton, High Street, Fore Street and Long Street area",
+   "description": "Mamsey Bridge to High Bridge, including Bridge Street, High Street, Half Acre, Catwell, Robert Street, Fore Street, Long Street, parts of Townsend, Station Road and the A39 at High Bridge"
+ },
+ {
+   "name": "River Piddle from Alton Pancras to Wareham",
+   "description": "Alton Pancras, Piddletrenthide, Piddlehinton, Druce, Puddletown, Athelhampton, Affpuddle, Briantspuddle, Throop and Wareham including Purbeck View Park"
+ },
+ {
+   "name": "Horner Water",
+   "description": "Horner Water including Horner, West Luccombe and Bossington"
+ },
+ {
+   "name": "Chew Stoke Stream and River Chew at Chew Stoke and Chew Magna",
+   "description": "Home Orchard, School Lane, Mill Lane, The Street, Pilgrims Way, Quarry Hay, Bristol Road and Bilbie Road in Chew Stoke and Dumpers Lane, Madams Paddock, Tunbridge Close and Tunbridge Road in Chew Magna"
+ },
+ {
+   "name": "Severn Estuary at Avonmouth, seafront properties",
+   "description": "Severn Estuary from the Severn View Industrial Park to the tidal River Avon including Severn Road, Holesmouth, Smoke Lane Industrial Estate and Royal Edward Dock"
+ },
+ {
+   "name": "Tidal River Avon at Pill and Shirehampton, Nibley Road and Wellington Mews areas",
+   "description": "Nibley Road and Wellington Mews areas in Shirehampton"
+ },
+ {
+   "name": "River Brit at Skilling Playing Fields and West Bay Road Nursery",
+   "description": "CW Groves and Sons Nursery and the Skilling Playing fields and Football pitch in Bridport"
+ },
+ {
+   "name": "River Brit at Bridport Trading Estates",
+   "description": "North Mills Trading Estate, St Michaels Lane, St Michaels Trading Estate and Dreadnought Trading Estate in Bridport"
+ },
+ {
+   "name": "Somerset coast at Portishead and Portbury Dock, seafront properties and Portbury Dock areas",
+   "description": "Coastline between Portishead Point and Avonmouth including Woodlands Road, Portishead Ashlands Nature Reserve and the Royal Portbury Dock"
+ },
+ {
+   "name": "Somerset coast at Porlock Weir",
+   "description": "Coastline between Gore Point and Hurlstone Point including properties on the lockside, businesses around the Harbour Masters office, Gibraltar Cottages and other low lying properties on the B3225 at Porlock Weir"
+ },
+ {
+   "name": "Groundwater flooding for the Crane",
+   "description": "Groundwater flooding for Pentridge and Cranborne"
+ },
+ {
+   "name": "Groundwater flooding for the Iwerne",
+   "description": "Groundwater flooding for Sutton Waldron, Iwerne Minster, Iwerne Courntey, Shroton and Stourpaine"
+ },
+ {
+   "name": "Dauntsey Brook at Dauntsey, Old Sodom Lane and The Green areas",
+   "description": "Riverside properties on Old Sodom Lane, The Green and Dauntsey Green including Earl Danbys Primary School. Sodom Lane including Barn Farm and Evergreen Farm and the area around the Providance Chapel"
+ },
+ {
+   "name": "Doniford Stream at Swill Bridge",
+   "description": "Doniford Stream at Swill Bridge"
+ },
+ {
+   "name": "Colliters Brook at Ashton Vale",
+   "description": "Football ground area including Duckmoor Road Industrial Estate and Bristol Bowling Club"
+ },
+ {
+   "name": "Somerset coast at Uphill, Slimeridge Farm and the Boat Yard areas",
+   "description": "Coastline at Uphill including Slimeridge Farm Caravan Park area and the Boat Yard"
+ },
+ {
+   "name": "Somerset coast at Weston-super-Mare, properties located behind the seafront",
+   "description": "Properties on Knightstone Road, Victoria Place, Royal Parade, Marine Parade, Beach Road and the High Street"
+ },
+ {
+   "name": "Barwick Stream at Stoford",
+   "description": "Cowpool Farm and Clifton Maybank and properties on Court Lane, Court Acres, Hampton Close, Meadow View, Newton Road, Five Acres, Quarry Cottages, Hillside View and Yeo Valley in Stoford"
+ },
+ {
+   "name": "Bristol Avon at Bath, low lying properties set back from the river",
+   "description": "Grosvenor and Kensington Meadows, St Johns Road, Henrietta Park, North Parade Road, the A36 and other riverside roads in Kingsmead"
+ },
+ {
+   "name": "Groundwater flooding for the Pimperne Brook",
+   "description": "Groundwater flooding for the Pimperne Brook at Pimperne"
+ },
+ {
+   "name": "Somerset coast at Clevedon, properties located behind Marshalls Field",
+   "description": "Marshalls Field area to Fosseway and Churchill Avenue to the east to Old Church Road to the north including Strode Road and Tweed Road Industrial Estate"
+ },
+ {
+   "name": "Bristol Floating Harbour and the River Avon at Bristol, riverside properties",
+   "description": "Riverside properties on the Feeder Canal, Floating Harbour and River Avon including Netham, St Philips Marsh, Bathurst Basin, Harbour Wharfs, SS Great Britain Dry Docks, Bristol City Docks and the Cumberland Basin"
+ },
+ {
+   "name": "Weymouth Seafront at Weymouth Town",
+   "description": "Avenue Rd, Bath St, Charles St, Clifton Place, Commerical Rd, Edward St, Gloucester St, Gloucester Mews, Gloucester Lodge, Great George St, Greenhill, Melcombe Place, Park St, Turton St, Upwey St, Victoria St, Wesley St and William St in Weymouth"
+ },
+ {
+   "name": "Weymouth Seafront at Chelmsford St, Crescent St, Derby St, and Stanley St in Weymouth",
+   "description": "Albert Street, Brownlow Street, Stuarts Ct, Brunswick Terrace, Chelmsford Street, Crescent Street, Derby Street, Hardwick Street, King Street, Lennox Street, Park Street, Penny Street, Queen Street, Ranelagh Rd, Stanley St and Walpole St in Weymouth"
+ },
+ {
+   "name": "Lower Stour at Stour Park Homes",
+   "description": "Stour Park Homes Site and Water Lane Farm"
+ },
+ {
+   "name": "Poole Harbour at Wareham",
+   "description": "Wareham Quay, Ridge, Redcliffe and Swineham areas"
+ },
+ {
+   "name": "Somerset coast at Weston-super-Mare, seafront properties",
+   "description": "Promenade including The Grand Pier, Seaquarium and other seafront properties and the Marine Lake area, including Knightstone Island and Knightstone Causeway"
+ },
+ {
+   "name": "River Brue (upper) at Bruton Town",
+   "description": "Station Road, Patwell Lane, Silver Street, Lower Backway, Mill Lane, West End and Berkeley Gardens"
+ },
+ {
+   "name": "Bristol Frome at Chipping Sodbury and Yate, Brook Street, Highway, Broadway and Melrose Avenue",
+   "description": "Brook Street, Highway, Ridgeway, Newlyn Way, Broadway, Firgrove Crescent, Melrose Avenue, Mercier Close and St Marys Way in Yate"
+ },
+ {
+   "name": "River Yeo at Ilchester",
+   "description": "Kingshams, Limington Road, Lyster Close, Back Lane, Church Street, Almshouse Lane, West Street, High Street, Priory Road, Pill Bridge Lane, Bishops Walk, Friars Close, Canons Gate, Abbots Road and Northover"
+ },
+ {
+   "name": "Bristol Avon (mid) at Melksham",
+   "description": "Bristol Avon including New Broughton Road, Old Broughton Road and Bradford Road. Clackers Brook including Lowbourne, Webbs Close and Bath Road and the South Brook including Northbrook Road, Southbrook Road and Roundpond"
+ },
+ {
+   "name": "Bristol Floating Harbour and the River Avon at Bristol, low lying properties set back from the river",
+   "description": "Low lying properties set back from the river including Victoria Street, Victoria Terrace and Feeder Road on the Feeder Canal. Temple Back on the Harbour and Sparke Evans Park area, Arnos Vale and Albert Road on the River Avon"
+ },
+ {
+   "name": "Somerset coast at Brean, Red Road and Weston Road areas",
+   "description": "Hurn Lane to Brean Down including Red Road, Ham Road and Weston Road"
+ },
+ {
+   "name": "Severn Estuary at Severn Beach, properties located behind the seafront",
+   "description": "New Passage Road and Southworthy Farm areas in New Passage. Salthouse Farm Park, Beach Road, Beach Avenue, Gorse Cover Road, Church Road, Prospect Road, Abbott Road and Severnwood Gardens in Severn Beach"
+ },
+ {
+   "name": "Somerset coast at Kewstoke and Sand Bay",
+   "description": "Court Road, Myrtle Tree Crescent, St Bridges Close and Sand Farm Lane in Kewstoke and Sand Bay to Kewside and Lower Norton Lane to the south and Collum Lane to the east"
+ },
+ {
+   "name": "Paxcroft Brook and Lambrok Stream",
+   "description": "Heather Shaw Road and West Ashton Road on the Paxcroft Brook and riverside properties at Southwick, Lambrok Close, Berkeley Road, Acacia Crescent and Albion Drive on the Lambrok Stream"
+ },
+ {
+   "name": "River Char at Dolphins River Caravan Park",
+   "description": "Dolphins River Park"
+ },
+ {
+   "name": "River Brue and Glastonbury Millstream from Lovington to Highbridge, low lying properties",
+   "description": "Tootle Bridge, Catsham, Church Moor at Baltonsborough, Street Drove, the B3151 Glastonbury to Meare road, Westhay Bridge and Tadham Moor"
+ },
+ {
+   "name": "River Tone from Bathpool to Ham including Ruishton and Creech St Michael",
+   "description": "Bathpool including Bridgwater Road, Acacia Gardens, Swingbridge, Hyde Lane, St Quintin Park and Rex Hill Farm. Ruishton including Overlands, Lawn Meadow and Newlands Grove. Creech St Michael including Mill Lane, Bull Street, Ham Road and Ham village"
+ },
+ {
+   "name": "Somerset coast at Dunster Beaches, seafront and chalet area",
+   "description": "Coastline between The Warren and Sea Lane End including Dunster Beach Chalets"
+ },
+ {
+   "name": "River Bride at Burton Bradstock",
+   "description": "High Street, Mill Street, Manor Farm and The Rookery in Burton Bradstock"
+ },
+ {
+   "name": "Tidal River Parrett at Bridgwater, Moorland, Burrowbridge and Stathe",
+   "description": "Bridgwater to Langport to the south including Stathe, Burrowbridge, Athelney, Moorland, Middlezoy and Westonzoyland"
+ },
+ {
+   "name": "Upper Avon from Amesbury to Salisbury",
+   "description": "Great Durnford, Upper Woodford, Middle Woodford and Lower Woodford"
+ },
+ {
+   "name": "Somerset coast at Kewstoke and Sand Bay, Sand Point area",
+   "description": "Coastline between Kewstoke and Sand Point including seafront properties at Sand Point Farm area"
+ },
+ {
+   "name": "Poole Harbour at Hamworthy Park",
+   "description": "Hamworthy Park and surrounding areas including Moriconium Quay, parts of Lulworth Avenue and parts of Branksea Avenue"
+ },
+ {
+   "name": "Semington Brook from upper reaches to Semington",
+   "description": "West Lavington to Whaddon including Littleton Panell, Great Cheverell, Worton, Bulkington, Littleton and Semington"
+ },
+ {
+   "name": "Severn Estuary at Oldbury-on-Severn, Westend, Cowhill and Olveston areas",
+   "description": "Pennywell Farm, Elm Farm, Park Mill Farm and Churnmead Farm areas. West End Lane, Camp Road and Westmarsh Lane in Oldbury-on-Severn and Cowhill, Lower Corston Farm and Ley Lane, Church Hill and Denys Court in Olveston"
+ },
+ {
+   "name": "Somerset coast at Portishead and Portbury Dock, Portbury Wharf and Common and Gordano Valley areas",
+   "description": "Portbury Wharf to Bristol Road and Portbury Common to the south of Portishead including The Marina, Harbour Road, Wyndham Way and the Fennel Road area. Clapton Lane, Moor Lane and Clapton Moor in the Gordano Valley area"
+ },
+ {
+   "name": "Bristol Frome from Stapleton to Bristol Floating Harbour, other properties set back from the river",
+   "description": "Eastville including Averay Road, Glenfrome Road and Muller Road. Baptist Mills including Mina Road, Rosebery Avenue, Jubilee Road, Ashley Street, Badminton Road, Franklyn Street, Thomas Street, Hathway Walk, Wade Street and River Street"
+ },
+ {
+   "name": "Somerset coast at Blue Anchor, seafront properties",
+   "description": "Coastline between Sea Lane End and Blue Anchor Hotel including Blue Anchor Chalets, The Smugglers Hotel and other low lying properties on the seafront"
+ },
+ {
+   "name": "Somerset coast at Weston-super-Mare North",
+   "description": "Ebdon in the north to West Wick in the south and St Georges in the east to Queensway in the west"
+ },
+ {
+   "name": "Somerset Frome from Frome to Freshford",
+   "description": "Spring Gardens to Freshford including Oldford, Lullington Weir, Beckington Mill, Eden Vale Farm, Shawford, Rode, Stowford Mill, Farleigh Hungerford, Iford Bridge and Friary"
+ },
+ {
+   "name": "Salt Moor and North Moor including Moorland",
+   "description": "Salt Moor and North Moor including East Lyng, Burrowbridge, West Yeo, Moorland and Fordgate"
+ },
+ {
+   "name": "Doniford Stream in the Sampford Mill Farm area",
+   "description": "Sampford Brett Bridge on the A358 and Sampford Mill Farm"
+ },
+ {
+   "name": "Groundwater flooding for the Bere Stream at Bere Regis",
+   "description": "Groundwater flooding for Bere Regis"
+ },
+ {
+   "name": "Brislington Brook, low lying properties set back from the river",
+   "description": "Airport Road, Hither Bath Bridge, Lanes End, West Town Lane Primary School playing fields, Homemead Drive, Callington Road, Kenneth Road, the railway line at St Annes and Chapel Way"
+ },
+ {
+   "name": "Upper Stour from Gillingham to Hammoon",
+   "description": "Eccliffe, parts of the A30, Stour Provost, Sturminster Newton, Hammoon and parts of the A357"
+ },
+ {
+   "name": "River Tone from Waterrow to Taunton",
+   "description": "Waterrow Bridge to Silk Mills Bridge including Tracebridge, Greenham, Kittisford Mill, Wellisford, Harpford, Tonedale and Lowmoor Industrial Estates, Tone Green, Longaller and other low lying properties and roads"
+ },
+ {
+   "name": "Portland Harbour at Osprey Quay",
+   "description": "Hamm Beach Road, Portland Beach Road Mereside, Coode Way, Castletown and Portland Port"
+ },
+ {
+   "name": "River Bourne from Winterbourne Gunner to Southampton Road in Laverstock",
+   "description": "Winterborne Gunner, Winterborne Daunstsey, Winterborne Earls, Ford, Milford Mill Road in Laverstock, Milford Park and Milford Manor Gardens in the Salisbury, Bishopsdown area"
+ },
+ {
+   "name": "River Yeo at Mudford",
+   "description": "Mudford Bridge, Parsonage Farm and properties on Main Street"
+ },
+ {
+   "name": "River Brit at Riverside and George Street, West Bay",
+   "description": "Riverside, and George Street, West Bay"
+ },
+ {
+   "name": "Upper Stour at Gillingham High Street",
+   "description": "Rawson Court, The Square, Wyke Street, South St, Chantry Fields and the High Street in Gillingham"
+ },
+ {
+   "name": "River Brit at Bothenhampton",
+   "description": "West Bay Road, Meadowlands, Buttercup Way and Bramble Drive in Bothenhampton"
+ },
+ {
+   "name": "Somerset coast at Uphill",
+   "description": "Coastline at Uphill from Links Road to Uphill Road and Grange Road to the south, the A370 to the east to Old Church Road to the north including Weston General Hospital"
+ },
+ {
+   "name": "River Yeo at Ilchester Mead",
+   "description": "Properties in The Mead"
+ },
+ {
+   "name": "Wellow Brook and River Somer at Midsomer Norton and Radstock, Riverside, Welton and Mill Road areas",
+   "description": "Wellow Brook including Station Road and Welton Hollow in Midsomer Norton and Fortescue Road, Waterloo Road, Pine Court and Mill Road Industrial Estate in Radstock. River Somer including Riverside, Steam Mills, St Chads Green and Somervale School"
+ },
+ {
+   "name": "Somerset coast at Minehead, Marsh Common and Seaward Way areas",
+   "description": "Glenmore Road to Stephenson Road and Mallard Road to the south including King George Road, Hayfield Road, Sandpiper Close, Plover Close, Puffin Close, Teal Road, Wigeon Close and other properties in the Marsh Common and Seaward Way areas"
+ },
+ {
+   "name": "Lower Stour from Longham to Christchurch",
+   "description": "Parley, Corfe Mullen, Hampreston, Ferndown, Throop, Hurn, Bournemouth and Christchurch"
+ },
+ {
+   "name": "Somerset coast at Kewstoke and Sand Bay, Beach Road area",
+   "description": "Coastline between Kewstoke and Sand Point including properties and Caravan Sites along Beach Road, Crookes Lane, Southside Crescent and Sand Road"
+ },
+ {
+   "name": "Somerset coast at Steart and Stolford, seafront properties",
+   "description": "Coastline between Stolford and the tidal River Parrett including Chapple Cottages in Stolford and low lying properties in Steart"
+ },
+ {
+   "name": "Bristol Avon at Bath, riverside properties",
+   "description": "Upstream at Bathampton Bridge and Sports Fields to riverside properties at Twerton and Locksbrook. Including Pulteney Weir and nearby Sports Centre and Cricket Ground"
+ },
+ {
+   "name": "River Yeo from Yeovil to Limington",
+   "description": "Downstream of Old Mill Farm area near Yeovil to Weir Bridge near Limington including West Mudford"
+ },
+ {
+   "name": "River Nadder at South Street, Wilton",
+   "description": "South Street between Bull Bridge and the Library including the Surgery, Michael Herbert Hall and carpark and the Allotment Gardens in Wilton"
+ },
+ {
+   "name": "Hawkcombe Stream at Porlock centre",
+   "description": "Stokecroft to the coast path including properties on Parsons Street, the High Street from Sanctuary Cottage to Carslake, Sparkhayes Lane from Wychwood to Earlsdon and the Riverside area"
+ },
+ {
+   "name": "Bristol Avon at Bath, other properties set back from the river",
+   "description": "Grosvenor Bridge Road, Forester Avenue, Henrietta Gardens, Pulteney Road, Ferry Lane, the bus station, Victoria Bridge Road and Brassmill Lane in the Locksbrook area"
+ },
+ {
+   "name": "Middle Avon at Downton village centre",
+   "description": "Green Lane, The Borough, Gravel Close, Long Close and the High Street in Downton"
+ },
+ {
+   "name": "Somerset coast at Weston-super-Mare Central",
+   "description": "Milton Road and Worle High Street in the north to Locking in the south and Churchland Way in the east to Hornets Rugby Football Club ground in the west"
+ },
+ {
+   "name": "Middle Stour at Blandford",
+   "description": "West Street, Shorts Lane, Barnack Walk, Market Place, Sheep Market Hill, East Street, Nightingale Court, Damory Street, River Mews and Langton Road in Blandford"
+ },
+ {
+   "name": "Somerset coast at Blue Anchor, properties located behind the seafront",
+   "description": "Home Farm Cottages and Hoburne Caravan Site"
+ },
+ {
+   "name": "River Cale at Wincanton, riverside properties",
+   "description": "Hopkins Court, Bennetts Field Trading Estate, Whitehall, Moor Lane and part of the A371"
+ },
+ {
+   "name": "Lower Stour at Holdenhurst Village",
+   "description": "Holdenhurst Farm and Wood Farm in Holdenhurst"
+ },
+ {
+   "name": "River Bourne at Southampton Road Industrial Park, Salisbury",
+   "description": "Southampton Road Industrial Estate, Dolphin Park Industrial Estate and the Muttons Bridge Area"
+ },
+ {
+   "name": "River Tone at Taunton, riverside properties",
+   "description": "Silk Mills Bridge to Bathpool including Roughmoor Close, Palmerston Road, French Weir, Castle Street and Station Road"
+ },
+ {
+   "name": "River Brit at Priory Mills, Bridport",
+   "description": "St Michaels Garden, Priory Lane, Vernons Court, South Walk and Castle Square in Bridport"
+ },
+ {
+   "name": "River Cale at Wincanton",
+   "description": "Southgate Road, Bennetts Field Trading Estate, Hopkins Court, Shatterwell Villas, The Batch, Mill Street, Carmel Villas and parts of the A371 and A303"
+ },
+ {
+   "name": "River Allen at Wimborne Town Centre",
+   "description": "Wimborne Road, Allenview Road, Hanham Road, Mill Lane, Crown Mead, East Street, High Street, Dean Court Lane, Millstream Close, Poole Road, Station Road and Newmans Close in Wimborne"
+ },
+ {
+   "name": "Middle Avon at Harnham Road and St Nicholas Island, Salisbury",
+   "description": "Properties on Harnham Road and St Nicholas Road in Salisbury"
+ },
+ {
+   "name": "Severn Estuary at Northwick",
+   "description": "Bilsham Lane and Northwick Road areas"
+ },
+ {
+   "name": "Somerset coast at Clevedon",
+   "description": "Yeolands Drive to the Blind Yeo river to the south and Southern Way to the north including Strode Sports Centre. Kenn Road to Clevedon Moor to the east and Tickenham Road to the north including Yeo Moor Schools and Hither Green Industrial Estate"
+ },
+ {
+   "name": "Severn Estuary from Sharpness to Oldbury-on-Severn",
+   "description": "Sanigar Lane, Lynch Road, Jumpers Lane and Hamfields Lane including Berkeley Power Station. Blackhall, Upper Hill, Yew Tree Farm area and Rockhampton"
+ },
+ {
+   "name": "River Lim from Uplyme to Lyme Regis",
+   "description": "Church Street, Middle Mill Farm, Avenue Road, Mill Green, Coombe Street and Bridge Street"
+ },
+ {
+   "name": "River Winniford at Chideock",
+   "description": "North Chideock, Fairfax and Main Street Chideock"
+ },
+ {
+   "name": "Severn Estuary from Sharpness to Oldbury-on-Severn, Clapton, Hill and Nupdown areas",
+   "description": "Woodlands Farm, Nupdown Farm, Hill, Manor Farm, Lowgoods Farm, Knights Farm, Holt Farm and Valley Farm areas"
+ },
+ {
+   "name": "River Brue and Glastonbury Millstream from Lovington to Highbridge",
+   "description": "East Lydford, West Lydford, Tuckers Lane at Baltonsborough, Street Drove, the A39 between Street and Glastonbury, Cradle Bridge, Glastonbury Heath and Street Heath"
+ },
+ {
+   "name": "Somerset coast at Kingston Seymour, Wick St Lawrence, Hewish and Kenn",
+   "description": "Wick St Lawrence to the west to Riverside near Banwell to the south and Station Road at Congresbury to the east including Puxton and Hewish. Horsecastle Farm and The Batch areas at Yatton to Kenn Road to the north including Kenn"
+ },
+ {
+   "name": "Monksilver Stream from Combe Sydenham to Williton",
+   "description": "Combe Sydenham to Williton including Monksilver, Woodford, Yarde and Stream"
+ },
+ {
+   "name": "River Bourne at Tidworth and Shipton Bellinger",
+   "description": "Rectory Close, Trinity View Road in Tidworth and at the High Street in Shipton Bellinger"
+ },
+ {
+   "name": "River Bourne at Tidworth and Shipton Bellinger Village Centres",
+   "description": "Luggershall Road and Penning Road North of Plassey Close in Tidworth and at High St Junction with Bulford Road in Shipton Bellinger"
+ },
+ {
+   "name": "Somerset Frome from Witham Friary to Frome",
+   "description": "Witham Friary to Wallbridge including Bullsbridge Farm, Blatchbridge Mill, Feltham Bridge, Wallbridge Mills, Harris Close, Tucker Close, Waters Edge, River Walk, Ellworthy Court and the A362 at Wallbridge"
+ },
+ {
+   "name": "River Nadder at West Harnham",
+   "description": "St George's Road, Richards Way, Middle Street, Old Meadows Walk, Constable Way and Lower Street in West Harnham"
+ },
+ {
+   "name": "Bristol Frome from Stapleton to Bristol Floating Harbour, riverside properties",
+   "description": "Eastville including Stapleton Bridge, Stapleton Road, Cottrell Road, the Eastgate Centre and Robert Street. Baptist Mills including Pennywell Road and Robinson Drive"
+ },
+ {
+   "name": "River Biss at Trowbridge",
+   "description": "County Way Road to River Way Road, including the Library, the area around Town Bridge and River Way Road and other riverside roads and properties in Trowbridge"
+ },
+ {
+   "name": "Cannington Brook at Cannington",
+   "description": "Brook Street, Duke Avenue, School Fields, Main Road, Lonsdale Road, Rydon Crescent, Southbrook, Grange Close, Priory Close, Southbrook Close and Northbrook Road"
+ },
+ {
+   "name": "Dauntsey Brook at Dauntsey, Olivemead Lane, Sodom Lane, Church Lane and Swallet Gate areas",
+   "description": "Olivemead Lane, The Green and Sodom Lane including Great Dairy Farm. Church Lane including Dauntsey Fields Farm and Union Farm and the Swallet Gate area including St James and St Johns"
+ },
+ {
+   "name": "Somerset Frome at Frome",
+   "description": "Willow Vale, King Street, Saxonvale, Market Place, The Bridge, Bridge Street, Westway, Scott Road, Justice Lane, Welshmill Road and Welshmill Lane"
+ },
+ {
+   "name": "Stan Moor including Curload and Athelney",
+   "description": "Stan Moor including Curload, Athelney and properties along Stanmoor Road"
+ },
+ {
+   "name": "Weymouth Seafront at The Esplanade",
+   "description": "The Esplanade in Weymouth"
+ },
+ {
+   "name": "Middle Avon at Southampton Road Industrial Park",
+   "description": "Dolphin Industrial Estate and Muttons Bridge, Salisbury"
+ },
+ {
+   "name": "Middle Stour at Sturminster Marshall",
+   "description": "Back Lane, Kings Street, Newton Road, Market Place, Front Lane, High Street, Blandford Road and Church Street in Sturminster Marshall\t\t\t"
+ },
+ {
+   "name": "Upper Stour at Gillingham",
+   "description": "The Square, High Street, Chantry Fields, Wyke Street, South St, St Martin's Sq, and Barnaby Mead in Gillingham"
+ },
+ {
+   "name": "Weymouth Harbour at Weymouth Harbourside",
+   "description": "Cove Row, Hope Square, Hope Street, Trinity Road, Granary Wharf, Martello Mews, Quayside Court, Commerical Road, Custom House Quay, Helen Lane, Lower St. Edmund Street, St. Edmund Street and St. Mary Street in Weymouth"
+ },
+ {
+   "name": "Bristol Avon (upper) at Chippenham, other properties set back from the river",
+   "description": "Avon Reach, The Bridge, Foghamshire, Providence Terrace, Ivy Road, St Mary Street, Emery Gate, Borough Parade, Westmead Lane, Monkton Park, St Mellion Close, Riverside Drive, Lytham Close, Gleneagles Close, Eastern Avenue and Wentworth Close"
+ },
+ {
+   "name": "Lower Stour at Canford",
+   "description": "Canford School"
+ },
+ {
+   "name": "Lower Stour at Cowgrove",
+   "description": "Roman Way and other Farm and Cottages in Cowgrove"
+ },
+ {
+   "name": "Middle Avon properties on The Close adjacent to the river",
+   "description": "St Nicholas Road, the Close in Salisbury"
+ },
+ {
+   "name": "Lower Stour at Iford Bridge Home Park",
+   "description": "Iford Bridge Home Park"
+ },
+ {
+   "name": "Middle Stour at Shapwick",
+   "description": "West Street in Shapwick"
+ },
+ {
+   "name": "River Lodden at Bridge Close, Gillingham",
+   "description": "Bridge Close in Gillingham"
+ }
+]
+
+-%}

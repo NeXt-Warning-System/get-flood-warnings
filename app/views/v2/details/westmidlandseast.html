@@ -1,0 +1,53 @@
+<script>
+    const countries = [
+    "Abu Dhabi",  
+              
+              "Bourne Brook (Tamworth) 033WAF305",
+              "Burton Trent 033WAF314",
+              "Lower Dove 033WAF318",
+              "Lower Dove Brooks and Egginton Brook in Derbyshire 033WAF319",
+              "Lower Dove Brooks in Staffordshire 033WAF320",
+              "Lower Tame 033WAF306",
+              "Middle Avon Rugby to Bidford 033WAF204",
+              "Middle Tame 033WAF304",
+              "River Anker and River Sence 033WAF307",
+              "River Arrow and River Alne 033WAF205",
+              "River Blithe and River Swarbourn 033WAF313",
+              "River Blythe in Warwickshire 033WAF302",
+              "River Churnet and River Tean 033WAF317",
+              "River Cole 033WAF301",
+              "River Dene in South East Warwickshire 033WAF206",
+              "River Hamps and River Manifold 033WAF316",
+              "River Leam and River Itchen 033WAF203",
+              "River Mease 033WAF308",
+              "River Rea 033WAF300",
+              "River Sow and River Penk 033WAF312",
+              "River Sowe, River Sherbourne, Canley Brook and Finham Brook 033WAF202",
+              "River Stour and Smestow Brook in the Black Country and South Staffordshire 033WAF330",
+              "River Stour in South Warwickshire 033WAF207",
+              "Rugeley Trent 033WAF311",
+              "Stoke Trent 033WAF309",
+              "Stone Trent 033WAF310",
+              "Upper Avon River Swift and Clay Coton Brook 033WAF201",
+              "Upper Dove 033WAF315",
+              "Upper Tame 033WAF303",
+
+    "Unknown"
+    ];
+  
+    accessibleAutocomplete({
+      autoselect: true,
+      element: document.querySelector('#target-area-container'),
+      id: 'target-area',
+      name: 'targetareaautocomplete',
+      source: countries,
+     // defaultValue: '{{ data['targetareaautocomplete'] }}',
+     defaultValue: '',
+      displayMenu: 'overlay',
+      templates: '{ inputValue, suggestion }',
+      minLength: 2,
+      tNoResults: function() {
+        return "Target area not found"
+      }
+    });
+  </script>

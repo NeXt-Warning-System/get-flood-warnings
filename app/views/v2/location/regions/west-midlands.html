@@ -1,0 +1,74 @@
+{% extends "layout.html" %}
+
+{% set title = "Choose a flood area in the West Midlands" %}
+
+{% block pageTitle %}
+    {{title}} - GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+{{backlink|safe}}
+
+{% endblock %}
+
+{% block content %}
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+        {{title}}
+    </legend>
+      
+      {# permit|dump #}
+
+
+      {% from folder+"/custom_inc/regions/west-midlands.html" import targetareas %}
+
+
+      <form method="post" action="{{formAction}}">
+        
+      <!-- STORE operatorType to pass on -->
+      <input type="hidden" name="targetAreas" value="{{permit.targetAreas}}">
+      {% for t in targetareas %}
+      <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset">
+
+          
+          <div class="govuk-radios">
+            <div class="multiple-choice">
+               <div class="govuk-radios__item govuk-!-margin-1">
+                  <input class="govuk-radios__input" id="{{t.name}}" type="radio" name="name" value="{{t.name}}">
+                  <label class="govuk-label govuk-radios__label " for="{{t.name}}">
+                    <strong>{{t.name}}</strong><br/> {{t.description}}
+                  </label>
+              </div>
+            </div>
+          </div>
+        </fieldset>
+
+            {% else %}
+            <p>No categories</p>
+            {% endfor %}
+          </div>
+
+
+        <div class="govuk-form-group">
+
+            {{ govukButton({
+              text: "Continue"
+            }) }}
+
+          </div>
+
+
+      </form>
+
+
+    </div>
+  </div>
+
+</main>
+
+{% endblock %}

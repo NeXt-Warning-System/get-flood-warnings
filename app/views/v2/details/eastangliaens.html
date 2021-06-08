@@ -1,0 +1,71 @@
+<script>
+    const countries = [
+    "Abu Dhabi",  
+              
+                "The Essex coast at Canvey Island to South Benfleet, and Wat Tyler Country Park 051WACDV5B2",
+                "The Essex coast at Coalhouse Fort 051WACDV5B3a",
+                "The Essex coast from Clacton to and including, St Peters Flat and the Colne and Blackwater estuaries 051WACDV4C",
+                "The Essex coast from Fobbing to Purfleet 051WACDV5B3",
+                "The Essex coast from Leigh on Sea, to and including, Hadleigh Marshes, and Two Tree Island 051WACDV5B1",
+                "The Essex coast from Shoeburyness, to and including Southend seafront, including Southchurch Park 051WACDV5A",
+                "The Essex coast from St Peters Flat to and including Shoeburyness and the Crouch and Roach estuaries 051WACDV4D",
+                "The lower River Chelmer, including the River Ter and brooks around Sandon 051WAFEF6D",
+                "The Mardyke to the River Thames at Purfleet 051WAFEF7C",
+                "The Norfolk coast from Bacton to Ostend, including Walcott 054WACDV2B1",
+                "The Norfolk coast from Caister to Gorleston, including Great Yarmouth 054WACDV3A",
+                "The Norfolk coast from Eccles on Sea, to and including, Winterton-on-Sea 054WACDV2B",
+                "The north Norfolk coast from East Cley to Kelling Hard, including Salthouse 054WACDV2A12",
+                "The north Norfolk coast from Old Hunstanton, to and including Cley 054WACDV2A",
+                "The Rattlesden River and River Gipping, through and including Stowmarket and Needham Market 054WAFSF4DE",
+                "The River Bure, Spixworth Beck and surrounding Becks 054WAFNF2",
+                "The River Burn from Southgate and Waterden to Burnham Thorpe 054WAFNF1D",
+                "The River Colne from Great Yeldham to Colchester 051WAFEF4",
+                "The River Crouch from Noaks Bridge to Runwell 051WAFEF7A",
+                "The River Gipping, from downstream of Needham Market, to upstream of London Road Bridge, Ipswich 054WAFSF4FG",
+                "The River Glaven through Hunworth, Thornage and Letheringsett 054WAFNF1B",
+                "The River Mun at Mundesley 054WAFNF1A",
+                "The River Roach, Prittle Brook and Eastwood Brook 051WAFEF7B",
+                "The River Stiffkey from Fulmodeston to Warham 054WAFNF1C",
+                "The River Stour from Sudbury to Stratford St Mary and Dedham 051WAFEF3",
+                "The River Waveney from Diss and the River Dove to Ellingham, including Bungay 054WAFSF1",
+                "The River Wensum from New Costessey to Thorpe Bridge at Norwich 054WAFNF5",
+                "The River Wensum upstream of Hempton, including the River Tat 054WAFNF4A",
+                "The River Yare at Norwich, from Cringleford to Trowse Newton 054WAFNF3D",
+                "The Rivers Blyth and Walpole and Chediston, Bramfield and Wrentham watercourses 054WAFSF2",
+                "The Rivers Box and Brett 054WAFSF5",
+                "The Rivers Deben and Lark 054WAFSF4AC",
+                "The Rivers Minsmere and Yox, from Peasenhall to Middleton 054WAFSF3A",
+                "The Rivers Pant, Blackwater and Brain 051WAFEF5",
+                "The Rivers Tud and Wensum from Fakenham to Costessey, including Wendling Beck 054WAFNF4B",
+                "The Rivers Wid and Can 051WAFEF6BC",
+                "The Suffolk and Essex coast from Felixstowe to Clacton including Orwell and Stour estuaries 054WACDV4B",
+                "The Suffolk coast at Southwold 054WACDV3C",
+                "The Suffolk coast from Lowestoft to Bawdsey 054WACDV3B",
+                "The Thorpeness Hundred River and the River Ore 054WAFSF3BC",
+                "The tidal Deben estuary 054WACDV4A",
+                "The tidal River Waveney from Ellingham to Breydon Water 054WATBT3",
+                "The tidal River Yare from Thorpe St Andrew to Breydon Water 054WATBT2",
+                "The tidal Rivers Bure, Ant and Thurne 054WATBT1",
+                "The upper River Chelmer 051WAFEF6A",
+                "The upper Rivers Yare, Tiffey, Tas and Wacton 054WAFNF3",
+                "The upper Stour and surrounding tributaries 051WAFEF1",
+
+    "Unknown"
+    ];
+  
+    accessibleAutocomplete({
+      autoselect: true,
+      element: document.querySelector('#target-area-container'),
+      id: 'target-area',
+      name: 'targetareaautocomplete',
+      source: countries,
+      // defaultValue: '{{ data['targetareaautocomplete'] }}',
+      defaultValue: '',
+      displayMenu: 'overlay',
+      templates: '{ inputValue, suggestion }',
+      minLength: 2,
+      tNoResults: function() {
+        return "Target area not found"
+      }
+    });
+  </script>

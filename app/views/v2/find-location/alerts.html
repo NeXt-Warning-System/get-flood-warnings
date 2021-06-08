@@ -1,0 +1,76 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+Select the target area for the alert
+{% endblock %}
+
+{% set versionxxx = "v3" %}
+{% block beforeContent %}
+<div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        alpha
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div>
+  {{backlink|safe}}
+
+{% endblock %}
+
+{% block content %}
+{# permit|dump #}
+
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="alert-areas" method="post">
+
+            <div class="govuk-form-group">
+                <fieldset class="govuk-fieldset">
+                    <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+                        <h1 class="govuk-heading-xl govuk-!-margin-bottom-4">
+                          Find flood alert areas
+                        </h1>
+                    </legend>
+
+					
+					
+					<fieldset class="govuk-fieldset">
+            <label class="govuk-label" for="find">
+              Enter a full postcode or place name for the location you would like to search.
+            </label>
+            <input class="govuk-input" id="locationFindalerts" name="locationFindalerts" type="text">
+
+        </fieldset>
+						
+
+					  </div>
+            <button class="govuk-button" data-module="govuk-button">Continue</button>
+	                </fieldset>
+
+        </form>
+</br></br></br>
+{% set detailsContentHTML %}
+<p>
+  <strong>Postcodes</strong></br>
+   YO31 8HE</br>
+   BS3 4RJ</br></br>
+   <strong>Placenames</strong></br>
+   Bristol</br>
+   York</br></br>
+   Note these are case sensitive but can be used for warnings or alerts.</p>
+{% endset %}
+
+{{ govukDetails({
+  summaryText: 'User testing details - postcodes and place names',
+  html: detailsContentHTML
+}) }}
+    </div>
+</div>
+
+{% endblock %} 

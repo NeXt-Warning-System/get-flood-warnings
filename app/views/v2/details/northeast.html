@@ -1,0 +1,55 @@
+<script>
+    const countries = [
+    "Abu Dhabi",  
+                            
+              "Coastal Rivers in North Northumberland 121WAF918",
+              "Coastal Rivers in South Northumberland 121WAF919",
+              "Coastal Streams in Redcar and Cleveland 121WAF929",
+              "Hartlepool to Cowbar 121WAC928",
+              "Lower River Coquet 121WAF904",
+              "Lower River Tees and estuarine tributaries 121WAF925",
+              "Lower River Wear 121WAF915",
+              "Middlesbrough Becks 121WAF930",
+              "Northumberland coast 121WAC921",
+              "Ouseburn and estuarine tributaries 121WAF911",
+              "River Gaunless 121WAF917",
+              "River Leven 121WAF927",
+              "River North Tyne 121WAF908",
+              "River Rede 121WAF907",
+              "River Skerne 121WAF923",
+              "River South Tyne 121WAF909",
+              "River Till and tributaries 121WAF900",
+              "River Tweed South Bank 121WAF901",
+              "River Tyne 121WAF910",
+              "River Wansbeck 121WAF905",
+              "Rivers Derwent, Team, Don and estuarine tributaries 121WAF912",
+              "Rivers Pont and Blyth 121WAF906",
+              "Tidal River Tees 121WAT926",
+              "Tweed estuary 121WAT902",
+              "Tyne and Wear coast 121WAC922",
+              "Tyne and Wear coastal rivers 121WAF920",
+              "Tyne estuary 121WAT913",
+              "Upper River Coquet 121WAF903",
+              "Upper River Tees 121WAF924",
+              "Upper River Wear 121WAF914",
+              "Wear estuary 121WAT916",
+
+    "Unknown"
+    ];
+  
+    accessibleAutocomplete({
+      autoselect: true,
+      element: document.querySelector('#target-area-container'),
+      id: 'target-area',
+      name: 'targetareaautocomplete',
+      source: countries,
+     // defaultValue: '{{ data['targetareaautocomplete'] }}',
+     defaultValue: '',
+      displayMenu: 'overlay',
+      templates: '{ inputValue, suggestion }',
+      minLength: 2,
+      tNoResults: function() {
+        return "Target area not found"
+      }
+    });
+  </script>

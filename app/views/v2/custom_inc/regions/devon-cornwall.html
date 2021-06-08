@@ -1,0 +1,894 @@
+{% set targetareas =
+  
+  [
+ {
+   "name": "Rivers Tavy and Walkham",
+   "description": "Tavistock, Walkhampton, Bedford Bridge, Horrabridge and Lopwell"
+ },
+ {
+   "name": "South Cornwall Coast from Gribbin Head to Rame Head",
+   "description": "Gribbin Head to Rame Head including, Fowey, Golant, Lostwithiel, Lerryn, Polruan, Polperro, Looe and the Looe Rivers and Seaton"
+ },
+ {
+   "name": "St Austell and Par Rivers",
+   "description": "Pentewan, St Blazey, Luxulyan and Mevagissey"
+ },
+ {
+   "name": "North Cornwall Coast from The Rumps to Hartland Point excluding Bude",
+   "description": "The Rumps to Hartland Point including Port Quinn, Port Isaac, Port Gaverne, Flexbury, Widmouth Bay, Trebarwith Strand and Boscastle"
+ },
+ {
+   "name": "River Dart Area",
+   "description": "Totnes, Ashburton, Buckfastleigh, Dartmouth and Torbay areas"
+ },
+ {
+   "name": "South Devon Estuaries",
+   "description": "Low-lying areas and communities in the Erme, Avon, Kingsbridge, Dart, Teign and Exe Estuaries"
+ },
+ {
+   "name": "Lower Exe Area",
+   "description": "The Lower River Exe from Tiverton to Exeter, including Bickleigh and Stoke Canon areas."
+ },
+ {
+   "name": "North Devon Coast from Hartland Point to Lynmouth",
+   "description": "coastal and tidal areas between Hartland Point and Lynmouth, including the Taw Torridge Estuary"
+ },
+ {
+   "name": "South Devon Coast from Start Point to Dawlish Warren",
+   "description": "Exposed east facing coastal locations including Hallsands, Beesands, Torcross, Slapton, Blackpool Sands, Brixham, Broadsands, Goodrington, Paignton, Hollicombe, Torquay, Oddicombe, Teignmouth Promenade and Dawlish"
+ },
+ {
+   "name": "Rivers Otter and Sid, and Exmouth Area",
+   "description": "Lympstone, Exmouth, Budleigh Salterton, Honiton, Ottery St Mary and Sidmouth areas"
+ },
+ {
+   "name": "Tidal River Camel excluding Wadebridge and Chapel Amble",
+   "description": "low lying areas on the tidal River Camel including Padstow, Rock, Sladesbridge and the A389"
+ },
+ {
+   "name": "West Cornwall Rivers",
+   "description": "Lands End, Penzance, Helston, Crowlas, St Ives, Hayle, Camborne, Portreath and Perranporth"
+ },
+ {
+   "name": "North Cornwall Coast from Lands End to Chapel Porth",
+   "description": "Lands End to Chapel Porth including Sennen, St Ives, Carbis Bay, Lelant, Portreath and Porthtowan"
+ },
+ {
+   "name": "South Devon Coast from Plymouth to Start Point",
+   "description": "Exposed coastal areas from Plymouth to Start Point"
+ },
+ {
+   "name": "River Teign area",
+   "description": "Rivers Teign, Bovey and Lemon and coastal streams from Babbacombe to Kenton"
+ },
+ {
+   "name": "South Devon Rivers",
+   "description": "the Rivers Avon, Erme and Harbourne, coastal streams from Bigbury to Dartmouth, and Kingsbridge, South Brent and Ivybridge areas"
+ },
+ {
+   "name": "Rivers Clyst and Culm and their tributaries",
+   "description": "Hemyock, Cullompton, Stoke Canon, Broadclyst and Clyst St Mary areas"
+ },
+ {
+   "name": "South Cornwall Coast from Rame Head to Plymouth including tidal estuaries",
+   "description": "Rame Head to Plymouth including Kingsand, Cawsand, Cremyll, Torpoint, Saltash, tidal rivers Tamar and Plym excluding Plymouth Barbican"
+ },
+ {
+   "name": "Upper Torridge Area",
+   "description": "the Rivers Torridge, Waldon and Lew, including Black Torrington, Milton Damerel and Hatherleigh areas, and coastal streams in the Hartland and Clovelly areas"
+ },
+ {
+   "name": "South Devon Coast from Dawlish Warren to Seaton",
+   "description": "Exposed coastal areas at Dawlish Warren, Exmouth, Budleigh Salterton,  Sidmouth, Branscombe, Seaton"
+ },
+ {
+   "name": "Mid Devon Rivers",
+   "description": "the Rivers Creedy, Creedy Yeo, Little Dart, Lapford Yeo and their tributaries"
+ },
+ {
+   "name": "Exmoor Rivers",
+   "description": "the Upper River Exe from Exford to Exebridge, the Rivers Barle, Lyn, Mole and Bray and their tributaries, and coastal streams from Combe Martin to Lynton"
+ },
+ {
+   "name": "Lower Torridge Area",
+   "description": "Dolton, Great Torrington, Bideford and Westward Ho! areas"
+ },
+ {
+   "name": "Barnstaple, Braunton, Ilfracombe and Combe Martin Area",
+   "description": "the Rivers Caen, Bradiford Water and Yeo and coastal streams from Braunton to Combe Martin"
+ },
+ {
+   "name": "River Axe area",
+   "description": "The Rivers Axe, Coly, Yarty, Umborne Brook and coastal streams from Branscombe to Axmouth"
+ },
+ {
+   "name": "North Cornwall Rivers",
+   "description": "Newquay, Padstow, Wadebridge and Sladesbridge, Bodmin, Lanivet, Boscastle and Camelford"
+ },
+ {
+   "name": "Lower Taw area",
+   "description": "The Lower River Taw and its tributaries from Newnham Bridge to Barnstaple, including Umberleigh, Chittlehampton, Swimbridge and Bishop's Tawton areas"
+ },
+ {
+   "name": "Upper River Tamar",
+   "description": "Bude, Helebridge, Bridgerule, Canworthy Water, Launceston and Yeolmbridge"
+ },
+ {
+   "name": "South Cornwall Coast from Lizard Point to Gribbin Head excluding Truro City",
+   "description": "Lizard Point to Gribbin Head including the tidal rivers Helford and Fal, Penryn, Flushing, St Mawes, Portscatho, Portloe, Portholland, Mevagissey and Par"
+ },
+ {
+   "name": "River Fowey",
+   "description": "Lostwithiel, The Glynn Valley, Trago Mills and St Neot"
+ },
+ {
+   "name": "Helford and Fal Rivers",
+   "description": "The Lizard, Penryn, Falmouth, Truro, Ladock, Tresillian and Grampound"
+ },
+ {
+   "name": "River Yealm",
+   "description": "Lee Mill, Yealmpton, Popples Bridge and Newton Ferrers"
+ },
+ {
+   "name": "River Plym and Tory Brook",
+   "description": "Plympton, Coypool, Newnham Park, Marsh Mills, Clearbrook and Meavy"
+ },
+ {
+   "name": "South Cornwall Coast from Lands End to Lizard Point",
+   "description": "Lands End to Lizard Point including Mousehole, Newlyn, Penzance, Longrock, Marazion, and Praa Sands"
+ },
+ {
+   "name": "Middle River Tamar",
+   "description": "Polson Bridge, Horsebridge, Gunnislake, Lifton and Sydenham"
+ },
+ {
+   "name": "North Dartmoor Rivers",
+   "description": "the Upper River Taw from Sticklepath to Newnham Bridge and the River Okement and its tributaries"
+ },
+ {
+   "name": "Middle Exe Area",
+   "description": "the Middle River Exe from Exebridge to Tiverton and the Rivers Haddeo, Batherm and Lowman"
+ },
+ {
+   "name": "River Lynher",
+   "description": "Rame Peninsula, Callington, Saltash, Rilla Mill, Pillaton and Landrake"
+ },
+ {
+   "name": "Rivers Looe and Seaton",
+   "description": "Liskeard, Polperro, Jopes Mill and Hessenford"
+ },
+ {
+   "name": "North Cornwall Coast from Chapel Porth to The Rumps excluding the tidal River Camel",
+   "description": "Chapel Porth to The Rumps including Trevellas, Perranporth, Newquay, Mawgan Porth, Porth and Polzeath,  excluding the tidal River Camel"
+ },
+ {
+   "name": "Lower River Tamar",
+   "description": "Gunnislake, Calstock, Cargreen, Bere Alston, Morwellham and Cotehele"
+ },
+ {
+   "name": "River Allen (Camel) from Newhall Green to Hingham Mill",
+   "description": "River Allen (Camel) from Newhall Green to Hingham Mill"
+ },
+ {
+   "name": "River Strat from Bush to Pinch Bridge excluding Stratton",
+   "description": "River Strat from Bush to Pinch Bridge including Willow Valley Caravan Site, the A3072 and Bush"
+ },
+ {
+   "name": "River Exe at Winsford and Bridgetown",
+   "description": "riverside locations and roads in Winsford and Bridgetown, and other localised riverside properties and roads between Exford and Exebridge."
+ },
+ {
+   "name": "River Bovey at Bovey Tracey and Heathfield",
+   "description": "properties and roads in Bovey Tracey and Heathfield including St John's Lane, Station Road, Newton Road, Brook Close and Waterside"
+ },
+ {
+   "name": "River Okement at Brightley, Jacobstowe and Monkokehampton",
+   "description": "riverside locations and roads between Okehampton and Monkokehampton, including at Brightley, Jacobstowe, Monkokehampton and the A3072 at Jacobstowe"
+ },
+ {
+   "name": "South Devon coast within the Exe estuary, including Dawlish Warren",
+   "description": "Low-lying parts of Dawlish Warren, Kenton, Eastdon, Exton and Powderham"
+ },
+ {
+   "name": "Tidal River Dart at Totnes",
+   "description": "Low lying properties and roads in Totnes, including Broad Marsh Industrial Estate, Coronation Road, New Walk, Warland, Ticklemore Street, The Plains and Steamer Quay areas"
+ },
+ {
+   "name": "River Clyst from Broadclyst to Clyst St. Mary",
+   "description": "riverside locations and roads between Broadclyst and Clyst St. Mary, including Broadclyst, Ashclyst, Clyston Mill, Sowton Barton, Newcourt Barton, the A3052 at Clyst Honiton, and the B3181 at Broadclyst"
+ },
+ {
+   "name": "River Sid at Sidbury and Sidford",
+   "description": "riverside properties and roads in Sidbury and Sidford, including the A375 at Sidbury and the A3052 at Sidford"
+ },
+ {
+   "name": "Kenwith Stream at Bideford",
+   "description": "Northam Road, Kingsley Road, Alexandra Terrace, Elmdale Road, Newton Road, Meadowville Road, Copps Close and Stanhope Terrace in Bideford"
+ },
+ {
+   "name": "River Plym At Marsh Mills",
+   "description": "River Plym At Marsh Mills including Coypool, Marsh Mills Retail Park, Sewage Treatment Works, Sainsburys, Sports Ground, the A38 and the Railway Line"
+ },
+ {
+   "name": "South Devon Coast at Dartmouth",
+   "description": "low-lying parts of Dartmouth, including Bayards Cove, The Quay, North and South Embankments, Mayors Avenue, Duke Street and Coronation Park areas"
+ },
+ {
+   "name": "River Culm (Upper) from Hemyock to Cullompton",
+   "description": "riverside locations and roads between Hemyock and Cullompton, including Hemyock, Whitehall, Hayne Barton and Venn"
+ },
+ {
+   "name": "River Haddeo at Hartford and Bury",
+   "description": "riverside properties and roads in Hartford and Bury, including the ford at Bury"
+ },
+ {
+   "name": "River Par At Par and St Blazey",
+   "description": "River Par At Par and St Blazey including the A390, the Sports Centre, St Andrews Road, Railway Station and Station Road"
+ },
+ {
+   "name": "South Cornwall Coast from Lands End to Lizard Point excluding Mounts Bay",
+   "description": "Lands End to Lizard Point including Mousehole, Praa Sands, Porthleven and Mullion Harbour"
+ },
+ {
+   "name": "South Devon Coast at the Kingsbridge and Avon Estuaries",
+   "description": "Low-lying parts of the Kingsbridge, Avon and Erme Estuaries including Kingsbridge, Salcombe, Frogmore, Southpool, Lower Batson, Tacket wood, Aveton Giffard and Orcheton."
+ },
+ {
+   "name": "River Bovey from North Bovey to Bovey Parke",
+   "description": "riverside locations and roads between North Bovey and Bovey Tracey including Drakeford Bridge"
+ },
+ {
+   "name": "River Yeo (Creedy) from Yeoford to Fordton",
+   "description": "riverside locations and roads between Yeoford and Fordton, including Yeoford, Neopardy, Gunstone, Salmonhutch, Downes Mill and the A377 at Downes Mill"
+ },
+ {
+   "name": "River Exe from Exebridge to Tiverton",
+   "description": "Riverside locations and roads between Exebridge and Tiverton, including Exebridge, Oakford Bridge, Chain Bridge, Cove, Washfield, vulnerable parts of Bolham, the B3226 at Black Cat and the A396 at Bolham."
+ },
+ {
+   "name": "River Mole at North Molton",
+   "description": "riverside locations and roads in North Molton including East street and Mole Cottages"
+ },
+ {
+   "name": "River Teign (Lower) from Chudleigh to Kingsteignton",
+   "description": "Riverside properties and roads between Chudleigh and Kingsteignton, including New Bridge, Ventiford, Preston, Teigngrace, Teign Bridge and Exeter Road"
+ },
+ {
+   "name": "River Dart from Dartmeet to Buckfastleigh",
+   "description": "Buckfast, Buckfastleigh and riverside locations and roads downstream of Dartmeet"
+ },
+ {
+   "name": "River Coly at Colyton",
+   "description": "Low lying properties and roads in Colyton, including the Station Road area"
+ },
+ {
+   "name": "Umborne Brook from Wilmington to Colyton",
+   "description": "Riverside locations and roads between Wilmington and Colyton, including Umborne, Lexhayne and the A35 at Wilmington"
+ },
+ {
+   "name": "River Lyn (East and West) at Lynmouth",
+   "description": "Riverside properties and roads in Lynmouth, including around Lyndale Bridge, Riverside Road and Lynmouth Street"
+ },
+ {
+   "name": "River Lemon from Bickington to Newton Abbot",
+   "description": "riverside locations and roads between Bickington and Newton Abbot, including Bickington, Chipley Bridge, Morley Bridge, Chercombe Bridge, Ogwell Mill and the A383"
+ },
+ {
+   "name": "River Taw (Lower) at Bishops Tawton",
+   "description": "riverside properties and roads in Bishops Tawton, including the A377 (New Road), School Lane, Easter Street and Sanders Lane"
+ },
+ {
+   "name": "South Cornwall coast at Mounts Bay, seafront properties",
+   "description": "Including the Lifeboat Station, Foster-Bolitho Gardens, St Marys Primary School, Queens Street car park, Jubilee Pool, The Quay, Ross Bridge, the railway track at Chyandour Cliff, the A30 and B3311 at Ponsandane Bridge"
+ },
+ {
+   "name": "River Barle at Dulverton",
+   "description": "Riverside properties and roads in Dulverton, including Bridge Street, Pound Walk, Kemps Way, High Street, Exmoor House Caravan Park, the B3222 and the B3223"
+ },
+ {
+   "name": "River Culm (Upper) at Culmstock and Uffculme",
+   "description": "Riverside properties and roads in Culmstock and Uffculme, including Culmstock Bridge, The Strand and the B3391 at Culmstock, and Bridge Street and Denners Way in Uffculme"
+ },
+ {
+   "name": "Bodmin Town Leat from Prior's Barn to Bodmin Skate Park",
+   "description": "Bodmin Town Leat from Prior's Barn to Bodmin Skate Park including Gilbert Road and Pendower Meadow"
+ },
+ {
+   "name": "North Cornwall Coast At Wadebridge and Chapel Amble",
+   "description": "low lying parts of Wadebridge including Molesworth Street, Harbour Road, Eddystone Road, Southern Way and Trevilling Road, and Chapel Amble"
+ },
+ {
+   "name": "River Tinney At Calenick",
+   "description": "River Tinney At Calenick including Bridge House, Corner House, End Cottage, Barton Croft, the A39 at Arch Hill and Mill Lane"
+ },
+ {
+   "name": "River Lyn (West) at Barbrook and Lynbridge",
+   "description": "riverside properties and roads at Barbrook and Lynbridge, including Sunny Lyn holiday park"
+ },
+ {
+   "name": "River Kensey At Newport Industrial Estate",
+   "description": "River Kensey At Newport Industrial Estate from St Thomas Road Bridge to Ridgegrove Bridge"
+ },
+ {
+   "name": "River Torridge (Upper) from Bradford to Dolton",
+   "description": "riverside locations and roads between Bradford and Dolton, including Dippermill, Black Torrington, Sheepwash and the A386 at Hele Bridge near Hatherleigh"
+ },
+ {
+   "name": "River Teign and its Estuary at Newton Abbot",
+   "description": "Low-lying properties and roads in Newton Abbot, including the Osborne Park area, cricket ground, Marsh Road, Wharf Road, Quay Road and Forde Road areas"
+ },
+ {
+   "name": "River Harbourne at Harbertonford",
+   "description": "riverside locations in Harbertonford, including  Woodland Road, Old Road, Moreleigh Road, Bridgeside, Woodcourt Road, and Bow Road."
+ },
+ {
+   "name": "River Dart from Buckfastleigh to Totnes, including Staverton",
+   "description": "Staverton, and riverside locations and roads between Buckfastleigh and Totnes"
+ },
+ {
+   "name": "Rivers Exe and Culm at Stoke Canon",
+   "description": "low lying properties and roads in Stoke Canon, including Stoke Canon Bridge, High Street, Chestnut Crescent, River Close, Sanson Close and the A396"
+ },
+ {
+   "name": "North Devon coast at Lynmouth",
+   "description": "Low lying or exposed parts of Lynmouth"
+ },
+ {
+   "name": "River Bray from Challacombe to Meethe, including Brayford and Clapworthy",
+   "description": "riverside locations between Challacombe and Meethe including Brayford, Stags Head, Bray Bridge and Clapworthy"
+ },
+ {
+   "name": "River Teign at Newton Abbot Racecourse",
+   "description": "vulnerable areas around the Newton Abbot Racecourse, Newton Road and Pottery Road"
+ },
+ {
+   "name": "River Fowey At Lostwithiel",
+   "description": "River Fowey At Lostwithiel including properties along Quay Street and The Parade"
+ },
+ {
+   "name": "South Devon Coast at Torbay",
+   "description": "Exposed coastal areas within Brixham, Goodrington, Preston, Torquay including Goodrington Park, Eastern Esplanade, Preston Sands, Torre Abbey and Torquay Harbour"
+ },
+ {
+   "name": "River Taw (Upper) from Sticklepath to Taw Bridge",
+   "description": "riverside locations and roads between Sticklepath and Taw Bridge, including Taw Green, Newland Cross, Bondleigh, Taw Bridge, vulnerable parts of North Tawton and the A3072 at Newland Mill"
+ },
+ {
+   "name": "River Yeo (Creedy) at Fordton",
+   "description": "low lying properties and roads in Fordton, including Fordton Bridge, Fordton Terrace and Fordton Industrial Estate"
+ },
+ {
+   "name": "Tidal locations in the Taw Torridge Estuary",
+   "description": "low lying areas and communities in the Taw Torridge Estuary, including Instow, Appledore, Fremington, Muddlebridge, Braunton Marsh, Velator, Wrafton, Chivenor and Yelland"
+ },
+ {
+   "name": "Tidal River Torridge from Weare Giffard to Bideford",
+   "description": "low lying areas on the tidal River Torridge, including Weare Giffard, Bideford East-the-Water, Wooder Wharf and Northam"
+ },
+ {
+   "name": "River Tamar from Netherbridge to Greystone Bridge",
+   "description": "River Tamar  from Netherbridge to Greystone Bridge including Polson Bridge and the A388"
+ },
+ {
+   "name": "Tidal River Taw from Bishops Tawton to Barnstaple",
+   "description": "low lying areas on the tidal River Taw, including Bishops Tawton and Lake"
+ },
+ {
+   "name": "North Devon Coast at Pilton, The Strand and Rock Park in Barnstaple",
+   "description": "vulnerable parts of Barnstaple, including Victoria Road, New Road, Taw Vale, Town Square, Castle Quay, Pilton and Chaddiford Lane"
+ },
+ {
+   "name": "Bradiford Water at Bradiford",
+   "description": "properties adjacent to the bridge in Bradiford and on Windsor Road, Meadow Road, Chaddiford Lane and the A361 Braunton Road"
+ },
+ {
+   "name": "River Tresillian At Ladock",
+   "description": "River Tresillian at Ladock including the B3275, Village Hall, Falmouth Arms, Post Office, Higher Cottages and Lower Cottages"
+ },
+ {
+   "name": "North Devon coast at Barnstaple",
+   "description": "Low lying parts of Barnstaple, including Castle Quay, The Strand and Pottington, Pilton and Sticklepath areas"
+ },
+ {
+   "name": "River Exe at Exeter",
+   "description": "Low lying parts of Exeter, including St. Davids, Bonhay Road, Exwick, St. Thomas, Alphington and Marsh Barton"
+ },
+ {
+   "name": "River Allen (Kenwyn) from Idless Dam to Truro",
+   "description": "River Allen (Kenwyn) from Idless Dam to Truro including Scawswater Mill, Copes Gardens, St Clements Street, Union Place, Wilkes Walk and the Shoppers Car Park"
+ },
+ {
+   "name": "South Cornwall Coast At Mounts Bay",
+   "description": "including Western Promenade Road, The Rugby Ground, Larrigan and Battery Road, Daniel Place, Brighton Terrace, Queens Hotel, Queens Court, The Railway Station, The Chalets at Eastern Green, the Caravan Park at Millers Barn Green Lane"
+ },
+ {
+   "name": "Plymouth Barbican",
+   "description": "Plymouth Barbican including Sutton Harbour, Southside Street, Breton Street, Vauxhall Street, Sutton Road, Lockyers Quay and Tin Lane"
+ },
+ {
+   "name": "South Devon coast at Exmouth",
+   "description": "Low-lying parts of Exmouth, including the docks, Camperdown Terrace, Victoria Road, Marine Way, Exeter Road, the Strand, the Parade and the Esplanade areas"
+ },
+ {
+   "name": "River Caen at Braunton",
+   "description": "Properties and roads in low lying areas of Braunton and Knowle, including Stony Bridge, Deans Bridge, Chaloner's Road, Caen Street, Chapel Street, South Street, Station Road and Velator areas"
+ },
+ {
+   "name": "River Culm (Upper) at Cullompton",
+   "description": "Properties and roads in low lying areas of Cullompton, including Station Road, Longbridge Meadow, Alexandria Industrial Estate, Rivermead, Meadow Lane and Knightswood areas"
+ },
+ {
+   "name": "Rivers Strat and Neet at Helebridge",
+   "description": "Rivers Strat and Neet at Helebridge including the A3072 and Hele Road"
+ },
+ {
+   "name": "South Devon Coast at Shaldon and Teignmouth",
+   "description": "Low-lying parts of Shaldon and Teignmouth including The Strand, Bridge Road, Fore Street and Ringmore Road areas at Shaldon and the Back Beach and Town Centre areas of Teignmouth"
+ },
+ {
+   "name": "River Lyn (East) from Brendon to Lynmouth",
+   "description": "Riverside locations and roads between Brendon and Lynmouth, including Brendon, Alderford, Rockford and Watersmeet"
+ },
+ {
+   "name": "Bodmin Town Leat at Flaxmoor Terrace",
+   "description": "Bodmin Town Leat at Flaxmoor Terrace, comprising property vulnerable to flooding adjacent to the Flaxmoor Trash Screen"
+ },
+ {
+   "name": "South Cornwall Coast from Rame Head to Wembury Bay including tidal estuaries",
+   "description": "Rame Head to Wembury Bay including Kingsand, Cawsand, Cremyll, Millbrook, Torpoint, Saltash, Tideford, Calstock, St Budeaux, Stonehouse, Laira, Plympton Marsh Mills, Cattewater and tidal rivers Tamar, Plym and Yealm excluding Plymouth Barbican"
+ },
+ {
+   "name": "River Coly from Colyton to Colyford",
+   "description": "Riverside locations and roads between Colyton and Colyford, including Chantry Bridge, Road Green, Cole's Mill, Colyvale Caravan Park, White Hart Inn, Bridge Cottages and the A3052 at Colyford"
+ },
+ {
+   "name": "River Clyst at Clyst Honiton",
+   "description": "riverside properties and roads at Clyst Honiton, including Clyst Honiton Bridge, Blackhorse and the A3052"
+ },
+ {
+   "name": "River Mole from South Molton to Newnham Bridge, including Alswear",
+   "description": "Riverside locations and roads between South Molton and Newnham Bridge, including Mill on the Mole Residential Park, Alswear and Meethe"
+ },
+ {
+   "name": "North Cornwall coast from Lands End to Chapel Porth",
+   "description": "Lands End to Chapel Porth including Sennen, St Ives, Carbis Bay, Lelant, Portreath and Porthtowan"
+ },
+ {
+   "name": "River Exe at vulnerable riverside locations in Exeter, including Exeter Quay",
+   "description": "Vulnerable riverside locations in Exeter, including the Mill on the Exe, Eagle Cottages, Exeter Quay, Mill Road and Mill Drive at Countess Wear and riverside footpaths"
+ },
+ {
+   "name": "River Teign and its estuary at Kingsteignton",
+   "description": "Low-lying properties and roads in Kingsteignton, including Jetty Marsh Road, Newton Abbot Racecourse, the A383 Newton Road and Kingsteignton Industrial and Retail Parks"
+ },
+ {
+   "name": "River Torridge (Lower) from Dolton to Bideford, including Taddiport and Weare Giffard",
+   "description": "riverside locations and roads between Dolton and Bideford, including New Bridge, Beaford Bridge, Taddiport, Rolle Bridge, Weare Giffard, Annery Kiln, and the A386, A3124 and B3227 at Great Torrington and Taddiport"
+ },
+ {
+   "name": "River Yeo from Collard Bridge to The Old Water Mill at Barnstaple",
+   "description": "Collard Bridge to Barnstaple, including Snapper, the Fish Farm, Underwood Meadows and The Old Water Mill"
+ },
+ {
+   "name": "River Cober At Trenear",
+   "description": "River Cober At Trenear including Sawyers Court, Poldark Mine and the B3297"
+ },
+ {
+   "name": "River Exe at Tiverton from Petroc College to Mountbatten Trading Estate",
+   "description": "low lying properties and roads in Tiverton from Petroc College to Mountbatten Trading Estate, including Tiverton High School, Tiverton and District Hospital, Morrisons Supermarket, Kennedy Way, Tiverton Rugby and Football Grounds, Underhill Park Homes"
+ },
+ {
+   "name": "River Thrushel from Hayne Bridge to Lifton",
+   "description": "River Thrushel from Hayne Bridge to Lifton including Tinhay (Old Tinhay and New Road) and Lifton"
+ },
+ {
+   "name": "River Taw (Middle) from Taw Bridge to Newnham Bridge",
+   "description": "riverside locations and roads between Taw Bridge and Newnham Bridge, including Coldridge, Chenson, Eggesford, Chawleigh, Bridge Reeve, Colleton Mills and the B3220 at Taw Bridge"
+ },
+ {
+   "name": "South Cornwall Coast from Lizard Point to Gribbin Head excluding Truro City",
+   "description": "Lizard Point to Gribbin Head including the tidal rivers Helford and Fal, Mawnan Smith, Falmouth, Penryn, Flushing, Mylor, Calenick, Tresillian, St Mawes, Ruan Lanihorne, Portscatho, Portloe, Portholland, Mevagissey and Par"
+ },
+ {
+   "name": "River Exe at Tiverton",
+   "description": "properties and roads in low lying areas of Tiverton, including Kennedy Way, Bridge Street, West Exe and The Walronds"
+ },
+ {
+   "name": "River Exe from Tiverton to Exeter, including Bickleigh",
+   "description": "riverside locations and roads between Tiverton and Exeter, including Bickleigh, Thorverton Mill, Nether Exe, Brampford Speke, Upton Pyne, Old Mill Trading Estate, the A396 and A3072 at Bickleigh and the Exeter to London Paddington railway line"
+ },
+ {
+   "name": "River Yarty from Yarcombe to Axminster",
+   "description": "Riverside locations and roads between Yarcombe and Axminster, including Long Bridge, Case Bridge, Beckford Bridge and Yarty Bridge"
+ },
+ {
+   "name": "Portreath Stream at Portreath",
+   "description": "Portreath Stream at Portreath including the School, Penberthy Road, Greenfield Terrace, The Square, Beach Road and the Harbour"
+ },
+ {
+   "name": "River Axe (Lower) at Kilmington, Whitford and Axmouth",
+   "description": "Low lying properties and roads in Kilmington, Whitford and Axmouth"
+ },
+ {
+   "name": "River Erme from Ivybridge to Ermington",
+   "description": "Riverside locations and roads between Ivybridge and Ermington, including Ivybridge, Keaton Bridge, Thornham Bridge, Ermington, the A3121 at Ermington and the A379 at Sequers Bridge"
+ },
+ {
+   "name": "South Devon Coast from Bigbury Bay to Start Point",
+   "description": "Including Challaborough, Bigbury-on-Sea, Hope Cove, North Sands, South Sands, Prawle Point"
+ },
+ {
+   "name": "Perrancoombe Stream from Perrancoombe to Perranporth",
+   "description": "Perrancoombe Stream from Perrancoombe to Perranporth including Tywarnhayle Square, Beach Road, Beach Lane, Boscawen Road and Lower Perrancoombe"
+ },
+ {
+   "name": "River Avon from Didworthy to Aveton Gifford",
+   "description": "riverside properties and roads between Didworthy and Aveton Gifford, including vulnerable parts of South Brent and Avonwick, Diptford, Gara Bridge, Loddiswell and vulnerable parts of Aveton Gifford"
+ },
+ {
+   "name": "Perrancoombe Stream from Rose In Vale to Perrancoombe",
+   "description": "Perrancoombe Stream from Rose In Vale to Perrancoombe including Rose In Vale, Whitewalls Court and other riverside properties"
+ },
+ {
+   "name": "River Strat at Stratton",
+   "description": "River Strat at Stratton including Stratside Arts Centre, Howells Bridge Car Park and Playground, Bridge Street and The Leat"
+ },
+ {
+   "name": "River Tavy from Mary Tavy to Lopwell",
+   "description": "River Tavy including Mary Tavy Sewage Works, Harford Bridge Holiday Park, Pitts Cleave Industrial Estate, Tavistock, A386 and property at Lopwell"
+ },
+ {
+   "name": "River Kensey from Newmills to St Leonards excluding Newport Industrial Estate",
+   "description": "River Kensey from Newmills to St Leonards including Riverside, West Bridge Road and St Leonards Sewage Treatment Works"
+ },
+ {
+   "name": "South Devon Coast from Exmouth to Seaton",
+   "description": "Exposed coastal areas of Sidmouth, Seaton, Dawlish Warren, Exmouth and Budleigh Salterton"
+ },
+ {
+   "name": "Tory Brook from Newnham Park to Long Bridge",
+   "description": "Tory Brook from Newnham Park to Long Bridge including Newnham Rd, Glen Rd, Plympton St Mary Bridge, Valley Rd and Plympton Sewage Treatment Works"
+ },
+ {
+   "name": "River Walkham from Huckworthy to Bedford Bridge",
+   "description": "River Walkham from Huckworthy to Bedford Bridge including Horrabridge, Magpie Leisure Park and the A386"
+ },
+ {
+   "name": "River Seaton from the A38 to Seaton",
+   "description": "River Seaton from the A38 to Seaton including Hessenford, properties along Fore Street in Hessenford, Jopes Mill, the A387 and the A38"
+ },
+ {
+   "name": "River Taw (Lower) from Newnham Bridge to Barnstaple, including Umberleigh",
+   "description": "riverside locations and roads between Newnham Bridge and Barnstaple, including Abbot's Marsh, Burrington, Portsmouth Arms, Umberleigh and Chapelton, the A377 and B3277 at Umberleigh and the Exeter to Barnstaple Railway Line"
+ },
+ {
+   "name": "River Camel from Camelford to Polbrock",
+   "description": "River Camel from Camelford to Polbrock including Penrose Bridge, Wenford, Helland Bridge, Dunmere and Nanstallon Sewage Treatment Works"
+ },
+ {
+   "name": "River Yealm at Yealmbridge and Yealmpton",
+   "description": "The River Yealm at Yealmbridge and Yealmpton including Sandpark Wood, Mill Leat Close, Torr Bridge Park and Boldventure"
+ },
+ {
+   "name": "South Cornwall coast at Mounts Bay, properties located behind the seafront",
+   "description": "Including Alexandra Grounds, Redinnick Place, Cornwall Terrace, the Bus Station and car park, Green Lane between Marazion Bridge and Red River Bridge including the car park"
+ },
+ {
+   "name": "River Axe (Upper) from Winsham to Axminster, including Chard Junction and Weycroft",
+   "description": "riverside locations and roads between Winsham and Axminster, including Chard Junction, Coaxden Cottages and Weycroft"
+ },
+ {
+   "name": "North Cornwall Coast from Chapel Porth to The Rumps excluding the tidal River Camel",
+   "description": "Chapel Porth to The Rumps including Trevellas, Perranporth, Newquay, Mawgan Porth, Porth and Polzeath, excluding the tidal River Camel"
+ },
+ {
+   "name": "River Axe (Lower) from Axminster to Axmouth",
+   "description": "Riverside properties and roads between Axminster and Axmouth, including Musbury, Whitford Bridge, the A3052 at Colyford and the A35 at Yarty Bridge"
+ },
+ {
+   "name": "North Cornwall Coast At Copperhouse Pool Hayle",
+   "description": "Commercial Road, King George V Memorial Walk, Black Road and The Recreation Ground"
+ },
+ {
+   "name": "South Cornwall Coast from Gribbin Head to Rame Head",
+   "description": "Gribbin Head to Rame Head including Fowey, Golant, Lostwithiel, Lerryn, Polruan, Polperro, Looe and the Looe Rivers and Seaton"
+ },
+ {
+   "name": "River Otter (Lower) from Salston to Budleigh Salterton",
+   "description": "riverside properties and roads including Tipton St John, Harpford, Newton Poppleford including the A3052, Colaton Raleigh, Otterton and Budleigh Salterton"
+ },
+ {
+   "name": "River Hayle from Relubbus to St Erth",
+   "description": "River Hayle from Relubbus to St Erth including Relubbus, St Erth and Hayle Causeway"
+ },
+ {
+   "name": "Tidal River Camel excluding Wadebridge and Chapel Amble",
+   "description": "low lying areas on the tidal River Camel including Padstow, Rock, Sladesbridge and the A389"
+ },
+ {
+   "name": "River Sid at Sidmouth",
+   "description": "low lying properties and roads including, Primley Gardens, Mill Street, Riverside Road, York Street, Ham Lane, East Street and Fore Street areas"
+ },
+ {
+   "name": "River Ottery At Canworthy Water",
+   "description": "riverside properties at Canworthy Water"
+ },
+ {
+   "name": "River Kenwyn At Truro",
+   "description": "River Kenwyn at Truro including River Street, Victoria Square and Boscawen Street"
+ },
+ {
+   "name": "Bolingey Stream from Bolingey to Perranporth",
+   "description": "Bolingey Stream from Bolingey to Perranporth including Nansmellyn Farm, South West Water Pumping Station, the Fire Station and Electrical Sub-Station"
+ },
+ {
+   "name": "North Devon Coastal Communities, including Westward Ho! and Combe Martin",
+   "description": "low-lying or exposed parts of coastal communities in North Devon, including Clovelly, Westward Ho!, Woolacombe, Lee, Hele, Watermouth Cove and Combe Martin"
+ },
+ {
+   "name": "River Lemon at Newton Abbot",
+   "description": "Low lying properties and roads in Newton Abbot, including Bakers Park, Bradley Lane Industrial Estate, the town centre, Queen Street and Osborne Park areas"
+ },
+ {
+   "name": "River Batherm at Bampton",
+   "description": "Properties around Bampton Bridge and on the B3277 Brook Street and Britton Street, including New Buildings, Manor Mill and Bridge Terrace"
+ },
+ {
+   "name": "River Lowman at Tiverton",
+   "description": "Properties and roads in low lying areas of Tiverton, including Tiverton Business Park, Chapel Street, Station Road, Lowman Green, Blundells Road and Tumbling Fields"
+ },
+ {
+   "name": "River Exe at Bolham",
+   "description": "Low lying properties and roads in Bolham, including the A396, The Otters, Beeley Orchard, Hartnoll Hotel and Bolham Primary School"
+ },
+ {
+   "name": "River Otter (Lower) at Ottery St. Mary",
+   "description": "low lying properties and roads in Ottery St. Mary, including the Finnimore Industrial Estate, Thorne Farm Way and Luxtons Park"
+ },
+ {
+   "name": "Bodmin Town Leat from Berrycombe Road to the Royal Mail Depot",
+   "description": "Bodmin Town Leat from Berrycombe Road to the Royal Mail Depot including Bodmin Health Centre, Station Yard, Bodmin Fire Station and Sainsbury's Car Park"
+ },
+ {
+   "name": "River Lynher from Berriowbridge to Notter Bridge",
+   "description": "River Lynher from Berriowbridge to Notter Bridge including Rilla Mill, Pillaton Mill and the A390"
+ },
+ {
+   "name": "Bodmin Town Leat from Bodmin Skate Park to Church Square",
+   "description": "Bodmin Town Leat from Bodmin Skate Park to Church Square including Priory Football Field, Priory Park, the adjacent Car Park and parts of Church Square"
+ },
+ {
+   "name": "North Cornwall Coast At Bude",
+   "description": "The Strand, Bencoolen Road, The Crescent, The Parkhouse Centre, Recreation ground and adjacent car parks."
+ },
+ {
+   "name": "River Otter (Upper) from Upottery to Cadhay Bridge",
+   "description": "riverside locations and roads between Upottery and Cadhay Bridge, including Monkton, Honiton, Weston, Fenny Bridges and Gosford"
+ },
+ {
+   "name": "River Clyst at Clyst St Mary",
+   "description": "low lying properties and roads in Clyst St. Mary, including Frog Lane"
+ },
+ {
+   "name": "South Devon coast at Topsham",
+   "description": "Low-lying parts of Topsham, including Ferry Road and The Strand"
+ },
+ {
+   "name": "North Devon Coast at Ilfracombe",
+   "description": "low lying and exposed parts of Ilfracombe, including Cheyne Beach, The Quay, The Strand and Broad Street"
+ },
+ {
+   "name": "River Barle from Simonsbath to Brushford, including Withypool",
+   "description": "riverside locations and roads between Simonsbath and Brushford, including Simonsbath, Withypool, Newbridge, Northmoor Road, Brushford and the B3222 and B3223 at Dulverton"
+ },
+ {
+   "name": "North Cornwall Coast from The Rumps to Hartland Point excluding Bude",
+   "description": "The Rumps to Hartland Point including Port Quinn, Port Isaac, Port Gaverne, Flexbury, Widmouth Bay, Trebarwith Strand and Boscastle"
+ },
+ {
+   "name": "River Camel At Camelford",
+   "description": "River Camel At Camelford including the A39, Market Place and Camelford Sewage Treatment Works"
+ },
+ {
+   "name": "River Ottery At Yeolmbridge and Ham Mill",
+   "description": "riverside properties at Yeolmbridge and Ham Mill"
+ },
+ {
+   "name": "River Tamar from Tamarstone to Druxton Bridge",
+   "description": "River Tamar from Tamarstone to Druxton Bridge including Boyton, Bridgerule and the A3072"
+ },
+ {
+   "name": "River Neet At Bude",
+   "description": "River Neet At Bude including Pethericks Mill, The Crescent, Main Car Park, Parkhouse Centre, The Strand, The Castle and Vicarage Road"
+ },
+ {
+   "name": "Long Brook (Plympton) at Plympton",
+   "description": "Long Brook (Plympton) at Plympton including St Maurice Road, Dark Street Lane, Priory Mill, Market Road, Linketty Lane and Plympton Sewage Treatment Works"
+ },
+ {
+   "name": "North Devon Coast at Bideford",
+   "description": "low lying parts of Bideford, including The Quay and Victoria Park areas"
+ },
+ {
+   "name": "River Valency At Boscastle",
+   "description": "River Valency at Boscastle including Cobweb Car Park, The Bridge, the B3263, Valency Row, the Visitor Centre and The Harbour."
+ },
+ {
+   "name": "River Exe at Up Exe and Thorverton",
+   "description": "low lying properties and roads in Up Exe and Thorverton, including Latchmoor Green"
+ },
+ {
+   "name": "Bodmin Town Leat from Bodmin Gaol to Bodmin Sewage Treatment Works",
+   "description": "Bodmin Town Leat from Bodmin Gaol to Bodmin Sewage Treatment Works including Scarlett's Well Road, Car Park and Playing Field, the Camel Trail and Berrycombe School Playing Field"
+ },
+ {
+   "name": "River Axe (Mid) at Axminster",
+   "description": "low lying properties and roads around Stoney Bridge and Castle Hill in Axminster"
+ },
+ {
+   "name": "River Exe at Exford",
+   "description": "riverside properties and roads in Exford, including Chapel Street, The Green and the B3224"
+ },
+ {
+   "name": "South Devon coast at Starcross and Cockwood",
+   "description": "Low-lying parts of Starcross and Cockwood, including The Strand and Generals Lane at Starcross and Cockwood Harbour"
+ },
+ {
+   "name": "River Fowey from Trekeivesteps to Restormel",
+   "description": "River Fowey from Trekeivesteps to Restormel including Two Waters Foot, Treverbyn Mill, the Glynn Valley including Trago Mills, the A38 and Respryn"
+ },
+ {
+   "name": "River Exe at Oakhay Barton",
+   "description": "riverside locations and roads around Netherexe, Burrow and Oakhay Barton."
+ },
+ {
+   "name": "River Par from Luxulyan to Tywardreath Highway",
+   "description": "River Par from Luxulyan to Tywardreath Highway including Ponts Mill"
+ },
+ {
+   "name": "River Camel At Wadebridge",
+   "description": "River Camel At Wadebridge including Egloshayle, Polmorla Stream, Harbour Road, Guineaport Road, The Platt, Eddystone Road and Jubilee Road"
+ },
+ {
+   "name": "River Plym from Shaugh Bridge to Riverside Caravan Park",
+   "description": "River Plym from Shaugh Bridge to Riverside Caravan Park including Shaugh Bridge Car Park, Shaugh Mill and Longbridge Road"
+ },
+ {
+   "name": "River Okement (East) at Okehampton",
+   "description": "riverside properties and roads in Okehampton, including low lying parts of Mill Road, Park Row, Fore Street, St James Street, North Road and North Bridge"
+ },
+ {
+   "name": "River Cober At Helston",
+   "description": "River Cober At Helston including St Johns and the Coronation Park"
+ },
+ {
+   "name": "South Cornwall Coast At Truro",
+   "description": "South Cornwall Coast At Truro including Garras Wharf, Newham Road, Lemon Quay, Malpas Road and other Truro Harbourside locations including Boscawen Park"
+ },
+ {
+   "name": "River Okement (West) at Okehampton",
+   "description": "riverside properties and roads in Okehampton, including low lying parts of Castle Lane, The Glen, Jacobs Pool, West Street, Westbridge Close, North Road and North Bridge"
+ },
+ {
+   "name": "River Kenwyn from New Mill Dam to Truro",
+   "description": "River Kenwyn from New Mill Dam to Truro including Coosebean Mill, St Georges Villas and St Georges Road"
+ },
+ {
+   "name": "South Devon Coast low-lying areas of the Dart Estuary",
+   "description": "Low-lying parts of the Dart Estuary including Bayards Cove, Kingswear, Dittisham, Stoke Gabriel, Galmpton Creek, Tuckenhay and Bow"
+ },
+ {
+   "name": "River Yeo at Barnstaple",
+   "description": "The Raleigh and Pilton areas of Barnstaple, including Raleigh Meadow, Green Meadow Drive and Pilton Park"
+ },
+ {
+   "name": "South Devon coast at Exminster",
+   "description": "Low-lying parts of Exminster, including Exminster Marshes, Sannerville Way and Berrybrook Meadow"
+ },
+ {
+   "name": "River Pol and Langreek Stream At Polperro",
+   "description": "River Pol and Langreek Stream At Polperro including Crumplehorn, The Coombe, Lansallos Street, Mill Hill, Langreek Road and the Main Car Park"
+ },
+ {
+   "name": "River Avon at South Brent, Avonwick and Aveton Gifford",
+   "description": "low lying properties and roads at South Brent, Avonwick and Aveton Gifford"
+ },
+ {
+   "name": "Bodmin Town Leat from Turf Street to Berrycombe Road",
+   "description": "Bodmin Town Leat from Turf Street to Berrycombe Road including The Piazza, Crockwell Street, Dennison Road and Car Park, Bell Lane, Market Street and Burnards Court"
+ },
+ {
+   "name": "River Creedy from Upton Hellions to Cowley",
+   "description": "riverside locations and roads between Upton Hellions and Cowley, including Creedy Bridge (A3072), Half Moon Village, Lower Marsh, Three Horse Shoes, Upton Pyne, and the A377 at Downes Bridge"
+ },
+ {
+   "name": "South Devon coast at Lympstone",
+   "description": "Low-lying parts of Lympstone, including The Strand, Quay Lane and Chapel Lane"
+ },
+ {
+   "name": "River Teign (Upper) from Clifford Bridge to Chudleigh",
+   "description": "riverside properties and roads between Clifford Bridge and Chudleigh, including Clifford Bridge, vulnerable parts of Dunsford, Bridford Mills, Christow Bridge, Doddiscombsleigh, Lower Ashton and Trusham"
+ },
+ {
+   "name": "River Lyd from Sydenham to Lifton",
+   "description": "River Lyd from Sydenham to Lifton including Leat Road (Lifton)"
+ },
+ {
+   "name": "River Culm (Lower) from Cullompton to Stoke Canon, including Hele",
+   "description": "riverside locations and roads between Cullompton and Stoke Canon, including Woodmill, Hele, Silverton Mills, Rewe, Huxham, Old Mill Trading Estate, the A396 at Stoke Canon, the B3185 at Silverton, and the Exeter to London Paddington railway line"
+ },
+ {
+   "name": "South Devon Coast at Beesands, Torcross, Slapton and Dawlish",
+   "description": "Exposed coastal areas at Hallsands, Beesands, Torcross, Slapton, Blackpool Sands, Teignmouth Promenade and Dawlish"
+ },
+ {
+   "name": "River Waldon from Bradworthy to Bradford",
+   "description": "riverside locations and roads between Bradworthy and Bradford, including Sutcombemill, Milton Damerel and the A388 near Milton Damerel"
+ },
+ {
+   "name": "River Tamar from Greystone Bridge to Cotehele excluding Calstock",
+   "description": "River Tamar from Greystone Bridge to Cotehele Quay, including Gunnislake, Morwellham Quay and Cotehele"
+ },
+ {
+   "name": "South Devon Coast at Paignton",
+   "description": "Low-lying parts of Paignton, including Paignton Harbour, Paignton Green, Esplanade Road, Beach Road, Queen's Park, Torbay Road and Queens Road areas"
+ },
+ {
+   "name": "South Devon Coast at Sidmouth",
+   "description": "low-lying parts of Sidmouth, including The Esplanade, Fore Street, East Street and Ham Lane areas"
+ },
+ {
+   "name": "River Lew at Gribbleford Bridge and Hatherleigh",
+   "description": "riverside locations and roads between Gribbleford Bridge and Hatherleigh, including Gribbleford Bridge, Passaford and Hatherleigh"
+ },
+ {
+   "name": "South Devon Coast low-lying areas of the Teign Estuary",
+   "description": "Low-lying parts of the Teign Estuary including The Strand at Ringmore, the Quays at Teignmouth, the Passage House Hotel and Coombe Cellars Inn"
+ },
+ {
+   "name": "South Devon Coast at Seaton",
+   "description": "low-lying parts of Seaton, including The Esplanade and Harbour Road"
+ },
+ {
+   "name": "River Fal from Trelion to Tregony",
+   "description": "River Fal from Trelion to Tregony including Grampound and Tregony"
+ },
+ {
+   "name": "River Tamar At Calstock",
+   "description": "River Tamar At Calstock and Lower Kelly"
+ },
+ {
+   "name": "River Yealm from Mill Bridge to Lee Mill",
+   "description": "River Yealm from Mill Bridge to Lee Mill including Wisdome Bridge, Blachford, Langham Bridge, Lucas Wood, and Lee Mill Bridge"
+ },
+ {
+   "name": "River Harbourne at Crowdy Mill, Beenleigh, Bow and Tuckenhay",
+   "description": "riverside locations downstream of Harbertonford, including Crowdy Mill, Beenleigh, Bow, Tuckenhay and the A381"
+ },
+ {
+   "name": "River Allen (Camel) At Sladesbridge",
+   "description": "River Allen (Camel) At Sladesbridge including Trelawney Garden Centre, Slades House Inn, Industrial Units at Kestle Quarry and the A389"
+ },
+ {
+   "name": "River Cober from Wendron to Lowertown",
+   "description": "River Cober from Wendron to Lowertown including Wendron, Coverack Bridges, Trannack Mill Industrial Estate and Lowertown Methodist Church"
+ },
+ {
+   "name": "River Taw (Upper) at North Tawton",
+   "description": "low lying properties and roads at North Tawton, including Taw Bridge, Taw Bridge Cross, Mill Lane and Bridge Cottages"
+ },
+ {
+   "name": "Bradiford Water from Muddiford to Bradiford",
+   "description": "riverside locations and roads between Muddiford and Bradiford, including Blakewell and the A361 Braunton Road"
+ },
+ {
+   "name": "River Teign (Upper) at Dunsford",
+   "description": "low lying properties and roads in Dunsford, including Steps Bridge, The Iron Mills, The Mill House, properties along the B3212 and Swanaford"
+ },
+ {
+   "name": "River Neet from Woolstone Mill to Rodds Bridge excluding Helebridge",
+   "description": "River Neet from Woolstone Mill to Rodds Bridge including Rodds Bridge Farm and the A39"
+ }
+]
+
+ -%}

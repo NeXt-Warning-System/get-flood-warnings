@@ -1,0 +1,72 @@
+<script>
+    const countries = [
+    "Abu Dhabi",  
+              
+              "Burstwick and Keyingham Drains 122WAF976",
+              "Gypsey Race and the Wolds 122WAF970",
+              "Holbeck catchment 122WAF981",
+              "Holderness Drain 122WAF971",
+              "Humber estuary from Faxfleet to Saltmarshe 122WAT963",
+              "Humber estuary from Hessle Haven to Faxfleet 122WAT962",
+              "Humber estuary from Lords Clough to Hessle Haven 122WAT961",
+              "Humber estuary from Spurn Point to Winestead Outfall 122WAT957",
+              "Humber estuary from Thorngumbald Pumping Station to Lords Clough 122WAT960",
+              "Humber estuary from Winestead Outfall to Thorngumbald Pumping Station 122WAT958",
+              "Lower Dunsforth Access 122WAF934",
+              "Lower River Derwent 122WAF950",
+              "Lower River Hull 122WAF975",
+              "Lower River Nidd catchment122WAF933",
+              "Lower River Swale 122WAF937",
+              "Lower River Ure 122WAF940",
+              "Lower River Wharfe 122WAF943",
+              "Middle River Nidd catchment 122WAF985",
+              "North Holderness 122WAF978",
+              "North Sea coast at Bridlington 122WAC954",
+              "North Sea coast at Skipsea, Hornsea and Mappleton 122WAC955",
+              "North Sea coast at Withernsea, Easington and Kilnsea 122WAC956",
+              "North Sea coast from Staithes to Whitby including tidal River Esk 122WAC952",
+              "North Sea coast from Whitby to Filey 122WAC953",
+              "Pickering Beck and Costa Beck catchments 122WAF984",
+              "River Crimple catchment 122WAF919",
+              "River Dove catchment 122WAF983",
+              "River Esk catchment 122WAF935",
+              "River Foss catchment 122WAF945",
+              "River Foulness and Market Weighton catchment 122WAF974",
+              "River Hull Central catchment 122WAF973",
+              "River Riccal catchment 122WAF948",
+              "River Rye catchment 122WAF982",
+              "River Seven catchment 122WAF980",
+              "River Wiske and tributaries 122WAF938",
+              "Setting Dike catchment 122WAF917",
+              "South East Holderness 122WAF977",
+              "Thornton Beck catchment 122WAF979",
+              "Tidal River Ouse from Naburn Lock to Selby 122WAF947",
+              "Tidal River Ouse from Selby to Faxfleet 122WAT964",
+              "Tidal River Wharfe 122WAT944",
+              "Upper River Derwent 122WAF949",
+              "Upper River Hull catchment 122WAF972",
+              "Upper River Nidd catchment 122WAF941",
+              "Upper River Ouse 122WAF946",
+              "Upper River Swale 122WAF936",
+              "Upper River Ure 122WAF939",
+              "Upper River Wharfe 122WAF942",
+
+    "Unknown"
+    ];
+  
+    accessibleAutocomplete({
+      autoselect: true,
+      element: document.querySelector('#target-area-container'),
+      id: 'target-area',
+      name: 'targetareaautocomplete',
+      source: countries,
+     // defaultValue: '{{ data['targetareaautocomplete'] }}',
+     defaultValue: '',
+      displayMenu: 'overlay',
+      templates: '{ inputValue, suggestion }',
+      minLength: 2,
+      tNoResults: function() {
+        return "Target area not found"
+      }
+    });
+  </script>

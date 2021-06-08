@@ -1,0 +1,66 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+B1040 Thorney to Whittlesey Road to the South of the River Nene
+{% endblock %}
+
+{% set versionxxx = "v3" %}
+{% block beforeContent %}
+<div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        alpha
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div>
+  {{backlink|safe}}
+
+{% endblock %}
+
+{% block content %}
+{# permit|dump #}
+
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-one-half">
+
+      <form action="warnings" method="post">
+
+            <div class="govuk-form-group">
+                <fieldset class="govuk-fieldset">
+                    <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+                        <h1 class="govuk-heading-xl govuk-!-margin-bottom-4">
+                          B1040 Thorney to Whittlesey Road to the South of the River Nene                        </h1>
+                    </legend>
+
+                    {# permit|dump #}
+
+                  <p>The lower Lee tributaries, including the Nazeing Brook, Ching Brook, Cobbins Brook, Pymmes Brook, Rags Brook, Salmons Brook, Turkey Brook, Trinity Marsh Ditch and the Small River Lee.</p>
+
+						
+
+            </div>
+            <!--
+            {% if permit.taStatus=="added" %}
+            <button class="govuk-button" name="taStatus" value="removed" data-module="govuk-button">Remove from my flood warnings</button>
+            {% else %}
+            <button class="govuk-button" name="taStatus" value="added" data-module="govuk-button">Add to my flood warnings</button>
+              {% endif %}-->
+
+          </fieldset>
+        </div>
+          <div class="govuk-grid-column-one-half">
+
+            <img alt="" src="/public/images/exampleta.png" height="410px" width="436.7px">
+           
+          </div>
+
+        </form>
+
+    </div>
+
+{% endblock %} 

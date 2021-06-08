@@ -1,0 +1,61 @@
+<script>
+    const countries = [
+    "Abu Dhabi",  
+              
+              "Canons Brook from Harlow to Parndon Mead 062WAF51CanonsBK",
+              "Colne Brook at Iver and Colnbrook 062WAF28Colnbrk",
+              "Cripsey Brook in Epping Forest District Council 062WAF54Cripsey",
+              "Fluvial River Crane 062WAF36FluCrane",
+              "Lower Lee tributaries 062WAF53LLTribs",
+              "Lower River Colne and Frays River 062WAF28LowColne",
+              "Lower River Lee from Hoddesdon to Canning Town 062WAF53LowerLee",
+              "Lower River Roding 062WAF54LwRoding",
+              "Middle River Colne 062WAF28MidColne",
+              "Middle River Roding 062WAF54MdRoding",
+              "Mimmshall Brook 062WAF28Mimmshal",
+              "Pincey Brook from Takeley to Harlow 062WAF51PinceyBk",
+              "River Ash in Hertfordshire 062WAF50AshHerts",
+              "River Ash in the Borough of Spelthorne 062WAF31AshMidd",
+              "River Beane catchment 062WAF48Beane",
+              "River Brent from Hendon to Brentford 062WAF38Brent",
+              "River Chess in the Chilterns and Three Rivers Districts 062WAF28Chess",
+              "River Ingrebourne at Harold Park and Hornchurch 062WAF55Ingrebrn",
+              "River Lee at Hertford 062WAF46MidLee",
+              "River Lee at Luton, Harpenden and Wheathampstead 062WAF46UpperLee",
+              "River Mimram in Hertfordshire 062WAF47Mimram",
+              "River Misbourne 062WAF28Misbourn",
+              "River Pinn and Woodridings Stream 062WAF28Pinn",
+              "River Stort and Stansted Brook catchment 062WAF51Stort",
+              "River Ver in Hertfordshire 062WAF28Ver",
+              "Rivers Beam and Rom 062WAB55BeamRom",
+              "Rivers Gade and Bulbourne 062WAF28GadeBulb",
+              "Rivers Rib and Quin 062WAF49RibQuin",
+              "Silk Stream and the Deans, Edgware, Dollis, Mutton and Wealdstone Brooks 062WAF38BrentBks",
+              "Tidal River Brent 062WAB38TidBrent",
+              "Tidal River Crane 062WAB36TidCrane",
+              "Tidal Thames in the boroughs of Havering, Barking and Dagenham, and Newham 063WAT233N",
+              "Tidal Thames in the boroughs of Kensington and Chelsea, Hammersmith and Fulham, Ealing and Hounslow 063WAT231N",
+              "Tidal Thames in the boroughs of Tower Hamlets, City of London, City of Westminster, Ken and Chelsea 063WAT232N",
+              "Upper River Colne and Radlett Brook 062WAF28UpColne",
+              "Upper Roding 062WAF54UpRoding",
+              "Yeading Brooks in London Boroughs of Harrow and Hillingdon 062WAF36Yeadings",
+
+    "Unknown"
+    ];
+  
+    accessibleAutocomplete({
+      autoselect: true,
+      element: document.querySelector('#target-area-container'),
+      id: 'target-area',
+      name: 'targetareaautocomplete',
+      source: countries,
+      // defaultValue: '{{ data['targetareaautocomplete'] }}',
+      defaultValue: '',
+      displayMenu: 'overlay',
+      templates: '{ inputValue, suggestion }',
+      minLength: 2,
+      tNoResults: function() {
+        return "Target area not found"
+      }
+    });
+  </script>

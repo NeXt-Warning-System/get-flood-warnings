@@ -1,0 +1,69 @@
+<script>
+    const countries = [
+    "Abu Dhabi",  
+                              
+                "Beverley Brook area in Merton, Sutton, Kingston upon Thames, Richmond upon Thames and Wandsworth 064WAF40BevBrook",
+                "Coast from Dartford to Allhallows 064WAT1ThamesEst",
+                "Coast from Fairlight to Dungeness including the Tidal Rother 064WAC306",
+                "Coast from Ramsgate to Kingsdown 064WAC304",
+                "Coast from Sandgate to Dungeness 064WAC305",
+                "Coast from St Margaret's at Cliffe to Sandgate 064WAC303",
+                "Coast from Whitstable to Margate 064WAC1WhitMar",
+                "Hamstreet Arm 064WAF361",
+                "Isle of Sheppey and coast from Kemsley to Seasalter 064WAC1ShepSwale",
+                "Lower River Medway 064WAF8LowMed",
+                "Lower River Mole area at Esher and East Molesey 064WAF32Esher",
+                "Lower River Stour 064WAF6LowStour",
+                "Middle River Medway 064WAF8MidMed",
+                "Nailbourne and Little Stour 064WAF6LittleStour",
+                "New Romney Sewage Arm 064WAF362",
+                "North and South Streams 064WAF344",
+                "Pent Stream in Folkestone 064WAF9PentStrm",
+                "Plenty, Swalecliffe and West Brooks 064WAF332",
+                "Ravensbourne area in the London Boroughs of Lewisham, Bromley, Greenwich and Croydon 064WAF43Ravnsbrn",
+                "Redhill Brook at Redhill 064WAF32RdhllBrk",
+                "River Beult from Pluckley and Bethersden to Hampstead Lock at Yalding 064WAF8Beult",
+                "River Bourne from Hadlow to East Peckham 064WAF8Bourne",
+                "River Darent from Westerham to Dartford 064WAF7Darent",
+                "River Hogsmill area from Ewell to Kingston upon Thames 064WAF33Hogsmill",
+                "River Mole and its tributaries from Kinnersley Manor to South Hersham 064WAF32MdleMole",
+                "River Rother and its tributaries from Turks Bridge to the Royal Military Canal 064WAF351",
+                "River Rythe from Oxshott to Thames Ditton 064WAF35RiverRythe",
+                "River Teise and Lesser Teise area from Horsmonden to Yalding 064WAF8LowTeise",
+                "River Teise area from Lamberhurst to Goudhurst 064WAF8UpTeise",
+                "River Wandle area in the London Boroughs of Wandsworth, Merton, Lambeth, Croydon and Sutton 064WAF41Wandle",
+                "Rivers Eden and Eden Brook 064WAF324",
+                "Rivers on the Isle of Sheppey 064WAF331",
+                "Rivers Tillingham and Brede 064WAF352",
+                "Shuttle and Cray 064WAF7ShutCray",
+                "Tidal Medway, Medway estuary and Isle of Grain 064WAT1MedEst",
+                "Tidal River Stour area from Fordwich to Stonar Cut 064WAB6TidalStour",
+                "Tidal Thames in the boroughs of Bexley and Greenwich063WAT233S",
+                "Tidal Thames in the boroughs of Greenwich, Lewisham, Southwark, Lambeth and Wandsworth063WAT232S",
+                "Tidal Thames in the boroughs of Wandsworth and Richmond-upon-Thames063WAT231S",
+                "Tidal Thames riverside from Dartford Creek and Mar Dyke to the Thames Barrier063WAT23East",
+                "Tidal Thames riverside from Putney Bridge to Teddington Weir063WAT23West",
+                "Tidal Thames riverside from the Thames Barrier to Putney Bridge063WAT23Central",
+                "Upper River Medway 064WAF321",
+                "Upper River Mole, Ifield Brook, Gatwick Stream, Burstow Stream and Salfords Stream 064WAF32UpprMole",
+                "Upper River Stour 064WAF6UpStour",
+
+    "Unknown"
+    ];
+  
+    accessibleAutocomplete({
+      autoselect: true,
+      element: document.querySelector('#target-area-container'),
+      id: 'target-area',
+      name: 'targetareaautocomplete',
+      source: countries,
+     // defaultValue: '{{ data['targetareaautocomplete'] }}',
+     defaultValue: '',
+      displayMenu: 'overlay',
+      templates: '{ inputValue, suggestion }',
+      minLength: 2,
+      tNoResults: function() {
+        return "Target area not found"
+      }
+    });
+  </script>

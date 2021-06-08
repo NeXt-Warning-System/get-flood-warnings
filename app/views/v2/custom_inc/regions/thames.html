@@ -1,0 +1,1033 @@
+{% set targetareas =
+  [
+ {
+   "name": "River Windrush from Bourton to Newbridge",
+   "description": "River Windrush from Bourton to Newbridge including Burford, Asthall, Minster Lovell, Crawley, Witney, Ducklington, Rack End and Standlake"
+ },
+ {
+   "name": "River Kennet from Thatcham down to Reading",
+   "description": "River Kennet from Thatcham down to Reading including Burghfield, Colthrop, Woolhampton, Aldermaston, Theale, Calcot and Southcote"
+ },
+ {
+   "name": "Upper River Loddon",
+   "description": "Upper River Loddon including Basingstoke, Old Basing, Sherfield-on-Loddon, Chineham and Meadow Park"
+ },
+ {
+   "name": "River Kennet and its tributaries from Berwick Bassett down to Newbury",
+   "description": "River Kennet from Berwick Bassett to Newbury including Winterbourne Monkton, Marlborough, Ramsbury, Hungerford, Denford, Kintbury and Newbury; also the River Og, the River Aldbourne, the Froxfield Stream, the River Dun and the River Shalbourne"
+ },
+ {
+   "name": "River Thames from Mapledurham to Sonning",
+   "description": "River Thames from Mapledurham to Sonning, including Mapledurham, Reading, Caversham, Playhatch and Sonning"
+ },
+ {
+   "name": "Bear Brook and tributaries in the Aylesbury area, including Wendover and Weston Turville",
+   "description": "Bear Brook and tributaries in the Aylesbury area, including Wendover and Weston Turville"
+ },
+ {
+   "name": "Groundwater flooding in the Basingstoke, Buckskin and Sherborne St John areas",
+   "description": "Communities at risk of groundwater flooding in the Basingstoke, Buckskin and Sherborne St John areas"
+ },
+ {
+   "name": "Groundwater flooding in the Lambourn Valley catchment",
+   "description": "Communities at risk of groundwater flooding in the Lambourn valley including several villages and Great Shefford"
+ },
+ {
+   "name": "River Thames for Henley, Remenham, Medmenham and its tributaries",
+   "description": "River Thames for Henley, Remenham and Medmenham; including Middle and Lower Assendon on the Assendon Stream, and Skirmett and Hambleden on the Hambledon Brook"
+ },
+ {
+   "name": "River Thames from Hurley to Cookham",
+   "description": "River Thames from Hurley to Cookham including Harleyford, Bisham, Marlow and Bourne End"
+ },
+ {
+   "name": "River Thames at Thames Ditton Island",
+   "description": "River Thames at Thames Ditton Island including Boyle Farm Island"
+ },
+ {
+   "name": "Groundwater flooding in East Maidenhead",
+   "description": "Areas at risk of groundwater flooding in East Maidenhead"
+ },
+ {
+   "name": "River Churn and its tributaries",
+   "description": "River Churn from Coberley to Cerney Wick and also The Hilcot Brook, The Daglingworth Stream and The Gumstool Brook"
+ },
+ {
+   "name": "Groundwater flooding in the Henley and Assendon area",
+   "description": "Communities at risk of groundwater flooding including Turville, Skirmett, Stoner, Middle and Lower Assendon and parts of Henley"
+ },
+ {
+   "name": "River Thames at Trowlock Island",
+   "description": "River Thames at Trowlock Island including the Royal Canoe Club"
+ },
+ {
+   "name": "Groundwater flooding in Godalming, Shackleford and Hambledon areas",
+   "description": "Communities at risk of groundwater flooding in the Godalming, Shackleford and Hambledon areas"
+ },
+ {
+   "name": "River Ray and Swinbourne for West Swindon area to above Water Eaton",
+   "description": "River Ray and Swinbourne for the West Swindon Area down to but not including Water Eaton"
+ },
+ {
+   "name": "River Evenlode from Moreton in Marsh to Cassington and also the River Glyme at Wootton and Woodstock",
+   "description": "River Evenlode from Moreton in Marsh to Cassington including, Kingham, Bledington, Milton under Wychwood, Shipton under Wychwood, Ascott under Wychwood, Charlbury, Fawler and Long Hanborough and also the River Glyme at Wootton and Woodstock"
+ },
+ {
+   "name": "River Pang from East Ilsley to Pangbourne and Sulham Brook",
+   "description": "River Pang from East Ilsley to Pangbourne, including Compton, Hampstead Norreys, Frilsham, Bucklebury, Stanford Dingley, Bradfield and Tidmarsh; and the Sulham Brook from Theale to Pangbourne including Sulham"
+ },
+ {
+   "name": "River Thames from Ewen down to and including Cricklade",
+   "description": "River Thames from Ewen to Cricklade including Somerford Keynes and Ashton Keynes"
+ },
+ {
+   "name": "River Leach from Northleach to Mill Lane near Lechlade",
+   "description": "River Leach from Northleach to Mill Lane near Lechlade including Fyfield and Little Faringdon"
+ },
+ {
+   "name": "River Thames for Shiplake, Lower Shiplake and Wargrave",
+   "description": "River Thames for Shiplake, Lower Shiplake and Wargrave"
+ },
+ {
+   "name": "Tillingbourne",
+   "description": "Tillingbourne including Chilworth and Shalford"
+ },
+ {
+   "name": "River Dikler from Condicote to Little Rissington",
+   "description": "River Dikler from Condicote to Little Rissington, including Bourton on the Water and Upper and Lower Slaughter"
+ },
+ {
+   "name": "River Thames for the Abingdon area",
+   "description": "River Thames for the Abingdon, including areas between Abingdon down to and including Little Wittenham"
+ },
+ {
+   "name": "River Cole and Dorcan Brook",
+   "description": "River Cole and The Dorcan Brook for the East Swindon Area down to above Buscot Wick"
+ },
+ {
+   "name": "Lower River Loddon at the River Thames confluence at Twyford",
+   "description": "Lower River Loddon at the River Thames confluence including Twyford, Charvil and Wargrave"
+ },
+ {
+   "name": "River Blackwater and The Cove Brook",
+   "description": "River Blackwater including Badshot Lea, Aldershot, Farnborough, Camberley, Sandhurst, Eversley, Bramshill and Swallowfield, and the Cove Brook at Farnborough and Cove"
+ },
+ {
+   "name": "River Cherwell from Charwelton to just above Upper Heyford",
+   "description": "River Cherwell and its tributaries from Charwelton to just above Upper Heyford including Woodford Halse, Edgcote, Cropredy, Marston St Lawrence, Banbury, Kings Sutton, Hook Norton and Croughton"
+ },
+ {
+   "name": "River Thames from Maidenhead to Windsor and Eton",
+   "description": "River Thames from Maidenhead to Windsor and Eton including Bray and Dorney"
+ },
+ {
+   "name": "Cranleigh Waters",
+   "description": "Cranleigh Waters including Elmbridge, Shamley Green and Bramley and the Littlemead Brook including Cranleigh"
+ },
+ {
+   "name": "Cut",
+   "description": "Cut including Brockhill, Warfield, Bracknell, Paley Street and Holyport"
+ },
+ {
+   "name": "River Thames and its tributaries from Days Lock to above Pangbourne",
+   "description": "River Thames and its tributaries from Days Lock to above Pangbourne, including Dorchester and Overy, Shillingford, Benson, Ewelme, Wallingford, Winterbrook, East Hagbourne, South Moreton, North Stoke, Moulsford, South Stoke, Goring and Streatley"
+ },
+ {
+   "name": "Ampney Brook from Barnsley Wood to Sheeppen Bridge",
+   "description": "Ampney Brook from Barnsley Wood to Sheeppen Bridge near Latton including Ampney Crucis"
+ },
+ {
+   "name": "Groundwater flooding in the Upper Og Valley",
+   "description": "Areas at risk of groundwater flooding in the Upper Og Valley"
+ },
+ {
+   "name": "River Ray and its tributaries from Shipton Lee to and including Islip",
+   "description": "River Ray and its tributaries from Shipton Lee to Islip, including Ludgershall, Blackthorn and Murcott"
+ },
+ {
+   "name": "Sor Brook and The Bloxham Brook and their tributaries",
+   "description": "Sor Brook and The Bloxham Brook and their tributaries from Horley and Bloxham to and including Adderbury"
+ },
+ {
+   "name": "River Thames from Hampton and Thames Ditton to Teddington",
+   "description": "River Thames from Hampton and Thames Ditton to Teddington including Hampton Wick and Kingston-upon-Thames"
+ },
+ {
+   "name": "Groundwater flooding in the High Wycombe area",
+   "description": "Areas at risk of groundwater flooding in the Wycombe area including Radnage and the lower Hughenden Valley"
+ },
+ {
+   "name": "River Thames and its small tributaries from Calcutt to Lechlade",
+   "description": "River Thames and its small tributaries from Calcutt to Lechlade including The Marston Meysey Brook and The Downington Brook"
+ },
+ {
+   "name": "Clanfield Brook for Clanfield Village and the Shill Brook for Bampton",
+   "description": "Clanfield Brook for Clanfield Village and the Shill Brook for Bampton"
+ },
+ {
+   "name": "River Whitewater and River Hart",
+   "description": "River Whitewater including North Warnborough, Hook and Riseley and the River Hart including Crondall, Crookham Village, Hartley Wintney, Riseley and Fleet"
+ },
+ {
+   "name": "Groundwater flooding in the Alton area",
+   "description": "Communities at risk of groundwater flooding in the Alton, Chawton and Lower Farringdon areas"
+ },
+ {
+   "name": "Emm Brook",
+   "description": "Emm Brook including Wokingham"
+ },
+ {
+   "name": "Groundwater flooding in Egham",
+   "description": "Areas at risk of groundwater flooding in Egham"
+ },
+ {
+   "name": "River Lambourn and its tributaries from Upper Lambourn down to Newbury",
+   "description": "River Lambourn from Lambourn to the Shaw area in Newbury including Eastbury, East Garston, Welford, Easton, Boxford, Woodspeen, Bagnor, Donnington, Great Shefford on the Great Shefford Stream and Winterbourne on the Winterbourne Stream"
+ },
+ {
+   "name": "River Wye and The Hughenden Stream",
+   "description": "River Wye from West Wycombe down to Cores End including The Hughenden Stream"
+ },
+ {
+   "name": "River Thames from Datchet to Shepperton Green",
+   "description": "River Thames from Datchet to Shepperton Green including Old Windsor, Wraysbury, Horton, Staines, Egham, Laleham and Chertsey"
+ },
+ {
+   "name": "Lower River Loddon",
+   "description": "Lower River Loddon including Swallowfield, Arborfield, Shinfield, Barkham, Lower Earley, Sindlesham, Winnersh, Woodley, Hurst and Waltham-St-Lawrence"
+ },
+ {
+   "name": "River Enborne and Foudry Brook",
+   "description": "River Enborne from Gore End down to Aldermaston including the Ecchinswell Brook and the Kingsclere Brook; also the Foudry Brook and its tributaries from Scotsman's Green to Green Park including Stratfield Mortimer and Tadley on the Bishopswood Stream"
+ },
+ {
+   "name": "Groundwater flooding in West Ilsley, East Ilsley, Compton, Chilton and West Hagbourne",
+   "description": "Areas at risk of groundwater flooding in West Ilsley, East Ilsley, Compton, Chilton and West Hagbourne"
+ },
+ {
+   "name": "Chertsey Bourne",
+   "description": "Chertsey Bourne including Virginia Water, Thorpe Green and Chertsey and the Moat at Thorpe"
+ },
+ {
+   "name": "Groundwater flooding in the Crondall area",
+   "description": "Communities at risk of groundwater flooding in the Crondall area"
+ },
+ {
+   "name": "River Thames and tributaries in the Oxford area",
+   "description": "River Thames and tributaries in the Oxford area, including areas between Wolvercote down to and including Radley and Jericho"
+ },
+ {
+   "name": "River Thames from Shepperton to Molesey",
+   "description": "River Thames from Shepperton to West and East Molesey including Hamm Court, Walton-on-Thames and Sunbury"
+ },
+ {
+   "name": "Langford and Wendlebury Brooks from Stratton Audley down to near Merton",
+   "description": "Langford and Wendlebury Brooks and their tributaries from Stratton Audley down to the M40 near Merton, including Bicester and Wendlebury"
+ },
+ {
+   "name": "Lower River Wey",
+   "description": "Lower River Wey including Old Woking, Byfleet, and Weybridge and the West Clandon Stream at Send"
+ },
+ {
+   "name": "Slough Watercourses",
+   "description": "The Huntercombe Lane Stream, The Chalvey Ditch, The Salt Hill Stream and The Datchet Common Brook"
+ },
+ {
+   "name": "Upper River Wey",
+   "description": "Upper River Wey including Alton, Farnham, Bordon, Frensham, Tilford, Godalming, Guildford and Peasmarsh"
+ },
+ {
+   "name": "River Thame and Chalgrove Brook",
+   "description": "River Thame from Marsworth to Dorchester including, Long Marston, Rowsham, North Aylesbury, Cuddington, Thame, Shabbington, Ickford, Waterperry, Cuddesdon, Wheatley, Quarrendon, Drayton St Leonard, Overy, the Chalgrove Brook at Chalgrove and Stadhampton"
+ },
+ {
+   "name": "Tributaries on the Upper River Thames above Cricklade",
+   "description": "Flagham Brook, The Swill Brook, The Hankerton Brook, The Hykemeres Stream, The Derry Brook and The River Key"
+ },
+ {
+   "name": "River Coln and its tributaries",
+   "description": "River Coln and its tributaries from Whittington to the confluence with The River Thames"
+ },
+ {
+   "name": "River Ock from Watchfield to Abingdon, and also the Letcombe Brook at Wantage, Grove and East Hanney",
+   "description": "River Ock from Watchfield to Abingdon including, Stanford in the Vale, Charney Bassett, Lyford and Garford, and also the Letcombe Brook at Wantage, Grove and East Hanney"
+ },
+ {
+   "name": "Hoe Stream",
+   "description": "Hoe Stream including Woking"
+ },
+ {
+   "name": "River Cherwell from Lower Heyford down to and including Oxford",
+   "description": "River Cherwell and its tributaries from Lower Heyford down to Oxford including Rousham, Enslow, Thrupp and Hampton Poyle"
+ },
+ {
+   "name": "River Stert in Abingdon",
+   "description": "River Stert in Abingdon, including Dunmore Road, Farm Road,Selwood Road, down to the Abbey Meadows"
+ },
+ {
+   "name": "Windle Brook and Hale, Mill and Addlestone Bournes",
+   "description": "Windle Brook and Hale, Mill and Addlestone Bournes including Bagshot, Windlesham, Lightwater, Chobham, West End, Emmetts Mill, Woodham and Addlestone"
+ },
+ {
+   "name": "Ginge Brook",
+   "description": "Ginge Brook, for the Steventon area down to and including Sutton Courtenay"
+ },
+ {
+   "name": "River Thames and tributaries from Buscot Wick down to Kings Lock",
+   "description": "River Thames and tributaries from Buscot Wick down to Kings Lock, above Oxford, including Buscot, Kelmscott, Radcot, Chimney, Northmoor, Stanton Harcourt, Bablock Hythe and caravan park, Eynsham, Swinford and Yarnton"
+ },
+ {
+   "name": "River Thames from Pangbourne to Purley",
+   "description": "River Thames from Pangbourne to Purley including Pangbourne, Whitchurch and Purley"
+ },
+ {
+   "name": "Groundwater flooding in the Haslemere and Churt areas",
+   "description": "Communities at risk of groundwater flooding in the Haslemere, Churt and Rushmoor areas"
+ },
+ {
+   "name": "Groundwater flooding in the Upper Aldbourne Valley",
+   "description": "Areas at risk of groundwater flooding in the Upper Albourne Valley including Aldbourne"
+ },
+ {
+   "name": "River Thames at Maidenhead to Windsor and Eton",
+   "description": "River Thames at Maidenhead, Bray, Dorney, Windsor and Eton"
+ },
+ {
+   "name": "Hale Bourne and Addlestone Bourne at Chobham",
+   "description": "Hale Bourne and Addlestone Bourne at Chobham and Mimbridge, Surrey"
+ },
+ {
+   "name": "River Thame at Dorchester",
+   "description": "River Thame in the Dorchester and Overy areas"
+ },
+ {
+   "name": "River Kennet from Theale down to Reading",
+   "description": "River Kennet from Theale to Reading including, Theale village, Commercial Estate and Business Parks. Sheffield Bottom, Hawksbury Drive and Tadcroft Walk areas of Calcot, Burghfield Mill and Bridge areas and from the A4 to the confluence of the Thames"
+ },
+ {
+   "name": "Cut at Ryehurst Lane, Westley Mill and Paley Street",
+   "description": "Cut at Ryehurst Lane, Westley Mill and Paley Street including Bucks Bridge, Berkshire"
+ },
+ {
+   "name": "River Thames for Shiplake, Lower Shiplake and Wargrave",
+   "description": "River Thames from Shiplake to Bolney Court near Henley including Lower Shiplake and Wargrave"
+ },
+ {
+   "name": "River Thames at Old Windsor",
+   "description": "River Thames at Old Windsor including Church Road, The Priory and around St. Lukes Road, Burfield Road and Straight Road"
+ },
+ {
+   "name": "River Thames at Cookham",
+   "description": "River Thames at Cookham including Cookham Lock, Cookham Village and East Cookham Rise"
+ },
+ {
+   "name": "Properties closest to the River Wey between Walsham Meadow and Byfleet town",
+   "description": "Properties closest to the River Wey between Walsham Meadow and Byfleet town, including the Walsham Lock and Ockham Mill, Common Meadows and Plough Bridge areas of Byfleet"
+ },
+ {
+   "name": "River Evenlode at Eynsham Mill down to and including Cassington Mill near Cassington",
+   "description": "River Evenlode at Eynsham Mill down to and including Cassington Mill near Cassington"
+ },
+ {
+   "name": "Langford Village and other areas of Bicester on the Langford Brook",
+   "description": "Areas of Bicester including Langford Village and the Launton Road Industrial Estate, on the Langford Brook, down to the confluence with the River Ray"
+ },
+ {
+   "name": "River Wey at Old Woking",
+   "description": "River Wey at Old Woking and properties around Lower Westfield, Surrey"
+ },
+ {
+   "name": "River Wey at Wisley and Byfleet",
+   "description": "River Wey at Wisley, Pyrford and Byfleet including, Wisley Village, Pyrford Lock and Marina, the Church Road, Oyster Lane, High Road & Fullerton Road and Brooklands areas of Byfleet"
+ },
+ {
+   "name": "Moorings and properties closest to the River Thames between Maidenhead, Windsor and Eton",
+   "description": "River Thames from Maidenhead down to Romney Lock including moorings on and those properties closest to the river"
+ },
+ {
+   "name": "River Thames between Newbridge and Kings Lock above Oxford",
+   "description": "River Thames between Newbridge and Kings Lock above Oxford including Northmoor, Stanton Harcourt, Bablock Hythe and caravan park, Eynsham, Swinford and Yarnton"
+ },
+ {
+   "name": "River Thames at Reading and Caversham",
+   "description": "River Thames at Reading and Caversham including the Portman Road and Richfield Avenue industrial estates, Caversham Road area of Reading and the Lower Caversham area"
+ },
+ {
+   "name": "River Wye from West Wycombe down to Bourne End",
+   "description": "River Wye from West Wycombe down to Cores End including High Wycombe, Loudwater, Wooburn Green and Wooburn"
+ },
+ {
+   "name": "River Lambourn from Weston to Bagnor including Boxford",
+   "description": "River Lambourn from Weston to Bagnor including Easton, Boxford, Woodspeen and Winterbourne on the Winterbourne Stream"
+ },
+ {
+   "name": "River Og at Southend and Ogbourne St. Andrew",
+   "description": "River Og at Southend and Ogbourne St. Andrew"
+ },
+ {
+   "name": "Tillingbourne at Chilworth and Shalford",
+   "description": "Tillingbourne at Chilworth and Shalford and the Law Brook at Chilworth, Surrey"
+ },
+ {
+   "name": "Properties closest to the River Thames from Platts Eyot to Hampton Court Bridge",
+   "description": "River Thames from Platts Eyot to Hampton Court Bridge, including Platts Eyot, area around Hampton Sailing Club, Garrick's Eyot, Taggs Island, Ash Island and Molesey Lock"
+ },
+ {
+   "name": "River Cherwell from Lower Heyford down to Cherwell Bridge",
+   "description": "River Cherwell from Lower Heyford down to Cherwell Bridge including Rousham, Enslow, Thrupp and Hampton Poyle"
+ },
+ {
+   "name": "River Kennet and its tributaries at Hungerford",
+   "description": "River Kennet, the River Dun and the River Shalbourne at Hungerford and Eddington"
+ },
+ {
+   "name": "Cut at the Binghams",
+   "description": "Cut at the Binghams including properties around Tithe Barn Drive and Cox Green, Berkshire"
+ },
+ {
+   "name": "River Thames at Hamm Court",
+   "description": "River Thames at Hamm Court including Shepperton Lock, Hamhaugh Island, Hamm Court Estate and Dorney Grove"
+ },
+ {
+   "name": "Chertsey Bourne at Chertsey",
+   "description": "Chertsey Bourne at Chertsey, including Chilsey Green Road, St. Annes Road, Fordwater Road and Fordwater Trading Estate areas"
+ },
+ {
+   "name": "Properties closest to the River Thames at Wraysbury from Old Windsor Weir to Magna Carta Island",
+   "description": "River Thames from Old Windsor Weir to Magna Carta Island, including Ham Island, The Avenue, Park Avenue, King Johns Close and Friary Island areas of Wraysbury"
+ },
+ {
+   "name": "Areas of Chertsey closest to the Chertsey Bourne",
+   "description": "Areas closest to the Chertsey Bourne in Chertsey including Grove Road, Free Prae Road, Eastworth Road, Meadow View, Lakeside Park and the Chertsey Mead and Hamm Court Estate areas"
+ },
+ {
+   "name": "Cranleigh Waters near Cranleigh and Shamley Green",
+   "description": "Cranleigh Waters near Cranleigh and Shamley Green including Elmbridge Village, Surrey"
+ },
+ {
+   "name": "River Thames at Shepperton Green",
+   "description": "River Thames in the Shepperton Green village area"
+ },
+ {
+   "name": "River Thames from Days Lock down to South Stoke",
+   "description": "River Thames from Days Lock down to South Stoke, including Dorchester-on-Thames and Overy, Shillingford, Benson, Wallingford, North Stoke and Moulsford"
+ },
+ {
+   "name": "River Thames in the Playhatch, Sonning and Sonning Eye area",
+   "description": "River Thames in the Playhatch, Sonning and Sonning Eye area"
+ },
+ {
+   "name": "River Thames at Staines and Egham",
+   "description": "River Thames at Staines and Egham including Bell Weir and Penton Hook Locks, Runnymede, Hythe End, Pooley Green, Thorpe Lea and east Egham"
+ },
+ {
+   "name": "River Wey at Farnham",
+   "description": "River Wey at Farnham and Waverley Abbey, Surrey"
+ },
+ {
+   "name": "River Wey at Elstead and Eashing",
+   "description": "River Wey at Elstead and Eashing, Surrey"
+ },
+ {
+   "name": "Properties closest to the River Thames from All Saints Church, Bisham to Little Marlow",
+   "description": "River Thames from All Saints Church, Bisham to Little Marlow including Marlow Bridge Lane and Quarry Wood Road areas of Bisham as well as the Lock Island, Gossmore areas, Meadow Close and Pike Close, Pound Lane and Garnet Court areas of Marlow"
+ },
+ {
+   "name": "Littlemead Brook at Cranleigh",
+   "description": "Littlemead Brook at Cranleigh including Littlemead, Surrey"
+ },
+ {
+   "name": "Ewelme Stream at Ewelme and Benson",
+   "description": "Ewelme Stream at Ewelme and Benson"
+ },
+ {
+   "name": "Sor Brook at Bodicote and Adderbury and The Bloxham Brook",
+   "description": "Sor Brook at Bodicote and Adderbury and The Bloxham Brook at Bloxham"
+ },
+ {
+   "name": "Pettys Brook at Chineham",
+   "description": "Pettys Brook at Chineham, Hampshire"
+ },
+ {
+   "name": "River Lambourn from Upper Lambourn to Great Shefford",
+   "description": "River Lambourn from Upper Lambourn to Great Shefford including Lambourn, Eastbury and East Garston"
+ },
+ {
+   "name": "Shill Brook at Carterton and Bampton",
+   "description": "Shill Brook at Carterton and Bampton, from Shilton to Aston, including the Black Bourton Brook, and the Highmoor Brook at Brize Norton"
+ },
+ {
+   "name": "River Ray from the Heath Bridge area to and including the Otmoor Basin",
+   "description": "River Ray from the Heath Bridge area to and including the Otmoor Basin"
+ },
+ {
+   "name": "River Cherwell for the Oxford area",
+   "description": "River Cherwell at Oxford from Cherwell Bridge to the Thames confluence north of New Hinksey, including parts of Summertown, New Marston and Magdalen Bridge areas"
+ },
+ {
+   "name": "River Loddon at Lower Earley and Sindlesham",
+   "description": "River Loddon at Lower Earley and Sindlesham including Earley, Berkshire"
+ },
+ {
+   "name": "River Thame from below Eythrope to Chiselhampton",
+   "description": "River Thame from below Eythrope to Chiselhampton including Cuddington, Thame, Shabbington, Ickford, Waterperry, Cuddesdon, Wheatley and Chippinghurst"
+ },
+ {
+   "name": "Properties closest to the River Thames at Datchet from Black Potts Bridge to Albert Bridge",
+   "description": "River Thames at Datchet from Black Potts Railway Bridge to Albert Bridge, including Supermead Ait, Datchet Golf Club"
+ },
+ {
+   "name": "River Thames at Goring and Streatley",
+   "description": "River Thames from Cleeve Lock to Child Beale Park, above Pangbourne, including Goring and Streatley"
+ },
+ {
+   "name": "River Thames from Somerford Keynes to Cricklade",
+   "description": "River Thames from Somerford Keynes to Cricklade including Ashton Keynes"
+ },
+ {
+   "name": "River Thames at Chertsey",
+   "description": "River Thames at Chertsey including Chertsey Lock, Abbeychase, Chertsey Bridge Road, Thames Close, Hazelbank Road, Mead Lane and Bridge Wharf"
+ },
+ {
+   "name": "River Hart at Crookham Village, Hartley Wintney and Riseley",
+   "description": "River Hart at Crookham Village, Hartley Wintney and Riseley including Dogmersfield, Hampshire"
+ },
+ {
+   "name": "River Thames at Wraysbury",
+   "description": "River Thames at Wraysbury village including Welley Road, Ouseley Road, Station Road and Staines Road, as well as Magna Carta Lane"
+ },
+ {
+   "name": "Properties closest to the River Thames from Raven's Ait to Teddington Weir",
+   "description": "River Thames from Raven's Ait to Teddington Weir including, Raven's Ait, the Hogsmill River below the university Knights Park Campus, both Kingston Bridge's and Steven's Eyot"
+ },
+ {
+   "name": "River Thames at Pangbourne and Whitchurch",
+   "description": "River Thames at Pangbourne and Whitchurch"
+ },
+ {
+   "name": "River Evenlode at Moreton in Marsh",
+   "description": "River Evenlode at Moreton in Marsh"
+ },
+ {
+   "name": "Foudry Brook from Stratfield Mortimer to Green Park",
+   "description": "Foudry Brook from Stratfield Mortimer to Green Park"
+ },
+ {
+   "name": "River Wey at Passfield Mill Business Park, Standford, Frensham and Millbridge",
+   "description": "River Wey South Branch at Passfield Mill Business Park, Standford, Frensham and Millbridge, Hampshire and Surrey"
+ },
+ {
+   "name": "Addlestone Bourne at Addlestone",
+   "description": "Addlestone Bourne at Addlestone, including the Crockford Bridge, Corrie Road, Bourneside Road, Alexandra Road areas, as well as the Bourne and Weybridge Business Park, Albert Road, Addlestone Road and Meadowlands Park areas"
+ },
+ {
+   "name": "River Cherwell from Charwelton to above Banbury",
+   "description": "River Cherwell from Charwelton to above Banbury including Woodford Halse, Edgcote and Cropredy"
+ },
+ {
+   "name": "River Stert at Abingdon",
+   "description": "River Stert in Abingdon, including Dunmore Road, Farm Road,Selwood Road, down to the Abbey Meadows"
+ },
+ {
+   "name": "River Loddon at Arborfield and Shinfield",
+   "description": "River Loddon at Arborfield and Shinfield, Berkshire"
+ },
+ {
+   "name": "River Thames at Datchet",
+   "description": "River Thames at Datchet village, including Slough Road, Eton Road, Horton Road, Southlea Road and the Datchet Common areas"
+ },
+ {
+   "name": "River Ray from near the B4553 Purton Road to above Water Eaton",
+   "description": "River Ray from the Elborough Bridge near the B4553 Purton Road area in Swindon down to but not including Water Eaton"
+ },
+ {
+   "name": "River Windrush at Witney and Ducklington",
+   "description": "River Windrush at Witney and Ducklington down to and including Hardwick"
+ },
+ {
+   "name": "Hughenden Stream from Hughenden Park to the confluence with The River Wye",
+   "description": "Hughenden Stream from Hughenden Park to the confluence with The River Wye including parts of High Wycombe"
+ },
+ {
+   "name": "Hale Bourne from the M3 to Clappers Lane",
+   "description": "Hale Bourne from the M3 junction 3 to Clappers Lane including Windlesham Arboretum, Halebourne Lane and Burnt Pollard Lane, Surrey"
+ },
+ {
+   "name": "Letcombe Brook at Wantage, Grove and East Hanney",
+   "description": "Letcombe Brook at Wantage, Grove and East Hanney, up to and including The Venn Mill"
+ },
+ {
+   "name": "Properties closest to the River Ock from Tesco to St. Helen's Wharf",
+   "description": "Properties closest to the River Ock from Tescos to St. Helen's Wharf, including parts of Orpwood Way, Nash Drive, Chaunterell Way, Ock Mill Close, Meadowside, Manor Court, Mill Paddock and St. Helen's Mill"
+ },
+ {
+   "name": "Bear Brook and tributaries, from Broughton to Haydon Mill Farm in Coldharbour, Aylesbury",
+   "description": "Bear Brook and tributaries, from Broughton to Haydon Mill Farm in Coldharbour, Aylesbury including the Hilda Wharf and California areas"
+ },
+ {
+   "name": "River Kennet for Thatcham and Colthrop",
+   "description": "River Kennet for Thatcham and Colthrop"
+ },
+ {
+   "name": "River Kennet from Mildenhall to just above Hungerford",
+   "description": "River Kennet from Mildenhall to just above Hungerford including Ramsbury and Chilton Foliat"
+ },
+ {
+   "name": "Emm Brook at Wokingham",
+   "description": "Emm Brook at Wokingham including Hurst, Berkshire"
+ },
+ {
+   "name": "Hoe Stream at Woking",
+   "description": "Hoe Stream at Woking including Mayford, Surrey"
+ },
+ {
+   "name": "River Ock at Longcot, Stanford in the Vale, Charney Bassett, Lyford and Garford",
+   "description": "River Ock from Longcot down to but excluding the A34 near Abingdon, including Stanford in the Vale, Charney Bassett, Lyford and Garford"
+ },
+ {
+   "name": "River Thame from Long Marston to Eythrope",
+   "description": "River Thame from Long Marston to Eythrope including Rowsham and North Aylesbury"
+ },
+ {
+   "name": "Ginge Brook between Steventon and Sutton Courtenay, including Milton and Drayton Mill areas",
+   "description": "Ginge Brook between Steventon and Sutton Courtenay including Milton and Drayton Mill areas"
+ },
+ {
+   "name": "Swill Brook below Oaksey",
+   "description": "Swill Brook from below Oaksey to the confluence with the River Thames"
+ },
+ {
+   "name": "River Thames at Bourne End",
+   "description": "River Thames at Bourne End including Spade Oak Reach, Cockmarsh and Riversdale"
+ },
+ {
+   "name": "River Thames at Horton",
+   "description": "River Thames at Horton including Horton Gardens and Kingsmead Quarry"
+ },
+ {
+   "name": "Wendlebury village on the Wendlebury Brook",
+   "description": "Wendlebury village on the Wendlebury Brook, South East of the A41 to the confluence with the Langford Brook"
+ },
+ {
+   "name": "River Windrush at Bourton on the Water",
+   "description": "River Windrush at Bourton on the Water from the A436 down to the Little Rissington pits"
+ },
+ {
+   "name": "River Thames at Thames Ditton",
+   "description": "River Thames at Thames Ditton including Ditton Field and Ditton Reach"
+ },
+ {
+   "name": "Grimsbury area benefiting from Moorfield Brook pumping station",
+   "description": "Grimsbury area of Banbury benefiting from the Moorfield Brook pumping station, including Fergusson Road, Gibbs Road and parts of the Old Grimsbury Road, West Street and Waterloo Drive"
+ },
+ {
+   "name": "River Enborne from Gore End down to Aldermaston",
+   "description": "River Enborne from Gore End down to Aldermaston including the Ecchinswell Brook and Kingsclere Brook"
+ },
+ {
+   "name": "River Whitewater at North Warnborough, Hook and Riseley",
+   "description": "River Whitewater at North Warnborough, Hook and Riseley including Heckfield, Hampshire"
+ },
+ {
+   "name": "River Thames at Thames Ditton Island",
+   "description": "River Thames at Thames Ditton Island including Boyle Farm Island"
+ },
+ {
+   "name": "River Thames and tributaries in the Binsey, Osney and Osney Island areas in Oxford",
+   "description": "River Thames and tributaries in the Binsey, Osney and Osney Island areas in Oxford"
+ },
+ {
+   "name": "River Churn at South Cerney",
+   "description": "River Churn at South Cerney including School Lane, Bow Wow and Boxbush Road"
+ },
+ {
+   "name": "Sulham Brook for Sulham",
+   "description": "Sulham Brook for Sulham including Sulham Lane for the Tidmarsh area"
+ },
+ {
+   "name": "River Thames at Teddington",
+   "description": "River Thames at Teddington including Broom Road and Lower Teddington Road"
+ },
+ {
+   "name": "River Cherwell from below Banbury to just above Upper Heyford",
+   "description": "River Cherwell from below Banbury to just above Upper Heyford including Kings Sutton"
+ },
+ {
+   "name": "River Wey at Weybridge",
+   "description": "River Wey at Weybridge, Wey Meadows and Hamm Court, Surrey"
+ },
+ {
+   "name": "River Churn from Baunton to Siddington including Cirencester",
+   "description": "River Churn from Baunton to Siddington, including The Daglingworth Stream, and The Gumstool Brook, in Cirencester only"
+ },
+ {
+   "name": "River Thames at Shepperton and Lower Halliford",
+   "description": "River Thames at Shepperton and Lower Halliford including St. Nicholas Drive, Thamesmead School and Bishop Duppas Park areas"
+ },
+ {
+   "name": "Bear Brook and tributaries at Wendover and Weston Turville",
+   "description": "Bear Brook and tributaries in the Aylesbury area, including Wendover and Weston Turville"
+ },
+ {
+   "name": "River Kennet at Marlborough",
+   "description": "River Kennet at Marlborough including the confluence with the River Og"
+ },
+ {
+   "name": "River Thames and tributaries at Sandford and Radley near Oxford",
+   "description": "River Thames and tributaries at Sandford and Radley near Oxford"
+ },
+ {
+   "name": "River Pang at Bucklebury",
+   "description": "River Pang at Bucklebury"
+ },
+ {
+   "name": "River Loddon at Twyford, Charvil and Wargrave",
+   "description": "River Loddon at Twyford, Charvil and Wargrave including Loddon Drive, Berkshire"
+ },
+ {
+   "name": "Properties closest to the River Kennet at the Burghfield, Southcote, Coley and Holybrook areas",
+   "description": "Properties closest to the River Kennet between Shenfield Mill, Theale and Reading town centre including, Burghfield Lock, Burghfield Bridge, Bear Wharf and Kings Road areas and those closest to the Holy Brook in Calcot, Southcote and Coley areas"
+ },
+ {
+   "name": "River Kennet from Denford down to Marsh Benham",
+   "description": "River Kennet from Denford down to Marsh Benham including Kintbury"
+ },
+ {
+   "name": "River Lambourn from Donnington to Newbury",
+   "description": "River Lambourn from Donnington to the Shaw area north of the A4 in Newbury"
+ },
+ {
+   "name": "River Coln from Fossebridge to Quennington",
+   "description": "River Coln from Fossebridge down to Quennington including Bibury"
+ },
+ {
+   "name": "Cove Brook at Farnborough",
+   "description": "Cove Brook at Farnborough including Hawley Bridge, Hampshire"
+ },
+ {
+   "name": "River Blackwater at Eversley and Bramshill",
+   "description": "River Blackwater at Eversley and Bramshill, Hampshire and Berkshire"
+ },
+ {
+   "name": "River Loddon at Old Basing",
+   "description": "River Loddon at Old Basing including Wildmore, Hampshire"
+ },
+ {
+   "name": "River Thames and tributaries at Kennington",
+   "description": "River Thames and tributaries at Kennington near Oxford"
+ },
+ {
+   "name": "River Windrush at Asthall, Minster Lovell and Crawley",
+   "description": "River Windrush at Asthall, Minster Lovell and Crawley"
+ },
+ {
+   "name": "River Thames at Laleham",
+   "description": "River Thames at Laleham and Penton Hook including Penton Park, Laleham Reach and Laleham Abbey, Staines Road, The Broadway and Thames Side"
+ },
+ {
+   "name": "Dorcan Brook in the Dorcan, Eldene and Coate areas in Swindon",
+   "description": "Dorcan Brook in the Dorcan, Eldene and Coate areas in Swindon"
+ },
+ {
+   "name": "River Thames from Buscot Wick down to Shifford",
+   "description": "River Thames from Buscot Wick down to Shifford including Buscot, Kelmscott, Radcot, Lower Bampton area and Chimney Area"
+ },
+ {
+   "name": "East Clandon Stream at Send",
+   "description": "East Clandon Stream at Send, Surrey"
+ },
+ {
+   "name": "River Coln for Cotswold Water Park and Whelford",
+   "description": "River Coln for Cotswold Water Park and Whelford"
+ },
+ {
+   "name": "Properties closest to the River Thames at Old Windsor, from Friday Island to Magna Carta Island",
+   "description": "River Thames at Old Windsor from Friday Island to upstream of Magna Carta Island including The Friary and The Moorings areas of Old Windsor"
+ },
+ {
+   "name": "River Thames from Calcutt to Lechlade including Hannington Wick",
+   "description": "River Thames from Calcutt to Lechlade including Hannington Wick"
+ },
+ {
+   "name": "River Thames for Henley, Remenham, and Medmenham",
+   "description": "River Thames from Henley down to Medmenham including Remenham and Mill End"
+ },
+ {
+   "name": "River Blackwater at Aldershot and Farnborough",
+   "description": "River Blackwater at Aldershot and Farnborough including Lakeside Park, Ash Vale, Farnborough Park and Mytchett, Hampshire and Surrey"
+ },
+ {
+   "name": "River Kennet at Newbury",
+   "description": "River Kennet at Newbury including the confluence with the River Lambourn south of the A4"
+ },
+ {
+   "name": "River Thames at Sunbury",
+   "description": "River Thames in the Sunbury town area, including Longwood Business Park, Halliford Road areas of Upper Halliford and Sunbury, Lower Hampton Road park, Kenton Court Meadow and Kempton Park Racecourse areas"
+ },
+ {
+   "name": "River Thames in Abingdon",
+   "description": "River Thames in Abingdon"
+ },
+ {
+   "name": "River Thames and tributaries at New Botley, New and North Hinksey and Grandpont in Oxford",
+   "description": "River Thames and tributaries at New Botley, New and North Hinksey and Grandpont in Oxford"
+ },
+ {
+   "name": "River Thames and tributaries at Wolvercote in Oxford",
+   "description": "River Thames and tributaries at Wolvercote in Oxford"
+ },
+ {
+   "name": "River Thames at Purley Village",
+   "description": "River Thames at Purley Village"
+ },
+ {
+   "name": "River Wey at Godalming, Peasmarsh and Shalford",
+   "description": "River Wey at Godalming, Peasmarsh and Shalford, Surrey"
+ },
+ {
+   "name": "Sulham Brook for Theale",
+   "description": "Sulham Brook for Theale"
+ },
+ {
+   "name": "Chalgrove Brook at Chalgrove and Stadhampton",
+   "description": "Chalgrove Brook at Chalgrove and Stadhampton"
+ },
+ {
+   "name": "River Thames at Ewen",
+   "description": "River Thames at Ewen"
+ },
+ {
+   "name": "River Windrush at Rack End and Standlake including Northmoor and Newbridge",
+   "description": "River Windrush at Rack End and Standlake including Northmoor and Newbridge"
+ },
+ {
+   "name": "River Evenlode at Milton under Wychwood, Shipton under Wychwood and Ascott under Wychwood",
+   "description": "River Evenlode at Milton under Wychwood, Shipton under Wychwood and Ascott under Wychwood"
+ },
+ {
+   "name": "River Thames at Clifton Hampden, Dorchester and Little Wittenham",
+   "description": "River Thames at Clifton Hampden, Dorchester and Little Wittenham"
+ },
+ {
+   "name": "Marston Meysey Brook for Marston Meysey",
+   "description": "Marston Meysey Brook from near Wetstone Bridge to just above Fairford Airfield"
+ },
+ {
+   "name": "Addlestone Bourne at Woodham",
+   "description": "Addlestone Bourne at Woodham including Rose Park Caravan Park, Surrey"
+ },
+ {
+   "name": "River Thames at Bisham village and Marlow town",
+   "description": "River Thames around Bisham village, Bisham Abbey, Stoney Ware areas in Bisham, Marlow Bridge, Bream Close, Trout Close and Pound Crescent areas as well as the Thames Industrial Estate and Dedmere, Fieldhouse and Westhorpe Farm areas of Marlow"
+ },
+ {
+   "name": "River Blackwater at Camberley and Sandhurst",
+   "description": "River Blackwater at Camberley and Sandhurst including Frimley Business Park, Shepherd Meadows Nature Reserve and Trilakes Country Park, Surrey and Berkshire"
+ },
+ {
+   "name": "River Pang at Pangbourne",
+   "description": "River Pang at Pangbourne"
+ },
+ {
+   "name": "River Leach from just below Southrop to Mill Lane near Lechlade",
+   "description": "River Leach from just below Southrop to Mill Lane near Lechlade including Little Faringdon"
+ },
+ {
+   "name": "River Thames at East and West Molesey",
+   "description": "River Thames at East and West Molesey including Hurst Park, Buckingham Avenue and the Royal Mews area"
+ },
+ {
+   "name": "Mill Brook from the Hagbourne Mill area to Winterbrook",
+   "description": "Mill Brook from the Hagbourne Mill area to Winterbrook including South Moreton"
+ },
+ {
+   "name": "Properties closest to the Addlestone Bourne at Addlestone",
+   "description": "Areas of Addlestone closest to the Addlestone Bourne, including parts of Bois Hall Road as well as Waters Edge and the Black Boy Bridge area of the Addlestone Road"
+ },
+ {
+   "name": "River Ray for Islip",
+   "description": "River Ray for Islip"
+ },
+ {
+   "name": "River Coln at Fairford",
+   "description": "River Coln at Fairford"
+ },
+ {
+   "name": "River Thames at Hurley and Harleyford",
+   "description": "River Thames at Hurley and Harleyford including Hurley Lock and Temple Lock, Frogmill Spinney, Temple Mill Island and Temple"
+ },
+ {
+   "name": "River Loddon and River Blackwater at Swallowfield",
+   "description": "River Loddon and River Blackwater at Swallowfield including Swallowfield Park, Berkshire"
+ },
+ {
+   "name": "River Dikler between Stow on the Wold and Bourton on the Water",
+   "description": "River Dikler between Stow on the Wold and Bourton on the Water, from Hyde Mill, near Slaughter woods, Stow on the Wold, including Slaughter Bridge near Lower Slaughter and Bourton on the Water"
+ },
+ {
+   "name": "River Churn at Cerney Wick",
+   "description": "River Churn at Cerney Wick"
+ },
+ {
+   "name": "River Thames at Trowlock Island",
+   "description": "River Thames at Trowlock Island including the Royal Canoe Club"
+ },
+ {
+   "name": "River Key from the Bentham area to Cricklade including Purton Stoke",
+   "description": "River Key from the Bentham area to Cricklade including Purton Stoke"
+ },
+ {
+   "name": "River Loddon at Sherfield-on-Loddon",
+   "description": "River Loddon at Sherfield-on-Loddon including Stratfield Turgis and properties around Stanford End and Beech Hill, Hampshire and Berkshire"
+ },
+ {
+   "name": "River Swin Bourne in the Even Swindon, West Kingshill and Westleaze areas in Swindon",
+   "description": "River Swin Bourne in the Even Swindon, West Kingshill & Westleaze areas in Swindon"
+ },
+ {
+   "name": "River Wey at Guildford",
+   "description": "River Wey at Guildford, Riverside Park Nature Reserve and Jacobs Well, Surrey"
+ },
+ {
+   "name": "River Thames at Walton",
+   "description": "River Thames at Walton-on-Thames including Desborough Island, Walton Bridge and Elmbridge Leisure Centre"
+ },
+ {
+   "name": "Properties closest to the River Thames from Littleton Lane, Shepperton Green to Shepperton Lock",
+   "description": "River Thames at the Littleton Lane, Chertsey Road and Pool End areas of Shepperton Green as well as Dockett Eddy, Dockett Point and Pharaoh's Island"
+ },
+ {
+   "name": "Cranleigh Waters at Bramley",
+   "description": "Cranleigh Waters at Bramley, Surrey"
+ },
+ {
+   "name": "Bear Brook and tributaries, from Walton Court in the Ellen Road area down to St Marys School",
+   "description": "Bear Brook and tributaries, from Walton Court in the Ellen Road area down to St Marys School, Keen Close in Aylesbury"
+ },
+ {
+   "name": "River Glyme at Woodstock",
+   "description": "River Glyme at Woodstock, from Glympton including Wootton down to and including The Lince near Bladon"
+ },
+ {
+   "name": "Properties closest to the River Thames from Scours Lane, Reading to Caversham Lakes",
+   "description": "River Thames from Scours Lane, Reading to Caversham Lakes, including the Chazey Court Farm, Caversham Bridge, Fry's Island, Reading Bridge areas and parts of Queen's Road and Mill Green areas of Lower Caversham"
+ },
+ {
+   "name": "Area of Kidlington benefiting from the Flood Alleviation scheme",
+   "description": "Area of Kidlington benefiting from the Flood Alleviation Scheme, including parts of Mill Street, Watermead, Cherwell Avenue, Queens Avenue, Edinburgh Drive, Springfield Road, Waverley Avenue, Lovelace Drive and Kings Way Drive in Kidlington"
+ },
+ {
+   "name": "River Thames at Hampton and Hampton Wick",
+   "description": "River Thames at Hampton and Hampton Wick including Hampton Court, properties on the Barge Walk, Hampton Court Palace Golf Club and Hampton Court Road"
+ },
+ {
+   "name": "River Ray from the A3102 road to and including the sewage works",
+   "description": "River Ray from the Wootton Bassett Road down to and including the sewage works, Barnfield Road in Swindon"
+ },
+ {
+   "name": "Windle Brook at Bagshot",
+   "description": "Windle Brook at Bagshot including Swift Lane Caravan Park, Surrey"
+ },
+ {
+   "name": "Ampney Brook from Ampney Crucis to Sheeppen Bridge",
+   "description": "Ampney Brook from Ampney Crucis to Sheeppen Bridge near Latton"
+ },
+ {
+   "name": "River Ock at Abingdon",
+   "description": "River Ock at Abingdon, from New Cut Mill down to the confluence with the Thames, including the Ely close, Shepherd Gardens, Medlicott Drive, Tower Close, Ock Street, Francis Little Drive, Hermitage Road, St. Amand Drive areas of Abingdon"
+ },
+ {
+   "name": "Letcombe Brook at Letcombe Bassett and Letcombe Regis",
+   "description": "Letcombe Brook at Letcombe Bassett and Letcombe Regis"
+ },
+ {
+   "name": "The area of Woking benefiting from the Hoe Stream Flood Alleviation Scheme",
+   "description": "The area of Woking benefiting from the Hoe Stream Flood Alleviation Scheme"
+ },
+ {
+   "name": "River Cherwell at Banbury",
+   "description": "The properties in the area of Banbury and the River Cherwell which are protected by the Banbury Flood Alleviation Scheme"
+ },
+ {
+   "name": "River Cole from A419 and A420 roads in Swindon to above Upper Inglesham",
+   "description": "River Cole from A419 and A420 roads in Swindon to above Upper Inglesham including the Westmill Bridge and Watchfield Common Wood areas"
+ },
+ {
+   "name": "Sulham Brook at Pangbourne",
+   "description": "Sulham Brook at Pangbourne"
+ },
+ {
+   "name": "Briars Close, Pangbourne benefiting from the Flood Alleviation Scheme",
+   "description": "Briars Close Flood area in Pangbourne benefiting from the Flood Alleviation Scheme"
+ },
+ {
+   "name": "Chertsey Bourne at Thorpe Green",
+   "description": "Chertsey Bourne at Thorpe Green including Green Road and Trumps Green, Surrey"
+ },
+ {
+   "name": "River Cole for the Covingham and Lower Stratton areas in Swindon",
+   "description": "River Cole for the Covingham and Lower Stratton areas in Swindon including Greenbridge Industrial Estate"
+ },
+ {
+   "name": "Properties closest to the River Thames at Sunbury",
+   "description": "River Thames at Sunbury from Wheatley's Eyot to Sunbury Court Island including Wheatley's Eyot, Sunburylock Ait, Sunbury Ait, Sunbury Court Island and properties on the The Creek, Parke Road, Thames Street and Lower Hampton Road"
+ },
+ {
+   "name": "River Wey at Alton",
+   "description": "River Wey and Caker Stream at Alton and the River Wey at Upper Froyle and Bentley, Hampshire"
+ },
+ {
+   "name": "River Thame from Chiselhampton to Drayton St Leonard",
+   "description": "River Thame from Chiselhampton to Drayton St Leonard including Newington"
+ },
+ {
+   "name": "River Pang for Frilsham, Stanford Dingley and Bradfield",
+   "description": "River Pang for Frilsham, Stanford Dingley and Bradfield"
+ },
+ {
+   "name": "Clanfield Brook for Clanfield Village",
+   "description": "Clanfield Brook for Clanfield Village"
+ },
+ {
+   "name": "River Thames at Culham",
+   "description": "River Thames at Culham"
+ },
+ {
+   "name": "River Thames at Kingston-upon-Thames",
+   "description": "River Thames at Kingston-upon-Thames town including, central Kingston, the area around Canbury Gardens and Albany Park Road"
+ },
+ {
+   "name": "Properties closest to the River Thames from Shepperton Lock to Beasley's Ait",
+   "description": "The River Thames from Shepperton Lock to Beasley's Ait, including Sandhills Meadow, Thames Meadow, Penny Lane and Felix Lane areas"
+ },
+ {
+   "name": "Properties closest to the River Thames from Runnymede Pleasure Grounds, Staines to Penton Hook",
+   "description": "River Thames from Runnymede Pleasure Grounds, Staines to Penton Hook, including Hythe End Road, Bell Weir Lock, Holm Island, Church Island, Truss Island and Penton Hook Lock areas of Staines"
+ },
+ {
+   "name": "River Loddon at Winnersh and Woodley",
+   "description": "River Loddon at Winnersh and Woodley including Whistley Green, Berkshire"
+ },
+ {
+   "name": "Cut from Three Legged Cross to Binfield Manor",
+   "description": "Cut from Three Legged Cross to Binfield Manor including Jocks Lane Park, Berkshire"
+ },
+ {
+   "name": "River Pang at Tidmarsh",
+   "description": "River Pang at Tidmarsh"
+ },
+ {
+   "name": "River Kennet from Berwick Bassett to Fyfield",
+   "description": "River Kennet from Berwick Bassett to Fyfield including Winterbourne Monkton"
+ },
+ {
+   "name": "Mill Bourne at Emmetts Mill",
+   "description": "Mill Bourne at Emmetts Mill, Surrey"
+ },
+ {
+   "name": "River Wey at Tilford",
+   "description": "River Wey at Tilford, Surrey"
+ }
+ ]
+
+ -%}

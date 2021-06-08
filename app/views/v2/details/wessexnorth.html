@@ -1,0 +1,50 @@
+<script>
+    const countries = [
+    "Abu Dhabi",  
+              
+              "Bristol Frome Catchment 112WAFTBFC",
+              "East Somerset Rivers 112WAFTESR",
+              "Little Avon catchment and the Vale of Berkeley 112WAFTLAC",
+              "Lower Bristol Avon Area 112WAFTLBA",
+              "Lower Tone and Parrett Moors 112WAFTPM",
+              "Mid Bristol Avon Area 112WAFTMBA",
+              "Midford Brook catchment 112WAFTMBC",
+              "North Somerset Area 112WAFTNSA",
+              "River Biss catchment 112WAFTRBC",
+              "River Chew Catchment 112WAFTRCC",
+              "River Tone Catchment 112WAFRTC",
+              "River Yeo and River Parrett Moors around Muchelney and Thorney 112WAFYPM",
+              "River Yeo and River Parrett, Lower Reaches 112WAFRYP",
+              "Severn Estuary at Oldbury-on-Severn, Northwick and Avonmouth 112WATSVN2",
+              "Severn Estuary at Severn Beach 112WATSVN1",
+              "Somerset coast at Clevedon 112WATSOM4",
+              "Somerset coast at Dunster Beaches, Blue Anchor, Steart, Stolford and Brean 112WATSOM2",
+              "Somerset coast at Minehead, Bridgwater, Burnham-on-Sea and Uphill to Kingston Seymour 112WATSOM3",
+              "Somerset coast at Porlock Weir 112WATSOM1",
+              "Somerset coast at Portishead and Portbury Dock 112WATSOM5",
+              "Somerset Frome Area 112WAFTSFA",
+              "South East Somerset Rivers, Upper Reaches 112WAFTSES",
+              "South Somerset Rivers, Upper Reaches 112WAFTSSR",
+              "Tidal River Avon at Bristol, Pill and Shirehampton 112WATAVN1",
+              "Upper Bristol Avon Area 112WAFTUBA",
+              "West Somerset Streams 112WAFTWSS",
+
+    "Unknown"
+    ];
+  
+    accessibleAutocomplete({
+      autoselect: true,
+      element: document.querySelector('#target-area-container'),
+      id: 'target-area',
+      name: 'targetareaautocomplete',
+      source: countries,
+     // defaultValue: '{{ data['targetareaautocomplete'] }}',
+     defaultValue: '',
+      displayMenu: 'overlay',
+      templates: '{ inputValue, suggestion }',
+      minLength: 2,
+      tNoResults: function() {
+        return "Target area not found"
+      }
+    });
+  </script>

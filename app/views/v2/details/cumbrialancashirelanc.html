@@ -1,0 +1,44 @@
+<script>
+    const countries = [
+    "Abu Dhabi",                
+              "Coast at Lytham St Annes 012WACLS",
+              "Coast from Cockerham to Fleetwood 012WACCF",
+              "Coast from Fleetwood to Blackpool 012WACFB",
+              "Coast from Formby to Crosby 012WACFC",
+              "Coast from Heysham to Cockerham 012WACHC",
+              "Coast from Southport to Formby 012WACSF",
+              "Crossens area in west Lancashire 012WAFCC",
+              "Lower River Douglas 012WAFLD",
+              "Lower River Lune and Conder 012WAFLL",
+              "Lower River Ribble and Darwen 012WAFLR",
+              "Lower River Wyre 012WAFLW",
+              "Lune estuary south west of Lancaster 012WATLE",
+              "Ribble estuary west of Preston 012WATRE",
+              "River Alt, Formby to Huyton 012WAFAC",
+              "River Calder in east Lancashire 012WAFEL",
+              "River Lostock and River Yarrow 012WAFLY",
+              "South Morecambe Bay area 012WACSM",
+              "Upper River Douglas 012WAFUD",
+              "Upper River Lune 012WAFUL",
+              "Upper River Ribble, Hodder 012WAFUR",
+              "Upper River Wyre, Brock 012WAFUW",
+              "Wyre estuary from Fleetwood and Knott End to Little Eccleston 012WATWE",
+"Unknown"
+    ];
+  
+    accessibleAutocomplete({
+      autoselect: true,
+      element: document.querySelector('#target-area-container'),
+      id: 'target-area',
+      name: 'targetareaautocomplete',
+      source: countries,
+     // defaultValue: '{{ data['targetareaautocomplete'] }}',
+     defaultValue: '',
+      displayMenu: 'overlay',
+      templates: '{ inputValue, suggestion }',
+      minLength: 2,
+      tNoResults: function() {
+        return "Target area not found"
+      }
+    });
+  </script>

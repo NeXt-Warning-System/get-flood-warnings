@@ -1,0 +1,75 @@
+
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Get flood warnings prototype
+{% endblock %}
+{% block beforeContent %}
+<div class="govuk-phase-banner">
+  <p class="govuk-phase-banner__content"><strong class="govuk-tag govuk-phase-banner__content__tag ">
+  alpha
+</strong>
+    <span class="govuk-phase-banner__text">
+      This is a new service – your
+      <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+    </span>
+  </p>
+</div>
+
+{% endblock %}
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset" aria-describedby="sign-in-hint">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            <h1 class="govuk-fieldset__heading">
+              Select severity level
+            </h1>
+          </legend>
+          <div class="govuk-radios">
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="alert" name="severity" type="radio" value="alert" aria-describedby="alert-2-item-hint">
+
+              <label class="govuk-label govuk-radios__label" for="alert">
+                Flood alert </label>
+              </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="warning" name="severity" type="radio" value="warning" aria-describedby="warning-item-hint">
+              <label class="govuk-label govuk-radios__label" for="warning">
+                Flood warning 
+              </label>
+             </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="severe" name="severity" type="radio" value="severe" aria-describedby="severe-item-hint">
+              <label class="govuk-label govuk-radios__label" for="severe">
+                Severe flood warning
+              </label>
+
+              
+          </div>
+          
+        </fieldset>
+      </br>
+        <details class="govuk-details" data-module="govuk-details">
+          <summary class="govuk-details__summary">
+            <span class="govuk-details__summary-text">
+              I do not know the severity level
+            </span>
+          </summary>
+          <div class="govuk-details__text">
+
+            {% include "v1/details/severity_details.html" %}
+          </details>
+
+      </div>
+      <button class="govuk-button" data-module="govuk-button">
+        Continue
+      </button>
+      
+    </div>
+  </div>
+
+{% endblock %}

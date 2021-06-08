@@ -1,0 +1,50 @@
+<script>
+    const countries = [
+    "Abu Dhabi",  
+              
+              "Bottle Brook in Derbyshire 034WAF413",
+              "Loughborough Urban Watercourses 034WAF426",
+              "Lower Derwent in Derbyshire 034WAF409",
+              "Lower River Soar in Leicestershire 034WAF428",
+              "River Amber in Derbyshire 034WAF432",
+              "River Devon and Smite in Leicestershire and Nottinghamshire 034WAF419",
+              "River Eau in Scotter 034WAF433",
+              "River Ecclesbourne in Derbyshire 034WAF431",
+              "River Erewash in Derbyshire and Nottinghamshire 034WAF416",
+              "River Idle in Nottinghamshire 034WAF422",
+              "River Leen and Day Brook in Nottinghamshire 034WAF417",
+              "River Maun in Nottinghamshire 034WAF430",
+              "River Meden in Nottinghamshire 034WAF434",
+              "River Sence in Leicestershire 034WAF401",
+              "River Trent from Cromwell Weir to Gainsborough 034WAB424",
+              "River Trent in Derbyshire 034WAF414",
+              "River Trent in Nottinghamshire 034WAF415",
+              "River Trent Tributaries in Nottinghamshire 034WAF429",
+              "River Wreake in Leicestershire 034WAF404",
+              "River Wye in Derbyshire 034WAF408",
+              "Rothley Brook in Leicestershire 034WAF403",
+              "Ryton Oldcotes catchment 034WAF427",
+              "Tidal Trent for riverside areas from Gainsborough to the Humber confluence 034WAB420",
+              "Tidal Trent wider floodplain from Gainsborough to the Humber confluence 034WAB421",
+              "Upper Derwent in Derbyshire 034WAF407",
+              "Upper Soar catchment 034WAF402",
+
+    "Unknown"
+    ];
+  
+    accessibleAutocomplete({
+      autoselect: true,
+      element: document.querySelector('#target-area-container'),
+      id: 'target-area',
+      name: 'targetareaautocomplete',
+      source: countries,
+     // defaultValue: '{{ data['targetareaautocomplete'] }}',
+      defaultValue: '',
+      displayMenu: 'overlay',
+      templates: '{ inputValue, suggestion }',
+      minLength: 2,
+      tNoResults: function() {
+        return "Target area not found"
+      }
+    });
+  </script>

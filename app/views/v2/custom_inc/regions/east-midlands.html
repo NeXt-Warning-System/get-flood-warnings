@@ -1,0 +1,929 @@
+{% set targetareas =
+  [
+  {
+    "name": "River Trent in Derbyshire",
+    "description": "River Trent and tributaries in Derbyshire from Newton Solney to Castle Donington"
+  },
+  {
+    "name": "River Devon and Smite in Leicestershire and Nottinghamshire",
+    "description": "River Devon, Smite and tributaries from Knipton to the River Trent at Newark on Trent"
+  },
+  {
+    "name": "River Eau in Scotter",
+    "description": "River Eau in Scotter"
+  },
+  {
+    "name": "River Wreake in Leicestershire",
+    "description": "River Wreake and tributaries from Stapleford to the River Soar at Syston"
+  },
+  {
+    "name": "Lower Derwent in Derbyshire",
+    "description": "River Derwent and tributaries from Rowsley to the River Trent at Shardlow"
+  },
+  {
+    "name": "River Ecclesbourne in Derbyshire",
+    "description": "River Ecclesbourne in Derbyshire"
+  },
+  {
+    "name": "River Sence in Leicestershire",
+    "description": "River Sence and tributaries from Billesdon to the River Soar at Glen Parva"
+  },
+  {
+    "name": "Tidal Trent wider floodplain from Gainsborough to the Humber confluence",
+    "description": "Tidal Trent for the wider floodplain between Gainsborough and the Humber confluence, including Doncaster, Wroot, Sandtoft, Eastoft, Goole, Crowle, Scotter and Scunthorpe."
+  },
+  {
+    "name": "Loughborough Urban Watercourses",
+    "description": "Black Brook, Wood Brook, Burleigh Brook, Grace Dieu Brook and other urban watercourses in Loughborough"
+  },
+  {
+    "name": "River Trent in Nottinghamshire",
+    "description": "River Trent in Nottinghamshire from Castle Donington to Cromwell Weir"
+  },
+  {
+    "name": "River Maun in Nottinghamshire",
+    "description": "River Maun in Nottinghamshire"
+  },
+  {
+    "name": "Upper Derwent in Derbyshire",
+    "description": "Upper River Derwent and tributaries from Ladybower Reservoir to the River Wye at Rowsley"
+  },
+  {
+    "name": "River Amber in Derbyshire",
+    "description": "River Amber in Derbyshire"
+  },
+  {
+    "name": "River Idle in Nottinghamshire",
+    "description": "River Idle and tributaries from West Drayton to the confluence with the River Trent"
+  },
+  {
+    "name": "River Wye in Derbyshire",
+    "description": "River Wye and tributaries from Burbage to the River Derwent at Rowsley"
+  },
+  {
+    "name": "River Leen and Day Brook in Nottinghamshire",
+    "description": "River Leen including Day Brook in Nottinghamshire"
+  },
+  {
+    "name": "Upper Soar catchment",
+    "description": "River Soar in Leicestershire including tributaries from Sharnford to the River Wreake confluence at Syston"
+  },
+  {
+    "name": "Lower River Soar in Leicestershire",
+    "description": "Lower River Soar in Leicestershire including tributaries from Cossington to Redhill at the River Trent"
+  },
+  {
+    "name": "Ryton Oldcotes catchment",
+    "description": "River Ryton and tributaries from Lindrick Dale to Scrooby and Oldcotes Dyke from Oldcotes to Blyth"
+  },
+  {
+    "name": "Bottle Brook in Derbyshire",
+    "description": "Bottle Brook and tributaries from Denby to the River Derwent at Little Eaton"
+  },
+  {
+    "name": "River Trent Tributaries in Nottinghamshire",
+    "description": "Tributaries in Nottinghamshire including the River Greet, Potwell Dyke, Carr Dyke, Dover Beck, Cocker Beck, Thurgarton Beck, Fairham Brook and others"
+  },
+  {
+    "name": "River Trent from Cromwell Weir to Gainsborough",
+    "description": "River Trent from Cromwell Weir to Gainsborough"
+  },
+  {
+    "name": "River Erewash in Derbyshire and Nottinghamshire",
+    "description": "River Erewash and tributaries from Kirkby-in-Ashfield to the River Trent at Attenborough"
+  },
+  {
+    "name": "River Meden in Nottinghamshire",
+    "description": "River Meden in Nottinghamshire"
+  },
+  {
+    "name": "River Soar at Thurmaston",
+    "description": "River Soar at Thurmaston including properties around Melton Road and Troon Way"
+  },
+  {
+    "name": "River Erewash at Stapleford Oakfield Road area",
+    "description": "River Erewash at Stapleford from Crawford Avenue to Sandiacre Road"
+  },
+  {
+    "name": "Rothley Brook in Leicestershire",
+    "description": "Rothley Brook and tributaries from Botcheston to the River Soar at Rothley"
+  },
+  {
+    "name": "Tidal Trent for riverside areas from Gainsborough to the Humber confluence",
+    "description": "Tidal Trent for riverside areas from Gainsborough to the Humber confluence, including West Stockwith, Wildsworth, East Ferry, East and West Butterwick, Derrythorpe, Gunness and Keadby."
+  },
+  {
+    "name": "River Maun at Mansfield",
+    "description": "River Maun at Mansfield including Bleak Hills and The Park"
+  },
+  {
+    "name": "Cocker Beck at Lowdham",
+    "description": "Cocker Beck at Lowdham and properties at Lowdham around Southwell Road"
+  },
+  {
+    "name": "River Trent at Alkborough Flats",
+    "description": "River Trent at Alkborough Flats including the Sewage Works and Station Road at Whitton"
+  },
+  {
+    "name": "River Trent at Gainsborough",
+    "description": "River Trent at Gainsborough including Morton"
+  },
+  {
+    "name": "River Trent at Radcliffe on Trent Caravan Park",
+    "description": "River Trent at Radcliffe on Trent for Radcliffe Park Static Caravan Site"
+  },
+  {
+    "name": "River Soar at North Aylestone",
+    "description": "River Soar at Aylestone Lock Industrial Estate and surrounding residential properties"
+  },
+  {
+    "name": "Rivers Wreake and Soar for riverside properties near Syston and Birstall",
+    "description": "Rivers Wreake and Soar for riverside properties near Syston and Birstall including properties in the riverside near Wanlip"
+  },
+  {
+    "name": "River Trent at Beeston Rylands",
+    "description": "River Trent at Beeston Rylands including Beeston, University Park, Dunkirk and The Queens Medical Centre"
+  },
+  {
+    "name": "River Derwent at Raynesway",
+    "description": "River Derwent at Raynesway including the Works area"
+  },
+  {
+    "name": "River Erewash at Ilkeston",
+    "description": "River Erewash at Ilkeston including the Depot and Viaduct at Cossall Common and Ilkeston Junction"
+  },
+  {
+    "name": "River Wye at Chee Dale, Cressbrook and Upperdale",
+    "description": "River Wye at Chee Dale, Cressbrook and Upperdale including riverside cottages"
+  },
+  {
+    "name": "Rivers Trent and Erewash at Sawley and Long Eaton",
+    "description": "Rivers Trent and Erewash at Sawley and Long Eaton including properties around the B6540"
+  },
+  {
+    "name": "River Ryton at Worksop Town Centre including Shireoaks",
+    "description": "River Ryton at Worksop Town Centre including Shireoaks"
+  },
+  {
+    "name": "River Devon at Bottesford, Easthorpe, Muston and Woolsthorpe",
+    "description": "River Devon at Bottesford including Easthorpe, Muston and Woolsthorpe"
+  },
+  {
+    "name": "River Amber at Ambergate",
+    "description": "River Amber at Ambergate and Bullbridge"
+  },
+  {
+    "name": "River Derwent at Ambaston Lane",
+    "description": "River Derwent at Ambaston Lane and Isolated Properties"
+  },
+  {
+    "name": "Day Brook at Old Basford",
+    "description": "Day Brook at Old Basford including Valley Road"
+  },
+  {
+    "name": "River Soar at Kegworth",
+    "description": "River Soar at Kegworth including riverside properties and farms around the A6 London Road and Long Lane"
+  },
+  {
+    "name": "River Soar at Braunstone",
+    "description": "River Soar at Braunstone including Fosse Park"
+  },
+  {
+    "name": "River Trent at Hatfield Chase",
+    "description": "River Trent at Hatfield Chase including isolated properties from the M180 to Gainsborough"
+  },
+  {
+    "name": "River Trent at Spalford, Wigsley and Harby",
+    "description": "River Trent at Spalford, Wigsley and Harby including properties at North Scarle and Kettlethorpe"
+  },
+  {
+    "name": "River Trent at Torksey",
+    "description": "River Trent at Torksey including Marton and Newton"
+  },
+  {
+    "name": "River Derwent at Bamford including Mytham Bridge",
+    "description": "River Derwent at Bamford including the Garden Centre at Shatton and Mytham Bridge"
+  },
+  {
+    "name": "River Trent at Nottingham including The Meadows",
+    "description": "River Trent at Nottingham for The Meadows including Lenton, Meadow Lane Industrial Area, Castle Meadow Retail Park, Nottingham Train Station and areas around The National Ice Centre"
+  },
+  {
+    "name": "River Soar at Leicester Abbey Meadows",
+    "description": "River Soar at Leicester Abbey Meadows including riverside properties around the A6 Abbey Lane"
+  },
+  {
+    "name": "River Trent at Attenborough Nature Reserve",
+    "description": "River Trent at Attenborough Nature Reserve including the Visitor Centre"
+  },
+  {
+    "name": "River Erewash at Long Eaton",
+    "description": "River Erewash at Long Eaton including properties around Bennett Street"
+  },
+  {
+    "name": "River Erewash at Jacksdale",
+    "description": "River Erewash at Jacksdale including B6016 Pye Hill Road"
+  },
+  {
+    "name": "River Derwent at Milford",
+    "description": "River Derwent at Milford including Foundry Lane properties, Riverside Garden Centre and Bowling Green"
+  },
+  {
+    "name": "River Trent at Averham, Staythorpe and Kelham",
+    "description": "River Trent at Averham, Staythorpe and Kelham including the Staythorpe Power Station"
+  },
+  {
+    "name": "River Maun at Edwinstowe and Ollerton",
+    "description": "River Maun at Edwinstowe and Ollerton including the junction on A614 Mansfield Road and Ollerton Road"
+  },
+  {
+    "name": "River Trent at North Muskham",
+    "description": "River Trent at North Muskham and low lying farms"
+  },
+  {
+    "name": "River Wreake at Syston",
+    "description": "River Wreake at Syston including properties around Glebe and Fosse Ways"
+  },
+  {
+    "name": "River Wreake at Melton Mowbray",
+    "description": "River Wreake at Melton Mowbray including The Long Field High School, the Caravan and Egerton Parks and properties around the B676 Saxby Road"
+  },
+  {
+    "name": "River Trent at West Bridgford",
+    "description": "River Trent at West Bridgford including Gamston and the confluence of Melton Road, Wilford Lane and Loughborough Road"
+  },
+  {
+    "name": "River Soar at Frog Island and riverside areas of Leicester",
+    "description": "River Soar at Frog Island and riverside areas of Leicester including Abbey Park"
+  },
+  {
+    "name": "River Soar at Leicester City",
+    "description": "River Soar at Leicester City including the Walkers Stadium and the Power Station"
+  },
+  {
+    "name": "River Trent at East Ferry and Wildsworth",
+    "description": "River Trent at East Ferry and Wildsworth including isolated properties from the M180 to Gainsborough"
+  },
+  {
+    "name": "River Wye at Ashford in the Water",
+    "description": "River Wye at Ashford in the Water including properties around Buxton Road"
+  },
+  {
+    "name": "River Soar at Barrow upon Soar",
+    "description": "River Soar at Barrow upon Soar including properties near the Grand Union Canal"
+  },
+  {
+    "name": "River Wye at Ashford in the Water, Church Street area",
+    "description": "River Wye at Ashford in the Water, Church Street area"
+  },
+  {
+    "name": "River Soar at Sharnford including Croft Mill",
+    "description": "River Soar at Sharnford including Croft Mill and the Leicester Road with Coventry Road junction"
+  },
+  {
+    "name": "River Wreake for mills at Hoby, Thrussington and Ratcliffe",
+    "description": "River Wreake for mills at Hoby, Thrussington and Ratcliffe"
+  },
+  {
+    "name": "River Ryton at Blyth",
+    "description": "River Ryton at Blyth including Brecks Wood, Ash Holt and Redbridge House"
+  },
+  {
+    "name": "River Trent at Crowle",
+    "description": "River Trent at Crowle including isolated properties from the M180 to the Humber Confluence"
+  },
+  {
+    "name": "River Trent at Shelford",
+    "description": "River Trent at Shelford including properties and farms between the Main Road and Waterfurrows Lane"
+  },
+  {
+    "name": "River Trent at Stoke Bardolph",
+    "description": "River Trent at Stoke Bardolph including the Works and low lying farms"
+  },
+  {
+    "name": "River Trent at Laneham and Church Laneham",
+    "description": "River Trent at Laneham and Church Laneham including farms nearby"
+  },
+  {
+    "name": "River Erewash at Langley Mill",
+    "description": "River Erewash at Langley Mill including Shipley Gate"
+  },
+  {
+    "name": "River Derwent at Little Eaton",
+    "description": "River Derwent at Little Eaton including Duffield and Alfreton Roads"
+  },
+  {
+    "name": "River Derwent at Little Chester, Eastgate and Cattle Market",
+    "description": "River Derwent at Little Chester, Eastgate and Cattle Market areas"
+  },
+  {
+    "name": "River Trent at Thrumpton including Barton Ferry",
+    "description": "River Trent at Thrumpton including Barton Ferry including the riverside farms and the Lake House"
+  },
+  {
+    "name": "Bottle Brook at Lower Kilburn and Coxbench",
+    "description": "Bottle Brook at Lower Kilburn including Coxbench and Horsley"
+  },
+  {
+    "name": "Rivers Leen and Trent at Old Lenton and Castle Marina",
+    "description": "Rivers Leen and Trent at Old Lenton and Castle Marina including Nottingham Canal"
+  },
+  {
+    "name": "Day Brook at Ventnor Rise and Athorpe Grove in Old Basford",
+    "description": "Day Brook at Ventnor Rise and Athorpe Grove in Old Basford"
+  },
+  {
+    "name": "River Trent at Girton",
+    "description": "River Trent at Girton including Green and Trent Lanes"
+  },
+  {
+    "name": "River Trent at Cavendish Bridge",
+    "description": "River Trent at Cavendish Bridge including properties around the B5010 London Road"
+  },
+  {
+    "name": "River Maun at Haughton, Milton and West Drayton",
+    "description": "River Maun at Haughton, Milton and West Drayton including the Earth Holme Plantation and riverside Farms near Milton"
+  },
+  {
+    "name": "River Erewash at Sandiacre",
+    "description": "River Erewash at Sandiacre including Station Road and the Depot by Bessell Lane"
+  },
+  {
+    "name": "River Derwent at Whatstandwell including Cromford and Lea Wood",
+    "description": "River Derwent at Whatstandwell including Cromford and Lea Wood"
+  },
+  {
+    "name": "River Derwent at Elvaston Castle Country Park",
+    "description": "River Derwent at Elvaston Castle Country Park including the B5010 to Borrowash"
+  },
+  {
+    "name": "River Soar at Cossington Village",
+    "description": "River Soar at Cossington Village including Syston Road"
+  },
+  {
+    "name": "River Trent at Fiskerton Mill including Rolleston Fields, Gorse and Nurseries area",
+    "description": "River Trent at Fiskerton for Fiskerton Mill including Rolleston Fields, Gorse and Nurseries area"
+  },
+  {
+    "name": "River Trent at Trentlock",
+    "description": "River Trent at Trentlock including riverside farms, the Golf Course, River Trent Rifle Range and Nottingham Yacht Club"
+  },
+  {
+    "name": "Wood Brook and River Soar at Loughborough",
+    "description": "Wood Brook and River Soar at Loughborough including areas around Loughborough Meadows, the Industrial Estate and the Queen's Park"
+  },
+  {
+    "name": "River Trent at Newark Sugar Factory and Kelham Bridge",
+    "description": "River Trent at Newark Sugar Factory and Kelham Bridge including the A616 Great North Road"
+  },
+  {
+    "name": "River Soar at Rushey Mead",
+    "description": "River Soar at Rushey Mead including properties around Oakland Avenue and Melton Road"
+  },
+  {
+    "name": "River Trent at Sutton-on-Trent including Carlton Hall",
+    "description": "River Trent at Sutton-on-Trent including Carlton Hall including properties around Carlton Lane"
+  },
+  {
+    "name": "River Derwent at Darley Abbey, Folly Road",
+    "description": "River Derwent at the Folly Road area of Darley Abbey"
+  },
+  {
+    "name": "River Soar at caravan parks near Barrow upon Soar",
+    "description": "River Soar at Proctor's Park and Meadow Farm Marina and Caravan Park near Barrow upon Soar"
+  },
+  {
+    "name": "River Trent at Twyford",
+    "description": "River Trent at Twyford including the riverside farms and properties around the A5132"
+  },
+  {
+    "name": "River Trent at Burton Joyce",
+    "description": "River Trent at Burton Joyce including properties around the A6142 Nottingham Road"
+  },
+  {
+    "name": "River Trent at South Muskham and Little Carlton",
+    "description": "River Trent at South Muskham and Little Carlton"
+  },
+  {
+    "name": "River Trent at Holme",
+    "description": "River Trent at Holme including the properties on the riverside of the A1133"
+  },
+  {
+    "name": "River Ryton at Scrooby including Serlby",
+    "description": "River Ryton at Scrooby including Serlby and the riverside cottages and farms, and the Great North Road"
+  },
+  {
+    "name": "River Wye at Litton Mill",
+    "description": "River Wye at Litton Mill"
+  },
+  {
+    "name": "River Trent at High Marnham and Low Marnham",
+    "description": "River Trent at High Marnham and Low Marnham including Grassthorpe and farms along the Main Street"
+  },
+  {
+    "name": "River Trent at Lenton for Nottingham Park and Ride Site at Queens Drive",
+    "description": "Nottingham Park and Ride Site and businesses off Lenton Lane"
+  },
+  {
+    "name": "Rivers Ecclesbourne and Derwent at Duffield",
+    "description": "Rivers Ecclesbourne and Derwent at Duffield including Duffield Bridge properties"
+  },
+  {
+    "name": "River Trent at Burringham",
+    "description": "River Trent at Burringham and Gunness including isolated riverside properties from the M180 to the Humber Confluence"
+  },
+  {
+    "name": "River Erewash at Pye Bridge",
+    "description": "River Erewash at Pye Bridge including the Willows at Alfreton Road and the Sewage Works"
+  },
+  {
+    "name": "Grace Dieu Brook at Whitwick and Thringstone",
+    "description": "Grace Dieu Brook at Whitwick and Thringstone including junction on Ashby Road and Snarrow's Road"
+  },
+  {
+    "name": "River Derwent at Church Wilne and Wilne Lane",
+    "description": "River Derwent at Church Wilne and Wilne Lane including Saint Chad's Church at Wilne Road"
+  },
+  {
+    "name": "River Soar at Moor Lane in Normanton on Soar and Hathern Sports Ground",
+    "description": "River Soar at Moor Lane in Normanton on Soar and Hathern Sports Ground"
+  },
+  {
+    "name": "River Trent at Lea",
+    "description": "River Trent at Lea and areas around Lea Marshes Main Drain and Humble Carr Drain"
+  },
+  {
+    "name": "River Soar at Mountsorrel Lock and riverside properties and mills",
+    "description": "River Soar at Mountsorrel Lock and riverside properties, farms and mills"
+  },
+  {
+    "name": "River Soar at Ratcliffe on Soar",
+    "description": "River Soar at Ratcliffe on Soar including areas near the railway at Kingston on Soar"
+  },
+  {
+    "name": "River Wye at Wye Bank and Milford at Bakewell",
+    "description": "River Wye at Wye Bank and Milford at Bakewell"
+  },
+  {
+    "name": "Rivers Leen and Trent at Dunkirk",
+    "description": "Rivers Leen and Trent at Dunkirk including Nottingham's Queen Medical Centre and University Boulevard"
+  },
+  {
+    "name": "Rivers Leen at Old Basford, New Basford and Bobbers Mill",
+    "description": "Rivers Leen at Old Basford, New Basford and Bobbers Mill including Works at New Basford"
+  },
+  {
+    "name": "River Trent at Collingham",
+    "description": "River Trent at Collingham including Ferry Lane Farm, Westfield Farm and Wharf Bungalow area"
+  },
+  {
+    "name": "River Sence at Blaby and Glen Parva",
+    "description": "River Sence at Blaby and Glen Parva including New Bridge and Welford Roads and riverside mills and works"
+  },
+  {
+    "name": "River Leen at Radford",
+    "description": "River Leen at Radford including properties around Triumph Road"
+  },
+  {
+    "name": "River Trent at Beckingham Marsh",
+    "description": "River Trent at Beckingham Marsh including the junction of Stockwith Road and Marsh Lane to Misterton"
+  },
+  {
+    "name": "Rothley Brook at Glenfield and Anstey",
+    "description": "Rothley Brook at Glenfield and Anstey including Thurcaston Lane at Thurcaston"
+  },
+  {
+    "name": "Black Brook at Thorpe Acre",
+    "description": "Black Brook at Thorpe Acre including properties around Warwick Way near Derby Road"
+  },
+  {
+    "name": "River Derwent at Darley Bridge",
+    "description": "River Derwent at Darley Bridge including Bridge Farm"
+  },
+  {
+    "name": "River Derwent at Matlock Bath",
+    "description": "River Derwent at Matlock Bath including High Tor Colour Works and riverside gardens"
+  },
+  {
+    "name": "River Derwent at Belper",
+    "description": "River Derwent at Belper including riverside farms and works"
+  },
+  {
+    "name": "River Soar at Zouch Island",
+    "description": "River Soar at Zouch Island including Zouch Farm and riverside properties on the Zouch Road to Hathern"
+  },
+  {
+    "name": "River Soar at Redhill and Kegworth Bridge",
+    "description": "River Soar at Redhill and Kegworth Bridge including Grounds Farm Cottages"
+  },
+  {
+    "name": "River Idle at Bawtry including the A631 Bawtry Bridge",
+    "description": "River Idle at Bawtry including the A631 Bawtry Bridge and properties near the river on Church Street"
+  },
+  {
+    "name": "River Trent at Carlton on Trent including Beck Cottage",
+    "description": "River Trent at Carlton on Trent including Beck Cottage and Great North Road"
+  },
+  {
+    "name": "River Ryton at Worksop, Shelley Street",
+    "description": "River Ryton at Worksop around the Shelley Street area"
+  },
+  {
+    "name": "Rivers Trent and Erewash at Chilwell and Attenborough",
+    "description": "Rivers Trent and Erewash at Chilwell including Attenborough and areas near to the Sewage Works and Chilwell Manor Golf Club"
+  },
+  {
+    "name": "River Derwent at Derby City",
+    "description": "River Derwent at Derby City Centre including areas near the Cathedral and West Field Centre"
+  },
+  {
+    "name": "River Trent at New Sawley",
+    "description": "River Trent at New Sawley including properties around Wilsthorpe Road"
+  },
+  {
+    "name": "River Trent at Newark",
+    "description": "River Trent at Newark including Winthorpe"
+  },
+  {
+    "name": "Bottle Brook at Rawsons Green",
+    "description": "Bottle Brook at Rawsons Green including properties around Prospect House"
+  },
+  {
+    "name": "River Derwent at Ambaston",
+    "description": "River Derwent at Ambaston"
+  },
+  {
+    "name": "River Trent at Cottam",
+    "description": "River Trent at Cottam including Coates, Littleborough and North Leverton with Habblesthorpe"
+  },
+  {
+    "name": "River Wreake at Frisby-on-the-Wreake",
+    "description": "River Wreake at Frisby-on-the-Wreake including properties around the Washstones Lane and areas around Kirby Lake and Priory Water Nature Reserve"
+  },
+  {
+    "name": "River Trent at Fledborough and Ragnall",
+    "description": "River Trent at Fledborough and Ragnall including The Gables"
+  },
+  {
+    "name": "River Trent at Bleasby",
+    "description": "River Trent at Bleasby including the properties around the Main Street"
+  },
+  {
+    "name": "River Trent at Colwick and Netherfield",
+    "description": "River Trent at Colwick and Netherfield, including Colwick Industrial Estate and Colwick Vale"
+  },
+  {
+    "name": "River Soar at Aylestone",
+    "description": "River Soar at Aylestone including properties on the riverside of Aylestone Road"
+  },
+  {
+    "name": "River Soar at Belgrave",
+    "description": "River Soar at Belgrave including properties around Ross Walk and Bath Street"
+  },
+  {
+    "name": "River Trent at Attenborough Village",
+    "description": "River Trent at Attenborough Village"
+  },
+  {
+    "name": "River Smite at Shelton Lodge and Port Grange Farms",
+    "description": "River Smite at Shelton Lodge and Port Grange Farms"
+  },
+  {
+    "name": "River Smite at Aslockton and Whatton",
+    "description": "River Smite at Aslockton and Whatton including the Dark Lane, the Recreation Ground and the Whatton Prison"
+  },
+  {
+    "name": "River Trent at Gibsmere and Gipsy Lane at Bleasby",
+    "description": "River Trent at Gibsmere and Gipsy Lane at Bleasby including riverside farms"
+  },
+  {
+    "name": "Rothley Brook at Rothley",
+    "description": "Rothley Brook at Rothley including Town Green and Fowke Street"
+  },
+  {
+    "name": "River Trent at Gunthorpe",
+    "description": "River Trent at Gunthorpe including Burton Meadows and properties around the Dover Beck"
+  },
+  {
+    "name": "River Derwent at Allestree Ford Lane Bridge and Darley Abbey Park",
+    "description": "River Derwent at Allestree Ford Lane Bridge and Darley Abbey Park including Haslam's Lane"
+  },
+  {
+    "name": "River Soar at Croft",
+    "description": "River Soar at Croft including farms around the B4114 Coventry Road"
+  },
+  {
+    "name": "River Soar at Enderby",
+    "description": "River Soar at Enderby including properties around the Jubilee Parkland and Narborough Bogs Nature Reserve"
+  },
+  {
+    "name": "River Soar at Cotes and Loughborough Moors",
+    "description": "River Soar at Cotes and Loughborough Moors including farms around Loughborough Moors"
+  },
+  {
+    "name": "River Trent at Castle Donington Kings Mill area",
+    "description": "River Trent at Castle Donington, Kings Mills area"
+  },
+  {
+    "name": "River Soar at Littlethorpe and Narborough",
+    "description": "River Soar at Littlethorpe and Narborough including the Lodge and Warwick Farms"
+  },
+  {
+    "name": "River Trent at Rolleston",
+    "description": "River Trent at Rolleston including Southwell Racecourse"
+  },
+  {
+    "name": "Whetstone Brook at Whetstone",
+    "description": "Whetstone Brook at Whetstone including areas around Dicken Bridge and Dog and Gun Lane"
+  },
+  {
+    "name": "Hogshaw Brook at Lightwood Road area of Buxton",
+    "description": "Hogshaw Brook at Lightwood Road area of Buxton"
+  },
+  {
+    "name": "River Trent at Fiskerton",
+    "description": "River Trent at Fiskerton including Morton and the Lodge Farm"
+  },
+  {
+    "name": "River Trent at Radcliffe on Trent",
+    "description": "River Trent at Radcliffe on Trent including the Animal Shelter"
+  },
+  {
+    "name": "River Trent at Besthorpe",
+    "description": "River Trent at Besthorpe including the Besthrope Nature Reserve"
+  },
+  {
+    "name": "River Soar at Sutton Bonnington",
+    "description": "River Soar at Sutton Bonnington including riverside properties around the Main Street"
+  },
+  {
+    "name": "River Derwent at Racecourse Park at Chaddesden",
+    "description": "River Derwent at Racecourse Park and surrounding areas of Chaddesden, including Meteor Centre Park and Ride"
+  },
+  {
+    "name": "River Maun at Sherwood Forest Caravan Park near Kings Clipstone",
+    "description": "River Maun at Sherwood Forest Caravan Park near Kings Clipstone including roads to riverside farms"
+  },
+  {
+    "name": "River Trent at Swarkestone",
+    "description": "River Trent at Swarkestone including Stanton by Bridge and Kings Newton including the Priest House and Swarkestone Bridge"
+  },
+  {
+    "name": "River Trent at Holme Pierrepont for the National Watersports Centre",
+    "description": "River Trent at Holme Pierrepont for the National Watersports Centre including the Trent Fields"
+  },
+  {
+    "name": "River Trent at Willington, Repton Road area",
+    "description": "River Trent at Willington, Repton Road area including Reton and Ingleby"
+  },
+  {
+    "name": "River Trent at Sawley Marina, including Sawley Lock",
+    "description": "River Trent at Sawley Marina, including Sawley Lock including low lying farms"
+  },
+  {
+    "name": "River Leen at Bulwell",
+    "description": "River Leen at Bulwell including Highbury Vale"
+  },
+  {
+    "name": "River Soar at Quorn",
+    "description": "River Soar at Quorn including Kye's Plantation and properties around Farley Way"
+  },
+  {
+    "name": "River Wreake at Thrussington and Ratcliffe on the Wreake",
+    "description": "River Wreake at Thrussington and Ratcliffe on the Wreake including the Beedles Lake Golf Course at East Goscote and mills and farms on the riverside"
+  },
+  {
+    "name": "River Derwent at Duffield Church and Village Hall",
+    "description": "River Derwent at Duffield Church, Village Hall and other isolated properties"
+  },
+  {
+    "name": "Rivers Wye and Derwent at Rowsley",
+    "description": "Rivers Wye and Derwent at Rowsley including the Sewage Farm, the Wye Farm and the Recreational Ground"
+  },
+  {
+    "name": "River Trent at Barrow upon Trent",
+    "description": "River Trent at Barrow upon Trent"
+  },
+  {
+    "name": "River Derwent at Ambergate",
+    "description": "River Derwent at Ambergate including properties around Ripley Road"
+  },
+  {
+    "name": "River Derwent at Hathersage",
+    "description": "River Derwent at Hathersage for riverside farms and properties"
+  },
+  {
+    "name": "River Derwent at Darley Dale",
+    "description": "River Derwent at Darley Dale including Stankirk, Flatts Farm and other isolated properties"
+  },
+  {
+    "name": "River Derwent at Calver",
+    "description": "River Derwent at Calver including the Caravan Parks and the riverside farms at Froggatt"
+  },
+  {
+    "name": "River Erewash at Pinxton",
+    "description": "River Erewash at Pinxton including the Sewage Works and properties around the ponds"
+  },
+  {
+    "name": "River Trent at Hemington Ponds, Hole and Fields area",
+    "description": "River Trent at Hemington Ponds, Hole and Fields area including properties around the B6540 and the M1"
+  },
+  {
+    "name": "River Derwent at Baslow and Bubnell",
+    "description": "River Derwent at Baslow and Bubnell including Stanton Ford House and Sewage Farm"
+  },
+  {
+    "name": "River Trent at Dunham-on-Trent",
+    "description": "River Trent at Dunham-on-Trent including junction on Low Street and Upper Row to Manor Farm"
+  },
+  {
+    "name": "River Trent at Newark Tolney Lane and Riverside Marinas",
+    "description": "River Trent at Newark Tolney Lane and Riverside Marinas"
+  },
+  {
+    "name": "River Derwent at Grindleford",
+    "description": "River Derwent at Grindleford including the B6521 to Nether Padley"
+  },
+  {
+    "name": "River Trent at Newark for riverside properties",
+    "description": "River Trent at Newark for riverside properties"
+  },
+  {
+    "name": "River Trent at Farndon riverside properties including Dorner Avenue and Wyke and Marsh Lane area",
+    "description": "River Trent at Farndon riverside properties including Dorner Avenue and Wyke and Marsh Lane area"
+  },
+  {
+    "name": "River Meden at Budby",
+    "description": "River Meden at Budby including A616 Worksop Road and the North Farm"
+  },
+  {
+    "name": "River Derwent at Churchtown and Northwood",
+    "description": "River Derwent at Churchtown and Northwood including Harrison Way"
+  },
+  {
+    "name": "River Soar at Sileby",
+    "description": "River Soar at Sileby including the riverside properties around Cossington and Barrow Roads"
+  },
+  {
+    "name": "River Derwent at Derby City Water Treatment Works",
+    "description": "River Derwent at Derby City Water Treatment Works including Raynesway and Spondon Industrial Area"
+  },
+  {
+    "name": "River Eau at Scotter",
+    "description": "River Eau at Scotter including the Old Rectory field"
+  },
+  {
+    "name": "River Derwent at Chatsworth",
+    "description": "River Derwent at Chatsworth including Chatsworth Park and Home Farm"
+  },
+  {
+    "name": "River Derwent at Draycott",
+    "description": "River Derwent at Draycott including Elms Lodge and Sawley Grange Farm"
+  },
+  {
+    "name": "Rivers Trent and Derwent at Shardlow and Great Wilne",
+    "description": "Rivers Trent and Derwent at Shardlow and Great Wilne including properties around the B5010"
+  },
+  {
+    "name": "River Trent at Barton in Fabis",
+    "description": "River Trent at Barton in Fabis"
+  },
+  {
+    "name": "River Trent at Beeston Lock and Marina",
+    "description": "River Trent at Beeston for Beeston Marina and Lock"
+  },
+  {
+    "name": "River Soar at Normanton on Soar",
+    "description": "River Soar at Normanton on Soar including Hathern Sports Ground area"
+  },
+  {
+    "name": "River Derwent at Alvaston",
+    "description": "River Derwent at Alvaston including Alvaston Park and Fernhook Avenue"
+  },
+  {
+    "name": "River Trent at Shelford for Shelford Manor and The Holmes",
+    "description": "River Trent at Shelford for Shelford Manor and The Holmes"
+  },
+  {
+    "name": "River Idle at Retford, Eaton and Gamston",
+    "description": "River Idle at South Retford, Eaton, Gamston and Thrumpton"
+  },
+  {
+    "name": "River Derwent at Chaddesden",
+    "description": "River Derwent at Chaddesden around the Wyvern Retail Park"
+  },
+  {
+    "name": "River Trent at Willington",
+    "description": "River Trent at Willington including properties around Sealey Close, Ford Lane and Beech Avenue"
+  },
+  {
+    "name": "River Trent at Colwick Racecourse",
+    "description": "River Trent at Colwick Racecourse"
+  },
+  {
+    "name": "River Idle at West Retford and Ordsall",
+    "description": "River Idle at West Retford and Ordsall including Works nearby the Belmoor Lake, the Industrial Estate and West Field"
+  },
+  {
+    "name": "River Trent at Castle Donington including Hemington and Lockington",
+    "description": "River Trent at Castle Donington including Hemington and Lockington including Lockington Park"
+  },
+  {
+    "name": "River Idle at Misson",
+    "description": "River Idle at Misson including surrounding isolated properties and farms"
+  },
+  {
+    "name": "River Trent at Wilford",
+    "description": "River Trent at Wilford including properties around the Fairham Brook, Ruddington Lane and the Main Road"
+  },
+  {
+    "name": "River Erewash at Stapleford Moorbridge Lane area",
+    "description": "River Erewash at Stapleford from the M1 to the Playing Fields South of Moorbridge Lane"
+  },
+  {
+    "name": "River Trent at East Butterwick",
+    "description": "River Trent at East Butterwick including isolated riverside properties from the M180 to Gainsborough"
+  },
+  {
+    "name": "River Trent at Keadby",
+    "description": "River Trent at Keadby and Amcotts including isolated riverside properties from the M180 to the Humber Confluence"
+  },
+  {
+    "name": "River Trent at Owston Ferry",
+    "description": "River Trent at Owston Ferry and West Butterwick including the River Idle Confluence at West Stockwith and isolated riverside properties from the M180 to Gainsborough"
+  },
+  {
+    "name": "River Trent at Scunthorpe",
+    "description": "River Trent at Scunthorpe including isolated properties from the M180 to the Humber Confluence"
+  },
+  {
+    "name": "River Trent at Hoveringham",
+    "description": "River Trent at Hoveringham including farms around the Causeway Dyke"
+  },
+  {
+    "name": "River Trent at Farndon",
+    "description": "River Trent at Farndon including properties around Farndon and Fosse Roads"
+  },
+  {
+    "name": "River Meden at Market Warsop, Church Warsop and Meden Vale",
+    "description": "River Meden at Market Warsop, Church Warsop and Meden Vale including Gleadthorpe"
+  },
+  {
+    "name": "River Trent at Caythorpe",
+    "description": "River Trent at Caythorpe including Main Street and Caythorpe Road near Morrfield Farm"
+  },
+  {
+    "name": "River Trent at Newark Cattle Market",
+    "description": "River Trent at Newark Cattle Market"
+  },
+  {
+    "name": "River Derwent at Pride Park and Derby Railway Station",
+    "description": "River Derwent at Pride Park and Derby Railway Station including the Riverside Road"
+  },
+  {
+    "name": "River Trent at Gunthorpe for the A6097 Road",
+    "description": "A6097 Gunthorpe to Lowdham Road affecting access too and from Gunthorpe"
+  },
+  {
+    "name": "River Derwent at Matlock",
+    "description": "River Derwent at Matlock including Matlock Green and Old Matlock"
+  },
+  {
+    "name": "River Trent at North Clifton and South Clifton",
+    "description": "River Trent at North Clifton and South Clifton including Wheatholme"
+  },
+  {
+    "name": "River Trent at Cromwell",
+    "description": "River Trent at Cromwell including The Ness and the Sewage Works"
+  },
+  {
+    "name": "Bottle Brook at Little Eaton",
+    "description": "Bottle Brook at Little Eaton including Alfreton Road riverside properties"
+  },
+  {
+    "name": "River Wye at Bakewell",
+    "description": "River Wye at Bakewell including properties around Riverside Business Park, Holme Lane, Bridge Street and Haddon Road"
+  },
+  {
+    "name": "River Trent at Holme Pierrepont",
+    "description": "River Trent at Holme Pierrepont including Green Acres Mobile Home Park"
+  },
+  {
+    "name": "River Wreake at Asfordby",
+    "description": "River Wreake at Asfordby including areas around the Wash Stones, Lakeside Lodge and The Valley"
+  },
+  {
+    "name": "Rivers Erewash and Trent at Toton",
+    "description": "Rivers Erewash and Trent at Toton around the A6005"
+  },
+  {
+    "name": "River Erewash at Ironville",
+    "description": "River Erewash at Ironville including Nottingham Lane and Victoria Street"
+  },
+  {
+    "name": "River Sence at Great Glen",
+    "description": "River Sence at Great Glen including riverside farms and Oaks Road"
+  }
+ ]
+
+ -%}

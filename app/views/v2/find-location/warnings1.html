@@ -1,0 +1,393 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+Flood warning areas
+{% endblock %}
+
+{% set versionxxx = "v3" %}
+{% block beforeContent %}
+<div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        alpha
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div>
+  {{backlink|safe}}
+
+{% endblock %}
+
+{% block content %}
+{# permit|dump #}
+
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      {% if permit.reviewed=="yes" %}
+      <form action="review" method="post">
+        {% else %}
+      <form action="choose-alerts" method="post">
+        {% endif %}
+                    <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+                        <h1 class="govuk-heading-xl govuk-!-margin-bottom-4">
+                          Flood warning areas near {{ permit.locationFind }} 
+                          
+                          
+                        </h1>
+                    </legend>
+
+                    {# permit|dump #}
+                    {# permit.targetAreas #}
+                    <p>Select flood areas we currently monitor, to sign up for flood warnings.</p>
+                  </br> 
+                </div>
+              </div>
+          <div class="govuk-grid-row">
+            <div class="govuk-grid-column-one-half"> 
+                    <span class="govuk-body govuk-!-font-size-80 govuk-!-font-weight-bold"><img alt="" src="/public/images/floodwarning.jpg" height="56.91px" width="62.00px">
+                    31</span></br></br>
+                    <span class="govuk-heading-l">Flood warning areas</span></p>
+                    
+
+                    <div class="govuk-form-group">
+                      <fieldset class="govuk-fieldset" aria-describedby="flood-warnings">
+                      <!--  {% if permit.taStatus=="added" %}
+                        <div class="govuk-checkboxes">
+                          <div class="govuk-checkboxes__item">
+                            <input class="govuk-checkboxes__input" id="targetAreas" name="targetAreas" type="checkbox" value="Target area 1" aria-describedby="ta1-item-hint" checked>
+                            <label class="govuk-label govuk-checkboxes__label" for="targetAreas">
+                              target area 1
+                            </label>
+                            <div id="ta1-item-hint" class="govuk-hint govuk-checkboxes__hint">
+                              <a href="target-area-example">View full details</a>
+                            </div>
+                          </div>
+                          <div class="govuk-checkboxes__item">
+                            <input class="govuk-checkboxes__input" id="targetAreas-2" name="targetAreas" type="checkbox" value="Target area 2">
+                            <label class="govuk-label govuk-checkboxes__label" for="targetAreas-2">
+                              target area 2
+                            </label>
+                            <div id="ta1-item-hint" class="govuk-hint govuk-checkboxes__hint">
+                              <a href="target-area-example">View full details</a>
+                            </div>
+                          </div>
+                          <div class="govuk-checkboxes__item">
+                            <input class="govuk-checkboxes__input" id="targetAreas-3" name="targetAreas" type="checkbox" value="Target area 3">
+                            <label class="govuk-label govuk-checkboxes__label" for="targetAreas-3">
+                              target area 3
+                            </label>
+                            <div id="ta1-item-hint" class="govuk-hint govuk-checkboxes__hint">
+                              <a href="target-area-example">View full details</a>
+                            </div>
+                          </div>
+                        </div>
+             
+                        {% else %}-->
+                                                <!--{% endif %}-->
+
+                        <div class="govuk-checkboxes">
+                          <div class="govuk-checkboxes__item">
+                            <input class="govuk-checkboxes__input" id="targetAreas" name="targetAreas" type="checkbox" value="Target area 1" aria-describedby="ta1-item-hint">
+                            <label class="govuk-label govuk-checkboxes__label" for="targetAreas">
+                              River Foss upstream of Yearsley Baths to Strensall - riverside properties only
+                                                       </label>
+                            <div id="ta1-item-hint" class="govuk-hint govuk-checkboxes__hint">
+                              <a href="target-area-example">View full details</a>
+                            </div>
+                          </div>
+                          <div class="govuk-checkboxes__item">
+                            <input class="govuk-checkboxes__input" id="targetAreas-2" name="targetAreas" type="checkbox" value="Target area 2">
+                            <label class="govuk-label govuk-checkboxes__label" for="targetAreas-2">
+                              River Foss upstream of Yearsley Baths                            
+                            </label>
+                            <div id="ta1-item-hint" class="govuk-hint govuk-checkboxes__hint">
+                              <a href="target-area-example">View full details</a>
+                            </div>
+                          </div>
+                          <div class="govuk-checkboxes__item">
+                            <input class="govuk-checkboxes__input" id="targetAreas-2" name="targetAreas" type="checkbox" value="Target area 2">
+                            <label class="govuk-label govuk-checkboxes__label" for="targetAreas-2">
+                              Westfield Beck - New Earswick
+                         </label>
+                            <div id="ta1-item-hint" class="govuk-hint govuk-checkboxes__hint">
+                              <a href="target-area-example">View full details</a>
+                            </div>
+                          </div>
+                          <div class="govuk-checkboxes__item">
+                            <input class="govuk-checkboxes__input" id="targetAreas-2" name="targetAreas" type="checkbox" value="Target area 2">
+                            <label class="govuk-label govuk-checkboxes__label" for="targetAreas-2">
+                              River Derwent at Stamford Bridge - riverside properties
+                         </label>
+                            <div id="ta1-item-hint" class="govuk-hint govuk-checkboxes__hint">
+                              <a href="target-area-example">View full details</a>
+                            </div>
+                          </div>
+                          <div class="govuk-checkboxes__item">
+                            <input class="govuk-checkboxes__input" id="targetAreas-2" name="targetAreas" type="checkbox" value="Target area 2">
+                            <label class="govuk-label govuk-checkboxes__label" for="targetAreas-2">
+                              Westfield Beck - South Haxby
+                         </label>
+                            <div id="ta1-item-hint" class="govuk-hint govuk-checkboxes__hint">
+                              <a href="target-area-example">View full details</a>
+                            </div>
+                          </div>
+                          <div class="govuk-checkboxes__item">
+                            <input class="govuk-checkboxes__input" id="targetAreas-2" name="targetAreas" type="checkbox" value="Target area 2">
+                            <label class="govuk-label govuk-checkboxes__label" for="targetAreas-2">
+                              River Ouse at York - Leeman Road
+                         </label>
+                            <div id="ta1-item-hint" class="govuk-hint govuk-checkboxes__hint">
+                              <a href="target-area-example">View full details</a>
+                            </div>
+                          </div>
+                          <div class="govuk-checkboxes__item">
+                            <input class="govuk-checkboxes__input" id="targetAreas-2" name="targetAreas" type="checkbox" value="Target area 2">
+                            <label class="govuk-label govuk-checkboxes__label" for="targetAreas-2">
+                              Holgate Beck at York
+                         </label>
+                            <div id="ta1-item-hint" class="govuk-hint govuk-checkboxes__hint">
+                              <a href="target-area-example">View full details</a>
+                            </div>
+                          </div>
+                          <div class="govuk-checkboxes__item">
+                            <input class="govuk-checkboxes__input" id="targetAreas-2" name="targetAreas" type="checkbox" value="Target area 2">
+                            <label class="govuk-label govuk-checkboxes__label" for="targetAreas-2">
+                              River Ouse at York - Clifton
+                         </label>
+                            <div id="ta1-item-hint" class="govuk-hint govuk-checkboxes__hint">
+                              <a href="target-area-example">View full details</a>
+                            </div>
+                          </div>
+                          <div class="govuk-checkboxes__item">
+                            <input class="govuk-checkboxes__input" id="targetAreas-2" name="targetAreas" type="checkbox" value="Target area 2">
+                            <label class="govuk-label govuk-checkboxes__label" for="targetAreas-2">
+                              River Ouse at York - City Centre
+                         </label>
+                            <div id="ta1-item-hint" class="govuk-hint govuk-checkboxes__hint">
+                              <a href="target-area-example">View full details</a>
+                            </div>
+                          </div>
+                          <div class="govuk-checkboxes__item">
+                            <input class="govuk-checkboxes__input" id="targetAreas-3" name="targetAreas" type="checkbox" value="Target area 3">
+                            <label class="govuk-label govuk-checkboxes__label" for="targetAreas-3">
+                              River Ouse at York - Marygate
+                            </label>
+                            <div id="ta1-item-hint" class="govuk-hint govuk-checkboxes__hint">
+                              <a href="target-area-example">View full details</a>
+                            </div>
+                          </div>
+                          <div class="govuk-checkboxes__item">
+                            <input class="govuk-checkboxes__input" id="targetAreas-3" name="targetAreas" type="checkbox" value="Target area 3">
+                            <label class="govuk-label govuk-checkboxes__label" for="targetAreas-3">
+                              River Ouse at York - North Street
+                            </label>
+                            <div id="ta1-item-hint" class="govuk-hint govuk-checkboxes__hint">
+                              <a href="target-area-example">View full details</a>
+                            </div>
+                          </div>
+                          <div class="govuk-checkboxes__item">
+                            <input class="govuk-checkboxes__input" id="targetAreas-3" name="targetAreas" type="checkbox" value="Target area 3">
+                            <label class="govuk-label govuk-checkboxes__label" for="targetAreas-3">
+                              River Ouse at York - St George's Field and Queen's Staith
+                            </label>
+                            <div id="ta1-item-hint" class="govuk-hint govuk-checkboxes__hint">
+                              <a href="target-area-example">View full details</a>
+                            </div>
+                          </div>
+                          <div class="govuk-checkboxes__item">
+                            <input class="govuk-checkboxes__input" id="targetAreas-3" name="targetAreas" type="checkbox" value="Target area 3">
+                            <label class="govuk-label govuk-checkboxes__label" for="targetAreas-3">
+                              River Ouse at York - riverside properties                           
+                            </label>
+                            <div id="ta1-item-hint" class="govuk-hint govuk-checkboxes__hint">
+                              <a href="target-area-example">View full details</a>
+                            </div>
+                          </div>
+                          <div class="govuk-checkboxes__item">
+                            <input class="govuk-checkboxes__input" id="targetAreas-3" name="targetAreas" type="checkbox" value="Target area 3">
+                            <label class="govuk-label govuk-checkboxes__label" for="targetAreas-3">
+                              River Ouse at York - Clementhorpe, Ebor Street and South Bank
+                            </label>
+                            <div id="ta1-item-hint" class="govuk-hint govuk-checkboxes__hint">
+                              <a href="target-area-example">View full details</a>
+                            </div>
+                          </div>
+                          <div class="govuk-checkboxes__item">
+                            <input class="govuk-checkboxes__input" id="targetAreas-3" name="targetAreas" type="checkbox" value="Target area 3">
+                            <label class="govuk-label govuk-checkboxes__label" for="targetAreas-3">
+                              River Ouse at York - Skeldergate                           
+                            </label>
+                            <div id="ta1-item-hint" class="govuk-hint govuk-checkboxes__hint">
+                              <a href="target-area-example">View full details</a>
+                            </div>
+                          </div>
+                          <div class="govuk-checkboxes__item">
+                            <input class="govuk-checkboxes__input" id="targetAreas-3" name="targetAreas" type="checkbox" value="Target area 3">
+                            <label class="govuk-label govuk-checkboxes__label" for="targetAreas-3">
+                              River Ouse at York - Skeldergate and Tower Street                          
+                            </label>
+                            <div id="ta1-item-hint" class="govuk-hint govuk-checkboxes__hint">
+                              <a href="target-area-example">View full details</a>
+                            </div>
+                          </div>
+                          <div class="govuk-checkboxes__item">
+                            <input class="govuk-checkboxes__input" id="targetAreas-3" name="targetAreas" type="checkbox" value="Target area 3">
+                            <label class="govuk-label govuk-checkboxes__label" for="targetAreas-3">
+                              River Ouse at York - Peckitt Street                          
+                            </label>
+                            <div id="ta1-item-hint" class="govuk-hint govuk-checkboxes__hint">
+                              <a href="target-area-example">View full details</a>
+                            </div>
+                          </div>
+                          <div class="govuk-checkboxes__item">
+                            <input class="govuk-checkboxes__input" id="targetAreas-3" name="targetAreas" type="checkbox" value="Target area 3">
+                            <label class="govuk-label govuk-checkboxes__label" for="targetAreas-3">
+                              River Ouse at York - River Street                          
+                            </label>
+                            <div id="ta1-item-hint" class="govuk-hint govuk-checkboxes__hint">
+                              <a href="target-area-example">View full details</a>
+                            </div>
+                          </div>
+                          <div class="govuk-checkboxes__item">
+                            <input class="govuk-checkboxes__input" id="targetAreas-3" name="targetAreas" type="checkbox" value="Target area 3">
+                            <label class="govuk-label govuk-checkboxes__label" for="targetAreas-3">
+                              River Foss at Layerthorpe to Foss Islands Road, Stonebow and Piccadilly                          
+                            </label>
+                            <div id="ta1-item-hint" class="govuk-hint govuk-checkboxes__hint">
+                              <a href="target-area-example">View full details</a>
+                            </div>
+                          </div>
+                          <div class="govuk-checkboxes__item">
+                            <input class="govuk-checkboxes__input" id="targetAreas-3" name="targetAreas" type="checkbox" value="Target area 3">
+                            <label class="govuk-label govuk-checkboxes__label" for="targetAreas-3">
+                              River Foss downstream of Yearsley Baths - riverside properties                          
+                            </label>
+                            <div id="ta1-item-hint" class="govuk-hint govuk-checkboxes__hint">
+                              <a href="target-area-example">View full details</a>
+                            </div>
+                          </div>
+                          <div class="govuk-checkboxes__item">
+                            <input class="govuk-checkboxes__input" id="targetAreas-3" name="targetAreas" type="checkbox" value="Target area 3">
+                            <label class="govuk-label govuk-checkboxes__label" for="targetAreas-3">
+                              River Foss - The Groves                          
+                            </label>
+                            <div id="ta1-item-hint" class="govuk-hint govuk-checkboxes__hint">
+                              <a href="target-area-example">View full details</a>
+                            </div>
+                          </div>
+                          <div class="govuk-checkboxes__item">
+                            <input class="govuk-checkboxes__input" id="targetAreas-3" name="targetAreas" type="checkbox" value="Target area 3">
+                            <label class="govuk-label govuk-checkboxes__label" for="targetAreas-3">
+                              South Beck at York                          
+                            </label>
+                            <div id="ta1-item-hint" class="govuk-hint govuk-checkboxes__hint">
+                              <a href="target-area-example">View full details</a>
+                            </div>
+                          </div>
+                          <div class="govuk-checkboxes__item">
+                            <input class="govuk-checkboxes__input" id="targetAreas-3" name="targetAreas" type="checkbox" value="Target area 3">
+                            <label class="govuk-label govuk-checkboxes__label" for="targetAreas-3">
+                              Osbaldwick Beck - Osbaldwick                          
+                            </label>
+                            <div id="ta1-item-hint" class="govuk-hint govuk-checkboxes__hint">
+                              <a href="target-area-example">View full details</a>
+                            </div>
+                          </div>
+                          <div class="govuk-checkboxes__item">
+                            <input class="govuk-checkboxes__input" id="targetAreas-3" name="targetAreas" type="checkbox" value="Target area 3">
+                            <label class="govuk-label govuk-checkboxes__label" for="targetAreas-3">
+                              Tang Hall Beck - Tang Hall                          
+                            </label>
+                            <div id="ta1-item-hint" class="govuk-hint govuk-checkboxes__hint">
+                              <a href="target-area-example">View full details</a>
+                            </div>
+                          </div>
+                          <div class="govuk-checkboxes__item">
+                            <input class="govuk-checkboxes__input" id="targetAreas-3" name="targetAreas" type="checkbox" value="Target area 3">
+                            <label class="govuk-label govuk-checkboxes__label" for="targetAreas-3">
+                              River Derwent at Stamford Bridge - The Weir Caravan Park and Kexby Bridge                          
+                            </label>
+                            <div id="ta1-item-hint" class="govuk-hint govuk-checkboxes__hint">
+                              <a href="target-area-example">View full details</a>
+                            </div>
+                          </div>
+                          <div class="govuk-checkboxes__item">
+                            <input class="govuk-checkboxes__input" id="targetAreas-3" name="targetAreas" type="checkbox" value="Target area 3">
+                            <label class="govuk-label govuk-checkboxes__label" for="targetAreas-3">
+                              River Ouse at York - Rawcliffe and York Business Park                          
+                            </label>
+                            <div id="ta1-item-hint" class="govuk-hint govuk-checkboxes__hint">
+                              <a href="target-area-example">View full details</a>
+                            </div>
+                          </div>
+                          <div class="govuk-checkboxes__item">
+                            <input class="govuk-checkboxes__input" id="targetAreas-3" name="targetAreas" type="checkbox" value="Target area 3">
+                            <label class="govuk-label govuk-checkboxes__label" for="targetAreas-3">
+                              River Ouse at Naburn                          
+                            </label>
+                            <div id="ta1-item-hint" class="govuk-hint govuk-checkboxes__hint">
+                              <a href="target-area-example">View full details</a>
+                            </div>
+                          </div>
+                          <div class="govuk-checkboxes__item">
+                            <input class="govuk-checkboxes__input" id="targetAreas-3" name="targetAreas" type="checkbox" value="Target area 3">
+                            <label class="govuk-label govuk-checkboxes__label" for="targetAreas-3">
+                              River Ouse at Bishopthorpe                          
+                            </label>
+                            <div id="ta1-item-hint" class="govuk-hint govuk-checkboxes__hint">
+                              <a href="target-area-example">View full details</a>
+                            </div>
+                          </div>
+                          <div class="govuk-checkboxes__item">
+                            <input class="govuk-checkboxes__input" id="targetAreas-3" name="targetAreas" type="checkbox" value="Target area 3">
+                            <label class="govuk-label govuk-checkboxes__label" for="targetAreas-3">
+                              River Derwent at Elvington                          
+                            </label>
+                            <div id="ta1-item-hint" class="govuk-hint govuk-checkboxes__hint">
+                              <a href="target-area-example">View full details</a>
+                            </div>
+                          </div>
+                          <div class="govuk-checkboxes__item">
+                            <input class="govuk-checkboxes__input" id="targetAreas-3" name="targetAreas" type="checkbox" value="Target area 3">
+                            <label class="govuk-label govuk-checkboxes__label" for="targetAreas-3">
+                              River Ouse at York - Fulford and Fordlands Road                          
+                            </label>
+                            <div id="ta1-item-hint" class="govuk-hint govuk-checkboxes__hint">
+                              <a href="target-area-example">View full details</a>
+                            </div>
+                          </div>
+                          <div class="govuk-checkboxes__item">
+                            <input class="govuk-checkboxes__input" id="targetAreas-3" name="targetAreas" type="checkbox" value="Target area 3">
+                            <label class="govuk-label govuk-checkboxes__label" for="targetAreas-3">
+                              River Ouse at York - Fulford Road                          
+                            </label>
+                            <div id="ta1-item-hint" class="govuk-hint govuk-checkboxes__hint">
+                              <a href="target-area-example">View full details</a>
+                            </div>
+                          </div>
+                        </div>
+
+                      </fieldset>
+                  </div>
+                </div>
+                  <div class="govuk-grid-column-one-half">
+
+                    <img alt="" src="/public/images/warning-areas1.png" height="407.3px" width="476px">
+                   
+                  </div>
+                </div>
+                  </br>   </br>
+                    <div class="govuk-grid-row">
+                      <div class="govuk-grid-column-two-thirds">
+            <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+        </form>
+
+    </div>
+</div>
+
+{% endblock %} 

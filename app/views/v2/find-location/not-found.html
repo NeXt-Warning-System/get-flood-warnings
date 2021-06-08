@@ -1,0 +1,72 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+No flood warning areas available
+{% endblock %}
+
+{% set versionxxx = "v3" %}
+{% block beforeContent %}
+<div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        alpha
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div>
+  {{backlink|safe}}
+
+{% endblock %}
+
+{% block content %}
+{# permit|dump #}
+
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+
+            <div class="govuk-form-group">
+                <fieldset class="govuk-fieldset">
+                    <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+                        <h1 class="govuk-heading-xl govuk-!-margin-bottom-4">
+                          No flood warning areas available for {{ permit.locationSearch }}
+                        </h1>
+                    </legend>
+
+                    {# permit|dump #}
+
+          <p>It may be your selected area is not covered by our equipment or forecasting because it is:</p>
+          
+          <ul class="govuk-list govuk-list--bullet">
+            <li>at low risk of flooding from rivers, the sea or groundwater</li>
+            <li>affected by surface water flooding, which this service doesn’t cover yet</li>
+            <li>not in England</li>
+              
+  
+          </ul>
+<p>Your search location may be covered by part of a flood alert area. Flood alert messages warn of shallow flooding to farmlands, roads and low lying land.</p>
+						
+
+            </div>
+            
+            <div class="govuk-button-group">
+              <a href="search" class="govuk-button  govuk-!-margin-right-3" data-module="govuk-button">
+                Try another location for flood warnings
+              </a>
+              
+              <a href="alerts" class="govuk-button govuk-button--secondary" data-module="govuk-button">
+                Search for a flood alert area
+              </a>
+            </div>
+          </fieldset>
+
+        </form>
+
+    </div>
+</div>
+
+{% endblock %} 

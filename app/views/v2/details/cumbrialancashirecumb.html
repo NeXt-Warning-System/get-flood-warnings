@@ -1,0 +1,42 @@
+<script>
+    const countries = [
+    "Abu Dhabi",  
+              "Coast at Barrow in Furness 011WACN5",
+              "Coast at Duddon estuary 011WACN4",
+              "Coast at North Morecambe Bay 011WACN6",
+              "Coast from Gretna to Silloth 011WACN1",
+              "Coast from Silloth to St Bees 011WACN2",
+              "Coast from St Bees Head to Millom 011WACN3",
+              "Lower River Eden 011WAFLE",
+              "Middle River Eden 011WAFME",
+              "Rivers Brathay, Rothay and Winster 011WAFBR",
+              "Rivers Caldew and Petteril 011WAFPC",
+              "Rivers Cocker, Marron and Derwent 011WAFCD",
+              "Rivers Duddon, Crake and Mill Beck 011WAFDU",
+              "Rivers Ehen, Calder, Irt and Esk 011WAFED",
+              "Rivers Esk and Irthing 011WAFEI",
+              "Rivers Greta, St Johns Beck and Bassenthwaite Lake 011WAFGB",
+              "Rivers Kent and Bela 011WAFKB",
+              "Rivers Lowther and Eamont 011WAFLO",
+              "Rivers Wampool and Ellen 011WAFWE",
+              "Upper River Derwent, Stonethwaite Beck and Derwent Water 011WAFDW",
+              "Upper River Eden 011WAFUE",
+"Unknown"
+    ];
+  
+    accessibleAutocomplete({
+      autoselect: true,
+      element: document.querySelector('#target-area-container'),
+      id: 'target-area',
+      name: 'targetareaautocomplete',
+      source: countries,
+     // defaultValue: '{{ data['targetareaautocomplete'] }}',
+      defaultValue: '',
+      displayMenu: 'overlay',
+      templates: '{ inputValue, suggestion }',
+      minLength: 2,
+      tNoResults: function() {
+        return "Target area not found"
+      }
+    });
+  </script>
