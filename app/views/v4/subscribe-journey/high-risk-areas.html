@@ -76,7 +76,7 @@
 
             <form method="post" action="/location/warning-select">
 
-                <input type="hidden" name="next-page" value="/v4/subscribe-journey/medium-risk-option">
+                <input type="hidden" name="next-page" value="/{{folder}}/subscribe-journey/medium-risk-option">
                 <input type="hidden" name="highalertarea" value="yes">
 
                 {% if place.warningAreas.length != 1 %}
@@ -100,7 +100,7 @@
                 }) }}
 
                 <p>
-                    <a href="/v4/medium-risk-option">I do not want to sign up to high risk areas for this location</a>
+                    <a href="/{{folder}}/medium-risk-option">I do not want to sign up to high risk areas for this location</a>
                 </p>
 
                 {% else %}
