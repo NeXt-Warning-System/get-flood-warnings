@@ -1,0 +1,48 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Your account has been created
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <div class="govuk-panel govuk-panel--confirmation">
+        <h1 class="govuk-panel__title">Your account has been created</h1>
+      </div>
+
+      <p>
+        We have sent a confirmation to {{data.contactByEmail}}{{data.contactByText}}{{data.contactByPhone}}.
+      </p>
+
+      <h2 class="govuk-heading-m">What happens next</h2>
+      <p>In the event of flooding, flood warnings will be sent to {{data.contactByEmail}}{{data.contactByText}}{{data.contactByPhone}}.</p>
+
+      <p>To view or edit your chosen warning areas <a href="/subscribe-journey/list">update your warnings</a> online, or if you cannot access your account online, call floodline on 0345 988 1188.</p>
+      <p>When revisiting the service you can <a href="sign-in">sign in</a> to the service using a one time verification code, that will be sent to {{data.contactByEmail}}{{data.contactByText}}{{data.contactByPhone}}.</p>
+
+      <p><a href="https://www.gov.uk/service-manual/user-centred-design/resources/patterns/feedback-pages.html">What did you think of this service?</a> (takes 30 seconds)</p>
+           </br>
+
+           <p>Floodline</br>
+                Telephone: 0345 988 1188</br>
+                Textphone: 0345 602 6340</br>
+                24-hour service</br>
+                <a href="#">Find out about call charges</a></p>
+</br></br></br></br>
+<details class="govuk-details" data-module="govuk-details">
+  <summary class="govuk-details__summary">
+    <span class="govuk-details__summary-text">
+User testing links - confirmation email/text</span>
+  </summary>
+  <div class="govuk-details__text">
+<p>
+<a href="/v4/sign-up/email-confirm"  target="_blank">Email confirmation</a></br>
+<a href="/v4/sign-up/text-confirm"  target="_blank">Text message confirmation</a></p>  </div>
+</details>
+    </div>
+  </div>
+
+{% endblock %}

@@ -1,0 +1,108 @@
+{% extends 'layout.html' %}
+
+{% block pageTitle %}
+    Sign up for warnings
+{% endblock %}
+
+{% block beforeContent %}
+
+    {{ super() }}
+
+    {{ govukBackLink ({
+        text: 'Back',
+        href: 'javascript:history.back()'
+    }) }}
+
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+
+        <div class="govuk-grid-column-two-thirds">
+      <form action="code" method="post">
+
+            <form method="post">
+
+{% set emailHtml %}
+{{ govukInput({
+  id: "contactByEmail",
+  name: "contactByEmail",
+  type: "email",
+  spellcheck: false,
+  classes: "govuk-!-width-one-third",
+  label: {
+    text: "Email address"
+  }
+}) }}
+{% endset -%}
+
+{% set phoneHtml %}
+{{ govukInput({
+  id: "contactByPhone",
+  name: "contactByPhone",
+  type: "tel",
+  classes: "govuk-!-width-one-third",
+  label: {
+    text: "Phone number"
+  }
+}) }}
+{% endset -%}
+
+{% set textHtml %}
+{{ govukInput({
+  id: "contactByText",
+  name: "contactByText",
+  type: "tel",
+  classes: "govuk-!-width-one-third",
+  label: {
+    text: "Mobile phone number"
+  }
+}) }}
+{% endset -%}
+
+{{ govukRadios({
+  idPrefix: "contact",
+  name: "contactSignup",
+  fieldset: {
+    legend: {
+      text: "How would you like to receive flood warnings?",
+      isPageHeading: true,
+      classes: "govuk-fieldset__legend--l"
+    }
+  },
+  hint: {
+    text: "Select one option."
+  },
+  items: [
+    {
+      value: "email",
+      text: "Email",
+      conditional: {
+        html: emailHtml
+      }
+    },
+    {
+      value: "phone",
+      text: "Phone",
+      conditional: {
+        html: phoneHtml
+      }
+    },
+    {
+      value: "text",
+      text: "Text message",
+      conditional: {
+        html: textHtml
+      }
+    }
+  ]
+}) }}
+
+<button class="govuk-button" data-module="govuk-button">Continue to sign up</button>
+ 
+
+
+</div>
+
+{% endblock %}

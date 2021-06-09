@@ -26,4 +26,10 @@ router.use('/place', placeRouter)
 let locationRouter = require('./routes/location')
 router.use('/location', locationRouter)
 
+let placeRouter3 = require('./routes_v4/place')
+router.use('/place', placeRouter)
+
+let locationRouter3 = require('./routes_v4/location')
+router.use('/location', locationRouter)
+
 module.exports = router
