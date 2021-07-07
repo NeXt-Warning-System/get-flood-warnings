@@ -1,0 +1,73 @@
+{% extends "layout.html" %}
+
+{% set title = "Search for a location" %}
+
+{% block pageTitle %}
+    {{title}} - GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+<div class="govuk-phase-banner">
+  <p class="govuk-phase-banner__content"><strong class="govuk-tag govuk-phase-banner__content__tag ">
+  alpha
+</strong>
+    <span class="govuk-phase-banner__text">
+      This is a new service – your
+      <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+    </span>
+  </p>
+</div>
+{{backlink|safe}}
+
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="address-confirm" method="post">
+
+        <div class="govuk-form-group">
+            <fieldset class="govuk-fieldset">
+
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+                {{title}}
+            </legend>
+            <p>Enter a full postcode for the location you are interested in. We will see if it is in an area we check for flooding.</p>         
+
+          <label class="govuk-label" for="postcode">Building number or name
+          </label>
+          <input type="text" class="govuk-input govuk-!-width-one-half" id="postcode" name="sitePostCode" />
+      </br>   </br>
+      <label class="govuk-label" for="postcode">UK postcode
+              <span class="govuk-hint">For example, BS1 5AH</span>
+            </label>
+            <input type="text" class="govuk-input govuk-!-width-one-half" id="postcode" name="sitePostCode" />
+          </div>
+
+    
+
+
+
+        </fieldset>
+
+        <div class="form-group">
+          {{submitButton|safe}}
+        </div>
+<p><a href="address">No match unhappy path</a></p>
+        <div class="form-group">
+          <hr>
+          <p class="text font-xsmall" id="os-notice">
+            &copy; Crown copyright and database rights 2017 Ordnance Survey 100024198. Use of this addressing data is subject to the <a target="_blank" rel="noopener noreferrer" href="/{{folder}}/address/os_place_terms">terms and conditions (opens new window)</a>.
+          </p>
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+
+</main>
+
+{% endblock %}

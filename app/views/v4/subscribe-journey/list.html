@@ -1,12 +1,22 @@
 {% extends 'layout.html' %}
+{% set title = "Review your choice" %}
 
 {% block pageTitle %}
-    List
+    {{title}} - GOV.UK
 {% endblock %}
 
 {% block beforeContent %}
+<div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content"><strong class="govuk-tag govuk-phase-banner__content__tag ">
+    alpha
+  </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your
+        <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div>
 
-    {{ super() }}
 
     {{ govukBackLink ({
         text: 'Back',
@@ -21,69 +31,19 @@
 
         <div class="govuk-grid-column-two-thirds">
 
-            <form method="post">
+         
+        <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            {{title}}
+        </legend>
+</br></br>
+<h3 class="govuk-heading-s">Flood warning level:</h3>
+
+</br>
+<h3 class="govuk-heading-s">Warning location:</h3>
 
 
-                {% set alertAreaIds = data.subscribedAreas | alertAreaIds %}
-
-                {% set warningAreaIds = data.subscribedAreas | warningAreaIds %}
-
-                {% if warningAreaIds | length or alertAreaIds | length %}
-
-                    {% if warningAreaIds | length %}
-
-                        <div class="govuk-!-margin-bottom-9">
-<h1 class="govuk-heading-xl">Review your flood risk areas</h1>
-                        <h2 class="govuk-heading-m">High risk flood areas</h2>
-
-                            {% for subscribedAreaId in warningAreaIds%}
-
-                                {% set area = data.allFetchedAreas[subscribedAreaId] %}
-
-                                <h3 class="govuk-heading-s">{{ area.label }}</h3>
-                                <p>{{ area.description }}</p>
-
-                                <p>
-                                    <a href="area-view?selected-area={{ subscribedAreaId }}">View</a>
-                                    <a href="area-remove?selected-area={{ subscribedAreaId }}" class="app-link-destructive govuk-!-margin-left-2">Remove</a>
-                                </p>
-
-                                <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
-
-                            {% endfor %}
-
-                        </div>
-
-                    {% endif %}
-
-                    {% if alertAreaIds | length %}
-
-                        <div class="govuk-!-margin-bottom-9">
-
-                            <h2 class="govuk-heading-m">Medium risk flood areas</h2>
-
-                            {% for subscribedAreaId in alertAreaIds%}
-
-                                {% set area = data.allFetchedAreas[subscribedAreaId] %}
-
-                                <h3 class="govuk-heading-s">{{ area.label }}</h3>
-                                <p>{{ area.description }}</p>
-
-                                <p>
-                                    <a href="area-view?selected-area={{ subscribedAreaId }}">View</a>
-                                    <a href="area-remove?selected-area={{ subscribedAreaId }}" class="app-link-destructive govuk-!-margin-left-2">Remove</a>
-                                </p>
-
-                                <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
-
-                            {% endfor %}
-
-                        </div>
-
-                    {% endif %}
-
-                    <p>
-                        <a href="postcode">Add more areas near a different postcode</a>
+<p>
+                        <a href="postcode">Add more locations</a>
                     </p>
                                {% if data.contact=="textSignin" or data.contact=="emailSignin" or data.contact=="phoneSignin" or data.contactSignup=="email" or data.contactSignup=="text" or data.contactSignup=="phone"%}
 
@@ -91,11 +51,12 @@
                         html: 'Sign out',
                         href: '/'
                       }) }}
+                      {% endif %}
+
 {% if data.contact=="emailSignin" or data.contact=="phoneSignin" or data.contact=="textSignin" %}
  {% else %}
 
-  {% endif %}
-                {% else %}
+
 
                     {{ govukButton ({
                         html: 'Sign up to get warnings',
@@ -106,20 +67,6 @@
 
                     {% endif %}
 
-                {% else %}
-
-                    <p>You have not chosen any flood risk areas to get warnings for.</p>
-
-                    <p>
-                        <a class="govuk-button" href="postcode">Try another postcode</a>
-                    </p>
-
-                    <p> 
-                    <a href="#">Check for flooding</a> in your area.
-                    </p>
-                
-                {% endif %}
-            </form>
               
         </div>
 

@@ -1,0 +1,96 @@
+{% extends "layout.html" %}
+
+{% set title = "There are no flood warning areas within ‘X’ miles of [address]" %}
+
+
+{% block pageTitle %}
+    {{title}} - GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+<div class="govuk-phase-banner">
+  <p class="govuk-phase-banner__content"><strong class="govuk-tag govuk-phase-banner__content__tag ">
+  alpha
+</strong>
+    <span class="govuk-phase-banner__text">
+      This is a new service – your
+      <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+    </span>
+  </p>
+</div>
+{{backlink|safe}}
+
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+
+        <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            {{title}}
+        </legend>
+
+      <div>
+        <p>The area you searched is not covered by our forecasting because it is:</p>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>at low risk of flooding from rivers, the sea or groundwater</li>
+          <li>affected by surface water flooding, which this service does not cover</li>
+        </ul>
+
+        
+
+      <p>
+        Would you like to:
+      </p>
+
+    </div>
+
+    <form action="/v4/subscribe-journey/severity" method="post">
+
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset">
+            <div class="govuk-radios govuk-radios--conditional" data-module="radios">
+              
+                <div class="govuk-radios__item">
+                  <input class="govuk-radios__input" id="yesOffences" name="offences" type="radio" value="yes" data-aria-controls="conditional-how-contacted-conditional-1">
+                  <label class="govuk-label govuk-radios__label" for="how-contacted-conditional-1">
+                    sign up for this area in case it becomes a risk in future
+                  </label>
+                </div>
+              
+            
+                <div class="govuk-radios__item">
+                    <input class="govuk-radios__input" id="how-contacted-conditional-2" name="offences" type="radio" value="no" data-aria-controls="conditional-how-contacted-conditional-2">
+                    <label class="govuk-label govuk-radios__label" for="how-contacted-conditional-2">
+                      extend your search area by 10 miles
+                    </label>
+                  </div>                
+
+              </div>
+          
+           
+
+        </fieldset>
+      </div>
+
+      <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+        Flood warnings near [address]
+      </legend>
+<p>The area you searched is covered by our forecasting.</p> 
+<p>We can offer you warnings when flooding to property or a danger to life is expected in this area.</p>
+<p>We can offer you warnings when minor flooding is possible, including fields and footpaths that may not be near you but but may connect to waterways in the area.</p>
+<p><a href="#">Search again</a></p>
+      <div class="form-group">
+        {{submitButton|safe}}
+      </div>
+
+
+    </form>
+
+
+  </div>
+</div>
+
+{% endblock %}

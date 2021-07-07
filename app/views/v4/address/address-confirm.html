@@ -1,0 +1,95 @@
+{% extends "layout.html" %}
+
+{% set title = "Confirm address:" %}
+
+
+{% block pageTitle %}
+    {{title}} - GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+<div class="govuk-phase-banner">
+  <p class="govuk-phase-banner__content"><strong class="govuk-tag govuk-phase-banner__content__tag ">
+  alpha
+</strong>
+    <span class="govuk-phase-banner__text">
+      This is a new service – your
+      <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+    </span>
+  </p>
+</div>
+{{backlink|safe}}
+
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+
+        <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            {{title}}
+        </legend>
+      <div>
+        <p>[Full address]</p>
+
+
+    </div>
+
+    <form action="address-risk" method="post">
+
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset">
+            <div class="govuk-radios govuk-radios--conditional" data-module="radios">
+              <p>Is this correct?</p>
+
+                <div class="govuk-radios__item">
+                  <input class="govuk-radios__input" id="yesOffences" name="offences" type="radio" value="yes" data-aria-controls="conditional-how-contacted-conditional-1">
+                  <label class="govuk-label govuk-radios__label" for="how-contacted-conditional-1">
+                      Yes
+                    </label>
+                </div>
+                <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-how-contacted-conditional-1">
+                    <div class="govuk-form-group">
+                    </br>
+                        <label class="govuk-label" for="relevantOffencesDetails">
+                            Give details of the convictions
+                            <span class="govuk-hint">
+                              Include the names of the people or companies, the offences and penalties given
+                            </span>   
+                          </label>
+ 
+                  <textarea class="govuk-textarea" name="relevantOffencesDetails" rows="10" type="text" id="relevantOffencesDetails"></textarea>
+                  <p class="govuk-hint" style="margin-top:4px;">
+                    No more than 2,000 characters
+                  </p>
+                    </div>
+            
+                  </div>
+                <div class="govuk-radios__item">
+                    <input class="govuk-radios__input" id="how-contacted-conditional-2" name="offences" type="radio" value="no" data-aria-controls="conditional-how-contacted-conditional-2">
+                    <label class="govuk-label govuk-radios__label" for="how-contacted-conditional-2">
+                        No
+                      </label>
+                  </div>                
+
+              </div>
+          
+           
+
+        </fieldset>
+      </div>
+
+      <div class="form-group">
+        {{submitButton|safe}}
+      </div>
+
+
+    </form>
+
+
+  </div>
+</div>
+
+{% endblock %}
