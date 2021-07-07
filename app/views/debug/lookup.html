@@ -1,0 +1,96 @@
+{% extends 'layout.html' %}
+
+{% block pageTitle %}
+    Find an address
+{% endblock %}
+
+{% block beforeContent %}
+
+    {{ super() }}
+
+    {{ govukBackLink ({
+        text: 'Back',
+        href: 'javascript:history.back()'
+    }) }}
+
+{% endblock %}
+
+{% block content %}
+
+{% if data.lookupError %}
+
+    {% set errorMessage = 'There was a problem' %}
+
+    {% if data.lookupError == 'not-found' %}
+
+        {% set errorMessage = 'No addresses were found at this postcode' %}
+
+    {% endif %}
+
+    {% if data.lookupError == 'invalid' %}
+
+        {% set errorMessage = 'Enter a real postcode' %}
+
+    {% endif %}
+
+{% endif %}
+
+<div class="govuk-grid-row">
+
+        <div class="govuk-grid-column-two-thirds">
+
+            {% if data.lookupError %}
+                
+                {{ govukErrorSummary({
+                    titleText: 'There is a problem',
+                    errorList: [
+                        {
+                        text: errorMessage,
+                        href: '#address-lookup-postcode'
+                        }
+                    ]
+                }) }}
+                
+            {% endif %}
+
+            <form method="post" action="/address-lookup/search">
+
+                <h1 class="govuk-heading-xl">Find an address</h1>
+
+                {{ govukInput ({
+                    id: 'address-lookup-name-number',
+                    name: 'address-lookup-name-number',
+                    value: data['address-lookup-name-number'],
+                    classes: 'govuk-input--width-20',
+                    label: {
+                        text: 'Building name or number (optional)'
+                    }
+                }) }}
+
+                {{ govukInput ({
+                    id: 'address-lookup-postcode',
+                    name: 'address-lookup-postcode',
+                    value: data['address-lookup-postcode'] if data['address-lookup-postcode'] else '',
+                    classes: 'govuk-input--width-10',
+                    label: {
+                        text: 'Postcode'
+                    },
+                    errorMessage: {
+                        text: errorMessage
+                    } if data.lookupError
+                }) }}
+
+                <input type="hidden" name="next-page" value="/debug/results">
+                <input type="hidden" name="error-page" value="/debug/lookup">
+
+                {{ govukButton ({
+                    html: 'Continue'
+                }) }}
+
+            </form>
+
+        </div>
+
+</div>
+
+{% endblock %}

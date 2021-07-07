@@ -5,21 +5,22 @@ const filters = require('./filters')(process.env)
 
 // Add your routes here - above the module.exports line
 
-
 // all routes for registration v2
 router.use('/v2', require('./routes_v2')),
-router.use('/v4', require('./routes_v4'))
-
+	router.use('/v4', require('./routes_v4'))
 
 // Route index page
 router.get('/', function (req, res) {
-    res.render('index')
-  })
+	res.render('index')
+})
 
 router.all('*', (req, res, next) => {
-    req.session.data.postcodeNotFound = false
-    next()
+	req.session.data.postcodeNotFound = false
+	next()
 })
+
+let addressLookupRouter = require('./routes/address-lookup')
+router.use('/address-lookup', addressLookupRouter)
 
 let placeRouter = require('./routes/place')
 router.use('/place', placeRouter)

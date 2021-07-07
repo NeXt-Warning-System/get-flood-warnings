@@ -1,4 +1,4 @@
-const { area } = require("@turf/turf")
+const { area } = require('@turf/turf')
 
 const isValidDate = (d) => {
 	return d instanceof Date && !isNaN(d)
@@ -56,6 +56,10 @@ module.exports = function (env) {
 			' ' +
 			date.getFullYear()
 		)
+	}
+
+	filters.addressWithNewLines = (str) => {
+		return str.replace(/, /g, '<br>')
 	}
 
 	filters.autoClaimDate = (_, caringDate, awardDate, decisionDate) => {
@@ -116,15 +120,22 @@ module.exports = function (env) {
 		return `${dayInput} ${filters.month(monthInput)} ${yearInput}`
 	}
 
+	filters.formattedAddress = (address) => {
+		return address.DISPLAY_NAME + ', ' + address.POSTCODE
+	}
+
 	filters.addressOptions = (addressOptionArray, currentSelection) => {
 		currentSelection = currentSelection ? currentSelection : ''
 		if (Array.isArray(addressOptionArray)) {
-			const processedAddressOptionArray = addressOptionArray.map(
+			var processedAddressOptionArray = addressOptionArray.map(
 				(addressOption) => {
 					return {
-						text: addressOption.text,
-						value: addressOption.value,
-						selected: addressOption.value == currentSelection ? true : false,
+						text: filters.titleCase(addressOption.DISPLAY_NAME),
+						value: filters.formattedAddress(addressOption),
+						checked:
+							filters.formattedAddress(addressOption) == currentSelection
+								? true
+								: false,
 					}
 				}
 			)
@@ -134,24 +145,26 @@ module.exports = function (env) {
 		}
 	}
 
-  filters.placeOptions = (placeOptionArray, currentSelection) => {
+	filters.placeOptions = (placeOptionArray, currentSelection) => {
 		currentSelection = currentSelection ? currentSelection : ''
 		if (Array.isArray(placeOptionArray)) {
 			const processedAddressOptionArray = placeOptionArray.map(
 				(addressOption) => {
-          var outputObject = {
+					var outputObject = {
 						text: addressOption.name,
 						value: addressOption.id,
 						selected: addressOption.id == currentSelection ? true : false,
-            hint: addressOption.locale ? { text: 'in ' + addressOption.locale } : null
+						hint: addressOption.locale
+							? { text: 'in ' + addressOption.locale }
+							: null,
 					}
 					return outputObject
 				}
-			) 
-      processedAddressOptionArray.push({
-        text: 'Search again',
-        value: 'other'
-      })
+			)
+			processedAddressOptionArray.push({
+				text: 'Search again',
+				value: 'other',
+			})
 			return processedAddressOptionArray
 		} else {
 			return []
@@ -167,7 +180,7 @@ module.exports = function (env) {
 		return false
 	}
 
-  filters.secure = url => url.replace(/^http:\/\//i, 'https://')
+	filters.secure = (url) => url.replace(/^http:\/\//i, 'https://')
 
 	filters.debug = (obj) => {
 		return JSON.stringify(obj)
@@ -248,18 +261,20 @@ module.exports = function (env) {
 		return `<script>window.location.href = '${location}';</script>`
 	}
 
-	filters.oneDecimalPlace = number => Math.round(number * 10) / 10
+	filters.oneDecimalPlace = (number) => Math.round(number * 10) / 10
 
 	filters.areasAsGovOptions = (areaArray, location, selectedIds) => {
 		if (Array.isArray(areaArray)) {
-			return areaArray.map(area => {
+			return areaArray.map((area) => {
 				var labelText = area.label
 				if (area.distance == 0) {
 					labelText += ` - directly affects ${location}`
 				} else {
 					if (area.hasDistance) {
 						let distanceInMiles = filters.oneDecimalPlace(area.distance)
-						labelText += ` - ${ distanceInMiles == '1.0' ? '1 mile' : `${distanceInMiles} miles` } away`
+						labelText += ` - ${
+							distanceInMiles == '1.0' ? '1 mile' : `${distanceInMiles} miles`
+						} away`
 					} else {
 						labelText += ` - less than 2.0 miles away`
 					}
@@ -272,7 +287,7 @@ module.exports = function (env) {
 					text: labelText,
 					hint: { text: area.description },
 					value: area.notation,
-					checked: isChecked
+					checked: isChecked,
 				}
 			})
 		} else {
@@ -282,13 +297,13 @@ module.exports = function (env) {
 
 	filters.removingArea = (areaIds, idToRemove) => {
 		if (Array.isArray(areaIds)) {
-			return areaIds.filter(areaId => {
+			return areaIds.filter((areaId) => {
 				return areaId != idToRemove
 			})
 		}
 	}
 
-	filters.asArray = str => {
+	filters.asArray = (str) => {
 		const outputArray = JSON.parse(str)
 		if (Array.isArray(outputArray)) {
 			return outputArray
@@ -297,39 +312,39 @@ module.exports = function (env) {
 		}
 	}
 
-	filters.warningAreas = areas => {
+	filters.warningAreas = (areas) => {
 		if (Array.isArray(areas)) {
-			return areas.filter(area => {
+			return areas.filter((area) => {
 				return area.notation.includes('FW')
 			})
 		}
 	}
 
-	filters.alertAreas = areas => {
+	filters.alertAreas = (areas) => {
 		if (Array.isArray(areas)) {
-			return areas.filter(area => {
+			return areas.filter((area) => {
 				return area.notation.includes('WA')
 			})
 		}
 	}
 
-	filters.warningAreaIds = areaIds => {
+	filters.warningAreaIds = (areaIds) => {
 		if (Array.isArray(areaIds)) {
-			return areaIds.filter(areaId => {
+			return areaIds.filter((areaId) => {
 				return areaId.includes('FW')
 			})
 		}
 	}
 
-	filters.alertAreaIds = areaIds => {
+	filters.alertAreaIds = (areaIds) => {
 		if (Array.isArray(areaIds)) {
-			return areaIds.filter(areaId => {
+			return areaIds.filter((areaId) => {
 				return areaId.includes('WA')
 			})
 		}
 	}
 
-	filters.isWarningArea = area => {
+	filters.isWarningArea = (area) => {
 		return area.notation.includes('FW')
 	}
 
