@@ -83,9 +83,9 @@
                 }) }}
 
                 {{ govukInput ({
-                    id: 'address-lookup-postcode',
-                    name: 'address-lookup-postcode',
-                    value: data['address-lookup-postcode'] if data['address-lookup-postcode'] else '',
+                    id: 'addressLookupPostcode',
+                    name: 'addressLookupPostcode',
+                    value: data['addressLookupPostcode'] if data['addressLookupPostcode'] else '',
                     classes: 'govuk-input--width-10',
                     label: {
                         text: 'Postcode'
@@ -110,7 +110,6 @@
         <div class="form-group">
           {{submitButton|safe}}
         </div>
-<p><a href="address">No match unhappy path</a></p>
         <div class="form-group">
           <hr>
           <p class="text font-xsmall" id="os-notice">

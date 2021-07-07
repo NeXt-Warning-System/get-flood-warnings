@@ -8,6 +8,8 @@
 {% endblock %}
 
 {% block beforeContent %}
+    {{ super() }}
+
 <div class="govuk-phase-banner">
   <p class="govuk-phase-banner__content"><strong class="govuk-tag govuk-phase-banner__content__tag ">
   alpha
@@ -27,8 +29,8 @@
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-
-  <form action="end">
+{#permit|dump#}
+  <form action="address-risk">
 
                 {% if data.addressResults | length == 1 %}
                     
@@ -37,7 +39,8 @@
         </legend>  
                     {{ govukInsetText ({
                         text: data.addressResults[0].DISPLAY_NAME | titleCase
-                    }) }}
+               
+                    }) }} 
 
                     {{ govukRadios ({
                         idPrefix: 'address-selection',
@@ -61,22 +64,34 @@
                         ]
                     }) }}
 
+   {{ govukButton ({
+                    html: 'Continue'
+                }) }}  
+
                 {% elseif data.addressResults | length > 0 %}
+
                         <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-            Search for a location
+            Select an address
 
         </legend>
                 <p>Select the full address of the location you are interested in. We will see if it is in an area we check for flooding.</p>
-
+<p>
+<span class="postcode-prefix">Postcode: {{data.addressLookupPostcode}}</span>
+  <span class="postcode"></span>
+  <a href="postcode">
+      Change<span class="govuk-visually-hidden"> postcode</span>
+  </a>
+</p>
+</br>
                     <ul class="govuk-list">
                          {% for address in data.addressResults %}
 
                             <li>
+<hr class="govuk-section-break govuk-section-break--visible">
 
                                 <a class="app-address-link" href="end?address-selection={{address | formattedAddress}}">
 
                                   {{address.DISPLAY_NAME}}
-
                                 </a>
 
                             </li>
@@ -87,10 +102,12 @@
                 {% else %}
 
                     {{ 'lookup' | redirect | safe }}
-                    
+
+                   
                 {% endif %}
 
             
+           
 
             </form>
 
