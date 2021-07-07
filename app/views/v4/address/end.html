@@ -1,0 +1,50 @@
+{% extends 'layout.html' %}
+
+{% block pageTitle %}
+    Selected address
+{% endblock %}
+
+{% block beforeContent %}
+
+    {{ super() }}
+
+    {{ govukBackLink ({
+        text: 'Back',
+        href: 'javascript:history.back()'
+    }) }}
+
+{% endblock %}
+
+{% block content %}
+
+{% if not data['address-selection'] | length %}
+    
+    {{ 'lookup' | redirect | safe }}
+    
+{% endif %}
+
+<div class="govuk-grid-row">
+
+        <div class="govuk-grid-column-two-thirds">
+
+            <form method="post">
+
+                <h1 class="govuk-heading-xl">Selected address</h1>
+
+                <p>The selected address is:</p>
+
+                {{ govukInsetText ({
+                    html: data['address-selection'] | addressWithNewLines | safe
+                }) }}
+
+                <p>
+                    <a href="lookup">Start again</a>
+                </p>
+
+            </form>
+
+        </div>
+
+</div>
+
+{% endblock %}

@@ -54,22 +54,23 @@
                             }
                         ]
                     }) }}
-                    
-                {% elseif data.addressResults | length > 0 %}
 
-                    {{ govukRadios ({
-                        idPrefix: 'address-selection',
-                        name: 'address-selection',
-                        classes: 'govuk-radios--small',
-                        fieldset: {
-                            legend: {
-                                text: 'Select an address',
-                                isPageHeading: true,
-                                classes: 'govuk-fieldset__legend--xl'
-                            }
-                        },
-                        items: data.addressResults | addressOptions(data['address-selection'])
-                    }) }}
+                {% elseif data.addressResults | length > 0 %}
+                    <ul class="govuk-list">
+                         {% for address in data.addressResults %}
+
+                            <li>
+
+                                <a class="app-address-link" href="end?address-selection={{address | formattedAddress}}">
+
+                                  {{address.DISPLAY_NAME}}
+
+                                </a>
+
+                            </li>
+
+                         {% endfor %}
+                    </ul>
 
                 {% else %}
 
