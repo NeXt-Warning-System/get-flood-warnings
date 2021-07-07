@@ -1,0 +1,90 @@
+{% extends 'layout.html' %}
+
+{% block pageTitle %}
+    Find an address
+{% endblock %}
+
+{% block beforeContent %}
+
+    {{ super() }}
+
+    {{ govukBackLink ({
+        text: 'Back',
+        href: 'javascript:history.back()'
+    }) }}
+
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+
+        <div class="govuk-grid-column-two-thirds">
+
+            <form action="end">
+
+                {% if data.addressResults | length == 1 %}
+                    
+                    <h1 class="govuk-heading-xl">
+                        Check address
+                    </h1>
+
+                    {{ govukInsetText ({
+                        text: data.addressResults[0].DISPLAY_NAME | titleCase
+                    }) }}
+
+                    {{ govukRadios ({
+                        idPrefix: 'address-selection',
+                        name: 'address-selection',
+                        fieldset: {
+                            legend: {
+                                text: 'Continue with this address?',
+                                isPageHeading: true,
+                                classes: 'govuk-fieldset__legend--m'
+                            }
+                        },
+                        items: [
+                            {
+                                text: 'Yes',
+                                value: data.addressResults[0] | formattedAddress
+                            },
+                            {
+                                text: 'No, search again',
+                                value: ''
+                            }
+                        ]
+                    }) }}
+                    
+                {% elseif data.addressResults | length > 0 %}
+
+                    {{ govukRadios ({
+                        idPrefix: 'address-selection',
+                        name: 'address-selection',
+                        classes: 'govuk-radios--small',
+                        fieldset: {
+                            legend: {
+                                text: 'Select an address',
+                                isPageHeading: true,
+                                classes: 'govuk-fieldset__legend--xl'
+                            }
+                        },
+                        items: data.addressResults | addressOptions(data['address-selection'])
+                    }) }}
+
+                {% else %}
+
+                    {{ 'lookup' | redirect | safe }}
+                    
+                {% endif %}
+
+                {{ govukButton ({
+                    html: 'Continue'
+                }) }}
+
+            </form>
+
+        </div>
+
+</div>
+
+{% endblock %}
