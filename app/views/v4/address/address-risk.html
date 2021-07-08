@@ -26,7 +26,7 @@
 
 {% if not data['address-selection'] | length %}
     
-    {{ 'postcode' | redirect | safe }}
+    {{ 'address-confirm' | redirect | safe }}
     
 {% endif %}
 
@@ -87,7 +87,6 @@
 <p>The area you searched is covered by our forecasting.</p> 
 <p>We can offer you warnings when flooding to property or a danger to life is expected in this area.</p>
 <p>We can offer you warnings when minor flooding is possible, including fields and footpaths that may not be near you but but may connect to waterways in the area.</p>
-<p><a href="postcode">Search again</a></p>
       <div class="form-group">
         {{submitButton|safe}}
       </div>

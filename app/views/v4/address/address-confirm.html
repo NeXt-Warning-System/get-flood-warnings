@@ -29,7 +29,7 @@
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-{#permit|dump#}
+{## permit|dump #}
   <form action="address-risk">
 
                 {% if data.addressResults | length == 1 %}
@@ -58,11 +58,12 @@
                                 value: data.addressResults[0] | formattedAddress
                             },
                             {
-                                text: 'No, search again',
+                                text: 'No, try again',
                                 value: ''
                             }
                         ]
                     }) }}
+                    <p><a href="postcode">Search for another postcode</a></p>
 
    {{ govukButton ({
                     html: 'Continue'
@@ -76,7 +77,7 @@
         </legend>
                 <p>Select the full address of the location you are interested in. We will see if it is in an area we check for flooding.</p>
 <p>
-<span class="postcode-prefix">Postcode: {{data.addressLookupPostcode}}</span>
+<span class="postcode-prefix">Postcode: {{data.addressResults[0].POSTCODE}}</span>
   <span class="postcode"></span>
   <a href="postcode">
       Change<span class="govuk-visually-hidden"> postcode</span>
