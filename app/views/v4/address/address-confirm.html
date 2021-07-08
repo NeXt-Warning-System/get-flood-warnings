@@ -30,7 +30,7 @@
     <div class="govuk-grid-column-two-thirds">
 
 {## permit|dump #}
-  <form action="address-risk">
+      <form method="post" action="{{formAction}}" novalidate>
 
                 {% if data.addressResults | length == 1 %}
                     
@@ -59,11 +59,10 @@
                             },
                             {
                                 text: 'No, try again',
-                                value: ''
+                                value: 'no'
                             }
                         ]
                     }) }}
-                    <p><a href="postcode">Search for another postcode</a></p>
 
    {{ govukButton ({
                     html: 'Continue'

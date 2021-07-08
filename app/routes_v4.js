@@ -160,4 +160,29 @@ router.post('/location/catigories-check', function (req, res) {
       res.redirect("/"+folder+"/find-location/review")
     }
   })
+
+
+  // Is address selection correct? ==============================================================
+
+  router.get('/address/address-confirm', function (req, res) {
+    res.render(folder+'/address/address-confirm',{
+        "formAction":"/"+folder+"/address/address-confirm-check"
+    })
+  })
+
+  router.post('/address/address-confirm', function (req, res) {
+    res.render(folder+'/address/address-confirm',{
+        "formAction":"/"+folder+"/address/address-confirm-check"
+    })
+  })
+  
+  // Route to check if new application has started or is a renewal
+  router.post('/address/address-confirm-check', function (req, res) {
+  
+    if (req.body['address-selection']=="no") {
+      res.redirect("/"+folder+"/address/postcode")
+    } else {
+      res.redirect("/"+folder+"/address/address-risk")
+    }
+  })
 module.exports = router
