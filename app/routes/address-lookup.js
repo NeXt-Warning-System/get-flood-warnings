@@ -2,6 +2,8 @@ const express = require('express')
 const router = express.Router()
 
 const axios = require('axios')
+const proj4 = require('proj4')
+const turf = require('@turf/turf')
 
 const filters = require('../filters')(process.env)
 
@@ -176,6 +178,147 @@ router.post('/search', (req, res) => {
 			req.session.data.lookupError = 'not-found'
 			res.redirect(errorURL)
 			return
+		})
+})
+
+const longLatFor = (address) => {
+	proj4.defs(
+		'EPSG:27700',
+		'+proj=tmerc +lat_0=49 +lon_0=-2 +k=0.9996012717 +x_0=400000 +y_0=-100000 +ellps=airy +towgs84=446.448,-125.157,542.06,0.15,0.247,0.842,-20.489 +units=m +no_defs'
+	)
+
+	if (address) {
+		var coords = proj4('EPSG:27700', 'EPSG:4326', [
+			address.GEOMETRY_X ?? 0,
+			address.GEOMETRY_Y ?? 0,
+		])
+
+		return coords
+	} else {
+		return null
+	}
+}
+
+router.post('/target-areas-for-selected-address', (req, res) => {
+	const address = req.session.data.addressResults
+
+	const errorURL = req.session.data['error-page']
+	const successURL = req.session.data['next-page']
+
+	const placeAsPoint = turf.point(longLatFor(address))
+	const radius = 1
+	const floodAreaURL = `https://environment.data.gov.uk/flood-monitoring/id/floodAreas?lat=${
+		longLatFor(address)[1]
+	}&long=${longLatFor(address)[0]}&dist=${radius}`
+	axios
+		.get(floodAreaURL)
+		.then((response) => {
+			const data = response.data
+			var areas = data.items
+			if (!req.session.data.allFetchedAreas) {
+				req.session.data.allFetchedAreas = {}
+			}
+			areas.forEach((area) => {
+				req.session.data.allFetchedAreas[area.notation] = area
+			})
+			const polygonRequests = areas.map((area) => {
+				return axios.get(filters.secure(area.polygon))
+			})
+			axios
+				.all(polygonRequests)
+				.then(
+					axios.spread((...responses) => {
+						responses.forEach((polygonResponse, index) => {
+							const polygonData = polygonResponse.data
+							var placeIsWithBoundries = false
+							var distanceFromPlace = 9999
+							polygonData.features.forEach((feature) => {
+								placeIsWithBoundries =
+									turf.booleanPointInPolygon(placeAsPoint, feature.geometry) ??
+									placeIsWithBoundries
+								if (!placeIsWithBoundries) {
+									const featureCoordinatesArray = feature.geometry.coordinates
+									if (Array.isArray(featureCoordinatesArray)) {
+										featureCoordinatesArray.forEach((coordinatesArray) => {
+											coordinatesArray.forEach((coordinates) => {
+												var coordinatesToProcess = coordinates
+												if (
+													coordinates.length == 2 &&
+													typeof coordinates[0] == 'number'
+												) {
+													coordinatesToProcess = coordinatesArray
+												}
+												if (Array.isArray(coordinatesToProcess)) {
+													const coordinatesToTest = Array.isArray(
+														coordinatesToProcess[0]
+													)
+														? coordinatesToProcess
+														: [coordinatesToProcess, [0, 0]]
+													if (Array.isArray(coordinatesToTest)) {
+														const coordinatesAsPointCollection =
+															turf.featureCollection(
+																coordinatesToTest.map((coords) =>
+																	turf.point(coords)
+																)
+															)
+														const closestPoint = turf.nearestPoint(
+															placeAsPoint,
+															coordinatesAsPointCollection
+														)
+														const localDistanceFromPlace = turf.distance(
+															placeAsPoint,
+															closestPoint,
+															{ units: 'miles' }
+														)
+														distanceFromPlace =
+															localDistanceFromPlace < distanceFromPlace
+																? localDistanceFromPlace
+																: distanceFromPlace
+													}
+												}
+											})
+										})
+									}
+									if (distanceFromPlace < 0.1) {
+										distanceFromPlace = 0
+										placeIsWithBoundries = true
+									}
+								} else {
+									distanceFromPlace = 0
+								}
+							})
+							areas[index].hasDistance = distanceFromPlace != 9999
+							areas[index].polygonData = polygonData
+							areas[index].distance = distanceFromPlace
+							areas[index].affectsPlaceDirectly =
+								distanceFromPlace == 0 || placeIsWithBoundries
+						})
+						const filteredAreas = areas.filter((area) => {
+							return (
+								!area.hasDistance ||
+								area.distance <
+									(req.session.data.searchRadius
+										? Number(req.session.data.searchRadius)
+										: cuttoffDistanceFromPostcode)
+							)
+						})
+						place.warningAreas = filteredAreas.filter((area) => {
+							return area.notation.includes('FW')
+						})
+						place.alertAreas = filteredAreas.filter((area) => {
+							return area.notation.includes('WA')
+						})
+						req.session.data.location = place
+						res.redirect(nextPage)
+					})
+				)
+				.catch((errors) => {
+					console.log('Polygon fetch error', errors)
+				})
+		})
+		.catch((error) => {
+			console.log('Error', error.message)
+			res.redirect(errorPage)
 		})
 })
 
