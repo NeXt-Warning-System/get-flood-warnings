@@ -1,0 +1,86 @@
+{% extends 'layout.html' %}
+{% set title = "Confirm address:" %}
+
+{% block pageTitle %}
+    {{title}} - GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+
+    {{ super() }}
+
+<div class="govuk-phase-banner">
+  <p class="govuk-phase-banner__content"><strong class="govuk-tag govuk-phase-banner__content__tag ">
+  alpha
+</strong>
+    <span class="govuk-phase-banner__text">
+      This is a new service – your
+      <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+    </span>
+  </p>
+</div>
+
+    {{ govukBackLink ({
+        text: 'Back',
+        href: 'javascript:history.back()'
+    }) }}
+
+{% endblock %}
+
+{% block content %}
+
+{% if not data['address-selection'] | length %}
+    
+    {{ 'postcode' | redirect | safe }}
+    
+{% endif %}
+
+<div class="govuk-grid-row">
+
+        <div class="govuk-grid-column-two-thirds">
+
+            <form method="post" action="address-risk">
+
+
+        <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            {{title}}
+        </legend> 
+
+                {{ govukInsetText ({
+                    html: data['address-selection'] | addressWithNewLines | safe
+                }) }}
+
+                    {{ govukRadios ({
+                        idPrefix: 'address-selection',
+                        name: 'address-selection',
+                        fieldset: {
+                            legend: {
+                                text: 'Is this correct?',
+                                isPageHeading: true,
+                                classes: 'govuk-fieldset__legend--m'
+                            }
+                        },
+                        items: [
+                            {
+                                text: 'Yes',
+                                value: data.addressResults[0] | formattedAddress
+                            },
+                            {
+                                text: 'No, try again',
+                                value: ''
+                            }
+                        ]
+                    }) }}
+
+                    <p><a href="postcode">Search for another postcode</a></p>
+
+      <div class="form-group">
+        {{submitButton|safe}}
+      </div>
+            </form>
+
+        </div>
+
+</div>
+
+{% endblock %}

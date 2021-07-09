@@ -41,7 +41,7 @@
 }) }}
 
 {% if data.contact=="emailSignin" or data.contact=="phoneSignin" or data.contact=="textSignin" %}
- <a class="govuk-button" href="/subscribe-journey/list" data-module="govuk-button">Continue</a>
+ <a class="govuk-button" href="/v4/subscribe-journey/list" data-module="govuk-button">Continue</a>
  {% else %}
                                {% if data.contactSignup=="email" or data.contactSignup=="text" or data.contactSignup=="phone"%}
  <a class="govuk-button" href="confirmation" data-module="govuk-button">Continue</a>

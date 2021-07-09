@@ -5,6 +5,16 @@
 {% endblock %}
 
 {% block beforeContent %}
+<div class="govuk-phase-banner">
+  <p class="govuk-phase-banner__content"><strong class="govuk-tag govuk-phase-banner__content__tag ">
+  alpha
+</strong>
+    <span class="govuk-phase-banner__text">
+      This is a new service – your
+      <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+    </span>
+  </p>
+</div>
 
     {{ super() }}
 
@@ -26,11 +36,11 @@
             <p>Use this free service to:</p>
 
             <ul class="govuk-list govuk-list--bullet">
-                <li>receive flood warnings by text message, email or automated telephone message</li>
+                <li>get flood warnings by text message, email or automated telephone message</li>
                 <li>edit or remove contact information you have already registered</li>
             </ul>
 
-            <p>We will tell you when a flood will happen in a flood risk area in England.</p>
+            <p>This service tell you when a flood from rivers, the sea, or groundwater is expected in a flood risk area in England.</p>
 
             <p>You will get updates about changes to the flood situation. This might be information about higher water levels, or if an earlier start to the flood is expected.</p>
 
@@ -38,18 +48,21 @@
 
             {{ govukButton ({
                 html: 'Start now',
-                href: 'postcode',
+                href: '/v4/address/postcode',
                 isStartButton: true
             }) }}
             <h3 class="govuk-heading-m">Sign in</h3>
-            <p>If you already have an account, please <a href="/{{folder}}/sign-up/sign-in">sign in to continue</a>.</p>
+            <p><a href="/{{folder}}/sign-up/sign-in">Sign in to continue</a> if you already have an account.</p>
             <h3 class="govuk-heading-m">Before you start</h3>
-            <p>You can also register by calling Floodline:</br>
-                Telephone: 0345 988 1188</br>
-                Textphone: 0345 602 6340</br>
-                24-hour service</br>
-                <a href="#">Find out about call charges</a></p>
-                
+            <p>You will need either:
+
+            <ul class="govuk-list govuk-list--bullet">
+<li>a phone number you can be contacted on day or night
+</li>
+<li>an email address</li>
+</ul></p>
+
+
             <p>If you are looking for a place outside England visit:</p>
 
             <ul class="govuk-list govuk-list--bullet">
@@ -57,6 +70,15 @@
                 <li><a href="#">Northern Ireland Direct</a></li>
                 <li><a href="#">Natural Resources Wales</a></li>
             </ul>
+
+            <h3 class="govuk-heading-m">Other ways to apply</h3>
+
+            <p>You can also register by calling Floodline:</br>
+                Telephone: 0345 988 1188</br>
+                Textphone: 0345 602 6340</br>
+                24-hour service</br>
+                <a href="#">Find out about call charges</a></p>
+                
 
         </div>
 

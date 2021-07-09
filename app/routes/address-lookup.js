@@ -105,7 +105,7 @@ const matchedAddresses = (query, results) => {
 
 router.post('/search', (req, res) => {
 	// Gather user inputs
-	const inputPostcode = req.session.data['address-lookup-postcode'] ?? ''
+	const inputPostcode = req.session.data['addressLookupPostcode'] ?? ''
 	const queryBuildingNameOrNumber =
 		req.session.data['address-lookup-name-number'] ?? ''
 

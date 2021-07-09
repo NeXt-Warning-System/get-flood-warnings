@@ -1,44 +1,53 @@
-{% extends 'layout.html' %}
+{% extends "layout.html" %}
+
+{% set title = "Confirm address:" %}
+
 
 {% block pageTitle %}
-    Find an address
+    {{title}} - GOV.UK
 {% endblock %}
 
 {% block beforeContent %}
-
     {{ super() }}
 
-    {{ govukBackLink ({
-        text: 'Back',
-        href: 'javascript:history.back()'
-    }) }}
+<div class="govuk-phase-banner">
+  <p class="govuk-phase-banner__content"><strong class="govuk-tag govuk-phase-banner__content__tag ">
+  alpha
+</strong>
+    <span class="govuk-phase-banner__text">
+      This is a new service – your
+      <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+    </span>
+  </p>
+</div>
+{{backlink|safe}}
 
 {% endblock %}
 
 {% block content %}
 
 <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
 
-        <div class="govuk-grid-column-two-thirds">
-
-            <form action="end">
+{## permit|dump #}
+      <form method="post" action="{{formAction}}" novalidate>
 
                 {% if data.addressResults | length == 1 %}
                     
-                    <h1 class="govuk-heading-xl">
-                        Check address
-                    </h1>
-
+        <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            {{title}}
+        </legend>  
                     {{ govukInsetText ({
                         text: data.addressResults[0].DISPLAY_NAME | titleCase
-                    }) }}
+               
+                    }) }} 
 
                     {{ govukRadios ({
                         idPrefix: 'address-selection',
                         name: 'address-selection',
                         fieldset: {
                             legend: {
-                                text: 'Continue with this address?',
+                                text: 'Is this correct?',
                                 isPageHeading: true,
                                 classes: 'govuk-fieldset__legend--m'
                             }
@@ -49,22 +58,40 @@
                                 value: data.addressResults[0] | formattedAddress
                             },
                             {
-                                text: 'No, search again',
-                                value: ''
+                                text: 'No, try again',
+                                value: 'no'
                             }
                         ]
                     }) }}
 
+   {{ govukButton ({
+                    html: 'Continue'
+                }) }}  
+
                 {% elseif data.addressResults | length > 0 %}
+
+                        <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            Select an address
+
+        </legend>
+                <p>Select the full address of the location you are interested in. We will see if it is in an area we check for flooding.</p>
+<p>
+<span class="postcode-prefix">Postcode: {{data.addressResults[0].POSTCODE}}</span>
+  <span class="postcode"></span>
+  <a href="postcode">
+      Change<span class="govuk-visually-hidden"> postcode</span>
+  </a>
+</p>
+</br>
                     <ul class="govuk-list">
                          {% for address in data.addressResults %}
 
                             <li>
+<hr class="govuk-section-break govuk-section-break--visible">
 
                                 <a class="app-address-link" href="end?address-selection={{address | formattedAddress}}">
 
                                   {{address.DISPLAY_NAME}}
-
                                 </a>
 
                             </li>
@@ -75,12 +102,12 @@
                 {% else %}
 
                     {{ 'lookup' | redirect | safe }}
-                    
+
+                   
                 {% endif %}
 
-                {{ govukButton ({
-                    html: 'Continue'
-                }) }}
+            
+           
 
             </form>
 
