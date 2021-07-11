@@ -66,6 +66,10 @@ const normaliseAddressData = (results) => {
 				)
 			}
 
+			if (address.DEPENDENT_LOCALITY) {
+				displayComponents.push(filters.titleCase(address.DEPENDENT_LOCALITY))
+			}
+
 			if (address.POST_TOWN) {
 				displayComponents.push(address.POST_TOWN)
 			}
@@ -170,6 +174,11 @@ router.post('/search', (req, res) => {
 					}
 				}
 				// Return all addresses
+				if (!Array.isArray(req.session.data.allFetchedAddresses)) {
+					req.session.data.allFetchedAddresses = []
+				}
+				req.session.data.allFetchedAddresses =
+					req.session.data.allFetchedAddresses.concat(addresses)
 				req.session.data.addressResults = addresses
 				res.redirect(successURL)
 				return
@@ -189,8 +198,8 @@ const longLatFor = (address) => {
 
 	if (address) {
 		var coords = proj4('EPSG:27700', 'EPSG:4326', [
-			address.GEOMETRY_X ?? 0,
-			address.GEOMETRY_Y ?? 0,
+			address.X_COORDINATE ?? 0,
+			address.Y_COORDINATE ?? 0,
 		])
 
 		return coords
@@ -199,127 +208,132 @@ const longLatFor = (address) => {
 	}
 }
 
-router.post('/target-areas-for-selected-address', (req, res) => {
-	const address = req.session.data.addressResults
-
+router.post('/target-areas', (req, res) => {
 	const errorURL = req.session.data['error-page']
 	const successURL = req.session.data['next-page']
 
-	const placeAsPoint = turf.point(longLatFor(address))
-	const radius = 1
-	const floodAreaURL = `https://environment.data.gov.uk/flood-monitoring/id/floodAreas?lat=${
-		longLatFor(address)[1]
-	}&long=${longLatFor(address)[0]}&dist=${radius}`
-	axios
-		.get(floodAreaURL)
-		.then((response) => {
-			const data = response.data
-			var areas = data.items
-			if (!req.session.data.allFetchedAreas) {
-				req.session.data.allFetchedAreas = {}
-			}
-			areas.forEach((area) => {
-				req.session.data.allFetchedAreas[area.notation] = area
-			})
-			const polygonRequests = areas.map((area) => {
-				return axios.get(filters.secure(area.polygon))
-			})
-			axios
-				.all(polygonRequests)
-				.then(
-					axios.spread((...responses) => {
-						responses.forEach((polygonResponse, index) => {
-							const polygonData = polygonResponse.data
-							var placeIsWithBoundries = false
-							var distanceFromPlace = 9999
-							polygonData.features.forEach((feature) => {
-								placeIsWithBoundries =
-									turf.booleanPointInPolygon(placeAsPoint, feature.geometry) ??
-									placeIsWithBoundries
-								if (!placeIsWithBoundries) {
-									const featureCoordinatesArray = feature.geometry.coordinates
-									if (Array.isArray(featureCoordinatesArray)) {
-										featureCoordinatesArray.forEach((coordinatesArray) => {
-											coordinatesArray.forEach((coordinates) => {
-												var coordinatesToProcess = coordinates
-												if (
-													coordinates.length == 2 &&
-													typeof coordinates[0] == 'number'
-												) {
-													coordinatesToProcess = coordinatesArray
-												}
-												if (Array.isArray(coordinatesToProcess)) {
-													const coordinatesToTest = Array.isArray(
-														coordinatesToProcess[0]
-													)
-														? coordinatesToProcess
-														: [coordinatesToProcess, [0, 0]]
-													if (Array.isArray(coordinatesToTest)) {
-														const coordinatesAsPointCollection =
-															turf.featureCollection(
-																coordinatesToTest.map((coords) =>
-																	turf.point(coords)
-																)
-															)
-														const closestPoint = turf.nearestPoint(
-															placeAsPoint,
-															coordinatesAsPointCollection
-														)
-														const localDistanceFromPlace = turf.distance(
-															placeAsPoint,
-															closestPoint,
-															{ units: 'miles' }
-														)
-														distanceFromPlace =
-															localDistanceFromPlace < distanceFromPlace
-																? localDistanceFromPlace
-																: distanceFromPlace
-													}
-												}
-											})
-										})
-									}
-									if (distanceFromPlace < 0.1) {
-										distanceFromPlace = 0
-										placeIsWithBoundries = true
-									}
-								} else {
-									distanceFromPlace = 0
-								}
-							})
-							areas[index].hasDistance = distanceFromPlace != 9999
-							areas[index].polygonData = polygonData
-							areas[index].distance = distanceFromPlace
-							areas[index].affectsPlaceDirectly =
-								distanceFromPlace == 0 || placeIsWithBoundries
-						})
-						const filteredAreas = areas.filter((area) => {
-							return (
-								!area.hasDistance ||
-								area.distance <
-									(req.session.data.searchRadius
-										? Number(req.session.data.searchRadius)
-										: cuttoffDistanceFromPostcode)
-							)
-						})
-						place.warningAreas = filteredAreas.filter((area) => {
-							return area.notation.includes('FW')
-						})
-						place.alertAreas = filteredAreas.filter((area) => {
-							return area.notation.includes('WA')
-						})
-						req.session.data.location = place
-						res.redirect(nextPage)
-					})
-				)
-				.catch((errors) => {
-					console.log('Polygon fetch error', errors)
+	const selectedAddressId = req.session.data['selected-address']
+	const addressUPRN = req.session.data.savedAddresses[selectedAddressId]
+	const matchedAddresses = req.session.data.allFetchedAddresses.filter(
+		(address) => address.UPRN == addressUPRN
+	)
+	var address = matchedAddresses[0]
+
+	if (address) {
+		const placeAsPoint = turf.point(longLatFor(address))
+
+		const radius = 0.25
+		const floodAreaURL = `https://environment.data.gov.uk/flood-monitoring/id/floodAreas?lat=${
+			longLatFor(address)[1]
+		}&long=${longLatFor(address)[0]}&dist=${radius}`
+		axios
+			.get(floodAreaURL)
+			.then((response) => {
+				const data = response.data
+				var areas = data.items
+				const polygonRequests = areas.map((area) => {
+					return axios.get(filters.secure(area.polygon))
 				})
-		})
-		.catch((error) => {
-			console.log('Error', error.message)
-			res.redirect(errorPage)
-		})
+				axios
+					.all(polygonRequests)
+					.then(
+						axios.spread((...responses) => {
+							responses.forEach((polygonResponse, index) => {
+								const polygonData = polygonResponse.data
+								var placeIsWithBoundries = false
+								var distanceFromPlace = 9999
+								polygonData.features.forEach((feature) => {
+									placeIsWithBoundries =
+										turf.booleanPointInPolygon(
+											placeAsPoint,
+											feature.geometry
+										) ?? placeIsWithBoundries
+									if (!placeIsWithBoundries) {
+										const featureCoordinatesArray = feature.geometry.coordinates
+										if (Array.isArray(featureCoordinatesArray)) {
+											featureCoordinatesArray.forEach((coordinatesArray) => {
+												coordinatesArray.forEach((coordinates) => {
+													var coordinatesToProcess = coordinates
+													if (
+														coordinates.length == 2 &&
+														typeof coordinates[0] == 'number'
+													) {
+														coordinatesToProcess = coordinatesArray
+													}
+													if (Array.isArray(coordinatesToProcess)) {
+														const coordinatesToTest = Array.isArray(
+															coordinatesToProcess[0]
+														)
+															? coordinatesToProcess
+															: [coordinatesToProcess, [0, 0]]
+														if (Array.isArray(coordinatesToTest)) {
+															const coordinatesAsPointCollection =
+																turf.featureCollection(
+																	coordinatesToTest.map((coords) =>
+																		turf.point(coords)
+																	)
+																)
+															const closestPoint = turf.nearestPoint(
+																placeAsPoint,
+																coordinatesAsPointCollection
+															)
+															const localDistanceFromPlace = turf.distance(
+																placeAsPoint,
+																closestPoint,
+																{ units: 'miles' }
+															)
+															distanceFromPlace =
+																localDistanceFromPlace < distanceFromPlace
+																	? localDistanceFromPlace
+																	: distanceFromPlace
+														}
+													}
+												})
+											})
+										}
+										if (distanceFromPlace < 0.1) {
+											distanceFromPlace = 0
+											placeIsWithBoundries = true
+										}
+									} else {
+										distanceFromPlace = 0
+									}
+								})
+								areas[index].hasDistance = distanceFromPlace != 9999
+								areas[index].polygonData = polygonData
+								areas[index].distance = distanceFromPlace
+								areas[index].affectsPlaceDirectly =
+									distanceFromPlace == 0 || placeIsWithBoundries
+							})
+							const filteredAreas = areas.filter((area) => {
+								return !area.hasDistance || area.distance < radius
+							})
+							address.warningAreas = filteredAreas.filter((area) => {
+								return area.notation.includes('FW')
+							})
+							address.alertAreas = filteredAreas.filter((area) => {
+								return area.notation.includes('WA')
+							})
+							req.session.data.targetAreaResults = {
+								hasWarnings: address.warningAreas.length > 0,
+								hasAlertAreas: address.alertAreas.length > 0,
+							}
+							res.redirect(successURL)
+						})
+					)
+					.catch((errors) => {
+						console.log('Polygon fetch error', errors)
+						res.redirect(errorURL)
+					})
+			})
+			.catch((error) => {
+				console.log('Error', error.message)
+				res.redirect(errorURL)
+			})
+	} else {
+		console.log('No address')
+		res.redirect(errorURL)
+	}
 })
 
 module.exports = router

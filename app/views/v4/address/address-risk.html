@@ -2,6 +2,8 @@
 
 {% set title = "There is no flood monitoring at" %}
 
+{% set selectedAddressID = data['selected-address'] | uuid %}
+{% set selectedAddress = data | addressFromID(selectedAddressID) %}
 
 {% block pageTitle %}
     {{title}} - GOV.UK
@@ -24,53 +26,65 @@
 
 {% block content %}
 
-{% if not data['address-selection'] | length %}
+{% if not selectedAddress %}
     
     {{ 'address-confirm' | redirect | safe }}
     
 {% endif %}
 
 <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
+  <div class="govuk-grid-column-two-thirds">
 
-        <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-            {{title}}:
-        </legend>
+    <form action="list">
 
-       <h2 class="govuk-heading-s">{{data.addressResults[0] | formattedAddress}}</h2>
+      {% if data.targetAreaResults.hasWarnings or data.targetAreaResults.hasAlertAreas %}
 
-      <div>
-        <p>The area you searched is not covered by our forecasting because it is:</p>
+          <h1 class="govuk-heading-l">
+            Flood warning areas near: <br> {{ selectedAddress.DISPLAY_NAME }}
+          </h1>
+
+          <p>
+            The area you searched is covered by our forecasting.
+          </p>
+        
+        {% if data.targetAreaResults.hasWarnings %}
+          
+          <p>
+            We can offer you warnings when flooding to property or a danger to life is expected in this area.
+          </p>
+          
+        {% else %}
+
+          <p>
+            We can offer you warnings when minor flooding is possible, including fields and footpaths that may not be near you but but may connect to waterways in the area.
+          </p>
+          
+        {% endif %}
+        
+      {% else %}
+
+        <h1 class="govuk-heading-l">
+          No current flood monitoring at: <br> {{ selectedAddress.DISPLAY_NAME }}
+        </h1>
+
+        <p>
+          The address you searched is not covered by our forecasting because it is:
+        </p>
+
         <ul class="govuk-list govuk-list--bullet">
           <li>at low risk of flooding from rivers, the sea or groundwater</li>
           <li>affected by surface water flooding, which this service does not cover</li>
         </ul>
 
+        <p>
+          Continue to sign up for this address in case it becomes at risk in future.
+        </p>
         
+      {% endif %}
 
-      <p>
-        Continue to sign up for this area in case it becomes a risk in future.
-
-      </p>
-
-    </div>
-
-    <form action="/v4/subscribe-journey/severity" method="post">
-
-     
-
-      <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-        Flood warnings near:
-      </legend>
-
-       <h2 class="govuk-heading-s">{{data.addressResults[0] | formattedAddress}}</h2>
-
-<p>The area you searched is covered by our forecasting.</p> 
-<p>We can offer you warnings when flooding to property or a danger to life is expected in this area.</p>
-<p>We can offer you warnings when minor flooding is possible, including fields and footpaths that may not be near you but but may connect to waterways in the area.</p>
-      <div class="form-group">
-        {{submitButton|safe}}
-      </div>
+      {{ govukButton ({
+        html: 'Continue'
+      }) }}
 
 
     </form>

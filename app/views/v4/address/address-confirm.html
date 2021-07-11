@@ -2,6 +2,9 @@
 
 {% set title = "Confirm address:" %}
 
+{% set selectedAddressID = data['selected-address'] | uuid %}
+{% set selectedAddressUPRN = data.savedAddresses[selectedAddressID] %} 
+
 
 {% block pageTitle %}
     {{title}} - GOV.UK
@@ -30,32 +33,37 @@
     <div class="govuk-grid-column-two-thirds">
 
 {## permit|dump #}
-      <form method="post" action="{{formAction}}" novalidate>
+      <form method="post" action="/address-lookup/target-areas">
 
                 {% if data.addressResults | length == 1 %}
                     
-        <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-            {{title}}
-        </legend>  
-                    {{ govukInsetText ({
-                        text: data.addressResults[0].DISPLAY_NAME | titleCase
-               
-                    }) }} 
+                    {% set addressHintHTML %}
+                        
+                        {{ govukInsetText ({
+                            text: data.addressResults[0] | formattedAddress
+                        }) }} 
+                        
+                    {% endset %}
+
+                    
 
                     {{ govukRadios ({
                         idPrefix: 'address-selection',
-                        name: 'address-selection',
+                        name: 'savedAddresses[' + selectedAddressID + ']',
                         fieldset: {
                             legend: {
-                                text: 'Is this correct?',
+                                text: 'Is this address correct?',
                                 isPageHeading: true,
-                                classes: 'govuk-fieldset__legend--m'
+                                classes: 'govuk-fieldset__legend--l'
                             }
+                        },
+                        hint: {
+                            html: addressHintHTML
                         },
                         items: [
                             {
                                 text: 'Yes',
-                                value: data.addressResults[0] | formattedAddress
+                                value: data.addressResults[0].UPRN
                             },
                             {
                                 text: 'No, try again',
@@ -64,34 +72,48 @@
                         ]
                     }) }}
 
-   {{ govukButton ({
-                    html: 'Continue'
-                }) }}  
+                    <input type="hidden" name="selected-address" value="{{ selectedAddressID }}">
+
+                    <input type="hidden" name="next-page" value="/v4/address/address-risk">
+                    <input type="hidden" name="error-page" value="/v4/address/postcode">
+
+                    {{ govukButton ({
+                        html: 'Continue'
+                    }) }}  
 
                 {% elseif data.addressResults | length > 0 %}
 
-                        <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-            Select an address
+                    <h1 class="govuk-heading-l">
+                        Select an address
+                    </h1>
 
-        </legend>
-                <p>Select the full address of the location you are interested in. We will see if it is in an area we check for flooding.</p>
-<p>
-<span class="postcode-prefix">Postcode: {{data.addressResults[0].POSTCODE}}</span>
-  <span class="postcode"></span>
-  <a href="postcode">
-      Change<span class="govuk-visually-hidden"> postcode</span>
-  </a>
-</p>
-</br>
-                    <ul class="govuk-list">
+                    <p>
+                        <span class="postcode-prefix">
+                            Postcode: 
+                        </span>
+                        
+                        <span class="postcode">
+                            {{data.addressResults[0].POSTCODE}}
+                        </span>
+                    
+                        <a href="postcode">
+                            Change<span class="govuk-visually-hidden"> postcode</span>
+                        </a>
+
+                    </p>
+
+                    <ul class="govuk-list govuk-!-margin-top-6">
+
                          {% for address in data.addressResults %}
 
                             <li>
-<hr class="govuk-section-break govuk-section-break--visible">
+                                
+                                <hr class="govuk-section-break govuk-section-break--visible">
 
-                                <a class="app-address-link" href="end?address-selection={{address | formattedAddress}}">
+                                <a class="app-address-link" href="end?selected-address={{ selectedAddressID }}&savedAddresses[{{ selectedAddressID }}]={{ address.UPRN }}">
 
                                   {{address.DISPLAY_NAME}}
+
                                 </a>
 
                             </li>

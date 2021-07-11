@@ -1,0 +1,111 @@
+{% extends 'layout.html' %}
+
+{% block pageTitle %}
+    Which flood warnings do you need?
+{% endblock %}
+
+{% block beforeContent %}
+
+    {{ super() }}
+
+    {{ govukBackLink ({
+        text: 'Back',
+        href: 'javascript:history.back()'
+    }) }}
+
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+
+        <div class="govuk-grid-column-two-thirds">
+
+            <form action="../sign-up/contact">
+
+                <h1 class="govuk-heading-l">    
+                    Flood warning locations
+                </h1>
+
+                <dl class="govuk-summary-list">
+  
+                    {% set addressCount = 0 %}
+
+                    {% for id, uprn in data.savedAddresses %}
+
+                        {% if uprn | length %}
+
+                            {% set addressCount = addressCount + 1 %}
+
+                            {% set address = data | addressFromID(id) %}
+
+                            <div class="govuk-summary-list__row">
+                                <dt class="govuk-summary-list__value">
+                                    {{ address | formattedAddress }}
+                                </dt>
+                                <dd class="govuk-summary-list__actions">
+                                    <a class="govuk-link" href="list?savedAddresses[{{ id }}]=&selected-address=">
+                                        Remove<span class="govuk-visually-hidden"> address</span>
+                                    </a>
+                                </dd>
+                            </div>
+
+                        {% endif %}
+
+                    {% endfor %}
+
+                </dl>
+
+                <p>
+                    <a href="postcode?selected-address=&addressLookupPostcode=&address-lookup-name-number=">Add another location</a>
+                </p>
+
+                {% if addressCount == 0 %}
+                    
+                    {{ 'postcode' | redirect | safe }}
+                    
+                {% endif %}
+
+                <hr class="govuk-section-break govuk-section-break--xl">
+
+                {{ govukRadios ({
+                    idPrefix: 'warnings-type',
+                    name: 'warnings-type',
+                    fieldset: {
+                        legend: {
+                            text: 'Which flood warnings do you need?',
+                            isPageHeading: true,
+                            classes: 'govuk-fieldset__legend--m'
+                        }
+                    },
+                    items: [
+                        {
+                            text: 'Warnings and severe warnings',
+                            value: 'Warnings and severe warnings',
+                            hint: {
+                                text: 'Flooding to property or a danger to life is expected in the area.'
+                            },
+                            checked: true if data['warnings-type'] == 'Warnings and severe warnings'
+                        },
+                        {
+                            text: 'All flood warnings including minor warnings',
+                            value: 'All flood warnings including minor warnings',
+                            hint: {
+                                text: 'These may be shallow flooding of fields and footpaths that may not be near me, but may connect to waterways in the area.'
+                            },
+                            checked: true if data['warnings-type'] == 'All flood warnings including minor warnings'
+                        }
+                    ]
+                }) }}
+
+                {{ govukButton ({
+                    html: 'Continue'
+                }) }}
+
+            </form>
+
+        </div>
+
+</div>
+
+{% endblock %}
