@@ -1,6 +1,9 @@
 {% extends 'layout.html' %}
 {% set title = "Confirm address:" %}
 
+{% set selectedAddressID = data['selected-address'] | uuid %}
+{% set selectedAddress = data | addressFromID(selectedAddressID) %}
+
 {% block pageTitle %}
     {{title}} - GOV.UK
 {% endblock %}
@@ -29,7 +32,7 @@
 
 {% block content %}
 
-{% if not data['address-selection'] | length %}
+{% if not data['selected-address'] | length %}
     
     {{ 'postcode' | redirect | safe }}
     
@@ -39,44 +42,29 @@
 
         <div class="govuk-grid-column-two-thirds">
 
-            <form method="post" action="address-risk">
+            <form method="post" action="/address-lookup/target-areas">
 
-
-        <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-            {{title}}
-        </legend> 
+                <h1 class="govuk-heading-l">
+                    {{ title }}
+                </h1>
 
                 {{ govukInsetText ({
-                    html: data['address-selection'] | addressWithNewLines | safe
+                    html: selectedAddress | formattedAddress | addressWithNewLines | safe
+                }) }}
+                
+                {{ govukButton ({
+                    html: 'Continue'
                 }) }}
 
-                    {{ govukRadios ({
-                        idPrefix: 'address-selection',
-                        name: 'address-selection',
-                        fieldset: {
-                            legend: {
-                                text: 'Is this correct?',
-                                isPageHeading: true,
-                                classes: 'govuk-fieldset__legend--m'
-                            }
-                        },
-                        items: [
-                            {
-                                text: 'Yes',
-                                value: data.addressResults[0] | formattedAddress
-                            },
-                            {
-                                text: 'No, try again',
-                                value: ''
-                            }
-                        ]
-                    }) }}
+                <input type="hidden" name="next-page" value="/v4/address/address-risk">
+                <input type="hidden" name="error-page" value="/v4/address/postcode">
 
-                    <p><a href="postcode">Search for another postcode</a></p>
+                <p>
+                    <a href="address-confirm">
+                        Go back to address list
+                    </a>
+                </p>
 
-      <div class="form-group">
-        {{submitButton|safe}}
-      </div>
             </form>
 
         </div>

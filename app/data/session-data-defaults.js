@@ -18,9 +18,8 @@ Example usage:
 */
 
 module.exports = {
+	// Insert values here
 
-  // Insert values here
-
-  searchRadius: 1
-
+	searchRadius: 1,
+	savedAddresses: {},
 }

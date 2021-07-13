@@ -1,5 +1,7 @@
 const { area } = require('@turf/turf')
 
+const { v4: uuidv4 } = require('uuid')
+
 const isValidDate = (d) => {
 	return d instanceof Date && !isNaN(d)
 }
@@ -169,6 +171,19 @@ module.exports = function (env) {
 		} else {
 			return []
 		}
+	}
+
+	filters.addressFromID = (data, id) => {
+		const addressUPRN = data.savedAddresses[id]
+		var addressToReturn = null
+		if (Array.isArray(data.allFetchedAddresses)) {
+			for (const address of data.allFetchedAddresses) {
+				if (address.UPRN == addressUPRN) {
+					addressToReturn = address
+				}
+			}
+		}
+		return addressToReturn
 	}
 
 	filters.includes = (arrayOfStrings, testString) => {
@@ -346,6 +361,14 @@ module.exports = function (env) {
 
 	filters.isWarningArea = (area) => {
 		return area.notation.includes('FW')
+	}
+
+	filters.uuid = (input) => {
+		var input = input ?? ''
+		if (input.trim().length == 0) {
+			return uuidv4()
+		}
+		return input
 	}
 
 	/* ------------------------------------------------------------------
