@@ -33,7 +33,7 @@
 <div class="govuk-grid-row">
 
         <div class="govuk-grid-column-two-thirds">
-
+{{permit|dump}}
             <form action="../sign-up/contact">
 
                 <h1 class="govuk-heading-l">    
@@ -111,9 +111,26 @@
                     ]
                 }) }}
 
+              
+
+
+{% if data.contact=="textSignin" or data.contact=="emailSignin" or data.contact=="phoneSignin" or data.contactSignup=="email" or data.contactSignup=="text" or data.contactSignup=="phone"%}
+
+                {{ govukButton ({
+                   html: 'Sign out',
+                   href: '/'
+                 }) }}
+
+{% endif %}
+
+{% if data.contact=="emailSignin" or data.confirmation=="signin" or data.contact=="phoneSignin" or data.contact=="textSignin" %}
+{% else %}
+
                 {{ govukButton ({
                     html: 'Continue'
                 }) }}
+
+{% endif %}
 
             </form>
 
