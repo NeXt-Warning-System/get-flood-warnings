@@ -185,4 +185,32 @@ router.post('/location/catigories-check', function (req, res) {
       res.redirect("/"+folder+"/address/address-risk")
     }
   })
+
+
+
+  // Address risk (yes / try another / go to list) ==============================================================
+
+  router.get('/address/address-risk', function (req, res) {
+    res.render(folder+'/address/address-risk',{
+        "formAction":"/"+folder+"/address/address-risk-check"
+    })
+  })
+
+  router.post('/address/address-risk', function (req, res) {
+    res.render(folder+'/address/address-risk',{
+        "formAction":"/"+folder+"/address/address-risk-check"
+    })
+  })
+  
+  // Route to check if new application has started or is a renewal
+  router.post('/address/address-risk-check', function (req, res) {
+  
+    if (req.body['selection']=="yes") {
+      res.redirect("/"+folder+"/address/list")
+    } else {
+      res.redirect("/"+folder+"/address/postcode")
+    }
+  })
+
+
 module.exports = router

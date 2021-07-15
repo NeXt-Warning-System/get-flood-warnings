@@ -38,6 +38,7 @@
                 <h1 class="govuk-heading-l">    
                     Flood warning locations
                 </h1>
+                {#permit|dump#}
 
                 <dl class="govuk-summary-list">
   
@@ -69,6 +70,7 @@
                 </dl>
 
                 <p>
+
                     <a href="postcode?selected-address=&addressLookupPostcode=&address-lookup-name-number=">Add another location</a>
                 </p>
 
@@ -81,8 +83,8 @@
                 <hr class="govuk-section-break govuk-section-break--xl">
 
                 {{ govukRadios ({
-                    idPrefix: 'warnings-type',
-                    name: 'warnings-type',
+                    idPrefix: 'warningsType',
+                    name: 'warningsType',
                     fieldset: {
                         legend: {
                             text: 'Which flood warnings do you need?',
@@ -97,7 +99,7 @@
                             hint: {
                                 text: 'Flooding to property or a danger to life is expected in the area.'
                             },
-                            checked: true if data['warnings-type'] == 'Warnings and severe warnings'
+                            checked: true if data['warningsType'] == 'Warnings and severe warnings'
                         },
                         {
                             text: 'All flood warnings including minor warnings',
@@ -105,7 +107,7 @@
                             hint: {
                                 text: 'These may be shallow flooding of fields and footpaths that may not be near me, but may connect to waterways in the area.'
                             },
-                            checked: true if data['warnings-type'] == 'All flood warnings including minor warnings'
+                            checked: true if data['warningsType'] == 'All flood warnings including minor warnings'
                         }
                     ]
                 }) }}
@@ -113,7 +115,7 @@
               
 
 
-{% if data.contact=="textSignin" or data.contact=="emailSignin" or data.contact=="phoneSignin" or data.contactSignup=="email" or data.contactSignup=="text" or data.contactSignup=="phone"%}
+<!--{% if data.contact=="textSignin" or data.contact=="emailSignin" or data.contact=="phoneSignin" or data.contactSignup=="email" or data.contactSignup=="text" or data.contactSignup=="phone"%}
 
                 {{ govukButton ({
                    html: 'Sign out',
@@ -123,13 +125,13 @@
 {% endif %}
 
 {% if data.contact=="emailSignin" or data.confirmation=="signin" or data.contact=="phoneSignin" or data.contact=="textSignin" %}
-{% else %}
+{% else %}-->
 
                 {{ govukButton ({
                     html: 'Continue'
                 }) }}
-
-{% endif %}
+<!--
+{% endif %}-->
 
             </form>
 

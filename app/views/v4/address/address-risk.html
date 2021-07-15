@@ -25,7 +25,7 @@
 {% endblock %}
 
 {% block content %}
-
+{#permit|dump#}
 {% if not selectedAddress %}
     
     {{ 'address-confirm' | redirect | safe }}
@@ -34,8 +34,19 @@
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
-
+    {% if data.addressConfirmed %}
+    {% if data.targetAreaResults.hasWarnings or data.targetAreaResults.hasAlertAreas %}
     <form action="list">
+      {% else %}
+
+    <form action="{{formAction}}" method="post">
+      {% endif %}
+
+    {% else %}
+    <form action="list">
+    {% endif %}
+
+ 
 
       {% if data.targetAreaResults.hasWarnings or data.targetAreaResults.hasAlertAreas %}
 
@@ -80,11 +91,58 @@
           Continue to sign up for this address in case it becomes at risk in future.
         </p>
         
-      {% endif %}
+{% if data.addressConfirmed %}
 
-      {{ govukButton ({
-        html: 'Continue'
-      }) }}
+{% from "govuk/components/radios/macro.njk" import govukRadios %}
+
+{{ govukRadios({
+  idPrefix: "continue",
+  name: "selection",
+  
+  items: [
+    {
+      value: "yes",
+      text: "Continue with this address incase it becomes at risk in future"
+    },
+    {
+      value: "no",
+      text: "Try another postcode instead"
+    }
+  ]
+}) }}
+
+{{ govukButton ({
+  html: 'Continue'
+}) }}
+</br><p>
+  <a href="/v4/address/list?">Go back to selection</a>
+</p>
+{% else %}
+
+{{ govukButton ({
+  html: 'Continue'
+}) }}
+
+</br><p>
+  <a href="/v4/address/postcode">Try another postcode</a>
+</p>
+{% endif %}
+{% endif %}
+
+{% if data.targetAreaResults.hasWarnings or data.targetAreaResults.hasAlertAreas %}
+
+
+
+{{ govukButton ({
+  html: 'Continue'
+}) }}
+
+
+{% endif %}
+
+<input type="hidden" name="addressConfirmed" value="yes">
+
+
 
 
     </form>
