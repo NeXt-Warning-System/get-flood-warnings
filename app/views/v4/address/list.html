@@ -33,7 +33,11 @@
 <div class="govuk-grid-row">
 
         <div class="govuk-grid-column-two-thirds">
+            {% if data.validated=="yes" %}
+            <form action="../address/list-check">
+            {% else %}
             <form action="../sign-up/contact">
+                {% endif %}
 
                 <h1 class="govuk-heading-l">    
                     Flood warning locations
@@ -82,6 +86,7 @@
 
                 <hr class="govuk-section-break govuk-section-break--xl">
 
+               
                 {{ govukRadios ({
                     idPrefix: 'warningsType',
                     name: 'warningsType',
@@ -112,26 +117,15 @@
                     ]
                 }) }}
 
-              
 
 
-<!--{% if data.contact=="textSignin" or data.contact=="emailSignin" or data.contact=="phoneSignin" or data.contactSignup=="email" or data.contactSignup=="text" or data.contactSignup=="phone"%}
 
-                {{ govukButton ({
-                   html: 'Sign out',
-                   href: '/'
-                 }) }}
 
-{% endif %}
-
-{% if data.contact=="emailSignin" or data.confirmation=="signin" or data.contact=="phoneSignin" or data.contact=="textSignin" %}
-{% else %}-->
 
                 {{ govukButton ({
                     html: 'Continue'
                 }) }}
-<!--
-{% endif %}-->
+
 
             </form>
 

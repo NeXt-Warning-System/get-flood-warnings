@@ -87,9 +87,7 @@
           <li>affected by surface water flooding, which this service does not cover</li>
         </ul>
 
-        <p>
-          Continue to sign up for this address in case it becomes at risk in future.
-        </p>
+
         
 {% if data.addressConfirmed %}
 
@@ -118,7 +116,9 @@
   <a href="/v4/address/list?">Go back to selection</a>
 </p>
 {% else %}
-
+<p>
+  Continue to sign up for this address in case it becomes at risk in future.
+</p>
 {{ govukButton ({
   html: 'Continue'
 }) }}

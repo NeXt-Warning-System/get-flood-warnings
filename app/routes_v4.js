@@ -207,8 +207,10 @@ router.post('/location/catigories-check', function (req, res) {
   
     if (req.body['selection']=="yes") {
       res.redirect("/"+folder+"/address/list")
-    } else {
+    } else if (req.body['selection']=="no"){
       res.redirect("/"+folder+"/address/postcode")
+    } else {
+      res.redirect("/"+folder+"/address/address-risk")
     }
   })
 

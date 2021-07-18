@@ -16,9 +16,13 @@
 {% endblock %}
 
 {% block content %}
+
 <div class="govuk-grid-row">
 
         <div class="govuk-grid-column-two-thirds">
+          <form method="post" action="../address/list-check">
+
+
 
         <h1 class="govuk-heading-xl">Enter validation code</h1>
       {% if data.contactSignup=="email" or data.contact=="emailSignin" %}
@@ -39,21 +43,17 @@
     classes: 'govuk-label--xs'
   }
 }) }}
+<input type="hidden" name="validated" value="yes">
 
-{% if data.contact=="emailSignin" or data.contact=="phoneSignin" or data.contact=="textSignin" %}
- <a class="govuk-button" href="/v4/address/list-check" data-module="govuk-button">Continue</a>
- {% else %}
-                               {% if data.contactSignup=="email" or data.contactSignup=="text" or data.contactSignup=="phone"%}
- <a class="govuk-button" href="/v4/address/list-check" data-module="govuk-button">Continue</a>
-
-                  
-                    {% endif %}
-                    {% endif %}
+{{ govukButton ({
+  html: 'Continue'
+}) }}
      
         </div>
 
 </div>
 </br></br>
+
 <details class="govuk-details" data-module="govuk-details">
   <summary class="govuk-details__summary">
     <span class="govuk-details__summary-text">
