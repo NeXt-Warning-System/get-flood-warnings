@@ -1,6 +1,6 @@
 {% extends "layout.html" %}
 
-{% set title = "There is no flood monitoring at" %}
+{% set title = "Flood monitoring" %}
 
 {% set selectedAddressID = data['selected-address'] | uuid %}
 {% set selectedAddress = data | addressFromID(selectedAddressID) %}
@@ -51,11 +51,11 @@
       {% if data.targetAreaResults.hasWarnings or data.targetAreaResults.hasAlertAreas %}
 
           <h1 class="govuk-heading-l">
-            Flood warning areas near: <br> {{ selectedAddress.DISPLAY_NAME }}
+            Flood warnings near: <br> {{ selectedAddress.DISPLAY_NAME }}
           </h1>
 
           <p>
-            The area you searched is covered by our forecasting.
+            The address you searched is covered by our forecasting.
           </p>
         
         {% if data.targetAreaResults.hasWarnings %}
