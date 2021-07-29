@@ -3,8 +3,8 @@
 {% set imgpath="/public/images/" %}
 
 {% block page_title %}
-  Gmail | Get flood warnings confirmation
-
+  Gmail | Validation code: Get flood warnings
+ 
 {% endblock %}
 
 {% block proposition_header %}
@@ -34,7 +34,7 @@
     <div class="govuk-grid-column-two-thirds">
 
       <p class="subject">
-        Get flood warnings confirmation  <img class="inboxicon" src="{{ imgpath }}gmail_icon_inbox.png" alt="" />
+        Validation code: Get flood warnings  <img class="inboxicon" src="{{ imgpath }}gmail_icon_inbox.png" alt="" />
       </p>
     </div>
       <div class="govuk-grid-column-one-quarter">
@@ -58,25 +58,15 @@
           <div id="email_text">
 
       </br>
-      <h3 class="govuk-heading-m">Get flood warnings confirmation</h3>
-      <p>You will now get flooding warnings from the Environment Agency for your selected addresses.
-        </p><p>
-         Your access information for future use is:
-        </p>
-       <ul class="govuk-list govuk-list--bullet">
-         <li>{{data.contactByEmail}}{{data.contactByText}}{{data.contactByPhone}}</li>
-       </ul>
-        
-        <p>You can edit or remove the addresses you have signed up for at any time on your ‘Check your answers page’:</p>
-       <a href="/{{folder}}/address/list-check">https//:www.get-flood-warnings.gov.uk/vk-ud4u-f63h</a>
-     
-                </br></br>
-               </br></br>
-           <p>Floodline</br>
-                Telephone: 0345 988 1188</br>
-                24-hour service</br>
-                <a href="#">Find out about call charges</a></p>
-                
+      <p>Get flood warnings: Your validation code is:</p>
+        <h1 class="govuk-heading-m">
+          5342
+        </h1>
+
+        <p>It expires in 10 minutes. Go to the online service and enter this code to continue.</p>
+       <a href="code">https//:www.get-flood-warnings.gov.uk/vk-ud4u-f63h</a>
+
+      
       </div><!-- // end #email_text -->
 
     </div><!-- // end .column 3/4 -->
