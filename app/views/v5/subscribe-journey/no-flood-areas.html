@@ -1,0 +1,52 @@
+{% extends 'layout.html' %}
+
+{% set place = data.location %}
+
+{% block pageTitle %}
+    No flood areas
+{% endblock %}
+
+{% block beforeContent %}
+
+    {{ super() }}
+
+    {{ govukBackLink ({
+        text: 'Back',
+        href: 'javascript:history.back()'
+    }) }}
+
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+
+        <div class="govuk-grid-column-two-thirds">
+
+
+            <h1 class="govuk-heading-l">There are no flood risk areas within <span class="app-nobreak">{{ data.searchRadius }} miles</span> of {{ place.name }}</h1>
+
+            <p>
+                The area surrounding {{ place.name }} is not covered by our equipment or forcasting because it is:
+            </p>
+
+            <ul class="govuk-list govuk-list--bullet">
+                <li>at low risk of flooding from rivers, the sea or groundwater</li>
+                <li>affected by surface water flooding, which this service does not cover</li>
+            </ul>
+
+            {{ govukButton ({
+                html: 'Try another postcode',
+                href: 'postcode'
+            }) }}
+
+            <p>
+                <a href="/location/select?searchRadius=10">Extend search area</a>
+            </p>
+
+
+        </div>
+
+</div>
+
+{% endblock %}
