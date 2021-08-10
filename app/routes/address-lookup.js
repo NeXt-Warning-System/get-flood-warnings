@@ -88,6 +88,57 @@ const normaliseAddressData = (results) => {
 	return outputArray
 }
 
+const normalisePlaceData = (results) => {
+	/*
+        Addresses from OS Places API are messy and don't standardise the '1st line' of the street address.
+        To show this in a list we want to create a new property 'displayName' to describe the street adddress by adding some component parts of the address together.    
+    */
+
+	let outputArray = []
+
+	for (const result of results) {
+		const place = result.GAZETTEER_ENTRY
+
+		// Check address is unique
+		if (
+			outputArray.filter((processedAddress) => processedAddress.ID == place.ID)
+				.length == 0
+		) {
+			// Create blank array to capture any components that exist
+			let displayComponents = []
+
+			// Go through any '1st line' address components in specificity order, add to array if it exists
+
+			if (place.NAME1) {
+				displayComponents.push(filters.titleCase(place.NAME1))
+			}
+
+			if (place.NAME2) {
+				displayComponents.push(filters.titleCase(place.NAME2))
+			}
+
+			if (place.POPULATED_PLACE) {
+				displayComponents.push(filters.titleCase(place.POPULATED_PLACE))
+			}
+
+			if (place.REGION) {
+				displayComponents.push(filters.titleCase(place.REGION))
+			}
+
+			// Join any components in the array with a comma
+			let displayName = displayComponents.join(', ')
+
+			// Return original result with new DISPLAY_NAME property
+			outputArray.push({
+				DISPLAY_NAME: displayName,
+				...place,
+			})
+		}
+	}
+
+	return outputArray
+}
+
 const matchedAddresses = (query, results) => {
 	const normalisedQuery = query.trim().toUpperCase()
 
@@ -207,6 +258,30 @@ const longLatFor = (address) => {
 		return null
 	}
 }
+
+router.get('/keyword', (req, res) => {
+	const query = req.query.query
+
+	if (query) {
+		axios
+			.get(
+				`https://api.os.uk/search/names/v1/find?key=${osApiKey}&maxresults=6&query=${encodeURIComponent(
+					query
+				)}`
+			)
+			.then((response) => {
+				const data = response.data
+				const results = normalisePlaceData(data.results)
+				res.send(results)
+			})
+			.catch((error) => {
+				console.log(error)
+				res.send([])
+			})
+	} else {
+		res.send([])
+	}
+})
 
 router.post('/target-areas', (req, res) => {
 	const errorURL = req.session.data['error-page']
