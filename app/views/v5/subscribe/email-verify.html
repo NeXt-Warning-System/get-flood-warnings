@@ -23,19 +23,12 @@
 
             <form action="email-consent">
 
-                <h1 class="govuk-heading-l">Verify your email address</h1>
+                <h1 class="govuk-heading-l">Confirm your email address</h1>
 
                 <p>
                     To make sure we have the right email address we have sent a code to {{ data['email-address'] }}.
                 </p>
 
-                <p>
-                    Enter the code we have sent you to continue.
-                </p>
-                
-                <p>
-                    The email might show in your spam folder.
-                </p>
 
                 {{ govukInput ({
                     id: 'email-code',
@@ -43,16 +36,33 @@
                     value: data['email-code'] if data['email-code'] else '',
                     classes: 'govuk-input--width-10',
                     label: {
-                        text: 'Verification code from email'
+                        text: 'Enter the code we have sent you:'
                     }
                 }) }}
 
                 {{ govukButton ({
                     html: 'Continue'
                 }) }}
+                {% from "govuk/components/details/macro.njk" import govukDetails %}
 
+                <details class="govuk-details" data-module="govuk-details">
+                    <summary class="govuk-details__summary">
+                      <span class="govuk-details__summary-text">
+                        Help with code
+                      </span>
+                    </summary>
+                    <div class="govuk-details__text">
+                        It may take a moment for your code to arrive. 
+                    </br></br>If you haven’t received your email, please check your spam folder.
+                    </br></br>
+                    <a href="#">Send code again</a>                    </div>
+                  </details>
+                
+     
+                  
                 <p>
-                    <a href="#">Send the code again</a> <br>
+           
+                    
                     <a href="email">Enter a different email address</a>
                 </p>
 

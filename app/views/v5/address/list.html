@@ -89,7 +89,7 @@
                             text: 'Warnings and severe warnings',
                             value: 'Warnings and severe warnings',
                             hint: {
-                                text: 'Flooding to property or a danger to life is expected in the area.'
+                                text: 'Flooding to property or a danger to life is expected in this location. We have sent 3 warnings for this location over the last year.'
                             },
                             checked: true if data['warningsType'] == 'Warnings and severe warnings'
                         },
@@ -97,7 +97,7 @@
                             text: 'All flood warnings including minor warnings',
                             value: 'All flood warnings including minor warnings',
                             hint: {
-                                text: 'These may be shallow flooding of fields and footpaths that may not be near me, but may connect to waterways in the area.'
+                                text: 'These may be shallow flooding of fields and footpaths that may not be near me, but may connect to waterways in this location. We have sent 8 minor warnings for this location over the last year.'
                             },
                             checked: true if data['warningsType'] == 'All flood warnings including minor warnings'
                         }
