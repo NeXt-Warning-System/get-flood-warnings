@@ -1,7 +1,7 @@
 {% extends 'layout.html' %}
 
 {% block pageTitle %}
-    Confirm your mobile phone number
+    Code re-sent
 {% endblock %}
 
 {% block beforeContent %}
@@ -25,10 +25,10 @@
 
             <form action="phone-consent">
 
-                <h1 class="govuk-heading-l">Confirm your mobile telephone number</h1>
+                <h1 class="govuk-heading-l">Code re-sent</h1>
 
                 <p>
-                    To make sure we have the right mobile telephone number we have sent a code by text message to {{ data['text-number'] }}.
+                    We have re-sent a code by text message to {{ data['text-number'] }} to confirm your telephone number.
                 </p>
 
 
@@ -56,7 +56,7 @@
                     <div class="govuk-details__text">
                         It may take a moment for your code to arrive. 
                     </br></br>
-                    <a href="text-resend">Send code again</a>                    </div>
+                    <a href="email-resend">Send code again</a>                    </div>
                   </details>
                 <p>
                     <a href="text-consent">Enter a different mobile telephone number</a>

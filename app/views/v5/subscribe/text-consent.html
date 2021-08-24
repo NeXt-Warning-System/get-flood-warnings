@@ -1,7 +1,7 @@
 {% extends 'layout.html' %}
 
 {% block pageTitle %}
-    Would you like to get warnings by text message?
+    Get warnings by text message
 {% endblock %}
 
 {% block beforeContent %}
@@ -40,11 +40,11 @@
                 {% endset %}
 
                 {{ govukRadios ({
-                    idPrefix: 'text-consent',
-                    name: 'text-consent',
+                    idPrefix: 'textConsent',
+                    name: 'textConsent',
                     fieldset: {
                         legend: {
-                            html: 'Would you like to get warnings by <span class="app-nobreak">text message</span>?',
+                            html: 'Get warnings by <span class="app-nobreak">text message</span>',
                             isPageHeading: true,
                             classes: 'govuk-fieldset__legend--l'
                         }
