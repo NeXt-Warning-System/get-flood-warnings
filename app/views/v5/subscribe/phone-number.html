@@ -1,7 +1,7 @@
 {% extends 'layout.html' %}
 
 {% block pageTitle %}
-    Which telephone number should we call for warnings?
+Enter your telephone number to get warnings
 {% endblock %}
 
 {% block beforeContent %}
@@ -41,14 +41,14 @@
 
             <form action="phone-call">
 
-                {% if data['text-consent'] %}
+                {% if data['textConsent'] %}
                     
                     {{ govukRadios ({
-                        idPrefix: 'phone-use-text-number',
-                        name: 'phone-use-text-number',
+                        idPrefix: 'phoneUseTextNumber',
+                        name: 'phoneUseTextNumber',
                         fieldset: {
                             legend: {
-                                text: 'Which telephone number should we call for warnings?',
+                                text: 'Enter your telephone number to get warnings',
                                 isPageHeading: true,
                                 classes: 'govuk-fieldset__legend--l'
                             }

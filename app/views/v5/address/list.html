@@ -73,7 +73,21 @@
 
                 <hr class="govuk-section-break govuk-section-break--xl">
 
-               
+
+                {% set hintHTMLwarnings %}
+                <span class="govuk-hint">
+                    Flooding to property or a danger to life is expected in this location.</br></br>
+                    We have sent 3 warnings for this location over the last year.
+                </span>
+                {% endset %}
+
+                {% set hintHTMLalerts %}
+                <span class="govuk-hint">
+                These may be shallow flooding of roads, fields and footpaths that may not be near me but may connect to waterways in this location.</br></br>
+                We have sent 8 minor warnings for this location over the last year.
+                </span>
+                {% endset %}
+
                 {{ govukRadios ({
                     idPrefix: 'warningsType',
                     name: 'warningsType',
@@ -89,7 +103,7 @@
                             text: 'Warnings and severe warnings',
                             value: 'Warnings and severe warnings',
                             hint: {
-                                text: 'Flooding to property or a danger to life is expected in the area.'
+                                html: hintHTMLwarnings
                             },
                             checked: true if data['warningsType'] == 'Warnings and severe warnings'
                         },
@@ -97,7 +111,7 @@
                             text: 'All flood warnings including minor warnings',
                             value: 'All flood warnings including minor warnings',
                             hint: {
-                                text: 'These may be shallow flooding of fields and footpaths that may not be near me, but may connect to waterways in the area.'
+                                html: hintHTMLalerts
                             },
                             checked: true if data['warningsType'] == 'All flood warnings including minor warnings'
                         }

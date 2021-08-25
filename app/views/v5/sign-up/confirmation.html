@@ -14,34 +14,50 @@
       </div>
 
       <p>
-        We have sent a confirmation to {{data.contactByEmail}}{{data.contactByText}}{{data.contactByPhone}}.
+        We have sent a confirmation to {{ data['email-address'] }}.
       </p>
 
       <h2 class="govuk-heading-m">What happens next</h2>
-      <p> In the event of a flood forecast, warnings will be sent to {{data.contactByEmail}}{{data.contactByText}}{{data.contactByPhone}}.</p> 
-      <p>To view or edit your chosen addresses <a href="/{{folder}}/address/list-check">update your chosen addresses</a> online. If you cannot access your account online, call floodline on 0345 988 1188.</p>
-      <p>When returning to the service you can <a href="sign-in">sign in</a> to the service using a one time verification code, that will be sent to {{data.contactByEmail}}{{data.contactByText}}{{data.contactByPhone}}.</p>
+      <p> In the event of a flood forecast, warnings will be sent to you by:</br></br>
+             {% if data.emailConsent=="Yes" %}
+                        Email: {{ data['email-address'] }}</br>
+                        {% endif %}
+                        {% if data.textConsent=="Yes" %}
+                        Text: {{ data['text-number'] }}</br>
+                        {% endif %}
+                        {% if data.phoneConsent=="Yes" %}
+                        Voice call: {{ data['phone-number'] }}
+                    
+                        {% if data.phoneUseTextNumber=="Yes" %}
+                        {{ data['text-number'] }}</p>
+                        {% endif %}
+      
+                      
+                    </p> {% endif %}
 
-      <p><a href="https://www.gov.uk/service-manual/user-centred-design/resources/patterns/feedback-pages.html">What did you think of this service?</a> (takes 30 seconds)</p>
-           </br>
+                    <p>Your access information for future use is:</p>
+                    
+                    <ul class="govuk-list govuk-list--bullet">
+
+                      <li>{{ data['email-address'] }}</li>
+                    </ul>
+                    
+      <p>You can <a href="/{{folder}}/subscribe/check">update your details</a> online. A one time code will be sent to {{ data['email-address'] }} when you next access your account. 
+      </br></br>If you cannot access your account, call floodline on 0345 988 1188.
+        </p>
+
+      <p><a href="https://www.gov.uk/service-manual/user-centred-design/resources/patterns/feedback-pages.html">What did you think of this sign up service?</a> (takes 30 seconds)</p>
+           <p><a href="https://check-for-flooding.service.gov.uk/start-page">Check for flooding</a></p>
+           <p><a href="https://flood-warning-information.service.gov.uk/plan-ahead-for-flooding">Plan ahead for flooding</a></p>
 
            <p>Floodline</br>
                 Telephone: 0345 988 1188</br>
                 Textphone: 0345 602 6340</br>
                 24-hour service</br>
                 <a href="#">Find out about call charges</a></p>
-</br></br></br></br>
-<details class="govuk-details" data-module="govuk-details">
-  <summary class="govuk-details__summary">
-    <span class="govuk-details__summary-text">
-User testing links - confirmation email/text</span>
-  </summary>
-  <div class="govuk-details__text">
-<p>
-<a href="/{{folder}}/sign-up/email-confirm"  target="_blank">Email confirmation</a></br>
-<a href="/{{folder}}/sign-up/text-confirm"  target="_blank">Text message confirmation</a></br>
-<a href="/{{folder}}/sign-up/text-confirm"  target="_blank">Phoneline call confirmation</a></p>  </div>
-</details>
+              </br></br></br></br></br></br></br></br></br></br></br></br>
+
+<p><a href="/{{folder}}/sign-up/email-confirm"  target="_blank">User testing email confirmation</a></br></p>
     </div>
   </div>
 

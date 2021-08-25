@@ -1,7 +1,7 @@
 {% extends 'layout.html' %}
 
 {% block pageTitle %}
-    Verify your contact phone number
+    Confirm your telephone number
 {% endblock %}
 
 {% block beforeContent %}
@@ -26,15 +26,13 @@
 
             <form action="phone-verify">
 
-                <h1 class="govuk-heading-l">Verify your contact phone number</h1>
+                <h1 class="govuk-heading-l">Confirm your telephone number</h1>
 
                 <p>
-                    To make sure we have the right contact telephone number we will call {{ data['phone-number'] }} and read out a code.
+                    To make sure we have the right contact telephone number we will call and read out a code to {{ data['phone-number'] }}.
                 </p>
 
-                <p>
-                    You will be asked for this code in the next step.
-                </p>
+
 
                 {{ govukButton ({
                     html: 'Call me now'
@@ -45,7 +43,9 @@
                         Skip and set up later
                     </a>
                 </p>
-
+                <p>
+                    <a href="phone-number">Enter a different telephone number</a>
+                </p>
             </form>
 
         </div>

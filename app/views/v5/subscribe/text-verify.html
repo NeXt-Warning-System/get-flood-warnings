@@ -1,7 +1,7 @@
 {% extends 'layout.html' %}
 
 {% block pageTitle %}
-    Verify your mobile phone number
+    Confirm your mobile phone number
 {% endblock %}
 
 {% block beforeContent %}
@@ -25,15 +25,13 @@
 
             <form action="phone-consent">
 
-                <h1 class="govuk-heading-l">Verify your mobile telephone number</h1>
+                <h1 class="govuk-heading-l">Confirm your mobile telephone number</h1>
 
                 <p>
-                    To make sure we have the right mobile telephone number we have sent a code to {{ data['text-number'] }}.
+                    To make sure we have the right mobile telephone number we have sent a code by text message to {{ data['text-number'] }}.
                 </p>
 
-                <p>
-                    Enter the code we have sent you to continue.
-                </p>
+
 
                 {{ govukInput ({
                     id: 'text-code',
@@ -41,7 +39,7 @@
                     value: data['text-code'] if data['text-code'] else '',
                     classes: 'govuk-input--width-10',
                     label: {
-                        text: 'Verification code from text message'
+                        text: 'Enter the code we sent you:'
                     }
                 }) }}
 
@@ -49,11 +47,24 @@
                     html: 'Continue'
                 }) }}
 
+                <details class="govuk-details" data-module="govuk-details">
+                    <summary class="govuk-details__summary">
+                      <span class="govuk-details__summary-text">
+                        Help with code
+                      </span>
+                    </summary>
+                    <div class="govuk-details__text">
+                        It may take a moment for your code to arrive. 
+                    </br></br>
+                    <a href="text-resend">Send code again</a>                    </div>
+                  </details>
                 <p>
-                    <a href="#">Send the code again</a> <br>
-                    <a href="text-number">Enter a different mobile telephone number</a>
+                    <a href="text-consent">Enter a different mobile telephone number</a>
                 </p>
-
+            </br>  </br>  </br>  </br>  </br>
+            <p>
+           <a href="/{{folder}}/sign-up/text-code" target="_blank">User testing email code</a>
+            </p>
             </form>
 
         </div>

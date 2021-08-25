@@ -1,7 +1,7 @@
 {% extends 'layout.html' %}
 
 {% block pageTitle %}
-    Verify your email address
+    Code re-sent
 {% endblock %}
 
 {% block beforeContent %}
@@ -17,33 +17,35 @@
 
 {% block content %}
 
+{{ 'phone-consent' | redirect | safe if data['text-consent'] == 'No' }}
+
 <div class="govuk-grid-row">
 
         <div class="govuk-grid-column-two-thirds">
 
-            <form action="email-consent">
+            <form action="phone-consent">
 
-                <h1 class="govuk-heading-l">Confirm your email address</h1>
+                <h1 class="govuk-heading-l">Code re-sent</h1>
 
                 <p>
-                    To make sure we have the right email address we sent a code to {{ data['email-address'] }}.
+                    We have re-sent a code by text message to {{ data['text-number'] }} to confirm your telephone number.
                 </p>
 
 
+
                 {{ govukInput ({
-                    id: 'email-code',
-                    name: 'email-code',
-                    value: data['email-code'] if data['email-code'] else '',
+                    id: 'text-code',
+                    name: 'text-code',
+                    value: data['text-code'] if data['text-code'] else '',
                     classes: 'govuk-input--width-10',
                     label: {
-                        text: 'Enter the code we have sent you:'
+                        text: 'Enter the code we sent you:'
                     }
                 }) }}
 
                 {{ govukButton ({
                     html: 'Continue'
                 }) }}
-                {% from "govuk/components/details/macro.njk" import govukDetails %}
 
                 <details class="govuk-details" data-module="govuk-details">
                     <summary class="govuk-details__summary">
@@ -53,22 +55,13 @@
                     </summary>
                     <div class="govuk-details__text">
                         It may take a moment for your code to arrive. 
-                    </br></br>If you haven’t received your email, please check your spam folder.
                     </br></br>
                     <a href="email-resend">Send code again</a>                    </div>
                   </details>
-                
-     
-                  
                 <p>
-           
-                    
-                    <a href="email">Enter a different email address</a>
+                    <a href="text-consent">Enter a different mobile telephone number</a>
                 </p>
-                </br>  </br>  </br>  </br>  </br>
-                <p>
-               <a href="/{{folder}}/sign-up/email-code"  target="_blank">User testing email code</a>
-                </p>
+
             </form>
 
         </div>

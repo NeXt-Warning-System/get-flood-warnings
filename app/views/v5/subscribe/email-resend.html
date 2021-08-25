@@ -23,10 +23,10 @@
 
             <form action="email-consent">
 
-                <h1 class="govuk-heading-l">Confirm your email address</h1>
+                <h1 class="govuk-heading-l">Code re-sent</h1>
 
                 <p>
-                    To make sure we have the right email address we sent a code to {{ data['email-address'] }}.
+                    We re-sent a code to {{ data['email-address'] }} for you to confirm your email address.
                 </p>
 
 
@@ -55,7 +55,7 @@
                         It may take a moment for your code to arrive. 
                     </br></br>If you haven’t received your email, please check your spam folder.
                     </br></br>
-                    <a href="email-resend">Send code again</a>                    </div>
+                    <a href="#">Send code again</a>                    </div>
                   </details>
                 
      
@@ -65,10 +65,10 @@
                     
                     <a href="email">Enter a different email address</a>
                 </p>
-                </br>  </br>  </br>  </br>  </br>
-                <p>
-               <a href="/{{folder}}/sign-up/email-code"  target="_blank">User testing email code</a>
-                </p>
+            </br>  </br>  </br>  </br>  </br>
+            <p>
+           <a href="/{{folder}}/sign-up/email-code"  target="_blank">User testing email code</a>
+            </p>
             </form>
 
         </div>

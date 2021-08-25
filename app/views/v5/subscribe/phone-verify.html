@@ -1,7 +1,7 @@
 {% extends 'layout.html' %}
 
 {% block pageTitle %}
-    Verify your mobile phone number
+Confirm your telephone number
 {% endblock %}
 
 {% block beforeContent %}
@@ -26,15 +26,13 @@
 
             <form action="check">
 
-                <h1 class="govuk-heading-l">Verify your contact telephone number</h1>
+                <h1 class="govuk-heading-l">Confirm your telephone number</h1>
 
                 <p>
-                    We are calling {{ data['phone-number'] }}.
+                    We are calling {{ data['phone-number'] }} now.
                 </p>
 
-                <p>
-                    Enter the code that is read out on the telephone call.
-                </p>
+
 
                 {{ govukInput ({
                     id: 'phone-code',
@@ -42,7 +40,7 @@
                     value: data['phone-code'] if data['phone-code'] else '',
                     classes: 'govuk-input--width-10',
                     label: {
-                        text: 'Verification code from call'
+                        text: 'Enter the code:'
                     }
                 }) }}
 
@@ -51,10 +49,13 @@
                 }) }}
 
                 <p>
-                    <a href="#">Call me again</a> <br>
-                    <a href="phone-number">Enter a different contact telephone number</a>
+                    <a href="phone-call">Call me again</a> <br>
+                    <a href="phone-number">Enter a different telephone number</a>
                 </p>
-
+            </br>  </br>  </br>  </br>  </br>
+            <p>
+           <a href="/{{folder}}/sign-up/text-code"  target="_blank">User testing voice call script</a>
+            </p>
             </form>
 
         </div>
