@@ -28,10 +28,22 @@
 
                 <h1 class="govuk-heading-l">Confirm your telephone number</h1>
 
-                <p>
-                    To make sure we have the right contact telephone number we will call and read out a code to {{ data['phone-number'] }}.
-                </p>
+                {% if data.phoneUseTextNumber=="Yes" %}
 
+                <p>
+                    To make sure we have the right contact telephone number we will call and read out a code to {{ data['text-number'] }}.
+                </p>
+          
+        {% else %}
+        <p>
+            To make sure we have the right contact telephone number we will call and read out a code to {{ data['phone-number'] }}.
+        </p>
+          
+        {% endif %}
+                
+
+               
+                
 
 
                 {{ govukButton ({

@@ -25,10 +25,10 @@
 
             <form action="phone-consent">
 
-                <h1 class="govuk-heading-l">Code re-sent</h1>
+                <h1 class="govuk-heading-l">Code sent again</h1>
 
                 <p>
-                    We have re-sent a code by text message to {{ data['text-number'] }} to confirm your telephone number.
+                    We have sent another code by text message to {{ data['text-number'] }} to confirm your telephone number.
                 </p>
 
 
@@ -47,17 +47,11 @@
                     html: 'Continue'
                 }) }}
 
-                <details class="govuk-details" data-module="govuk-details">
-                    <summary class="govuk-details__summary">
-                      <span class="govuk-details__summary-text">
-                        Help with code
-                      </span>
-                    </summary>
-                    <div class="govuk-details__text">
+                <p>  
                         It may take a moment for your code to arrive. 
                     </br></br>
-                    <a href="email-resend">Send code again</a>                    </div>
-                  </details>
+                    <a href="email-resend">Send code again</a>                   
+                </p>
                 <p>
                     <a href="text-consent">Enter a different mobile telephone number</a>
                 </p>

@@ -23,10 +23,10 @@
 
             <form action="email-consent">
 
-                <h1 class="govuk-heading-l">Code re-sent</h1>
+                <h1 class="govuk-heading-l">Code sent again</h1>
 
                 <p>
-                    We re-sent a code to {{ data['email-address'] }} for you to confirm your email address.
+                    We have sent another code to {{ data['email-address'] }} for you to confirm your email address.
                 </p>
 
 
@@ -44,21 +44,13 @@
                     html: 'Continue'
                 }) }}
                 {% from "govuk/components/details/macro.njk" import govukDetails %}
-
-                <details class="govuk-details" data-module="govuk-details">
-                    <summary class="govuk-details__summary">
-                      <span class="govuk-details__summary-text">
-                        Help with code
-                      </span>
-                    </summary>
-                    <div class="govuk-details__text">
-                        It may take a moment for your code to arrive. 
-                    </br></br>If you haven’t received your email, please check your spam folder.
-                    </br></br>
-                    <a href="#">Send code again</a>                    </div>
-                  </details>
-                
-     
+               
+                <p> It may take a moment for your code to arrive. 
+                    If you haven’t received your email, please check your spam folder.
+                   </br></br>
+                   <a href="email-resend">Send code again</a>                    </p>
+        
+               
                   
                 <p>
            

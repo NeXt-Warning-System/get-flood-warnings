@@ -59,34 +59,31 @@
 
       </br>
       <h3 class="govuk-heading-m">Get flood warnings confirmation</h3>
-      <p>You will now get flooding warnings from the Environment Agency for your selected addresses.
-        <p> In the event of a flood forecast, warnings will be sent to you by:</br></br>
-          {% if data.emailConsent=="Yes" %}
-                     Email: {{ data['email-address'] }}</br>
-                     {% endif %}
-                     {% if data.textConsent=="Yes" %}
-                     Text: {{ data['text-number'] }}</br>
-                     {% endif %}
-                     {% if data.phoneConsent=="Yes" %}
-                     Voice call: {{ data['phone-number'] }}
-                 
-                     {% if data.phoneUseTextNumber=="Yes" %}
-                     {{ data['text-number'] }}</p>
-                     {% endif %}
+      <p>You will now get flooding warnings from the Environment Agency for your selected locations.</br></br>
+        Use this email address to <a href="/{{folder}}/subscribe/check">update your details online</a>. If you cannot update your details online, call floodline on 0345 988 1188.      </p>
+
    
-                 
-                 </p> {% endif %}
+        <h2 class="govuk-heading-m">What happens next</h2>
+        <p>When a flood is expected, warnings will be sent to:
+      
+               {% if data.emailConsent=="Yes" %}
+               <ul class="govuk-list govuk-list--bullet">
+                <li>Email: {{ data['email-address'] }}</li>
+                          {% endif %}
+                          {% if data.textConsent=="Yes" %}
+                         <li>Text: {{ data['text-number'] }}</li>
+                          {% endif %}
+                          {% if data.phoneConsent=="Yes" %}
+                        <li>Voice call: {{ data['phone-number'] }}                    
+                          {% if data.phoneUseTextNumber=="Yes" %}
+                          {{ data['text-number'] }}</li>
+                        
+                          {% endif %}
+        
+                        </ul>
+                      {% endif %}
 
-                 <p>Your access information for future use is:</p>
-                 
-                 <ul class="govuk-list govuk-list--bullet">
-
-                   <li>{{ data['email-address'] }}</li>
-                 </ul>
-                 
-   <p>You can <a href="/{{folder}}/subscribe/check">update your details</a> online. A one time code will be sent to {{ data['email-address'] }} when you next access your account. 
-   </br></br>If you cannot access your account, call floodline on 0345 988 1188.
-     </p>
+        
 
    <p><a href="https://www.gov.uk/service-manual/user-centred-design/resources/patterns/feedback-pages.html">What did you think of this sign up service?</a> (takes 30 seconds)</p>
         <p><a href="https://check-for-flooding.service.gov.uk/start-page">Check for flooding</a></p>
