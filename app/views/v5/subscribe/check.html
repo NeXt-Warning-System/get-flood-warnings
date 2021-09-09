@@ -18,7 +18,8 @@
 {% block content %}
 
 <div class="govuk-grid-row">
-        <div class="govuk-grid-column-two-thirds">
+
+  <div class="govuk-grid-column-two-thirds">
             <form action="/{{folder}}/sign-up/confirmation">
 
                 <h1 class="govuk-heading-l">    
@@ -55,7 +56,20 @@
                 <dl class="govuk-summary-list govuk-!-margin-bottom-9">
                     <div class="govuk-summary-list__row">
                       <dt class="govuk-summary-list__key">
-                        Addresses </dt>
+                        Email address </dt>
+                      <dd class="govuk-summary-list__value">
+            
+                        {{ data['email-address'] }}
+
+                      </dd>
+                      <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link" href="/{{folder}}/address/list">
+                        </a>
+                      </dd>
+                    </div>
+                    <div class="govuk-summary-list__row">
+                      <dt class="govuk-summary-list__key">
+                        Flood warning locations </dt>
                       <dd class="govuk-summary-list__value">
             
                         {{ addresshtml | safe }}
@@ -69,7 +83,7 @@
                     </div>
                     <div class="govuk-summary-list__row">
                         <dt class="govuk-summary-list__key">
-                          Warning type
+                          Which flood warnings do you need?
                         </dt>
                         <dd class="govuk-summary-list__value">
                           {% if data.warningsType=="Warnings and severe warnings"%}
@@ -77,7 +91,23 @@
                           {% else %}
                           All flood warnings including minor warnings
                           {% endif %}
-  
+                        </dd>
+                        <dd class="govuk-summary-list__actions">
+                          <a class="govuk-link" href="/{{folder}}/address/list">
+                            Change<span class="govuk-visually-hidden"> severity</span>
+                          </a>
+                        </dd>
+                      </div>
+                      <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
+                          Would you like to be told when warnings are no longer in force?
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                          {% if data.noLongerInForce=="yes"%}
+                          Yes
+                          {% else %}
+                          No
+                          {% endif %}
                         </dd>
                         <dd class="govuk-summary-list__actions">
                           <a class="govuk-link" href="/{{folder}}/address/list">
@@ -87,27 +117,14 @@
                       </div>
                     <div class="govuk-summary-list__row">
                       <dt class="govuk-summary-list__key">
-                        Contact details
+                        Get warnings by email?
                       </dt>
                       <dd class="govuk-summary-list__value">
                         {% if data.emailConsent=="Yes" %}
-                        Email: {{ data['email-address'] }}</br>
+                        Yes
+                        {% else %}
+                        No
                         {% endif %}
-
-                        {% if data.phoneConsent=="Yes" %}
-                        Call: {{ data['phone-number'] }}
-                    
-                        {% if data.phoneUseTextNumber=="Yes" %}
-                        {{ data['text-number'] }}
-                        {% endif %}
-
-                    </br>
-                        {% endif %}
-
-                        {% if data.textConsent=="Yes" %}
-                        Text: {{ data['text-number'] }}
-                        {% endif %}
-
                     </dd>
                       <dd class="govuk-summary-list__actions">
                         <a class="govuk-link" href="email">
@@ -116,24 +133,71 @@
                       </dd>
                     </div>
                     <div class="govuk-summary-list__row">
+                      <dt class="govuk-summary-list__key">
+                        Get warnings by text?
+                      </dt>
+                      <dd class="govuk-summary-list__value">
+                        {% if data.textConsent=="Yes" %}
+                        Yes
+                        {% else %}
+                        No
+                        {% endif %}
+                    </dd>
+                      <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link" href="email">
+                          Change<span class="govuk-visually-hidden"> contact</span>
+                        </a>
+                      </dd>
+                      {% if data.textConsent=="Yes" %}
+                    </div>
+                    <div class="govuk-summary-list__row">
+                      <dt class="govuk-summary-list__key">
+                        Mobile number
+                      </dt>
+                      <dd class="govuk-summary-list__value">
+                        {{ data['text-number'] }}
+
+                    </dd>
+                      <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link" href="email">
+                          Change<span class="govuk-visually-hidden"> contact</span>
+                        </a>
+                      </dd>
+                    </div>
+                    {% endif %}
+
+                    <div class="govuk-summary-list__row">
+                      <dt class="govuk-summary-list__key">
+                        Get warnings by telephone call?
+                      </dt>
+                      <dd class="govuk-summary-list__value">
+                        {% if data.phoneConsent=="Yes" %}
+                        Yes
+                        {% else %}
+                        No
+                        {% endif %}
+                    </dd>
+                      <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link" href="email">
+                          Change<span class="govuk-visually-hidden"> contact</span>
+                        </a>
+                      </dd>
+                    </div>
+                    {% if data.phoneConsent=="Yes" %}
+                    <div class="govuk-summary-list__row">
                         <dt class="govuk-summary-list__key">
-                            Contact preference for  warnings
+                          Telephone number for warnings
                         </dt>
                         <dd class="govuk-summary-list__value">
-                            {% if data.emailConsent=="Yes" %}
-                            Email</br>
-                            {% endif %}
-    
-                            {% if data.phoneConsent=="Yes" %}
-                            Phone call 
-                        
-                           
-                        </br>
-                            {% endif %}
-    
-                            {% if data.textConsent=="Yes" %}
-                            Text message
-                            {% endif %}
+                          {% if data.phoneUseTextNumber=="No" %}
+                          {{ data['text-number'] }}
+                          {% else %}
+
+                        {{ data['phone-number'] }}
+                    
+  
+                        {% endif %}
+
                         </dd>
                         <dd class="govuk-summary-list__actions">
                           <a class="govuk-link" href="email">
@@ -141,6 +205,8 @@
                           </a>
                         </dd>
                       </div>
+                      {% endif %}
+
                     
                   </dl>
           
