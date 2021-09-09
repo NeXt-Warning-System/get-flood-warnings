@@ -23,10 +23,15 @@
              {% if data.emailConsent=="Yes" %}
              <ul class="govuk-list govuk-list--bullet">
               <li>Email: {{ data['email-address'] }}</li>
+
+              {% else %}
+              <ul class="govuk-list govuk-list--bullet">
                         {% endif %}
+
                         {% if data.textConsent=="Yes" %}
                        <li>Text: {{ data['text-number'] }}</li>
                         {% endif %}
+
                         {% if data.phoneConsent=="Yes" %}
                       <li>Voice call: {{ data['phone-number'] }}                    
                         {% if data.phoneUseTextNumber=="Yes" %}
@@ -36,8 +41,23 @@
       
                       </ul>
                     {% endif %}
-
+                    {% if data.emailConsent=="Yes" %}
+                    {% if data.textConsent=="No" %}
+                    {% if data.phoneConsent=="No" %}
+                  </ul>
+                  {% endif %}{% endif %}{% endif %}
                     
+                  {% if data.textConsent=="Yes" %}
+                  {% if data.emailConsent=="No" %}
+                  {% if data.phoneConsent=="No" %}
+                </ul>
+                {% endif %}{% endif %}{% endif %}
+
+                {% if data.phoneConsent=="Yes" %}
+                {% if data.emailConsent=="No" %}
+                {% if data.textConsent=="No" %}
+              </ul>
+              {% endif %}{% endif %}{% endif %}
 
       <p><a href="https://www.gov.uk/service-manual/user-centred-design/resources/patterns/feedback-pages.html">What did you think of this sign up service?</a> (takes 30 seconds)</p>
            <p><a href="https://check-for-flooding.service.gov.uk/start-page">Check for flooding</a></p>
