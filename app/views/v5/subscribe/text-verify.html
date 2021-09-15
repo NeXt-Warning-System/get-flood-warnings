@@ -16,8 +16,7 @@
 {% endblock %}
 
 {% block content %}
-
-{{ 'phone-consent' | redirect | safe if data['text-consent'] == 'No' }}
+{{ 'phone-consent' | redirect | safe if data['textConsent'] == 'No' }}
 
 <div class="govuk-grid-row">
 

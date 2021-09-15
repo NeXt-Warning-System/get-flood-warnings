@@ -144,7 +144,7 @@
                         {% endif %}
                     </dd>
                       <dd class="govuk-summary-list__actions">
-                        <a class="govuk-link" href="email">
+                        <a class="govuk-link" href="text-consent">
                           Change<span class="govuk-visually-hidden"> contact</span>
                         </a>
                       </dd>
@@ -189,12 +189,12 @@
                           Telephone number for warnings
                         </dt>
                         <dd class="govuk-summary-list__value">
-                          {% if data.phoneUseTextNumber=="No" %}
+                          {% if data.phoneUseTextNumber=="Yes" %}
                           {{ data['text-number'] }}
                           {% else %}
 
                         {{ data['phone-number'] }}
-                    
+                        {{ data['phoneNumberHTML'] }} 
   
                         {% endif %}
 

@@ -17,10 +17,12 @@
 
 {% block content %}
 
+
 <div class="govuk-grid-row">
 
         <div class="govuk-grid-column-two-thirds">
             {% if data.validated=="yes" %}
+            
             <form action="../address/list-check">
             {% else %}
             <form action="../address/no-longer-in-force">
@@ -77,15 +79,21 @@
                 {% set hintHTMLwarnings %}
                 <span class="govuk-hint">
                     Flooding to property or a danger to life is expected in this location.</br></br>
-                    We have sent 3 warnings for this location over the last year.
+                  
+                    {% if data.targetAreaResults.hasWarnings %}
+                    We have sent 3 warnings for these location over the last year.
+                    {% endif %}
                 </span>
                 {% endset %}
 
                 {% set hintHTMLalerts %}
                 <span class="govuk-hint">
                 These may be shallow flooding of roads, fields and footpaths that may not be near me but may connect to waterways in this location.</br></br>
-                We have sent 8 warnings for this location across all warning types over the last year.
-                </span>
+              
+                {% if data.targetAreaResults.hasAlertAreas %}
+                We have sent 8 warnings for these location across all warning types over the last year.
+                {% endif %}    
+            </span>
                 {% endset %}
 
                 {{ govukRadios ({

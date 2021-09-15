@@ -17,9 +17,6 @@ Confirm your telephone number
 
 {% block content %}
 
-{{ 'check' | redirect | safe if data['phone-consent'] == 'No' }}
-{{ 'check' | redirect | safe if data['phone-use-text-number'] == 'Yes' }}
-
 <div class="govuk-grid-row">
 
         <div class="govuk-grid-column-two-thirds">

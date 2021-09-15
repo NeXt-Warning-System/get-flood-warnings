@@ -18,7 +18,7 @@
 {% block content %}
 
 {{ 'check' | redirect | safe if data['phone-consent'] == 'No' }}
-{{ 'check' | redirect | safe if data['phone-use-text-number'] == 'Yes' }}
+{{ 'check' | redirect | safe if data['phoneUseTextNumber'] == 'Yes' }}
 
 <div class="govuk-grid-row">
 
@@ -36,7 +36,7 @@
           
         {% else %}
         <p>
-            To make sure we have the right contact telephone number we will call and read out a code to {{ data['phone-number'] }}.
+            To make sure we have the right contact telephone number we will call and read out a code to {{ data['phone-number'] }} {{ data['phoneNumberHTML'] }}.
         </p>
           
         {% endif %}

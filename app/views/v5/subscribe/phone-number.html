@@ -17,7 +17,7 @@ Enter your telephone number to get warnings
 
 {% block content %}
 
-{{ 'check' | redirect | safe if data['phone-consent'] == 'No' }}
+{{ 'check' | redirect | safe if data['phoneConsent'] == 'No' }}
 
 {% set phoneNumberHTML %}
                     
@@ -41,7 +41,7 @@ Enter your telephone number to get warnings
 
             <form action="phone-call">
 
-                {% if data['textConsent'] %}
+                {% if data['textConsent'] == 'Yes' %}
                     
                     {{ govukRadios ({
                         idPrefix: 'phoneUseTextNumber',
@@ -72,13 +72,23 @@ Enter your telephone number to get warnings
                             }
                         ]
                     }) }}
-                    
+   
                 {% else %}
+                 
 
-                    <h1 class="govuk-heading-l">Which telephone number should we call for warnings?</h1>
+                {% from "govuk/components/input/macro.njk" import govukInput %}
 
-                    {{ phoneNumberHTML }}
-                    
+                {{ govukInput({
+                  label: {
+                    text: "Which telephone number should we call for warnings?",
+                    classes: "govuk-label--l",
+                    isPageHeading: true
+                  },
+                  id: "phoneUseTextNumber",
+                  name: "phoneNumberHTML"
+                }) }}
+
+
                 {% endif %}
 
                 {{ govukButton ({
