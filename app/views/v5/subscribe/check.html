@@ -63,7 +63,7 @@
 
                       </dd>
                       <dd class="govuk-summary-list__actions">
-                        <a class="govuk-link" href="/{{folder}}/address/list">
+                        <a class="govuk-link" href="/{{folder}}/address/list?fromCheck=true">
                         </a>
                       </dd>
                     </div>
@@ -76,7 +76,7 @@
 
                       </dd>
                       <dd class="govuk-summary-list__actions">
-                        <a class="govuk-link" href="/{{folder}}/address/list">
+                        <a class="govuk-link" href="/{{folder}}/address/list?fromCheck=true">
                           Change<span class="govuk-visually-hidden"> severity</span>
                         </a>
                       </dd>
@@ -93,7 +93,7 @@
                           {% endif %}
                         </dd>
                         <dd class="govuk-summary-list__actions">
-                          <a class="govuk-link" href="/{{folder}}/address/list">
+                          <a class="govuk-link" href="/{{folder}}/address/list?fromCheck=true">
                             Change<span class="govuk-visually-hidden"> severity</span>
                           </a>
                         </dd>
@@ -110,7 +110,7 @@
                         {% endif %}
                     </dd>
                       <dd class="govuk-summary-list__actions">
-                        <a class="govuk-link" href="email">
+                        <a class="govuk-link" href="email-consent?fromCheck=true">
                           Change<span class="govuk-visually-hidden"> contact</span>
                         </a>
                       </dd>
@@ -127,7 +127,7 @@
                         {% endif %}
                     </dd>
                       <dd class="govuk-summary-list__actions">
-                        <a class="govuk-link" href="text-consent">
+                        <a class="govuk-link" href="text-consent?fromCheck=true">
                           Change<span class="govuk-visually-hidden"> contact</span>
                         </a>
                       </dd>
@@ -142,7 +142,7 @@
 
                     </dd>
                       <dd class="govuk-summary-list__actions">
-                        <a class="govuk-link" href="email">
+                        <a class="govuk-link" href="text-consent?fromCheck=true">
                           Change<span class="govuk-visually-hidden"> contact</span>
                         </a>
                       </dd>
@@ -161,7 +161,7 @@
                         {% endif %}
                     </dd>
                       <dd class="govuk-summary-list__actions">
-                        <a class="govuk-link" href="email">
+                        <a class="govuk-link" href="phone-consent?fromCheck=true">
                           Change<span class="govuk-visually-hidden"> contact</span>
                         </a>
                       </dd>
@@ -183,7 +183,7 @@
 
                         </dd>
                         <dd class="govuk-summary-list__actions">
-                          <a class="govuk-link" href="email">
+                          <a class="govuk-link" href="phone-number?fromCheck=true">
                             Change<span class="govuk-visually-hidden"> contact</span>
                           </a>
                         </dd>
@@ -212,13 +212,14 @@
               
 
 
-{% if data.submited=="yes" %}
-                {{ govukButton ({
-                   html: 'Sign out',
-                   href: '/'
-                 }) }}
+                {% if data.submited=="yes" %}
 
-{% else %}
+                  {{ govukButton ({
+                    html: 'Sign out',
+                    href: '/'
+                  }) }}
+
+                {% else %}
 
 
 

@@ -17,16 +17,14 @@
 
 {% block content %}
 
+{% set destinationURL = '/'+folder+'/subscribe/email' if not data.fromCheck == 'true' else '/'+folder+'/subscribe/check'  %}
+
 
 <div class="govuk-grid-row">
 
         <div class="govuk-grid-column-two-thirds">
-            {% if data.validated=="yes" %}
-            
-            <form action="../address/list-check">
-            {% else %}
-            <form action="../subscribe/email">
-                {% endif %}
+           
+           <form action="{{ destinationURL }}">
 
                 <h1 class="govuk-heading-l">    
                     Flood warning locations

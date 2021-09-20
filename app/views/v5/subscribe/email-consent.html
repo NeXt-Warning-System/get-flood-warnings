@@ -17,37 +17,45 @@
 
 {% block content %}
 
-{% set email %}
-<h3 class="govuk-heading-l">Get warnings by email?</h3>
-<p>{{ data['email-address'] }}</p>
-{% endset %}
-
 <div class="govuk-grid-row">
 
         <div class="govuk-grid-column-two-thirds">
 
-            <form action="text-consent">
+            {% set destinationURL = 'text-consent' if not data.fromCheck == 'true' else 'check'  %}
+
+            <form action="{{ destinationURL }}">
+
+                {% set emailHintHTML %}
+                    
+                    {{ govukInsetText ({
+                        text: data['email-address']
+                    }) }}
+                    
+                {% endset %}
 
                 {{ govukRadios ({
                     idPrefix: 'emailConsent',
                     name: 'emailConsent',
                     fieldset: {
                         legend: {
-                            html: email,
+                            text: 'Get warnings by email?',
                             isPageHeading: true,
                             classes: 'govuk-fieldset__legend--l'
                         }
+                    },
+                    hint: {
+                        html: emailHintHTML
                     },
                     items: [
                         {
                             text: 'Yes',
                             value: 'Yes',
-                            checked: true if data['email-consent'] == 'Yes'
+                            checked: true if data['emailConsent'] == 'Yes'
                         },
                         {
                             text: 'No',
                             value: 'No',
-                            checked: true if data['email-consent'] == 'No'
+                            checked: true if data['emailConsent'] == 'No'
                         }
                     ]
                 }) }}

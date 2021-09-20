@@ -16,13 +16,16 @@
 {% endblock %}
 
 {% block content %}
-{{ 'phone-consent' | redirect | safe if data['textConsent'] == 'No' }}
+
+{% set destinationURL = 'phone-consent' if not data.fromCheck == 'true' else 'check'  %}
+
+{{ destinationURL | redirect | safe if data['textConsent'] == 'No' }}
 
 <div class="govuk-grid-row">
 
         <div class="govuk-grid-column-two-thirds">
 
-            <form action="phone-consent">
+            <form action="{{ destinationURL }}">
 
                 <h1 class="govuk-heading-l">Check your text messages</h1>
 

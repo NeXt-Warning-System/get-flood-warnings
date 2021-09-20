@@ -48,24 +48,21 @@ Enter your telephone number to get warnings
                         name: 'phoneUseTextNumber',
                         fieldset: {
                             legend: {
-                                text: 'Enter your telephone number to get warnings',
+                                text: 'Telephone number to get warnings',
                                 isPageHeading: true,
                                 classes: 'govuk-fieldset__legend--l'
                             }
-                        },
-                        hint: {
-                            text: ''
                         },
                         items: [
                             {
                                 text: data['text-number'],
                                 value: 'Yes',
-                                checked: true if data['phone-use-text-number'] == 'Yes'
+                                checked: true if data['phoneUseTextNumber'] == 'Yes'
                             },
                             {
                                 text: 'A different telephone number',
                                 value: 'No',
-                                checked: true if data['phone-use-text-number'] == 'No',
+                                checked: true if data['phoneUseTextNumber'] == 'No',
                                 conditional: {
                                     html: phoneNumberHTML
                                 }
