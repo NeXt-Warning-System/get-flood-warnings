@@ -17,7 +17,7 @@
 
 {% block content %}
 
-{% set destinationURL = 'phone-consent' if not data.fromCheck == 'true' else 'check'  %}
+{% set destinationURL = 'phone-consent' if data.fromCheck != 'true' else 'check'  %}
 
 {{ destinationURL | redirect | safe if data['textConsent'] == 'No' }}
 

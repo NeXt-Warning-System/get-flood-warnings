@@ -21,7 +21,7 @@
 
         <div class="govuk-grid-column-two-thirds">
 
-            {% set destinationURL = 'text-consent' if not data.fromCheck == 'true' else 'check'  %}
+            {% set destinationURL = 'text-consent' if data.fromCheck != 'true' else 'check'  %}
 
             <form action="{{ destinationURL }}">
 

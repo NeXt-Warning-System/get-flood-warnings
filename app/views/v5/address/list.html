@@ -17,7 +17,7 @@
 
 {% block content %}
 
-{% set destinationURL = '/'+folder+'/subscribe/email' if not data.fromCheck == 'true' else '/'+folder+'/subscribe/check'  %}
+{% set destinationURL = '/'+folder+'/subscribe/email' if data.fromCheck != 'true' else '/'+folder+'/subscribe/check'  %}
 
 
 <div class="govuk-grid-row">
