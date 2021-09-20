@@ -48,7 +48,7 @@ Enter your telephone number to get warnings
                         name: 'phoneUseTextNumber',
                         fieldset: {
                             legend: {
-                                text: 'Telephone number to get warnings',
+                                text: 'Enter the telephone number to get warnings',
                                 isPageHeading: true,
                                 classes: 'govuk-fieldset__legend--l'
                             }
@@ -77,12 +77,14 @@ Enter your telephone number to get warnings
 
                 {{ govukInput({
                   label: {
-                    text: "Which telephone number should we call for warnings?",
+                    text: "Enter the telephone number to get warnings",
                     classes: "govuk-label--l",
                     isPageHeading: true
                   },
                   id: "phoneUseTextNumber",
-                  name: "phoneNumberHTML"
+                  name: "phoneNumberHTML",
+                  classes: 'govuk-input--width-20',
+                    type: 'tel'
                 }) }}
 
 
