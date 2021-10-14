@@ -1,0 +1,70 @@
+{% extends 'layout.html' %}
+
+{% block pageTitle %}
+    Confirm your mobile phone number
+{% endblock %}
+
+{% block beforeContent %}
+
+    {{ super() }}
+
+    {{ govukBackLink ({
+        text: 'Back',
+        href: 'javascript:history.back()'
+    }) }}
+
+{% endblock %}
+
+{% block content %}
+
+{% set destinationURL = 'phone-consent' if data.fromCheck != 'true' else 'check'  %}
+
+{{ destinationURL | redirect | safe if data['textConsent'] == 'No' }}
+
+<div class="govuk-grid-row">
+
+        <div class="govuk-grid-column-two-thirds">
+
+            <form action="{{ destinationURL }}">
+
+                <h1 class="govuk-heading-l">Check your text messages</h1>
+
+                <p>
+                    To make sure we have the right mobile telephone number we have sent a code by text message to {{ data['text-number'] }}.
+                </p>
+
+
+
+                {{ govukInput ({
+                    id: 'text-code',
+                    name: 'text-code',
+                    value: data['text-code'] if data['text-code'] else '',
+                    classes: 'govuk-input--width-10',
+                    label: {
+                        text: 'Enter the code we sent you'
+                    }
+                }) }}
+
+                {{ govukButton ({
+                    html: 'Continue'
+                }) }}
+
+                <p>
+                        It may take a moment for your code to arrive. 
+                    </br></br>
+                    <a href="text-resend">Send code again</a>                    
+                </p>
+                <p>
+                    <a href="text-consent">Enter a different mobile telephone number</a>
+                </p>
+            </br>  </br>  </br>  </br>  </br>
+            <p>
+           <a href="/{{folder}}/sign-up/text-code" target="_blank">User testing text message</a>
+            </p>
+            </form>
+
+        </div>
+
+</div>
+
+{% endblock %}

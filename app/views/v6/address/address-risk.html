@@ -1,0 +1,150 @@
+{% extends "layout.html" %}
+
+{% set title = "Flood monitoring" %}
+
+{% set selectedAddressID = data['selected-address'] | uuid %}
+{% set selectedAddress = data | addressFromID(selectedAddressID) %}
+
+{% block pageTitle %}
+    {{title}} - GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+
+    {{ super() }}
+
+    {{ govukBackLink ({
+        text: 'Back',
+        href: 'javascript:history.back()'
+    }) }}
+
+{% endblock %}
+
+{% block content %}
+{#permit|dump#}
+{% if not selectedAddress %}
+    
+    {{ 'address-confirm' | redirect | safe }}
+    
+{% endif %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    {% if data.addressConfirmed %}
+    {% if data.targetAreaResults.hasWarnings or data.targetAreaResults.hasAlertAreas %}
+    <form action="list">
+      {% else %}
+
+    <form action="{{formAction}}" method="post">
+      {% endif %}
+
+    {% else %}
+    <form action="list">
+    {% endif %}
+
+ 
+
+      {% if data.targetAreaResults.hasWarnings or data.targetAreaResults.hasAlertAreas %}
+
+          <h1 class="govuk-heading-l">
+            Flood warnings at: <br> {{ selectedAddress.DISPLAY_NAME }}
+          </h1>
+
+          <p>
+            We monitor the location this address is within.
+          </p>
+          <p>We can offer you warnings:</p>
+          <ul class="govuk-list govuk-list--bullet">
+            <li>when flooding to property or a danger to life is expected</li>
+            <li>when minor flooding is possible including roads, fields and footpaths that may not be near you but may connect to waterways in this location</li>
+          </ul>
+</br>
+        {% if data.targetAreaResults.hasWarnings %}
+          
+
+          
+        {% else %}
+
+          
+        {% endif %}
+        
+      {% else %}
+
+        <h1 class="govuk-heading-l">
+          No current flood monitoring at: <br> {{ selectedAddress.DISPLAY_NAME }}
+        </h1>
+
+        <p>
+          We do not monitor this location because it is at low risk of flooding from rivers, the sea or groundwater.
+</br></br>
+          It may still be affected by surface water flooding, which this service does not cover.
+                  </p>
+<p>You can:</p>
+        <ul class="govuk-list govuk-list--bullet">
+          <li><a href="https://flood-warning-information.service.gov.uk/long-term-flood-risk" target="_blank">check the long term flood risk for an area in England</a>, including surface water</li>
+          <li>continue to sign up for this address in case it becomes at risk in future</li>
+        </ul>
+
+
+        
+{% if data.addressConfirmed %}
+
+{% from "govuk/components/radios/macro.njk" import govukRadios %}
+
+{{ govukRadios({
+  idPrefix: "continue",
+  name: "selection",
+  
+  items: [
+    {
+      value: "yes",
+      text: "Continue with this address in case it becomes at risk in future"
+    },
+    {
+      value: "no",
+      text: "Try another postcode instead"
+    }
+  ]
+}) }}
+
+{{ govukButton ({
+  html: 'Continue'
+}) }}
+</br><p>
+  <a href="/{{folder}}/address/list?">Go back to selection</a>
+</p>
+{% else %}
+</br>
+{{ govukButton ({
+  html: 'Continue'
+}) }}
+
+</br><p>
+  <a href="/{{folder}}/address/postcode">Try another search</a>
+</p>
+{% endif %}
+{% endif %}
+
+{% if data.targetAreaResults.hasWarnings or data.targetAreaResults.hasAlertAreas %}
+
+
+
+{{ govukButton ({
+  html: 'Continue'
+}) }}
+
+
+{% endif %}
+
+<input type="hidden" name="addressConfirmed" value="yes">
+
+
+
+
+    </form>
+
+
+  </div>
+</div>
+
+{% endblock %}

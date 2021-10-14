@@ -1,0 +1,155 @@
+{% extends 'layout.html' %}
+
+{% block pageTitle %}
+    Search for a location
+{% endblock %}
+
+
+{% block beforeContent %}
+
+    {{ super() }}
+
+    {{ govukBackLink ({
+        text: 'Back',
+        href: 'javascript:history.back()'
+    }) }}
+
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+
+        <div class="govuk-grid-column-two-thirds">
+
+            <form method="post">
+
+                <h1 class="govuk-heading-l">Search for a location</h1>
+
+                {{ govukInput ({
+                    id: 'location-query',
+                    name: 'location-query',
+                    value: data['location-query'] if data['location-query'] else '',
+                    classes: 'govuk-input--width-20',
+                    label: {
+                        text: 'Place name, town or keyword'
+                    }
+                }) }}
+
+                {{ govukRadios ({
+                    idPrefix: 'location-selection',
+                    name: 'location-selection',
+                    classes: 'govuk-radios--small',
+                    fieldset: {
+                        legend: {
+                            text: 'Select a location',
+                            isPageHeading: true,
+                            classes: 'govuk-fieldset__legend--m'
+                        },
+                        classes: 'app-location-selection-fieldset'
+                    },
+                    items: [
+                        { 
+                            text: 'Placeholder',
+                            value: 'placeholder'
+                        }
+                    ]
+                }) }}
+
+                {{ govukButton ({
+                    html: 'Continue'
+                }) }}
+
+            </form>
+
+        </div>
+
+</div>
+
+{% endblock %}
+
+{% block pageScripts %}
+
+    <script>
+
+        function resetGeocodeForm() {
+            $('.loading-label').remove()
+            $('.error-label').remove()
+            $('.address-options').remove()
+            $('.app-location-selection-fieldset').hide()
+        }
+
+        var typingTimer;
+        var doneTypingInterval = 1000;
+        var $geocodeSearchInput = $('#location-query');
+
+        $geocodeSearchInput.on('keyup', function() {
+            clearTimeout(typingTimer)
+            typingTimer = setTimeout(doneTyping, doneTypingInterval)
+            resetGeocodeForm()
+            $geocodeSearchInput.after(
+                $('<p class="loading-label govuk-!-margin-top-4">Finding locations...</p>')
+            )
+        })
+
+        $geocodeSearchInput.on('keydown', function() {
+            clearTimeout(typingTimer)
+        })
+
+        function createAddressOptions(results) {
+            resetGeocodeForm()
+            function addErrorMessage() {
+                $geocodeSearchInput.after(
+                    $('<p class="error-label govuk-!-margin-top-4">No locations found</p>')
+                )
+            }
+            console.log(results[0])
+            if (results && results.length > 0) {
+                var validResultCount = 0
+                var $containingGroup = $('.app-location-selection-fieldset')
+                var radioOptionCount = $('.govuk-radios__item').length
+                $('.govuk-radios__item').each(function(index) {
+                    if (index != 0) {
+                        $(this).remove()
+                    } 
+                })
+                var $radioOption = $('.govuk-radios__item').clone()
+                $('.govuk-radios__item').remove()
+                results.map((place, i) => {
+                    if (place.DISPLAY_NAME) {
+                        validResultCount++
+                        var $currentRadioOption = $radioOption.clone()
+                        $currentRadioOption.find('input').attr('value', place.ID)
+                        $currentRadioOption.find('input').prop('checked', false)
+                        $currentRadioOption.find('label').text(place.DISPLAY_NAME)
+                        $('.govuk-radios').append($currentRadioOption)
+                    }
+                })
+                if (validResultCount) {
+                    $containingGroup.show()
+                } else {
+                    addErrorMessage()
+                }
+            } else {
+                addErrorMessage()
+            }
+        }
+
+        function doneTyping() {
+            resetGeocodeForm()
+            var query = $geocodeSearchInput.val();
+            if (query && query != '') {
+                $.ajax({
+                    url: '/address-lookup/keyword?query=' + encodeURIComponent(query),
+                }).done(function (data) {
+                    let results = data
+                    createAddressOptions(results)
+                })
+            }
+        }
+
+        doneTyping()
+
+    </script>
+
+{% endblock %}

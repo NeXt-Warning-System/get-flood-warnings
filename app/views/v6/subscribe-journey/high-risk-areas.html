@@ -1,0 +1,251 @@
+{% extends 'layout.html' %}
+
+{% set place = data.location %}
+
+{% block pageTitle %}
+    High flood risk areas near {{ place.name }}
+{% endblock %}
+
+{% block beforeContent %}
+
+    {{ super() }}
+
+    {{ govukBackLink ({
+        text: 'Back',
+        href: 'javascript:history.back()'
+    }) }}
+
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+
+        <div class="govuk-grid-column-two-thirds">
+
+                <h1 class="govuk-heading-l">High flood risk areas near {{ place.name }}</h1>
+
+                {% set inWarningArea = place.warningAreas | selectattr('affectsPlaceDirectly') | length %}
+
+                {% if inWarningArea %}
+
+                    <p>{{ place.name }} is in a high flood risk area. Alerts for high risk areas will tell you to expect flooding of homes and businesses.</p>
+                {% else %}
+
+                    <p>The closest high flood risk area to {{ place.name }} is {{ (place.warningAreas | sort(false, false, 'distance'))[0].distance | oneDecimalPlace }} miles away. Alerts for high risk areas will tell you to expect flooding of homes and businesses.</p>
+
+                {% endif %}
+
+        </div>
+
+</div>
+
+<div class="govuk-grid-row">
+
+        <div class="govuk-grid-column-two-thirds map-container">
+
+            <style>
+                .mapboxgl-popup {
+                    max-width: 400px;
+                    font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+                }
+                .mapboxgl-popup-content p {
+                    font-size: 14px !important;
+                }
+            </style>
+
+            {% set mapHTML %}
+
+                <div id="map" class="app-preview-map"></div>
+
+            {% endset %}
+            
+            {{ govukDetails({
+                summaryText: 'View a map of the high risk flood areas near ' + place.name,
+                html: mapHTML
+            }) }}
+
+        </div>
+
+</div>
+
+
+<div class="govuk-grid-row govuk-!-padding-bottom-9">
+
+        <div class="govuk-grid-column-two-thirds">
+
+            <form method="post" action="/location/warning-select">
+
+                <input type="hidden" name="next-page" value="/{{folder}}/subscribe-journey/medium-risk-option">
+                <input type="hidden" name="highalertarea" value="yes">
+
+                {% if place.warningAreas.length != 1 %}
+
+                {{ govukCheckboxes ({
+                    idPrefix: 'subscribed-warning-areas',
+                    name: 'subscribed-warning-areas',
+                    classes: 'govuk-checkboxes--small',
+                    fieldset: {
+                        legend: {
+                            text: 'Choose the areas you want to receive warnings for.',
+                            isPageHeading: true,
+                            classes: 'govuk-fieldset__legend--m'
+                        }
+                    },
+                    items: place.warningAreas | sort(false, false, 'distance') | areasAsGovOptions(place.name, data.subscribedAreas)
+                }) }}
+
+                {{ govukButton ({
+                    html: 'Continue'
+                }) }}
+
+                <p>
+                    <a href="/{{folder}}/medium-risk-option">I do not want to sign up to high risk areas for this location</a>
+                </p>
+
+                {% else %}
+
+                    {% set hintHTML %}
+
+                        {% set insetHTML %}
+
+                            {% set area = place.warningAreas[0] %}
+
+                            <h3 class="govuk-heading-s">
+                                {{ area.label }}
+                                {% if area.hasDistance %}
+                                    {% if area.distance == 0 %}
+                                        - directly affects {{ place.name }}
+                                    {% else %}
+                                        - {{ area.distance | oneDecimalPlace }} miles away
+                                    {% endif %}
+                                {% else %}
+                                    - less than 2.0 miles away
+                                {% endif %}
+                            </h3>
+
+                            <p>{{ area.description }}</p>
+
+                        {% endset %}
+
+                        {{ govukInsetText ({
+                            html: insetHTML
+                        }) }}
+
+                    {% endset %}
+
+                    {{ govukRadios ({
+                        idPrefix: 'subscribe-only-warning-area',
+                        name: 'subscribe-only-warning-area',
+                        fieldset: {
+                            legend: {
+                                text: 'Sign up to:',
+                                isPageHeading: true,
+                                classes: 'govuk-fieldset__legend--m'
+                            }
+                        },
+                        hint: {
+                            html: hintHTML
+                        },
+                        items: [
+                            {
+                                text: 'Yes',
+                                value: 'Yes',
+                                checked: true if data['subscribe-only-warning-area'] == 'Yes'
+                            },
+                            {
+                                text: 'No',
+                                value: 'No',
+                                checked: true if data['subscribe-only-warning-area'] == 'No'
+                            }
+                        ]
+                    }) }}
+
+                    <input type="hidden" name="single-warning-area" value="{{ place.warningAreas[0].notation }}">
+                <input type="hidden" name="highalertarea" value="yes">
+
+                    {{ govukButton ({
+                        html: 'Continue'
+                    }) }}
+
+                {% endif %}
+
+            </form>
+
+        </div>
+
+</div>
+
+{% endblock %}
+
+
+{% block pageScripts %}
+
+  <script>
+ 
+    mapboxgl.accessToken = 'pk.eyJ1IjoiZGF2aWRkb3R0byIsImEiOiJjaW54cDQ5ejUwMHFsdnhtMjh1M2NwYWIwIn0.hUo15CVfYcWgHWkRIQomiQ';
+    var map = new mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/daviddotto/cknao6u0w1y4g17pmjwq8llcv',
+        center: [{{ place.location[0] }}, {{ place.location[1] }}],
+        zoom: 14,
+        attributionControl: false
+    });
+    map.on('load', function () {
+        map.resize();
+        map.addControl(new mapboxgl.NavigationControl({
+            showCompass: false
+        }), 'top-left');
+        map.addControl(new mapboxgl.FullscreenControl(), 'top-right');
+        var marker = new mapboxgl.Marker()
+        .setLngLat([{{ place.location[0] }}, {{ place.location[1] }}])
+        .addTo(map);
+        {% for area in place.warningAreas %}
+            map.addSource('{{ area.notation }}', {
+                type: 'geojson',
+                data: '{{ area.polygon | secure }}'
+            });
+            map.addLayer({
+                'id': '{{ area.notation }}-warning-fill',
+                'type': 'fill',
+                'source': '{{ area.notation }}',
+                'layout': {},
+                'paint': {
+                    'fill-color': '#d4351c', 
+                    'fill-opacity': 0.2
+                }
+            });
+            map.addLayer({
+                'id': '{{ area.notation }}-warning-outline',
+                'type': 'line',
+                'source': '{{ area.notation }}',
+                'layout': {},
+                'paint': {
+                    'line-color': '#d4351c',
+                    'line-width': 2
+                }
+            });
+            map.on('click', '{{ area.notation }}-warning-fill', function (e) {
+                new mapboxgl.Popup()
+                .setLngLat(e.lngLat)
+                .setHTML('<div><p><b>{{ area.label }}</b></p><p>{{ area.description }}</p></div>')
+                .addTo(map);
+            });
+            map.on('mouseenter', '{{ area.notation }}-warning-fill', function () {
+                map.getCanvas().style.cursor = 'pointer';
+            });
+            map.on('mouseleave', '{{ area.notation }}-warning-fill', function () {
+                map.getCanvas().style.cursor = '';
+            });
+        {% endfor %}
+    });
+
+    var details = document.querySelector('details')
+
+    details.addEventListener("toggle", event => {
+        map.resize()
+    });
+
+  </script>
+
+{% endblock %}

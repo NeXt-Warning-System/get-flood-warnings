@@ -1,0 +1,68 @@
+{% extends 'layout.html' %}
+
+{% block pageTitle %}
+    Get flood warnings
+{% endblock %}
+
+{% block beforeContent %}
+
+    {{ super() }}
+
+    {{ govukBackLink ({
+        text: 'Back',
+        href: 'javascript:history.back()'
+    }) }}
+
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+
+        <div class="govuk-grid-column-two-thirds">
+
+            <h1 class="govuk-heading-xl">Get flood warnings</h1>
+
+            <p>Use this free service to:</p>
+
+            <ul class="govuk-list govuk-list--bullet">
+                <li>get flood warnings by text message, email or automated telephone message</li>
+                <li>edit or remove contact information you have already registered</li>
+            </ul>
+
+            <p>This service will tell you when a flood from rivers, the sea, or groundwater is expected in a flood risk area in England.</p>
+
+            <p>You will get updates about changes to the flood situation. This might be information about higher water levels, or if an earlier start to the flood is expected.</p>
+
+            <p>This service does not cover <a href="https://flood-warning-information.service.gov.uk/long-term-flood-risk" target="_blank">surface water flooding</a>.</p>
+
+            <p>Signing up takes around 10 minutes.</p>
+
+            {{ govukButton ({
+                html: 'Start now',
+                href: '/'+folder+'/address/postcode',
+                isStartButton: true
+            }) }}
+            <h3 class="govuk-heading-m">Before you start</h3>
+            <p>You will need an email address.</p>
+            <p>You may need a phone number you can be contacted on day or night.</p>
+            <p><a href="not-england">Flood warnings for Scotland, Wales and Northern Ireland.</a></p>
+<h3 class="govuk-heading-m">Sign in</h3>
+<p><a href="/{{folder}}/sign-up/sign-in">Sign in to continue</a> if you already have an account.</p>
+
+
+
+
+            <h3 class="govuk-heading-m">Other ways to get flood warnings</h3>
+
+            <p>You can also sign up by calling Floodline:</br>
+                Telephone: 0345 988 1188</br>
+                Textphone: 0345 602 6340</br>
+                24-hour service</br>
+                <a href="#">Find out about call charges</a></p>
+
+        </div>
+
+</div>
+
+{% endblock %}

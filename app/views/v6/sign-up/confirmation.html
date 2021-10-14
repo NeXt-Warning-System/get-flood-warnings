@@ -1,0 +1,60 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Your account has been created
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+
+    <div class="govuk-grid-column-two-thirds">
+      <div class="govuk-panel govuk-panel--confirmation">
+        <h1 class="govuk-panel__title">Your locations have been saved</h1>
+      </div>
+
+      <p>
+        We have sent a confirmation to {{ data['email-address'] }}. </br></br>
+          Use this email address to <a href="/{{folder}}/subscribe/check">update your details online</a>. If you cannot update your details online, call floodline on 0345 988 1188.      </p>
+
+      <h2 class="govuk-heading-m">What happens next</h2>
+      <p>When a flood is expected, warnings will be sent to:
+
+        <ul class="govuk-list govuk-list--bullet">
+
+             {% if data.emailConsent=="Yes" %}
+              <li>Email: {{ data['email-address'] }}</li>
+
+              {% endif %}
+
+                        {% if data.textConsent=="Yes" %}
+                       <li>Text: {{ data['text-number'] }}</li>
+                        {% endif %}
+
+                        {% if data.phoneConsent=="Yes" %}
+                      <li>Voice call: {{ data['phone-number'] }}                    
+                        {% if data.phoneUseTextNumber=="Yes" %}
+                        {{ data['text-number'] }}</li>
+                      
+                        {% endif %}
+      
+                    
+                    {% endif %}
+                   
+            </ul>
+      <p><a href="https://www.gov.uk/service-manual/user-centred-design/resources/patterns/feedback-pages.html">What did you think of this sign up service?</a> (takes 30 seconds)</p>
+           <p><a href="https://check-for-flooding.service.gov.uk/start-page">Check for flooding</a></p>
+           <p><a href="https://flood-warning-information.service.gov.uk/plan-ahead-for-flooding">Plan ahead for flooding</a></p>
+
+           <p>Floodline</br>
+                Telephone: 0345 988 1188</br>
+                Textphone: 0345 602 6340</br>
+                24-hour service</br>
+                <a href="#">Find out about call charges</a></p>
+              </br></br></br></br></br></br></br></br></br></br></br></br>
+
+<p><a href="/{{folder}}/sign-up/email-confirm"  target="_blank">User testing email confirmation</a></br></p>
+    </div>
+  </div>
+
+{% endblock %}

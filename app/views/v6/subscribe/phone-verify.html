@@ -1,0 +1,62 @@
+{% extends 'layout.html' %}
+
+{% block pageTitle %}
+Confirm your telephone number
+{% endblock %}
+
+{% block beforeContent %}
+
+    {{ super() }}
+
+    {{ govukBackLink ({
+        text: 'Back',
+        href: 'javascript:history.back()'
+    }) }}
+
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+
+        <div class="govuk-grid-column-two-thirds">
+
+            <form action="check">
+
+                <h1 class="govuk-heading-l">Enter code</h1>
+
+                <p>
+                    We are calling {{ data['phone-number'] }} now.
+                </p>
+
+
+
+                {{ govukInput ({
+                    id: 'phone-code',
+                    name: 'phone-code',
+                    value: data['phone-code'] if data['phone-code'] else '',
+                    classes: 'govuk-input--width-10',
+                    label: {
+                        text: 'Enter the code we read out to you'
+                    }
+                }) }}
+
+                {{ govukButton ({
+                    html: 'Continue'
+                }) }}
+
+                <p>
+                    <a href="phone-call">Call me again</a> <br>
+                    <a href="phone-number">Enter a different telephone number</a>
+                </p>
+            </br>  </br>  </br>  </br>  </br>
+            <p>
+           <a href="/{{folder}}/sign-up/text-code"  target="_blank">User testing voice call script</a>
+            </p>
+            </form>
+
+        </div>
+
+</div>
+
+{% endblock %}

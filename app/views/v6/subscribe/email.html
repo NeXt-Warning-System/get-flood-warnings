@@ -1,0 +1,56 @@
+{% extends 'layout.html' %}
+
+{% block pageTitle %}
+    What is your email address?
+{% endblock %}
+
+{% block beforeContent %}
+
+    {{ super() }}
+
+    {{ govukBackLink ({
+        text: 'Back',
+        href: 'javascript:history.back()'
+    }) }}
+
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+
+        <div class="govuk-grid-column-two-thirds">
+
+            <form action="email-verify">
+
+                <h1 class="govuk-heading-l">Manage your warnings</h1>
+
+                {{ govukInput ({
+                    id: 'email-address',
+                    name: 'email-address',
+                    value: data['email-address'] if data['email-address'] else '',
+                    classes: 'govuk-input--width-20',
+                    type: 'email',
+                    label: {
+                        text: 'Email address',
+                        classes: 'govuk-input--width-20'
+                    }
+                }) }}
+
+                {{ govukButton ({
+                    html: 'Continue'
+                }) }}
+         
+                <p>You can also sign up by calling Floodline:</br></br>
+                    Telephone: 0345 988 1188</br>
+                    Textphone: 0345 602 6340</br>
+                    24-hour service</br></br>
+                    <a href="#">Find out about call charges</a></p>
+
+            </form>
+
+        </div>
+
+</div>
+
+{% endblock %}

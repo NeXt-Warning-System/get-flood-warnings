@@ -1,0 +1,146 @@
+{% extends 'layout.html' %}
+
+{% block pageTitle %}
+    Which flood warnings do you need?
+{% endblock %}
+
+{% block beforeContent %}
+
+    {{ super() }}
+
+    {{ govukBackLink ({
+        text: 'Back',
+        href: 'javascript:history.back()'
+    }) }}
+
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+            <form action="/{{folder}}/sign-up/confirmation">
+
+                <h1 class="govuk-heading-l">    
+                    Check your answers
+                </h1>
+                {#permit|dump#}
+
+
+                {% set addresshtml %}
+
+                {% set addressCount = 0 %}
+<ul class="govuk-list">
+                {% for id, uprn in data.savedAddresses %}
+
+                    {% if uprn | length %}
+
+                        {% set addressCount = addressCount + 1 %}
+
+                        {% set address = data | addressFromID(id) %}
+
+                        
+                        <li class="govuk-!-margin-bottom-4">
+                                {{ address | formattedAddress }}
+                           
+                        </li>
+
+                    {% endif %}
+
+                {% endfor %}
+
+            </ul>
+                {% endset %}
+
+                <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+                    <div class="govuk-summary-list__row">
+                      <dt class="govuk-summary-list__key">
+                        Addresses </dt>
+                      <dd class="govuk-summary-list__value">
+            
+                        {{ addresshtml | safe }}
+
+                      </dd>
+                      <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link" href="/{{folder}}/address/list">
+                          Change<span class="govuk-visually-hidden"> severity</span>
+                        </a>
+                      </dd>
+                    </div>
+                    <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
+                          Warning type
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                          {% if data.warningsType=="Warnings and severe warnings"%}
+                          Warnings and severe flood warnings
+                          {% else %}
+                          All flood warnings including minor warnings
+                          {% endif %}
+  
+                        </dd>
+                        <dd class="govuk-summary-list__actions">
+                          <a class="govuk-link" href="/{{folder}}/address/list">
+                            Change<span class="govuk-visually-hidden"> severity</span>
+                          </a>
+                        </dd>
+                      </div>
+                    <div class="govuk-summary-list__row">
+                      <dt class="govuk-summary-list__key">
+                        Contact details
+                      </dt>
+                      <dd class="govuk-summary-list__value">
+                        {{data.contactByEmail}}{{data.contactByText}}{{data.contactByPhone}}
+                      </dd>
+                      <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link" href="/{{folder}}/sign-up/contact">
+                          Change<span class="govuk-visually-hidden"> contact</span>
+                        </a>
+                      </dd>
+                    </div>
+                   
+                    
+                  </dl>
+          
+                
+                
+
+                  
+
+             
+
+                {% if addressCount == 0 %}
+                    
+                    {{ 'postcode' | redirect | safe }}
+                    
+                {% endif %}
+
+              
+                <input type="hidden" name="submited" value="yes">
+
+              
+
+
+{% if data.submited=="yes" %}
+                {{ govukButton ({
+                   html: 'Sign out',
+                   href: '/'
+                 }) }}
+
+{% else %}
+
+
+
+                {{ govukButton ({
+                    html: 'Confirm'
+                }) }} 
+                {% endif %} 
+
+
+            </form>
+
+        </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends 'layout.html' %}
+
+{% set place = data.location %}
+
+{% block content %}
+
+{# Check if there are any warning areas, continue down if not #}
+
+    {% set hasWarningAreas = place.warningAreas.length %}
+
+    {% if hasWarningAreas %}
+        {{ 'high-risk-areas' | redirect | safe }}
+    {% endif %}
+
+{# Check if there are any alert areas, continue down if not #}
+
+    {% set hasAlertAreas = place.alertAreas.length %}
+
+    {% if hasAlertAreas %}
+        {{ 'medium-risk-option' | redirect | safe }}
+    {% endif %}
+
+
+{# Send user to 'no flood area' page because nothing was found #}
+
+{{ 'no-flood-areas' | redirect | safe }}
+
+{% endblock %}

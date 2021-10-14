@@ -1,0 +1,238 @@
+{% extends 'layout.html' %}
+
+{% block pageTitle %}
+    Which flood warnings do you need?
+{% endblock %}
+
+{% block beforeContent %}
+
+    {{ super() }}
+
+    {{ govukBackLink ({
+        text: 'Back',
+        href: 'javascript:history.back()'
+    }) }}
+
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+
+  <div class="govuk-grid-column-two-thirds">
+            <form action="/{{folder}}/sign-up/confirmation">
+
+                <h1 class="govuk-heading-l">    
+                    Check your answers
+                </h1>
+                {# permit|dump #}
+
+
+                {% set addresshtml %}
+
+                {% set addressCount = 0 %}
+<ul class="govuk-list">
+                {% for id, uprn in data.savedAddresses %}
+
+                    {% if uprn | length %}
+
+                        {% set addressCount = addressCount + 1 %}
+
+                        {% set address = data | addressFromID(id) %}
+
+                        
+                        <li class="govuk-!-margin-bottom-4">
+                                {{ address | formattedAddress }}
+                           
+                        </li>
+
+                    {% endif %}
+
+                {% endfor %}
+
+            </ul>
+                {% endset %}
+
+                <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+                    <div class="govuk-summary-list__row">
+                      <dt class="govuk-summary-list__key">
+                        Email address </dt>
+                      <dd class="govuk-summary-list__value">
+            
+                        {{ data['email-address'] }}
+
+                      </dd>
+                      <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link" href="/{{folder}}/address/list?fromCheck=true">
+                        </a>
+                      </dd>
+                    </div>
+                    <div class="govuk-summary-list__row">
+                      <dt class="govuk-summary-list__key">
+                        Flood warning locations </dt>
+                      <dd class="govuk-summary-list__value">
+            
+                        {{ addresshtml | safe }}
+
+                      </dd>
+                      <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link" href="/{{folder}}/address/list?fromCheck=true">
+                          Change<span class="govuk-visually-hidden"> severity</span>
+                        </a>
+                      </dd>
+                    </div>
+                    <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
+                          Which flood warnings do you need?
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                          {% if data.warningsType=="Warnings and severe warnings"%}
+                          Warnings and severe flood warnings
+                          {% else %}
+                          All flood warnings including minor warnings
+                          {% endif %}
+                        </dd>
+                        <dd class="govuk-summary-list__actions">
+                          <a class="govuk-link" href="/{{folder}}/address/list?fromCheck=true">
+                            Change<span class="govuk-visually-hidden"> severity</span>
+                          </a>
+                        </dd>
+                      </div>
+                    <div class="govuk-summary-list__row">
+                      <dt class="govuk-summary-list__key">
+                        Get warnings by email?
+                      </dt>
+                      <dd class="govuk-summary-list__value">
+                        {% if data.emailConsent=="Yes" %}
+                        Yes
+                        {% else %}
+                        No
+                        {% endif %}
+                    </dd>
+                      <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link" href="email-consent?fromCheck=true">
+                          Change<span class="govuk-visually-hidden"> contact</span>
+                        </a>
+                      </dd>
+                    </div>
+                    <div class="govuk-summary-list__row">
+                      <dt class="govuk-summary-list__key">
+                        Get warnings by text?
+                      </dt>
+                      <dd class="govuk-summary-list__value">
+                        {% if data.textConsent=="Yes" %}
+                        Yes
+                        {% else %}
+                        No
+                        {% endif %}
+                    </dd>
+                      <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link" href="text-consent?fromCheck=true">
+                          Change<span class="govuk-visually-hidden"> contact</span>
+                        </a>
+                      </dd>
+                    </div>
+                      {% if data.textConsent=="Yes" %}
+                    <div class="govuk-summary-list__row">
+                      <dt class="govuk-summary-list__key">
+                        Mobile number
+                      </dt>
+                      <dd class="govuk-summary-list__value">
+                        {{ data['text-number'] }}
+
+                    </dd>
+                      <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link" href="text-consent?fromCheck=true">
+                          Change<span class="govuk-visually-hidden"> contact</span>
+                        </a>
+                      </dd>
+                    </div>
+                    {% endif %}
+
+                    <div class="govuk-summary-list__row">
+                      <dt class="govuk-summary-list__key">
+                        Get warnings by telephone call?
+                      </dt>
+                      <dd class="govuk-summary-list__value">
+                        {% if data.phoneConsent=="Yes" %}
+                        Yes
+                        {% else %}
+                        No
+                        {% endif %}
+                    </dd>
+                      <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link" href="phone-consent?fromCheck=true">
+                          Change<span class="govuk-visually-hidden"> contact</span>
+                        </a>
+                      </dd>
+                    </div>
+                    {% if data.phoneConsent=="Yes" %}
+                    <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
+                          Telephone number for warnings
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                          {% if data.phoneUseTextNumber=="Yes" %}
+                          {{ data['text-number'] }}
+                          {% else %}
+
+                        {{ data['phone-number'] }}
+                        {{ data['phoneNumberHTML'] }} 
+  
+                        {% endif %}
+
+                        </dd>
+                        <dd class="govuk-summary-list__actions">
+                          <a class="govuk-link" href="phone-number?fromCheck=true">
+                            Change<span class="govuk-visually-hidden"> contact</span>
+                          </a>
+                        </dd>
+                      </div>
+                      {% endif %}
+
+                    
+                  </dl>
+          
+                
+                
+
+                  
+
+             
+
+                {% if addressCount == 0 %}
+                    
+                    {{ 'postcode' | redirect | safe }}
+                    
+                {% endif %}
+
+              
+                <input type="hidden" name="submited" value="yes">
+
+              
+
+
+                {% if data.submited=="yes" %}
+
+                  {{ govukButton ({
+                    html: 'Sign out',
+                    href: '/'
+                  }) }}
+
+                {% else %}
+
+
+
+                {{ govukButton ({
+                    html: 'Confirm'
+                }) }} 
+                {% endif %} 
+
+
+            </form>
+
+        </div>
+
+</div>
+
+{% endblock %}

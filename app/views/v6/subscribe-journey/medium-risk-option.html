@@ -1,0 +1,79 @@
+{% extends 'layout.html' %}
+
+{% set place = data.location %}
+
+{% block pageTitle %}
+    Medium flood risk areas near {{ place.name }}
+{% endblock %}
+
+{% block beforeContent %}
+
+    {{ super() }}
+
+    {{ govukBackLink ({
+        text: 'Back',
+        href: 'javascript:history.back()'
+    }) }}
+
+{% endblock %}
+
+{% block content %}
+
+{{ ('list' | redirect | safe) if not place.alertAreas | length }}
+
+<div class="govuk-grid-row">
+
+        <div class="govuk-grid-column-two-thirds">
+
+
+            <form action="medium-risk-areas">
+
+                <h1 class="govuk-heading-l">Medium flood risk areas near <span class="app-nobreak">{{ place.name }}</span></h1>
+<p>{% if data.highalertarea=="yes" or data.highalertarea=="yes,yes" or data.highalertarea=="yes,yes,yes" or data.highalertarea=="yes,yes,yes,yes" %}
+{% else %}
+There are no high flood risk areas near {{ place.name }}. There are medium flood risk areas.
+{% endif %}</p>
+                <p>
+                    Medium flood risk areas cover a much larger area than high risk flood areas.  These warnings can include shallow flooding of fields and footpaths. 
+                </p>
+
+                <p>
+                    As they cover large areas, not all the warnings you get will be close to {{ place.name }}.
+                </p>
+
+
+                {{ govukRadios ({
+                    idPrefix: 'medium-risk-option',
+                    name: 'medium-risk-option',
+                    fieldset: {
+                        legend: {
+                            text: 'Would you like to search for medium flood risk areas near ' + place.name + '?',
+                            isPageHeading: true,
+                            classes: 'govuk-fieldset__legend--s'
+                        }
+                    },
+                    items: [
+                        {
+                            text: 'Yes',
+                            value: 'Yes',
+                            checked: true if data['medium-risk-option'] == 'Yes'
+                        },
+                        {
+                            text: 'No',
+                            value: 'No',
+                            checked: true if data['medium-risk-option'] == 'No'
+                        }
+                    ]
+                }) }}
+
+                {{ govukButton ({
+                    html: 'Continue'
+                }) }}
+
+            </form>
+
+        </div>
+
+</div>
+
+{% endblock %}

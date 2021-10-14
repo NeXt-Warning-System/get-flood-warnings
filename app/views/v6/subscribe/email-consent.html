@@ -1,0 +1,73 @@
+{% extends 'layout.html' %}
+
+{% block pageTitle %}
+    Would you like to get warnings by email?
+{% endblock %}
+
+{% block beforeContent %}
+
+    {{ super() }}
+
+    {{ govukBackLink ({
+        text: 'Back',
+        href: 'javascript:history.back()'
+    }) }}
+
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+
+        <div class="govuk-grid-column-two-thirds">
+
+            {% set destinationURL = 'text-consent' if data.fromCheck != 'true' else 'check'  %}
+
+            <form action="{{ destinationURL }}">
+
+                {% set emailHintHTML %}
+                    
+                    {{ govukInsetText ({
+                        text: data['email-address']
+                    }) }}
+                    
+                {% endset %}
+
+                {{ govukRadios ({
+                    idPrefix: 'emailConsent',
+                    name: 'emailConsent',
+                    fieldset: {
+                        legend: {
+                            text: 'Get warnings by email?',
+                            isPageHeading: true,
+                            classes: 'govuk-fieldset__legend--l'
+                        }
+                    },
+                    hint: {
+                        html: emailHintHTML
+                    },
+                    items: [
+                        {
+                            text: 'Yes',
+                            value: 'Yes',
+                            checked: true if data['emailConsent'] == 'Yes'
+                        },
+                        {
+                            text: 'No',
+                            value: 'No',
+                            checked: true if data['emailConsent'] == 'No'
+                        }
+                    ]
+                }) }}
+
+                {{ govukButton ({
+                    html: 'Continue'
+                }) }}
+
+            </form>
+
+        </div>
+
+</div>
+
+{% endblock %}

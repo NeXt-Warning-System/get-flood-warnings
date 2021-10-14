@@ -1,0 +1,103 @@
+{% extends 'layout.html' %}
+
+{% block pageTitle %}
+Enter your telephone number to get warnings
+{% endblock %}
+
+{% block beforeContent %}
+
+    {{ super() }}
+
+    {{ govukBackLink ({
+        text: 'Back',
+        href: 'javascript:history.back()'
+    }) }}
+
+{% endblock %}
+
+{% block content %}
+
+{{ 'check' | redirect | safe if data['phoneConsent'] == 'No' }}
+
+{% set phoneNumberHTML %}
+                    
+    {{ govukInput ({
+        id: 'phone-number',
+        name: 'phone-number',
+        value: data['phone-number'] if data['phone-number'] else '',
+        classes: 'govuk-input--width-20',
+        type: 'tel',
+        label: {
+            text: 'Contact telephone number',
+            classes: 'govuk-input--width-20'
+        }
+    }) }}
+    
+{% endset %}
+
+<div class="govuk-grid-row">
+
+        <div class="govuk-grid-column-two-thirds">
+
+            <form action="phone-call">
+
+                {% if data['textConsent'] == 'Yes' %}
+                    
+                    {{ govukRadios ({
+                        idPrefix: 'phoneUseTextNumber',
+                        name: 'phoneUseTextNumber',
+                        fieldset: {
+                            legend: {
+                                text: 'Enter the telephone number to get warnings',
+                                isPageHeading: true,
+                                classes: 'govuk-fieldset__legend--l'
+                            }
+                        },
+                        items: [
+                            {
+                                text: data['text-number'],
+                                value: 'Yes',
+                                checked: true if data['phoneUseTextNumber'] == 'Yes'
+                            },
+                            {
+                                text: 'A different telephone number',
+                                value: 'No',
+                                checked: true if data['phoneUseTextNumber'] == 'No',
+                                conditional: {
+                                    html: phoneNumberHTML
+                                }
+                            }
+                        ]
+                    }) }}
+   
+                {% else %}
+                 
+
+                {% from "govuk/components/input/macro.njk" import govukInput %}
+
+                {{ govukInput({
+                  label: {
+                    text: "Enter the telephone number to get warnings",
+                    classes: "govuk-label--l",
+                    isPageHeading: true
+                  },
+                  id: "phoneUseTextNumber",
+                  name: "phoneNumberHTML",
+                  classes: 'govuk-input--width-20',
+                    type: 'tel'
+                }) }}
+
+
+                {% endif %}
+
+                {{ govukButton ({
+                    html: 'Continue'
+                }) }}
+
+            </form>
+
+        </div>
+
+</div>
+
+{% endblock %}
