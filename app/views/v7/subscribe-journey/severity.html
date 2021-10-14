@@ -1,0 +1,74 @@
+{% extends "layout.html" %}
+
+{% set title = "Which flood warnings do you need?" %}
+
+
+{% block pageTitle %}
+    {{title}} - GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+
+    {{ super() }}
+
+    {{ govukBackLink ({
+        text: 'Back',
+        href: 'javascript:history.back()'
+    }) }}
+
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+
+        <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            {{title}}
+        </legend>
+
+      <div>
+
+
+    </div>
+
+    <form action="list" method="post">
+
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset">
+            <div class="govuk-radios govuk-radios--conditional" data-module="radios">
+              
+                <div class="govuk-radios__item">
+                  <input class="govuk-radios__input" id="warning" name="severity" type="radio" value="yes" data-aria-controls="conditional-how-contacted-conditional-1">
+                  <label class="govuk-label govuk-radios__label" for="how-contacted-conditional-1">
+                    I am only interested in flood warnings when flooding to property or a danger to life is expected in my area.
+
+                  </label>
+                </div>
+                <div class="govuk-radios__item">
+                    <input class="govuk-radios__input" id="alert-conditional-2" name="severity" type="radio" value="no" data-aria-controls="conditional-how-contacted-conditional-2">
+                    <label class="govuk-label govuk-radios__label" for="how-contacted-conditional-2">
+                      I am interested in all flooding, including minor flood warnings. These include shallow flooding of fields and footpaths that may not be near me, but may connect to waterways in my area.
+                    </label>
+                  </div>                
+
+              </div>
+          
+           
+
+        </fieldset>
+      </div>
+
+      <div class="form-group">
+        {{submitButton|safe}}
+      </div>
+
+
+    </form>
+
+
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,63 @@
+{% extends 'layout.html' %}
+{% set title = "Confirm address:" %}
+
+{% set selectedAddressID = data['selected-address'] | uuid %}
+{% set selectedAddress = data | addressFromID(selectedAddressID) %}
+
+{% block pageTitle %}
+    {{title}} - GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+
+    {{ super() }}
+
+    {{ govukBackLink ({
+        text: 'Back',
+        href: 'javascript:history.back()'
+    }) }}
+
+{% endblock %}
+
+{% block content %}
+
+{% if not data['selected-address'] | length %}
+    
+    {{ 'postcode' | redirect | safe }}
+    
+{% endif %}
+
+<div class="govuk-grid-row">
+
+        <div class="govuk-grid-column-two-thirds">
+
+            <form method="post" action="/address-lookup/target-areas">
+
+                <h1 class="govuk-heading-l">
+                    {{ title }}
+                </h1>
+
+                {{ govukInsetText ({
+                    html: selectedAddress | formattedAddress | addressWithNewLines | safe
+                }) }}
+                
+                {{ govukButton ({
+                    html: 'Continue'
+                }) }}
+
+                <input type="hidden" name="next-page" value="/{{folder}}/address/address-risk">
+                <input type="hidden" name="error-page" value="/{{folder}}/address/postcode">
+
+                <p>
+                    <a href="address-confirm">
+                        Go back to address list
+                    </a>
+                </p>
+
+            </form>
+
+        </div>
+
+</div>
+
+{% endblock %}

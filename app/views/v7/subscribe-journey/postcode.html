@@ -1,0 +1,111 @@
+{% extends 'layout.html' %}
+
+{% block pageTitle %}
+    Search for a location
+{% endblock %}
+
+{% block beforeContent %}
+
+    {{ super() }}
+
+    {{ govukBackLink ({
+        text: 'Back',
+        href: 'javascript:history.back()'
+    }) }}
+
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+
+        <div class="govuk-grid-column-two-thirds">
+
+            <form method="post" action="/location/search">
+{% set errorhtml %}
+<p class="govuk-error-message">Check</p>
+<ul class="govuk-error-message govuk-list govuk-list--bullet">
+    <li>y</li>
+    <li>z</li>
+</ul>
+{% endset %}
+                {% if data.postcodeNotFound %}
+
+                    {{ govukErrorSummary({
+                        titleText: 'There is a problem',
+                        errorList: [
+                            {
+                                text: 'Check you have entered a full postcode with a space.',
+                                href: '#postcode-error'
+                            }
+                        ]
+                    }) }}
+
+                {% endif %}
+
+                <h1 class="govuk-heading-l">Search for a location</h1>
+
+                <p>Enter a full postcode or place name for the location you would like to receive flood warnings for.</p>
+
+                <div class="app-search-container">
+
+                    {{ govukInput ({
+                        id: 'place-query',
+                        name: 'place-query',
+                        type: 'search',
+                        value: data['place-query'] if data.postcodeNotFound,
+                        classes: 'govuk-input--width-10',
+                        errorMessage: {
+                            text: 'Check you have entered a full postcode with a space.' 
+                        } if data.postcodeNotFound,
+                        label: {
+                            text: 'Postcode',
+                            classes: 'govuk-visually-hidden'
+                        }
+                    }) }}
+
+                </div>
+
+                <div class="app-loader-container govuk-!-margin-bottom-5">
+                    
+                    <img src="/public/images/ajax-loader.gif" alt="Loading" width="70" height="70">
+
+                </div>
+
+                <input type="hidden" name="searchRadius" value="2">
+
+                <input type="hidden" name="next-page" value="/{{folder}}/subscribe-journey/postcode-router">
+                <input type="hidden" name="error-page" value="/{{folder}}/subscribe-journey/postcode?postcodeNotFound=true">
+
+                {{ govukButton ({
+                    html: 'Continue',
+                    classes: 'app-search-button'
+                }) }}
+
+                {{ data.postcodeSearchResults | debug }}
+
+            </form>
+
+        </div>
+
+</div>
+
+{% endblock %}
+
+{% block pageScripts %}
+    
+    <script>
+
+        $('.app-loader-container').hide()
+    
+        $('button.app-search-button').on('click', function() {
+            $(this).text('Searching...')
+            $(this).prop('disabled', true)
+            $('.app-loader-container').show()
+            $('.app-search-container').hide()
+            setTimeout(function(){ $('form').submit() }, 200);
+        })
+
+    </script>
+    
+{% endblock %} 

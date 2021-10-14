@@ -1,0 +1,135 @@
+{% extends "layout.html" %}
+
+{% set title = "Confirm address:" %}
+
+{% set selectedAddressID = data['selected-address'] | uuid %}
+{% set selectedAddressUPRN = data.savedAddresses[selectedAddressID] %} 
+
+
+{% block pageTitle %}
+    {{title}} - GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+
+    {{ super() }}
+
+    {{ govukBackLink ({
+        text: 'Back',
+        href: 'javascript:history.back()'
+    }) }}
+
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+{## permit|dump #}
+
+      <form method="post" action="/address-lookup/target-areas">
+
+                {% if data.addressResults | length == 1 %}
+                    
+                    {% set addressHintHTML %}
+                        
+                        {{ govukInsetText ({
+                            text: data.addressResults[0] | formattedAddress
+                        }) }} 
+                        
+                    {% endset %}
+
+                    
+
+                    {{ govukRadios ({
+                        idPrefix: 'address-selection',
+                        name: 'savedAddresses[' + selectedAddressID + ']',
+                        fieldset: {
+                            legend: {
+                                text: 'Is this address correct?',
+                                isPageHeading: true,
+                                classes: 'govuk-fieldset__legend--l'
+                            }
+                        },
+                        hint: {
+                            html: addressHintHTML
+                        },
+                        items: [
+                            {
+                                text: 'Yes',
+                                value: data.addressResults[0].UPRN
+                            },
+                            {
+                                text: 'No, try again',
+                                value: 'no'
+                            }
+                        ]
+                    }) }}
+
+                    <input type="hidden" name="selected-address" value="{{ selectedAddressID }}">
+
+                    <input type="hidden" name="next-page" value="/{{folder}}/address/address-risk">
+                    <input type="hidden" name="error-page" value="/{{folder}}/address/postcode">
+
+                    {{ govukButton ({
+                        html: 'Continue'
+                    }) }}  
+
+                {% elseif data.addressResults | length > 0 %}
+
+                    <h1 class="govuk-heading-l">
+                        Select an address
+                    </h1>
+
+                    <p>
+                        <span class="postcode-prefix">
+                            Postcode: 
+                        </span>
+                        
+                        <span class="postcode">
+                            {{data.addressResults[0].POSTCODE}}
+                        </span>
+                    
+                        <a href="postcode">
+                            Change<span class="govuk-visually-hidden"> postcode</span>
+                        </a>
+
+                    </p>
+
+                    <ul class="govuk-list govuk-!-margin-top-6">
+
+                         {% for address in data.addressResults %}
+
+                            <li>
+                                
+                                <hr class="govuk-section-break govuk-section-break--visible">
+
+                                <a class="app-address-link" href="end?selected-address={{ selectedAddressID }}&savedAddresses[{{ selectedAddressID }}]={{ address.UPRN }}">
+
+                                  {{address.DISPLAY_NAME}}
+
+                                </a>
+
+                            </li>
+
+                         {% endfor %}
+                    </ul>
+
+                {% else %}
+
+                    {{ 'lookup' | redirect | safe }}
+
+                   
+                {% endif %}
+
+            
+           
+
+            </form>
+
+        </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,147 @@
+{% extends 'layout.html' %}
+
+{% set area = data.allFetchedAreas[data['selected-area']] %}
+
+{% block pageTitle %}
+    Are you sure you want to remove this area?
+{% endblock %}
+
+{% block beforeContent %}
+
+    {{ super() }}
+
+    {{ govukBackLink ({
+        text: 'Back',
+        href: 'javascript:history.back()'
+    }) }}
+
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+
+        <div class="govuk-grid-column-two-thirds">
+
+            <h1 class="govuk-heading-l">Are you sure you want to remove this area?</h1>
+
+            <h2 class="govuk-heading-m">{{ area.label }}</h1>
+
+            <p>
+                {{ area.description }}
+            </p>
+
+        </div>
+
+</div>
+
+<div class="govuk-grid-row">
+
+        <div class="govuk-grid-column-two-thirds map-container">
+
+            <style>
+                .mapboxgl-popup {
+                    max-width: 400px;
+                    font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+                }
+                .mapboxgl-popup-content p {
+                    font-size: 14px !important;
+                }
+            </style>
+
+            {% set mapHTML %}
+
+                <div id="map" class="app-preview-map"></div>
+
+            {% endset %}
+            
+            {{ govukDetails({
+                summaryText: 'View a map of this flood risk area',
+                html: mapHTML
+            }) }}
+
+        </div>
+
+</div>
+
+
+<div class="govuk-grid-row">
+
+        <div class="govuk-grid-column-two-thirds">
+
+            <form action="/location/remove-area" method="post">
+
+                <input type="hidden" name="selected-area" value="{{ area.notation }}">
+
+                <input type="hidden" name="next-page" value="/{{folder}}/subscribe-journey/list">
+
+                {{ govukButton ({
+                    html: 'Remove',
+                    classes: 'govuk-button--warning'
+                }) }}
+
+                <p>
+                    <a href="list">Cancel</a>
+                </p>
+
+            </form>
+
+        </div>
+
+</div>
+
+{% endblock %}
+
+{% block pageScripts %}
+
+  <script>
+ 
+    mapboxgl.accessToken = 'pk.eyJ1IjoiZGF2aWRkb3R0byIsImEiOiJjaW54cDQ5ejUwMHFsdnhtMjh1M2NwYWIwIn0.hUo15CVfYcWgHWkRIQomiQ';
+    var map = new mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/daviddotto/cknao6u0w1y4g17pmjwq8llcv',
+        center: {lon: {{ area.long }}, lat: {{ area.lat }}},
+        zoom: 12,
+        attributionControl: false
+    });
+    map.on('load', function () {
+        map.resize();
+        map.addControl(new mapboxgl.NavigationControl({
+            showCompass: false
+        }), 'top-left');
+        map.addControl(new mapboxgl.FullscreenControl(), 'top-right'); 
+        map.addSource('{{ area.notation }}', {
+            type: 'geojson',
+            data: '{{ area.polygon | secure }}'
+        });
+        map.addLayer({
+            'id': '{{ area.notation }}-warning-fill',
+            'type': 'fill',
+            'source': '{{ area.notation }}',
+            'layout': {},
+            'paint': {
+                'fill-color': '#d4351c', 
+                'fill-opacity': 0.2
+            }
+        });
+        map.addLayer({
+            'id': '{{ area.notation }}-warning-outline',
+            'type': 'line',
+            'source': '{{ area.notation }}',
+            'layout': {},
+            'paint': {
+                'line-color': '#d4351c',
+                'line-width': 2
+            }
+        });
+    });
+
+    var details = document.querySelector('details')
+
+    details.addEventListener("toggle", event => {
+        map.resize()
+    });
+
+  </script>
+
+{% endblock %}

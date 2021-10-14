@@ -1,0 +1,84 @@
+{% extends 'layout.html' %}
+
+{% block pageTitle %}
+    Get flood warnings
+{% endblock %}
+
+{% block beforeContent %}
+
+    {{ super() }}
+
+    {{ govukBackLink ({
+        text: 'Back',
+        href: 'javascript:history.back()'
+    }) }}
+
+{% endblock %}
+
+{% block content %}
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-xl">Enter your email address</h1>
+
+      <form method="get" action="/{{folder}}/sign-in/check-email">
+
+
+
+                          {{ govukInput({
+                            label: {
+                              text: "Enter the email address we use to contact you"
+                            },
+                            classes: "govuk-input--width-20",
+                            id: "sing-in-email-address",
+                            name: "sign-in-email-address"
+                          }) }}
+                      
+          
+    
+    
+    
+                  <div class="form-group">
+                      {{ govukButton({
+                        text: "Continue"
+                      }) }}
+   
+              </div>
+              <details class="govuk-details">
+                <summary class="govuk-details__summary">
+                  <span class="govuk-details__summary-text">
+                    I don’t remember what email address I used
+                  </span>
+                </summary>
+                <div class="govuk-details__text">
+                  You can:
+
+                  <li>Try another email if you have more than one</li>
+                  <li>Call Floodline (details below).</li>
+                </ol>               
+                <p><h4 class="govuk-heading-s">Floodline</h4>
+
+      Telephone: 0345 988 1188</br>
+        Textphone: 0345 602 6340</br>
+        24-hour service</p>
+
+
+        <p><a href="#">Find out about call charges</a></p>
+   
+                </div>
+                </details>
+            
+
+            </form>
+
+  
+      <p>For testing:
+        <a href="/{{folder}}/sign-in/sign-in-email" target="_blank" rel="noopener noreferrer">link email</a>
+      </p>
+
+    </div>
+  </div>
+
+{% endblock %}

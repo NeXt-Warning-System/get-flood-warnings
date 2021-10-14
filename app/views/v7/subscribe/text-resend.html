@@ -1,0 +1,65 @@
+{% extends 'layout.html' %}
+
+{% block pageTitle %}
+    Code re-sent
+{% endblock %}
+
+{% block beforeContent %}
+
+    {{ super() }}
+
+    {{ govukBackLink ({
+        text: 'Back',
+        href: 'javascript:history.back()'
+    }) }}
+
+{% endblock %}
+
+{% block content %}
+
+{{ 'phone-consent' | redirect | safe if data['text-consent'] == 'No' }}
+
+<div class="govuk-grid-row">
+
+        <div class="govuk-grid-column-two-thirds">
+
+            <form action="phone-consent">
+
+                <h1 class="govuk-heading-l">Code sent again</h1>
+
+                <p>
+                    We have sent another code by text message to {{ data['text-number'] }} to confirm your telephone number.
+                </p>
+
+
+
+                {{ govukInput ({
+                    id: 'text-code',
+                    name: 'text-code',
+                    value: data['text-code'] if data['text-code'] else '',
+                    classes: 'govuk-input--width-10',
+                    label: {
+                        text: 'Enter the code we sent you:'
+                    }
+                }) }}
+
+                {{ govukButton ({
+                    html: 'Continue'
+                }) }}
+
+                <p>  
+                        It may take a moment for your code to arrive. 
+                    </br></br>
+                    <a href="email-resend">Send code again</a>                   
+                </p>
+                <p>
+                    <a href="text-consent">Enter a different mobile telephone number</a>
+                </p>
+
+            </form>
+
+        </div>
+
+</div>
+
+{% endblock %}

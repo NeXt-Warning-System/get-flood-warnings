@@ -1,0 +1,76 @@
+{% extends 'layout.html' %}
+{% set title = "Review your choice" %}
+
+{% block pageTitle %}
+    {{title}} - GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+
+    {{ super() }}
+
+    {{ govukBackLink ({
+        text: 'Back',
+        href: 'javascript:history.back()'
+    }) }}
+
+{% endblock %}
+
+{% block content %}
+{# permit| dump #}
+<div class="govuk-grid-row">
+
+        <div class="govuk-grid-column-two-thirds">
+
+         
+        <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            {{title}}
+        </legend>
+</br></br>
+<h3 class="govuk-heading-s">Flood warning level:</h3>
+{% if data.severity=="yes" %}
+<p>I am only interested in flood warnings when flooding to property or a danger to life is expected in my area.</p>
+ {% else %}
+<p>I am interested in all flooding, including minor flood warnings. These include shallow flooding of fields and footpaths that may not be near me, but may connect to waterways in my area.</p>
+
+{% endif %}
+
+</br>
+<h3 class="govuk-heading-s">Warning location:</h3>
+
+  {{ govukInsetText ({
+                    html: data['address-selection'] | addressWithNewLines | safe
+                }) }}
+    {{ govukInsetText ({
+                        text: data.addressResults[0].DISPLAY_NAME | titleCase
+               
+                    }) }} 
+                    <p> 
+                        <a href="/{{folder}}/address/postcode">Add more locations</a>
+                    </p>
+                               {% if data.contact=="textSignin" or data.contact=="emailSignin" or data.contact=="phoneSignin" or data.contactSignup=="email" or data.contactSignup=="text" or data.contactSignup=="phone"%}
+
+                     {{ govukButton ({
+                        html: 'Sign out',
+                        href: '/'
+                      }) }}
+                      {% endif %}
+
+{% if data.contact=="emailSignin" or data.contact=="phoneSignin" or data.contact=="textSignin" %}
+ {% else %}
+
+                    {{ govukButton ({
+                        html: 'Sign up to get warnings',
+                        href: '/'+folder+'/sign-up/contact'
+                    }) }}
+
+
+
+                    {% endif %}
+
+              
+        </div>
+
+</div>
+
+{% endblock %}

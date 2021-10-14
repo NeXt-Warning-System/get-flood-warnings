@@ -1,0 +1,83 @@
+{% extends "layout_unbranded.html" %}
+
+{% set imgpath="/public/images/" %}
+
+{% block page_title %}
+  Gmail | Get flood warnings
+ 
+{% endblock %}
+
+{% block proposition_header %}
+  <!-- blank to remove the proposition header -->
+{% endblock %}
+
+{% block header_class %}
+  <!-- blank to remove the proposition header -->
+{% endblock %}
+
+{% block main %}
+
+
+<div id="email">
+
+<div id="gmail_header">
+  <img src="{{ imgpath }}gmail_header.png" alt="" />
+</div>
+
+<div class="govuk-grid-row">
+
+    <div style="width:15%" class="govuk-grid-column-one-quarter">
+        <img style="margin-bottom:600px" src="{{ imgpath }}gmail_menu_left.png" alt="" />
+    </div>
+
+
+    <div class="govuk-grid-column-two-thirds">
+
+      <p class="subject">
+        Get flood warnings  <img class="inboxicon" src="{{ imgpath }}gmail_icon_inbox.png" alt="" />
+      </p>
+    </div>
+      <div class="govuk-grid-column-one-quarter">
+        <div id="email_text">
+        <img src="{{ imgpath }}gmail_from_text.png" alt="" /> 
+
+      </div>
+    </div>
+
+    
+    <div class="govuk-grid-column-two-thirds">
+
+      <div id="email_text">
+
+        <div id="banner" class="email-banner"><img src="{{ imgpath }}gov_uk_email_header.png" alt="GOV.UK" /></div>
+
+      </div></div>
+
+
+        <div class="govuk-grid-column-one-half">
+          <div id="email_text">
+
+      </br>
+      <p>You asked us to send a return link for your flood warnings.</p>
+      <p>We could not find any flood warnings set up by the email address you gave.</p>
+      <p>Check if you used another email address when you created the return link. If you did use another address, go back the service to resend the email to the correct address.</p>
+<p> <a href="https://Get-flood-warnings.service.gov.uk/">https://Get-flood-warnings.service.gov.uk/</a></p>
+       
+      <h3 class="govuk-heading-s">Floodline</h3>
+
+      <p>Telephone: 0345 988 1188</br>
+        Textphone: 0345 602 6340</br>
+        24-hour service</p>
+
+
+        <p><a href="#">Find out about call charges</a></p>
+
+      </div><!-- // end #email_text -->
+
+    </div><!-- // end .column 3/4 -->
+
+  </div><!-- // end .grid_row -->
+
+</div><!-- // end #email -->
+
+{% endblock %}

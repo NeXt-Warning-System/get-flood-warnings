@@ -1,0 +1,67 @@
+{% extends 'layout.html' %}
+
+{% block pageTitle %}
+    Confirm your telephone number
+{% endblock %}
+
+{% block beforeContent %}
+
+    {{ super() }}
+
+    {{ govukBackLink ({
+        text: 'Back',
+        href: 'javascript:history.back()'
+    }) }}
+
+{% endblock %}
+
+{% block content %}
+
+{{ 'check' | redirect | safe if data['phone-consent'] == 'No' }}
+{{ 'check' | redirect | safe if data['phoneUseTextNumber'] == 'Yes' }}
+
+<div class="govuk-grid-row">
+
+        <div class="govuk-grid-column-two-thirds">
+
+            <form action="phone-verify">
+
+                <h1 class="govuk-heading-l">Confirm your telephone number</h1>
+
+                {% if data.phoneUseTextNumber=="Yes" %}
+
+                <p>
+                    To make sure we have the right contact telephone number we will call and read out a code to {{ data['text-number'] }}.
+                </p>
+          
+        {% else %}
+        <p>
+            To make sure we have the right contact telephone number we will call and read out a code to {{ data['phone-number'] }}{{ data['phoneNumberHTML'] }}.
+        </p>
+          
+        {% endif %}
+                
+
+               
+                
+
+
+                {{ govukButton ({
+                    html: 'Call me now'
+                }) }}
+
+                <p>
+                    <a href="check?phone-consent=No">
+                        Skip and set up later
+                    </a>
+                </p>
+                <p>
+                    <a href="phone-number">Enter a different telephone number</a>
+                </p>
+            </form>
+
+        </div>
+
+</div>
+
+{% endblock %}

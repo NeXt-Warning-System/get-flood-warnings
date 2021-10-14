@@ -1,0 +1,68 @@
+{% extends 'layout.html' %}
+
+{% block pageTitle %}
+    Sign up for warnings
+{% endblock %}
+
+{% block beforeContent %}
+
+    {{ super() }}
+
+    {{ govukBackLink ({
+        text: 'Back',
+        href: 'javascript:history.back()'
+    }) }}
+
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+
+        <div class="govuk-grid-column-two-thirds">
+          <form method="post" action="../address/list-check">
+
+
+
+        <h1 class="govuk-heading-xl">Enter validation code</h1>
+      {% if data.contactSignup=="email" or data.contact=="emailSignin" %}
+        <p>We have sent a code to you on {{data.contactByEmail}}.</p>
+      {% endif %}
+         {% if data.contactSignup=="text" or data.contact=="textSignin" %}
+        <p>We have sent a code to you on {{data.contactByText}}.</p>
+      {% endif %} 
+            {% if data.contactSignup=="phone" or data.contact=="phoneSignin" %}
+        <p>We will call you on {{data.contactByPhone}}, and give you a code.</p>
+      {% endif %} 
+{{ govukInput ({
+  id: 'code',
+  name: 'code',
+  classes: 'govuk-input--width-10',
+  label: {
+    text: 'Enter code',
+    classes: 'govuk-label--xs'
+  }
+}) }}
+<input type="hidden" name="validated" value="yes">
+
+{{ govukButton ({
+  html: 'Continue'
+}) }}
+     
+        </div>
+
+</div>
+</br></br>
+
+<details class="govuk-details" data-module="govuk-details">
+  <summary class="govuk-details__summary">
+    <span class="govuk-details__summary-text">
+User testing links</span>
+  </summary>
+  <div class="govuk-details__text">
+<p><a href="/{{folder}}/sign-up/email-code"  target="_blank">Email for user validation</a></br>
+  <a href="/{{folder}}/sign-up/text-code"  target="_blank">Text message for user validation</a></br>  
+  <a href="/{{folder}}/sign-up/text-code"  target="_blank">Phoneline audio call user validation</a></p>  </div>
+</details>
+
+{% endblock %}

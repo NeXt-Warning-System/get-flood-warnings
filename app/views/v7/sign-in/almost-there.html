@@ -1,0 +1,55 @@
+{% extends 'layout.html' %}
+
+{% block pageTitle %}
+    Get flood warnings
+{% endblock %}
+
+{% block beforeContent %}
+
+    {{ super() }}
+
+    {{ govukBackLink ({
+        text: 'Back',
+        href: 'javascript:history.back()'
+    }) }}
+
+{% endblock %}
+
+{% block content %}
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-xl">Almost there</h1>
+
+      <form method="post" action="/{{folder}}/subscribe/check?status=signedIn">
+
+
+
+             <p>Your link is active, please select continue to return to your flood warnings.</p>
+          
+    
+    
+    
+                  <div class="form-group">
+                      {{ govukButton({
+                        text: "Continue"
+                      }) }}
+                 <!-- <button type="submit" class="button" name="Resend email">Resend email</button>-->
+               
+
+              </div>
+
+
+            </form>
+
+  
+      <p>For testing:
+        <a href="/{{folder}}/sign-in/sign-in-email" target="_blank" rel="noopener noreferrer">link email</a>
+      </p>
+
+    </div>
+  </div>
+
+{% endblock %}

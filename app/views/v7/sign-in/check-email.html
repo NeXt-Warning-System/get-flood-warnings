@@ -1,0 +1,91 @@
+{% extends 'layout.html' %}
+
+{% block pageTitle %}
+    Check your email
+{% endblock %}
+
+{% block beforeContent %}
+
+    {{ super() }}
+
+    {{ govukBackLink ({
+        text: 'Back',
+        href: 'javascript:history.back()'
+    }) }}
+
+{% endblock %}
+
+{% block content %}
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-three-quarters">
+
+      <h1 class="govuk-heading-xl">Check your email</h1>
+
+      
+      <p>We have sent a secure link to {{data['sign-in-email-address']}}</p>
+        <p>Use the link to return to your flood warnings.
+      </p>
+      
+
+          <details class="govuk-details">
+              <summary class="govuk-details__summary">
+                <span class="govuk-details__summary-text">
+                    I cannot find the email
+                </span>
+              </summary>
+              <div class="govuk-details__text">
+                <li>Search your email account for ‘Get flood warnings’</li>  
+                <li>Check your spam folder.</li>
+                <li>Enter your email address to resend the confirmation email with your link</li>
+                <li>Wait for a few minutes - email can take a while to arrive.</li>
+                </ol>
+                <form method="get" action="/{{folder}}/sign-in/check-email-again">
+
+</br>
+                      <div class="form-group">
+
+                          {{ govukInput({
+                            label: {
+                              text: "Email address"
+                            },
+                            hint: {
+                              text: "Enter the email address we use to contact you."
+                            },
+                            classes: "govuk-input--width-20",
+                            id: "sign-in-email-address",
+                            name: "sign-in-email-address"
+                          }) }}
+                      
+                      
+                      <!--    <label class="form-label" for="user_email">Email address you gave us</label>
+                        <span class="form-hint">This must be the email you used before</span>
+                        <input class="form-control form-control-3-4" id="user_email" name="saveReturnEmail" type="text" value="{{permit.saveReturnEmail}}">-->
+                      </div>
+    
+    
+    
+                  <div class="form-group">
+                      {{ govukButton({
+                        text: "Resend email"
+                      }) }}
+                 <!-- <button type="submit" class="button" name="Resend email">Resend email</button>-->
+                </details>
+                </div>
+
+              </div>
+
+
+
+      </form>
+
+  
+      <p>For testing:
+        <a href="/{{folder}}/sign-in/sign-in-email" target="_blank" rel="noopener noreferrer">link email</a>
+      </p>
+
+    </div>
+  </div>
+
+{% endblock %}
