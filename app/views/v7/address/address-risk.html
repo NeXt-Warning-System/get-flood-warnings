@@ -32,14 +32,14 @@
   <div class="govuk-grid-column-two-thirds">
     {% if data.addressConfirmed %}
     {% if data.targetAreaResults.hasWarnings or data.targetAreaResults.hasAlertAreas %}
-    <form action="list">
+    <form action="which-warning">
       {% else %}
 
     <form action="{{formAction}}" method="post">
       {% endif %}
 
     {% else %}
-    <form action="list">
+    <form action="which-warning">
     {% endif %}
 
  
@@ -77,8 +77,8 @@
         <p>
           We do not monitor this location because it is at low risk of flooding from rivers, the sea or groundwater.
 </br></br>
-          It may still be affected by surface water flooding, which this service does not cover.
-                  </p>
+It may still be affected by surface water flooding, which this service does not cover. If you want to know if there’s surface water flooding (also known as ‘flash flooding’) in your area, <a href="https://www.gov.uk/find-local-council">contact your local council</a>.
+</p>
 <p>You can:</p>
         <ul class="govuk-list govuk-list--bullet">
           <li><a href="https://flood-warning-information.service.gov.uk/long-term-flood-risk" target="_blank">check the long term flood risk for an area in England</a>, including surface water</li>

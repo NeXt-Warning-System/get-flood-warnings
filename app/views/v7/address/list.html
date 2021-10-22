@@ -26,9 +26,16 @@
            
            <form action="{{ destinationURL }}">
 
+         
                 <h1 class="govuk-heading-l">    
-                    Flood warning locations
+                    Flood locations
                 </h1>
+                <h3 class="govuk-heading-s">    
+                    Warnings, severe flood warnings, and minor warnings 
+                </h3>
+          
+                
+               
                 {#permit|dump#}
 
                 <dl class="govuk-summary-list">
@@ -71,62 +78,11 @@
                     
                 {% endif %}
 
-                <hr class="govuk-section-break govuk-section-break--xl">
+               
 
 
-                {% set hintHTMLwarnings %}
-                <span class="govuk-hint">
-                    Flooding to property or a danger to life is expected in this location.</br></br>
-                  
-                    {% if data.targetAreaResults.hasWarnings %}
-                    We have sent 3 warnings for these location over the last year.
-                    {% endif %}
-                </span>
-                {% endset %}
-
-                {% set hintHTMLalerts %}
-                <span class="govuk-hint">
-                These may be shallow flooding of roads, fields and footpaths that may not be near me but may connect to waterways in this location.</br></br>
-              
-                {% if data.targetAreaResults.hasAlertAreas %}
-                We have sent 8 warnings for these location across all warning types over the last year.
-                {% endif %}    
-            </span>
-                {% endset %}
-
-                {{ govukRadios ({
-                    idPrefix: 'warningsType',
-                    name: 'warningsType',
-                    fieldset: {
-                        legend: {
-                            text: 'Which flood warnings do you need?',
-                            isPageHeading: true,
-                            classes: 'govuk-fieldset__legend--m'
-                        }
-                    },
-                    items: [
-                        {
-                            text: 'Warnings and severe warnings',
-                            value: 'Warnings and severe warnings',
-                            hint: {
-                                html: hintHTMLwarnings
-                            },
-                            checked: true if data['warningsType'] == 'Warnings and severe warnings'
-                        },
-                        {
-                            text: 'All flood warnings including minor warnings',
-                            value: 'All flood warnings including minor warnings',
-                            hint: {
-                                html: hintHTMLalerts
-                            },
-                            checked: true if data['warningsType'] == 'All flood warnings including minor warnings'
-                        }
-                    ]
-                }) }}
-
-
-
-
+            </br>
+            </br>
 
 
                 {{ govukButton ({

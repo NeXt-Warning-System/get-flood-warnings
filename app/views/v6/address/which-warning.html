@@ -1,0 +1,89 @@
+{% extends "layout.html" %}
+
+{% set title = "Which flood warnings do you need?" %}
+
+{% set selectedAddressID = data['selected-address'] | uuid %}
+{% set selectedAddress = data | addressFromID(selectedAddressID) %}
+
+{% block pageTitle %}
+    {{title}} - GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+
+    {{ super() }}
+
+    {{ govukBackLink ({
+        text: 'Back',
+        href: 'javascript:history.back()'
+    }) }}
+
+{% endblock %}
+
+{% block content %}
+{#permit|dump#}
+
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+  
+    <form action="../address/list">
+
+    {% from "govuk/components/radios/macro.njk" import govukRadios %}
+
+    <div class="govuk-form-group">
+      <fieldset class="govuk-fieldset" aria-describedby="warnings-hint">
+        <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+          <h1 class="govuk-fieldset__heading">
+            Which flood warnings do you need?
+          </h1>
+        </legend>
+        <div id="warnings-hint" class="govuk-hint">
+          Select all that apply.
+        </div>
+        <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+          <div class="govuk-checkboxes__item">
+            <input class="govuk-checkboxes__input" id="warnings" name="warnings" type="checkbox" value="severe">
+            <label class="govuk-label govuk-checkboxes__label" for="waste">
+              Warnings and severe warnings</label>
+              <div id="nationality-item-hint" class="govuk-hint govuk-checkboxes__hint">
+                These may be flooding to property or if a danger to life is expected in this location.
+              </br></br>We have sent x warnings for this location over the last year.</div>
+            </label>
+         
+          </div>
+          <p></p>
+          <div class="govuk-checkboxes__item">
+            <input class="govuk-checkboxes__input" id="warnings-2" name="warnings" type="checkbox" value="minor">
+            <label class="govuk-label govuk-checkboxes__label" for="warnings-2">
+              Minor warnings</label>
+              <div id="nationality-item-hint" class="govuk-hint govuk-checkboxes__hint">
+              These may be shallow flooding of roads, fields and footpaths that may not be near me but may connect to waterways in this location.
+            </br></br>We have sent x minor warnings for this location over the last year.</div>
+          
+          </div>
+        </div>
+    
+      </fieldset>
+    </div>
+
+
+
+{{ govukButton ({
+  html: 'Continue'
+}) }}
+
+
+
+
+
+
+
+
+    </form>
+
+
+  </div>
+</div>
+
+{% endblock %}

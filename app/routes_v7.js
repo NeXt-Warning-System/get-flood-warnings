@@ -206,7 +206,7 @@ router.post('/location/catigories-check', function (req, res) {
   router.post('/address/address-risk-check', function (req, res) {
   
     if (req.body['selection']=="yes") {
-      res.redirect("/"+folder+"/address/list")
+      res.redirect("/"+folder+"/address/which-warning")
     } else if (req.body['selection']=="no"){
       res.redirect("/"+folder+"/address/postcode")
     } else {
