@@ -16,83 +16,95 @@
 {% endblock %}
 
 {% block content %}
-
+{% if data.status=="signedIn" %}
+{% set destinationURL = '/'+folder+'/subscribe/check'  %}
+{% else %}
 {% set destinationURL = '/'+folder+'/subscribe/email' if data.fromCheck != 'true' else '/'+folder+'/subscribe/check'  %}
-
+{% endif %}
 
 <div class="govuk-grid-row">
 
-        <div class="govuk-grid-column-two-thirds">
-           
-           <form action="{{ destinationURL }}">
+    <div class="govuk-grid-column-two-thirds">
+       
+       <form action="{{ destinationURL }}">
 
-         
-                <h1 class="govuk-heading-l">    
-                    Flood locations
-                </h1>
-                <h3 class="govuk-heading-s">    
-                    Warnings, severe flood warnings, and minor warnings 
-                </h3>
-          
-                
-               
-                {#permit|dump#}
-
-                <dl class="govuk-summary-list">
-  
-                    {% set addressCount = 0 %}
-
-                    {% for id, uprn in data.savedAddresses %}
-
-                        {% if uprn | length %}
-
-                            {% set addressCount = addressCount + 1 %}
-
-                            {% set address = data | addressFromID(id) %}
-
-                            <div class="govuk-summary-list__row">
-                                <dt class="govuk-summary-list__value">
-                                    {{ address | formattedAddress }}
-                                </dt>
-                                <dd class="govuk-summary-list__actions">
-                                    <a class="govuk-link" href="list?savedAddresses[{{ id }}]=&selected-address=">
-                                        Remove<span class="govuk-visually-hidden"> address</span>
-                                    </a>
-                                </dd>
-                            </div>
-
-                        {% endif %}
-
-                    {% endfor %}
-
-                </dl>
-
-                <p>
-
-                    <a href="postcode?selected-address=&addressLookupPostcode=&address-lookup-name-number=">Add another location</a>
-                </p>
-
-                {% if addressCount == 0 %}
-                    
-                    {{ 'postcode' | redirect | safe }}
-                    
+     
+            <h1 class="govuk-heading-l">    
+                Flood locations
+            </h1>
+            <h3 class="govuk-heading-s">    
+                {% if data.warnings=="severe"%}
+              
+                Warnings and severe flood warnings
                 {% endif %}
+                {% if data.warnings=="minor"%}
+                Minor flood warnings
+                {% endif %}
+                {% if data.warnings=="minor" or data.warnings=="severe"%}
+                {% else %}
+                Severe flood warnings, warnings, and minor flood warnings
+                {% endif %}
+            </h3>
+      
+            
+           
+            {#permit|dump#}
 
-               
+            <dl class="govuk-summary-list">
+
+                {% set addressCount = 0 %}
+
+                {% for id, uprn in data.savedAddresses %}
+
+                    {% if uprn | length %}
+
+                        {% set addressCount = addressCount + 1 %}
+
+                        {% set address = data | addressFromID(id) %}
+
+                        <div class="govuk-summary-list__row">
+                            <dt class="govuk-summary-list__value">
+                                {{ address | formattedAddress }}
+                            </dt>
+                            <dd class="govuk-summary-list__actions">
+                                <a class="govuk-link" href="list?savedAddresses[{{ id }}]=&selected-address=">
+                                    Remove<span class="govuk-visually-hidden"> address</span>
+                                </a>
+                            </dd>
+                        </div>
+
+                    {% endif %}
+
+                {% endfor %}
+
+            </dl>
+
+            <p>
+
+                <a href="postcode?selected-address=&addressLookupPostcode=&address-lookup-name-number=">Add another location</a>
+            </p>
+
+            {% if addressCount == 0 %}
+                
+                {{ 'postcode' | redirect | safe }}
+                
+            {% endif %}
+
+           
 
 
-            </br>
-            </br>
+        </br>
+        </br>
 
 
-                {{ govukButton ({
-                    html: 'Continue'
-                }) }}
+            {{ govukButton ({
+                html: 'Continue'
+            }) }}
 
 
-            </form>
+        </form>
 
-        </div>
+    </div>
 
 </div>
 

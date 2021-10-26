@@ -30,8 +30,11 @@
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
+
+
     {% if data.addressConfirmed %}
     {% if data.targetAreaResults.hasWarnings or data.targetAreaResults.hasAlertAreas %}
+    
     <form action="which-warning">
       {% else %}
 
@@ -41,7 +44,6 @@
     {% else %}
     <form action="which-warning">
     {% endif %}
-
  
 
       {% if data.targetAreaResults.hasWarnings or data.targetAreaResults.hasAlertAreas %}

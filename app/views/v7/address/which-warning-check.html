@@ -26,14 +26,8 @@
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
-    {% if data.warningType=="selected" %}
-                    
-    {{ '../subscribe/check' | redirect | safe }}
-    
-{% endif %}
 
     <form action="../address/list">
-      <input type="hidden" name="warningType" value="selected">
 
     {% from "govuk/components/radios/macro.njk" import govukRadios %}
 

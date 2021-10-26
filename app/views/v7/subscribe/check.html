@@ -25,8 +25,7 @@
               <form action="/{{folder}}/sign-up/confirmation">
                 {% if data.status=="signedIn" %}
                 <h1 class="govuk-heading-l">    
-                  Flood warnings summary
-
+                  Alerts summary
               </h1>
                 {% else %}
                   <h1 class="govuk-heading-l">    
@@ -94,14 +93,20 @@
                           Which flood warnings do you need?
                         </dt>
                         <dd class="govuk-summary-list__value">
-                          {% if data.warningsType=="Warnings and severe warnings"%}
+                          {% if data.warnings=="severe"%}
                           Warnings and severe flood warnings
-                          {% else %}
-                          All flood warnings including minor warnings
                           {% endif %}
+                          {% if data.warnings=="minor"%}
+                          Minor flood warnings
+                          {% endif %}
+                          {% if data.warnings=="minor" or data.warnings=="severe"%}
+                          {% else %}
+                          Severe flood warnings, warnings, and minor flood warnings
+                          {% endif %}
+
                         </dd>
                         <dd class="govuk-summary-list__actions">
-                          <a class="govuk-link" href="/{{folder}}/address/list?fromCheck=true">
+                          <a class="govuk-link" href="/{{folder}}/address/which-warning-check?fromCheck=true">
                             Change<span class="govuk-visually-hidden"> severity</span>
                           </a>
                         </dd>
