@@ -25,7 +25,7 @@
               <form action="/{{folder}}/sign-up/confirmation">
                 {% if data.status=="signedIn" %}
                 <h1 class="govuk-heading-l">    
-                  Alerts summary
+                  Flood warnings summary
               </h1>
                 {% else %}
                   <h1 class="govuk-heading-l">    
@@ -230,7 +230,7 @@
                 {% if data.status=="signedIn" %}
         
                 {{ govukButton ({
-                  html: 'Add another',
+                  html: 'Add another location',
                   href: '/'+folder+'/address/postcode'
 
               }) }} 
