@@ -151,7 +151,7 @@ router.post('/location/catigories-check', function (req, res) {
     })
   })
   
-  // Route to check if new application has started or is a renewal
+  // Route to check if an alert or warning has been selected
   router.post('/find-location/choose-alerts-check', function (req, res) {
   
     if (req.body['alertsChoose']=="yes") {
@@ -160,6 +160,30 @@ router.post('/location/catigories-check', function (req, res) {
       res.redirect("/"+folder+"/find-location/review")
     }
   })
+
+    // Choose address or area ==============================================================
+
+    router.get('/address/address-area', function (req, res) {
+      res.render(folder+'/address/address-area',{
+          "formAction":"/"+folder+"/address/address-area-check"
+      })
+    })
+  
+    router.post('/address/address-area', function (req, res) {
+      res.render(folder+'/address/address-area',{
+          "formAction":"/"+folder+"/address/address-area-check"
+      })
+    })
+    
+    // Route to check if address or area has been selected
+    router.post('/address/address-area-check', function (req, res) {
+    
+      if (req.body['addressArea']=="postcode") {
+        res.redirect("/"+folder+"/address/postcode")
+      } else {
+        res.redirect("/"+folder+"/location/search")
+      }
+    })
 
 
   // Is address selection correct? ==============================================================
@@ -176,7 +200,7 @@ router.post('/location/catigories-check', function (req, res) {
     })
   })
   
-  // Route to check if new application has started or is a renewal
+  // Route to check if address has been selected
   router.post('/address/address-confirm-check', function (req, res) {
   
     if (req.body['address-selection']=="no") {
@@ -188,21 +212,21 @@ router.post('/location/catigories-check', function (req, res) {
 
 
 
-  // Address risk (yes / try another / go to list) ==============================================================
+  // Address risk POSTCODE (yes / try another / go to list) ==============================================================
 
-  router.get('/address/address-risk', function (req, res) {
-    res.render(folder+'/address/address-risk',{
+  router.get('/address/address-risk-postcode', function (req, res) {
+    res.render(folder+'/address/address-risk-postcode',{
         "formAction":"/"+folder+"/address/address-risk-check"
     })
   })
 
-  router.post('/address/address-risk', function (req, res) {
-    res.render(folder+'/address/address-risk',{
+  router.post('/address/address-risk-postcode', function (req, res) {
+    res.render(folder+'/address/address-risk-postcode',{
         "formAction":"/"+folder+"/address/address-risk-check"
     })
   })
   
-  // Route to check if new application has started or is a renewal
+  // Route to check if an alert or warning has been selected
   router.post('/address/address-risk-check', function (req, res) {
   
     if (req.body['selection']=="yes") {
@@ -210,9 +234,34 @@ router.post('/location/catigories-check', function (req, res) {
     } else if (req.body['selection']=="no"){
       res.redirect("/"+folder+"/address/postcode")
     } else {
-      res.redirect("/"+folder+"/address/address-risk")
+      res.redirect("/"+folder+"/address/address-risk-postcode")
     }
   })
 
 
+  // Address risk AREA (yes / try another / go to list) ==============================================================
+
+  router.get('/address/address-risk-area', function (req, res) {
+    res.render(folder+'/address/address-risk-area',{
+        "formAction":"/"+folder+"/address/address-risk-check"
+    })
+  })
+
+  router.post('/address/address-risk-area', function (req, res) {
+    res.render(folder+'/address/address-risk-area',{
+        "formAction":"/"+folder+"/address/address-risk-check"
+    })
+  })
+  
+  // Route to check if an alert or warning has been selected
+  router.post('/address/address-risk-check', function (req, res) {
+  
+    if (req.body['selection']=="yes") {
+      res.redirect("/"+folder+"/address/which-warning")
+    } else if (req.body['selection']=="no"){
+      res.redirect("/"+folder+"/address/postcode")
+    } else {
+      res.redirect("/"+folder+"/address/address-risk-area")
+    }
+  })
 module.exports = router

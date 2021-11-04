@@ -1,0 +1,51 @@
+
+{% extends "layout_unbranded.html" %}
+
+{% block pageTitle %}
+  Grid test
+{% endblock %}
+
+{% block header %}
+{% endblock %}
+
+{% block beforeContent %}
+{% endblock %}
+
+{% block content %}
+
+<form method="post" action="/{{folder}}/address/address-risk-area">
+
+
+<h1 class="govuk-heading-l">Name your area</h1>
+
+
+{{ govukInput ({
+  id: 'areaName',
+  name: 'areaName',
+  classes: 'govuk-input--width-20',
+  type: 'areaName',
+  label: {
+      text: 'Name of your flood warning location:',
+      classes: 'govuk-input--width-30'
+  }
+}) }}
+<div id="map2"></div><!-- // #map2 -->
+
+<input type="hidden" name="areaSelected" value="areaSelected">
+
+</br></br>
+{{ govukButton ({
+  html: 'Continue'
+}) }}
+
+</form>
+
+{% endblock %}
+
+
+{% block footer %}
+  <!-- Javascript -->
+  <script src="/public/javascripts/jquery-1.11.3.js"></script>
+  <script src="/public/javascripts/gridtest.js"></script>
+{% endblock %}
+

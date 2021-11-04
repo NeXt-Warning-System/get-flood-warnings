@@ -1,57 +1,7 @@
-{% extends "layout.html" %}
-
-{% set title = "Flood monitoring" %}
-
-{% set selectedAddressID = data['selected-address'] | uuid %}
-{% set selectedAddress = data | addressFromID(selectedAddressID) %}
-
-{% block pageTitle %}
-    {{title}} - GOV.UK
-{% endblock %}
-
-{% block beforeContent %}
-
-    {{ super() }}
-
-    {{ govukBackLink ({
-        text: 'Back',
-        href: 'javascript:history.back()'
-    }) }}
-
-{% endblock %}
-
-{% block content %}
-{#permit|dump#}
-{% if not selectedAddress %}
-    
-    {{ 'address-confirm' | redirect | safe }}
-    
-{% endif %}
-
-<div class="govuk-grid-row">
-  <div class="govuk-grid-column-two-thirds">
-    {% if data.addressConfirmed %}
-    {% if data.targetAreaResults.hasWarnings or data.targetAreaResults.hasAlertAreas %}
-    <form action="which-warning">
-      {% else %}
-
-    <form action="{{formAction}}" method="post">
-      {% endif %}
-
-    {% else %}
-    <form action="which-warning">
-    {% endif %}
-
- 
-
-      {% if data.targetAreaResults.hasWarnings or data.targetAreaResults.hasAlertAreas %}
-
-          <h1 class="govuk-heading-l">
-            Flood warnings at: <br> {{ selectedAddress.DISPLAY_NAME }}
-          </h1>
+{% if data.targetAreaResults.hasWarnings or data.targetAreaResults.hasAlertAreas %}
 
           <p>
-            We monitor the location this address is within.
+          We monitor the location this area is within.
           </p>
           <p>We can offer you warnings:</p>
           <ul class="govuk-list govuk-list--bullet">
@@ -70,9 +20,6 @@
         
       {% else %}
 
-        <h1 class="govuk-heading-l">
-          No current flood monitoring at: <br> {{ selectedAddress.DISPLAY_NAME }}
-        </h1>
 
         <p>
           We do not monitor this location because it is at low risk of flooding from rivers, the sea or groundwater.
@@ -82,8 +29,8 @@ It may still be affected by surface water flooding, which this service does not 
 <p>You can:</p>
         <ul class="govuk-list govuk-list--bullet">
           <li><a href="https://flood-warning-information.service.gov.uk/long-term-flood-risk" target="_blank">check the long term flood risk for an area in England</a>, including surface water</li>
-          <li>continue to sign up for this address in case it becomes at risk in future</li>
-        </ul>
+          <li>continue to sign up for this area in case it becomes at risk in future</li>
+          </ul>
 
 
         
@@ -98,11 +45,11 @@ It may still be affected by surface water flooding, which this service does not 
   items: [
     {
       value: "yes",
-      text: "Continue with this address in case it becomes at risk in future"
+      text: "Continue with this area becomes at risk in future"
     },
     {
       value: "no",
-      text: "Try another postcode instead"
+      text: "Try another search"
     }
   ]
 }) }}
@@ -135,16 +82,3 @@ It may still be affected by surface water flooding, which this service does not 
 
 
 {% endif %}
-
-<input type="hidden" name="addressConfirmed" value="yes">
-
-
-
-
-    </form>
-
-
-  </div>
-</div>
-
-{% endblock %}

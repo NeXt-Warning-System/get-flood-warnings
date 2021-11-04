@@ -22,14 +22,13 @@
 
         <div class="govuk-grid-column-two-thirds">
 
-            <form method="post">
+            <form method="post" action="/{{folder}}/grid-select/map">
 
                 <h1 class="govuk-heading-l">Search for a location</h1>
 
                 {{ govukInput ({
                     id: 'location-query',
                     name: 'location-query',
-                    value: data['location-query'] if data['location-query'] else '',
                     classes: 'govuk-input--width-20',
                     label: {
                         text: 'Place name, town or keyword'
@@ -37,8 +36,8 @@
                 }) }}
 
                 {{ govukRadios ({
-                    idPrefix: 'location-selection',
-                    name: 'location-selection',
+                    idPrefix: 'location-select',
+                    name: 'location-select',
                     classes: 'govuk-radios--small',
                     fieldset: {
                         legend: {
@@ -46,7 +45,7 @@
                             isPageHeading: true,
                             classes: 'govuk-fieldset__legend--m'
                         },
-                        classes: 'app-location-selection-fieldset'
+                        classes: 'app-location-select-fieldset'
                     },
                     items: [
                         { 
@@ -60,6 +59,9 @@
                     html: 'Continue'
                 }) }}
 
+                <p>
+                    <a href="../address/postcode">Find a location with a postcode</a>
+                </p>
             </form>
 
         </div>
@@ -76,7 +78,7 @@
             $('.loading-label').remove()
             $('.error-label').remove()
             $('.address-options').remove()
-            $('.app-location-selection-fieldset').hide()
+            $('.app-location-select-fieldset').hide()
         }
 
         var typingTimer;
@@ -106,7 +108,7 @@
             console.log(results[0])
             if (results && results.length > 0) {
                 var validResultCount = 0
-                var $containingGroup = $('.app-location-selection-fieldset')
+                var $containingGroup = $('.app-location-select-fieldset')
                 var radioOptionCount = $('.govuk-radios__item').length
                 $('.govuk-radios__item').each(function(index) {
                     if (index != 0) {

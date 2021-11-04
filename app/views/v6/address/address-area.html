@@ -1,0 +1,63 @@
+{% extends "layout.html" %}
+
+{% set title = "Search for a location" %}
+
+{% block pageTitle %}
+    {{title}} - GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+
+    {{ super() }}
+
+    {{ govukBackLink ({
+        text: 'Back',
+        href: 'javascript:history.back()'
+    }) }}
+
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="{{formAction}}" method="post">
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-fieldset__heading">
+                Address or area?
+              </h1>
+            </legend>
+            <div class="govuk-radios">
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="addressArea" name="addressArea" type="radio" value="postcode">
+                <label class="govuk-label govuk-radios__label" for="address-area">
+                  Address with postcode
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="addressArea-2" name="addressArea" type="radio" value="area">
+                <label class="govuk-label govuk-radios__label" for="address-area-2">
+                  Place name, town or keyword
+                </label>
+              </div>
+            </div>
+        
+          </fieldset>
+        </div>
+
+
+        <div class="form-group">
+          {{submitButton|safe}}
+        </div>
+
+      </form>
+
+
+    </div>
+  </div>
+
+{% endblock %}

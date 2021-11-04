@@ -32,6 +32,16 @@ $govuk-assets-path: '/govuk/assets/';
     line-height: 0;
   }
 
+  #map2 {
+    width: 800px;
+    height: 500px;
+    background-image:url("/public/images/map2.png");
+    background-repeat: no-repeat;
+    background-size: 100%;
+    font-size:0;
+    line-height: 0;
+  }
+
 .gridsq {
     width: 98px;
     height: 98px;

@@ -27,8 +27,8 @@
     <div class="govuk-grid-column-two-thirds">
        
        <form action="{{ destinationURL }}">
-
-     
+    
+        {#permit|dump#}
             <h1 class="govuk-heading-l">    
                 Flood locations
             </h1>
@@ -73,12 +73,24 @@
                     {% endif %}
 
                 {% endfor %}
+                {% if data.areaSelected=="areaSelected"%}
+
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__value">
+                        {{ data['areaName'] }}
+                                        </dt>
+                    <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link" href="#'>
+                            Remove<span class="govuk-visually-hidden">Remove</span>
+                        </a>
+                    </dd>
+                </div>
+                {% endif %}
 
             </dl>
 
             <p>
-
-                <a href="postcode?selected-address=&addressLookupPostcode=&address-lookup-name-number=">Add another location</a>
+                <a href="address-area?selected-address=&addressLookupPostcode=&address-lookup-name-number=">Add another location</a>
             </p>
 
             {% if addressCount == 0 %}

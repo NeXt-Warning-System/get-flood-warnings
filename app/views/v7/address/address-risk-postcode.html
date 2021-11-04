@@ -1,0 +1,76 @@
+{% extends "layout.html" %}
+
+{% set title = "Flood monitoring" %}
+
+{% set selectedAddressID = data['selected-address'] | uuid %}
+{% set selectedAddress = data | addressFromID(selectedAddressID) %}
+
+{% block pageTitle %}
+    {{title}} - GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+
+    {{ super() }}
+
+    {{ govukBackLink ({
+        text: 'Back',
+        href: 'javascript:history.back()'
+    }) }}
+
+{% endblock %}
+
+{% block content %}
+{#permit|dump#}
+{% if data.areaSelected=="areaSelected"%}
+{% else %}
+
+{% if not selectedAddress %}
+    
+    {{ 'address-confirm' | redirect | safe }}
+    
+{% endif %}
+{% endif %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    {% if data.addressConfirmed %}
+    {% if data.targetAreaResults.hasWarnings or data.targetAreaResults.hasAlertAreas %}
+    <form action="which-warning">
+      {% else %}
+
+    <form action="{{formAction}}" method="post">
+      {% endif %}
+
+    {% else %}
+    <form action="which-warning">
+    {% endif %}
+
+    {% if data.targetAreaResults.hasWarnings or data.targetAreaResults.hasAlertAreas %}
+
+    <h1 class="govuk-heading-l">
+      Flood warnings at: <br> {{ selectedAddress.DISPLAY_NAME }} 
+    </h1>
+    {% else %}
+    <h1 class="govuk-heading-l">
+      No current flood monitoring at: <br> {{ selectedAddress.DISPLAY_NAME }}
+    </h1>
+    {% endif %}
+
+
+    {% include "includes/address-risk.html" %}
+
+
+
+<input type="hidden" name="addressConfirmed" value="yes">
+
+
+
+
+    </form>
+
+
+  </div>
+</div>
+
+{% endblock %}
