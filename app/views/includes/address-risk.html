@@ -1,7 +1,7 @@
 {% if data.targetAreaResults.hasWarnings or data.targetAreaResults.hasAlertAreas %}
 
           <p>
-          We monitor the location this area is within.
+          We monitor the area this is within.
           </p>
           <p>We can offer you warnings:</p>
           <ul class="govuk-list govuk-list--bullet">
@@ -22,7 +22,7 @@
 
 
         <p>
-          We do not monitor this location because it is at low risk of flooding from rivers, the sea or groundwater.
+          We do not monitor this area because it is at low risk of flooding from rivers, the sea or groundwater.
 </br></br>
 It may still be affected by surface water flooding, which this service does not cover. If you want to know if there’s surface water flooding (also known as ‘flash flooding’) in your area, <a href="https://www.gov.uk/find-local-council">contact your local council</a>.
 </p>
@@ -45,7 +45,7 @@ It may still be affected by surface water flooding, which this service does not 
   items: [
     {
       value: "yes",
-      text: "Continue with this area becomes at risk in future"
+      text: "Add this area for future risk"
     },
     {
       value: "no",
@@ -58,7 +58,7 @@ It may still be affected by surface water flooding, which this service does not 
   html: 'Continue'
 }) }}
 </br><p>
-  <a href="/{{folder}}/address/list?">Go back to selection</a>
+  <a href="/{{folder}}/address/list?">Go back to summary</a>
 </p>
 {% else %}
 </br>

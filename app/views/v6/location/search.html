@@ -24,14 +24,14 @@
 
             <form method="post" action="/{{folder}}/grid-select/map">
 
-                <h1 class="govuk-heading-l">Search for a location</h1>
+                <h1 class="govuk-heading-l">Search for an area</h1>
 
                 {{ govukInput ({
                     id: 'location-query',
                     name: 'location-query',
                     classes: 'govuk-input--width-20',
                     label: {
-                        text: 'Place name, town or keyword'
+                        text: 'Enter a place name, town or keyword'
                     }
                 }) }}
 
@@ -41,7 +41,7 @@
                     classes: 'govuk-radios--small',
                     fieldset: {
                         legend: {
-                            text: 'Select a location',
+                            text: 'Select an area',
                             isPageHeading: true,
                             classes: 'govuk-fieldset__legend--m'
                         },
@@ -55,12 +55,20 @@
                     ]
                 }) }}
 
-                {{ govukButton ({
-                    html: 'Continue'
-                }) }}
+                {{ govukButton({
+                    text: "Continue"
+                  }) }}
 
-                <p>
-                    <a href="../address/postcode">Find a location with a postcode</a>
+                  {% if data.warningSelection=="yes" %}
+
+                  {{ govukButton({
+                    text: "Back to flood warnings",
+                    classes: "govuk-button--secondary",
+                    href: "../address/list"
+                  }) }}
+                  {% endif %}
+                  <p>
+                    <a href="../address/postcode">Search by postcode</a>
                 </p>
             </form>
 

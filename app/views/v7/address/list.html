@@ -30,7 +30,7 @@
     
         {#permit|dump#}
             <h1 class="govuk-heading-l">    
-                Flood locations
+                Your areas of interest
             </h1>
             <h3 class="govuk-heading-s">    
             {% if data.warnings=="severe"%}
@@ -42,7 +42,7 @@
             {% endif %}
             {% if data.warnings=="minor" or data.warnings=="severe"%}
             {% else %}
-            Severe flood warnings, warnings, and minor flood warnings
+            Warnings, severe flood warnings, and minor warnings
             {% endif %}
         </h3>
             {#permit|dump#}

@@ -18,8 +18,7 @@
 
 <h1 class="govuk-heading-l">Select the area you are interested in</h1>
 
-<p>Click, tab or use the arrow keys to move. Click or spacebar to select or unselect a square.</p>
-
+<p>Use the tab or arrow keys to move around the map. Click or use the spacebar to select or unselect a square.</p>
 <div id="map"></div><!-- // #map -->
 
   <label for="size">Grid size:</label>
@@ -33,10 +32,20 @@
     <option value="200">200px</option>
   </select>
 
-</br></br>
-{{ govukButton ({
-  html: 'Continue'
-}) }}
+  <p>If you know the coordinates of your area, you can <a href="#"  target="_blank">use coordinates instead</a>.</p>
+</br>
+<div class="govuk-button-group">
+  {{ govukButton({
+    text: "Continue"
+  }) }}
+
+  {{ govukButton({
+    text: "Back to location search",
+    classes: "govuk-button--secondary",
+    href: "../address/address-area"
+  }) }}
+</div>
+
 
 </form>
 
