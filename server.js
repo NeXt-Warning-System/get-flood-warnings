@@ -39,8 +39,6 @@ if (fs.existsSync('./app/v6/routes.js')) {
 const app = express()
 const documentationApp = express()
 
-const cors = require('cors')
-
 if (useV6) {
   console.log('/app/v6/routes.js detected - using v6 compatibility mode')
   v6App = express()
@@ -104,7 +102,7 @@ app.set('view engine', 'html')
 // Middleware to serve static assets
 app.use('/public', express.static(path.join(__dirname, '/public')))
 
-// Serve govuk-frontend in from node_modules (so not to break pre-extenstions prototype kits)
+// Serve govuk-frontend in from node_modules (so not to break pre-extensions prototype kits)
 app.use('/node_modules/govuk-frontend', express.static(path.join(__dirname, '/node_modules/govuk-frontend')))
 
 // Set up documentation app
@@ -321,15 +319,5 @@ app.use(function (err, req, res, next) {
 
 console.log('\nGOV.UK Prototype Kit v' + releaseVersion)
 console.log('\nNOTICE: the kit is for building prototypes, do not use it for production services.')
-
-app.options('*', function (req, res) {
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  res.setHeader('Access-Control-Allow-Methods', '*');
-  res.setHeader("Access-Control-Allow-Headers", "*");
-  res.end();
-});
-
-app.use(cors());
-app.options('*', cors()); 
 
 module.exports = app
